@@ -1,0 +1,1503 @@
+﻿@model Minvu.Snat.Domain.Forms.ConsultaContrato
+
+@{
+    ViewBag.Title = "Solicitud Pago";
+}
+<style type="text/css">
+    .oculta {
+        display: none;
+    }
+</style>
+
+@if (Model._contratoSolicitudPago.codigoSalida != "")
+{
+
+    <script>
+
+            $(document).ready(function () {
+
+                if ((@Model._contratoSolicitudPago.codigoSalida == "0") && (@Model._contratoSolicitudPago.estadoSolicitud == "7") && (@Model._contratoSolicitudPago.codigoSalidaRatifica == "1")) {
+                    $('#modalOkRatifica').modal('toggle');
+                    $('#divBusquedaRat').show();
+                    $("#strongBusquedaRat").html("Se ha creado exitosamente la autorización de pago N° @Model._contratoSolicitudPago.numeroSolicitudPresupuesto");
+                    $('#idSolicitudHidden').val("@Model._contratoSolicitudPago.numeroSolicitudPresupuesto");
+                    $('#idRegionHidden').val("@Model._contratoSolicitudPago.idRegion");
+                    $('#idAnnoHidden').val("@Model._contratoSolicitudPago.annoPresupuesto");
+                    LimpiaFormulario();
+                }
+               else if ((@Model._contratoSolicitudPago.codigoSalida == "0") && (@Model._contratoSolicitudPago.estadoSolicitud == "6"))
+                {
+                    $('#modalOk').modal('toggle');
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").html("@Model._contratoSolicitudPago.mensajeSalida");
+                    LimpiaFormulario();
+                }
+                else {
+                    $('#modalOk').modal('toggle');
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").html("@Model._contratoSolicitudPago.mensajeSalida");
+                    LimpiaFormularioDuplicado();
+                }
+
+                @*if (@Model._contratoSolicitudPago.codigoSalida == "0") {
+                    $('#modalOk').modal('toggle');
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").html("@Model._contratoSolicitudPago.mensajeSalida");
+                    LimpiaFormulario();
+                    $('#.').val("@Model._contratoSolicitudPago.numeroSolicitudPresupuesto");
+
+                    if ((@Model._contratoSolicitudPago.estadoSolicitud == "7") && (@Model._contratoSolicitudPago.codigoSalidaRatifica == "0"))
+                    {
+                        $("#strongBusqueda").html("@Model._contratoSolicitudPago.mensajeSalidaRatifica");
+                    }
+                }
+                else {
+                    $('#modalOk').modal('toggle');
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").html("@Model._contratoSolicitudPago.mensajeSalida");
+                    LimpiaFormularioDuplicado();
+                }*@
+
+            });
+    </script>
+}
+else
+{
+    <script>
+        $(document).ready(function () {
+            LimpiaValorIncio();
+        });
+    </script>
+}
+
+
+
+<div class="container">
+
+    @using (Html.BeginForm("GuardarSolicitud", "Contrato", FormMethod.Post, new { id = "formIngresoSolicitud", @class = "form-horizontal", enctype = "multipart/form-data", autocomplete = "off" }))
+    {
+        var yearNow = @ViewBag.yearNow;
+        var dateNow = @ViewBag.dateNow;
+
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">PRESUPUESTO REGIONAL</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="anno" style="text-align:left">Año Presupuesto:</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.annoPresupuesto, new { @class = "form-control", maxlength = "8", id = "anno", name = "anno", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @Value = yearNow, @readonly = "readonly" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="nSolicitud" style="text-align:left">Número de Solicitud:</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.numeroSolicitudPresupuesto, new { @class = "form-control", id = "nSolicitud", name = "nSolicitud", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="pDisponible" style="text-align:left">Presupuesto Disponible<span class="text-justify"> ($)</span>:</label>
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPago"))
+                                {
+                                    <div class="col-sm-6">
+                                        @Html.TextBox("pDisponible", Model._contratoSolicitudPago.montoPresupuesto.ToString("N0"), new { @class = "form-control", @readonly = "readonly", Value = "0" })
+                                        <input type="text" name="presupuestoDisponibleHidden" id="presupuestoDisponibleHidden" value="" hidden>
+                                        <span id="mensajeRut" class="text-danger" style="display:none"></span>
+                                    </div>
+                                }
+                                else if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPagoReg"))
+                                {
+                                    <div class="col-sm-6">
+                                        @Html.TextBox("pDisponible", Model._contratoSolicitudPago.montoPresupuesto.ToString("N0"), new { @class = "form-control", @readonly = "readonly" })
+                                        <input type="text" name="presupuestoDisponibleHidden" id="presupuestoDisponibleHidden" value="" hidden>
+                                        <span id="mensajeRut" class="text-danger" style="display:none"></span>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPago"))
+                                {
+                                    <label class="control-label col-sm-5" for="nRegionPresupuesto" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Región:</label>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(model => model._contratoSolicitudPago.nombreRegionPresupuesto, new { @class = "form-control", id = "nRegionPresupuesto", name = "nRegionPresupuesto", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly" })
+                                        @Html.HiddenFor(model => model._contratoSolicitudPago.idRegion, new { id = "hiddenIdRegion" })
+                                    </div>
+                                }
+                                else if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPagoReg"))
+                                {
+                                    <label class="control-label col-sm-5" for="nRegionPresupuesto" style="text-align:left">Región:</label>
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model._contratoSolicitudPago.nombreRegionPresupuesto, new { @class = "form-control", id = "nRegionPresupuesto", name = "nRegionPresupuesto", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly" })
+                                        @Html.HiddenFor(model => model._contratoSolicitudPago.idRegion, new { id = "hiddenIdRegion" })
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">CONTRATO / RESOLUCIÓN</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="nresolucion" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>N° Resolución Contrato:</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.numeroResolucionContrato, new { @class = "form-control", placeholder = "Ingrese N° Resolución Contrato", maxlength = "8", id = "nresolucion", name = "nresolucion", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                    @Html.HiddenFor(model => model._contratoSolicitudPago.numeroResolucionContrato, new { id = "nresolucionConsulta" })
+                                    @Html.HiddenFor(model => model._contratoSolicitudPago.idContrato, new { id = "hiddenIdContrato" })
+                                    <span id="mensajeSpan" class="text-danger" style="display:none"></span>
+                                </div>
+                                <button type="button" id="btnConsultaContrato" class="close" style="margin-right: 26px" data-toggle="tooltip" data-placement="top" title="Búsqueda Contrato"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="fresolucion" style="text-align:left">Fecha de Resolución Contrato:</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.fechaResolucionContrato, new { @class = "form-control", placeholder = "", maxlength = "25", id = "fresolucion", name = "fresolucion", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="pejecucion" style="text-align:left">Plazo Ejecución:</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.plazoEjecucion, new { @class = "form-control", maxlength = "15", id = "pejecucion", name = "pejecucion", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="fcontrato" style="text-align:left">Fecha de Inicio Contrato:</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.fechaInicioContrato, new { @class = "form-control", placeholder = "", maxlength = "25", id = "fcontrato", name = "fcontrato", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="rut" style="text-align:left">Rut:</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.rutContrato, new { @class = "form-control", maxlength = "15", id = "rut", name = "rut", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="nombre" style="text-align:left">Nombre / Razón Social:</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.nombreRazonSocial, new { @class = "form-control", placeholder = "", maxlength = "25", id = "nombreRazonSocial", name = "nombreRazonSocial", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="tipoProveedor" style="text-align:left">Tipo Proveedor:</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.idTipoProveedor, new { @class = "form-control", maxlength = "15", id = "tipoProveedor", name = "tipoProveedor", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="nombre" style="text-align:left; text-decoration: underline;"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="montoContrato" style="text-align:left">Monto Contrato <span class="text-justify">($)</span>: </label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.montoContrato, new { @class = "form-control", placeholder = "", maxlength = "25", id = "montoContrato", name = "montoContrato", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-6" for="comprometidos" style="text-align:left">Monto Contrato Comprometido <span class="text-justify">($)</span>:</label>
+                                <div class="col-md-6" style="margin-left:-46px">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.montoComprometidos, new { @class = "form-control", placeholder = "", maxlength = "25", id = "comprometidos", name = "comprometidos", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="pagados" style="text-align:left">Monto Contrato Pagado <span class="text-justify">($)</span>:</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.montoPagados, new { @class = "form-control", placeholder = "", maxlength = "25", id = "pagados", name = "pagados", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="porPagar" style="text-align:left">Monto Contrato por Pagar <span class="text-justify">($)</span>:</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.montoPorPagar, new { @class = "form-control", maxlength = "25", id = "montoPorPagar", name = "montoPorPagar", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="detallePresupuesto" style='display:block;'>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">ACTIVIDADES REALIZADAS</h2>
+                </div>
+                <div class="panel-body" id="detalleActividades" style='display:none;'>
+                    <table id="mytable" class="table table-bordered table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Servicios</th>
+                                <th>Monto a Pagar <span class="text-justify">($)</span></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <input type="text" name="dataHidden" id="dataHidden" value="" hidden>
+                </div>
+
+                <div class="alert alert-danger oculta" id="errorSinMontos" role="alert">
+                    Ingrese al menos un monto entre las actividades
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">V°B° SERVICIOS</h2>
+                </div>
+                <div class="panel-body" id="detalleServicios" style='display:none;'>
+                    <div class="row">
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="control-label col-md-6">
+                                    <b style="color:red;">(*)</b>  @Html.LabelFor(model => model._auxmaestroTipoPagoEntities.nombreMaestroTipoPago)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.DropDownListFor(model => model._auxmaestroTipoPagoEntities.idMaestroTipoPago, new SelectList(Model._listMaestroTipoPagoEntities, "idMaestroTipoPago", "nombreMaestroTipoPago"), " Seleccione", new { @class = "form-control", @id = "ddlTipoPago", @name = "ddlTipoPago" })
+                                    <span id="msgTipoPago" class="text-danger" style="display:none"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="control-label col-md-6">
+                                    @Html.LabelFor(model => model._contratoSolicitudPago.numeroBolFact)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.numeroBolFact, new { @class = "form-control", placeholder = "Ingrese número", onkeypress = "return numeros(event)", maxlength = "15", id = "nbolfact", name = "nbolfact", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="control-label col-md-6">
+                                    <label for="fbolfact">Fecha Boleta o Factura:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" id="datepickerBolFact" onblur="quitaMsjFecha();" placeholder="Ingrese fecha" onkeypress="return numeros(event);" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" style="background-color:#fff;" />
+                                    <span id="mensajeFecha" class="text-danger" style="display:none">Debe seleccionar fecha </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="control-label col-md-6">
+                                    <label for="montoTotalPagar">Monto Total a Pagar ($):</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p id="montoTotalPagar" name="montoTotalPagar">Sin información</p>
+                                    <input type="text" name="montoTotalPagarHidden" id="montoTotalPagarHidden" value="" hidden>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="control-label col-md-6">
+                                    <label for="avance">Avance:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p name="avanceTotal" id="avanceTotal">Sin información</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_Ratificador") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_RatificadorReg"))
+                        {
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="control-label col-md-6">
+                                        @Html.LabelFor(model => model._contratoSolicitudPago.vbServicio)
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.CheckBoxFor(Model => Model._contratoSolicitudPago.vbServicio, new { id = "vbServicios" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="control-label col-md-6">
+                                        @Html.LabelFor(model => model._contratoSolicitudPago.vbServicio)
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.CheckBoxFor(Model => Model._contratoSolicitudPago.vbServicio, new { id = "vbServicios", disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="control-label col-md-6">
+                                    @Html.LabelFor(model => model._contratoSolicitudPago.fechaVB)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.fechaVB, new { @class = "form-control", placeholder = "Ingrese fecha", id = "vbFecha", name = "vbFecha", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @Value = dateNow, @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="control-label col-md-6">
+                                    @Html.LabelFor(model => model._contratoSolicitudPago.fechaVB)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.responsableVB, new { @class = "form-control", placeholder = "", maxlength = "25", id = "vbResponsable", name = "vbResponsable", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @Value = @SiteHelper.UserName, @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="alert alert-danger oculta" id="mensajeMonto" role="alert">
+                        El campo "Monto Total a Pagar" es obligatorio
+                    </div>
+                    <div class="alert alert-danger oculta" id="mensajeMontoMayor" role="alert">
+                        El campo "Monto total a pagar" supera al monto disponible del contrato
+                    </div>
+                    <div class="alert alert-danger oculta" id="mensajeMontoMenor" role="alert">
+                        El campo "Monto Total a Pagar" debe ser mayor a cero
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="divGuardar">
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-10">
+                    <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                    <button id="btnSubmitGuardar" class="btn btn-primary">Guardar</button>
+                    <button id="btnGuardar" type="submit" class="btn btn-primary oculta">Guardar</button>
+                    <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="divRatificar" style="display:none">
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-10">
+                    <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                    <button id="btnSubmitRatificar" type="submit" class="btn btn-primary" disabled>Ratificar</button>
+                    @*<button id="btnImprimir" type="button" class="btn btn-warning" onclick="printDiv('areaImprimir')">Imprimir</button>*@
+                    <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+                </div>
+            </div>
+        </div>
+        <input type="text" name="idEstadoHidden" id="idEstadoHidden" value="6" hidden>
+
+        <div class="container">
+            <div class="form-group">
+                <div class="col-lg-5" style="text-align:left">
+                    Los campos con
+                    <span style="color:#FF0000">(*)&nbsp;</span>
+                    son obligatorios.<br />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-5" style="text-align:left">
+                    Los campos con
+                    <span style="color:#FF0000">(**)&nbsp;</span>
+                    son al menos uno obligatorio.<br />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalOk" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divBusqueda" class="alert alert-success oculta" style="display:none">
+                        <button class="close" type="button" data-dismiss="alert"></button>
+                        <strong id="strongBusqueda">Error</strong>
+                    </div>
+                    <div id="divBusquedaError" class="alert alert-warning oculta" style="display:none">
+                        <button class="close" type="button" data-dismiss="alert"></button>
+                        <strong id="strongBusquedaError">Error</strong>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    @Html.ActionLink("Cerrar", "ListadoSolicitudPago", "Contrato", new { @class = "btn btn-default" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("ImprimirSolicitudModal", "Contrato", FormMethod.Post, new { target = "_blank", id = "formIngresoSolicitud", @class = "form-horizontal", enctype = "multipart/form-data", autocomplete = "off" }))
+    {
+        <div class="modal fade" id="modalOkRatifica" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>*@
+                        <h4 class="modal-title custom_align" id="Heading">Mensaje</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="idSolicitudHidden" id="idSolicitudHidden" value="" hidden>
+                        <input type="text" name="idRegionHidden" id="idRegionHidden" value="" hidden>
+                        <input type="text" name="idAnnoHidden" id="idAnnoHidden" value="" hidden>
+                        <div id="divBusquedaRat" class="alert alert-success oculta">
+                            <button class="close" type="button" data-dismiss="alert"></button>
+                            <strong id="strongBusquedaRat">Error</strong>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer ">
+                        @Html.ActionLink("Aceptar", "ListadoSolicitudPago", "Contrato", new { @class = "btn btn-primary" })
+
+                        <button type="submit" class="btn btn-primary"> Imprimir</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    }
+
+    <div class="spinner" style="display:none">
+        <div class="center-div">
+            <div class="inner-div">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $(document).ready(function () {
+
+        $("#vbServicios").attr('disabled', true);
+
+
+        $("#ddlTipoPago").change(function () {
+            if ($("#ddlTipoPago").val() == "" || $("#ddlTipoPago").val() == 1) {
+                $("#vbServicios").attr('disabled', true);
+            }
+            if ($("#ddlTipoPago").val() == 2) {
+                $("#vbServicios").removeAttr('disabled');
+            }
+        });
+
+        $("#ddlTipoPago").change(function () {
+            if ($("#ddlTipoPago").val() != "")
+            {
+                $("#ddlTipoPago").css('border-color', '#66afe9');
+                document.getElementById('msgTipoPago').style.display = 'none';
+                error = 1;
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        var flag = 0;
+        $('.amt').on('keydown', function (e) {
+            flag++;
+            if (flag > 1) {
+                e.preventDefault();
+            }
+        });
+        $('.amt').on('keyup', function (e) {
+            flag = 0;
+        });
+    });
+
+    $("#vbServicios").change(function () {
+
+        if (($('#vbServicios').is(':checked'))) {
+            document.getElementById('divRatificar').style.display = 'block';
+            document.getElementById('divGuardar').style.display = 'none';
+            $("#idEstadoHidden").val("7");
+        }
+        else {
+            document.getElementById('divRatificar').style.display = 'none';
+            document.getElementById('divGuardar').style.display = 'block';
+            $("#idEstadoHidden").val("6");
+        }
+    });
+
+        $(function () {
+
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1, d = date.getDate(), y = date.getFullYear();
+        var f2 = d + "/" + m + "/" + y;
+        var f1 = "01/01/" + y;
+        var dias = restaFechas(f1, f2);
+        var sumDias = 365 + dias;
+        var stardate = "-" + sumDias + "d";
+
+        $("#datepickerBolFact").datepicker(
+            {
+                format: 'dd-mm-yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true,
+                startDate: stardate,
+                endDate: new Date(),
+            }).attr('readonly', 'readonly');
+
+        $("#datepicker").datepicker(
+            {
+                format: 'dd-mm-yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true,
+            }).attr('readonly', 'readonly');
+        });
+
+        restaFechas = function (f1, f2) {
+            var aFecha1 = f1.split('/');
+            var aFecha2 = f2.split('/');
+            var fFecha1 = Date.UTC(aFecha1[2], aFecha1[1] - 1, aFecha1[0]);
+            var fFecha2 = Date.UTC(aFecha2[2], aFecha2[1] - 1, aFecha2[0]);
+            var dif = fFecha2 - fFecha1;
+            var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+            return dias;
+        }
+
+
+        $("#nresolucion").keyup(function () {
+            $("#nresolucion").css('border', '1px solid #ccc');
+            document.getElementById('mensajeSpan').style.display = 'none';
+            //LimpiaFormulario();
+        });
+
+        $("#btnConsultaContrato").click(function () {
+
+            $("#nresolucion").css('border', '1px solid #ccc');
+            document.getElementById('mensajeSpan').style.display = 'none';
+
+            LimpiaVBServicios();
+            var numResolucion = $('#nresolucion').val();
+            var codigoRegionNac = $('#ddlRegion').val();
+            var codigoRegionReg = $('#hiddenIdRegion').val();
+            var codigoRegion = '';
+
+            if (codigoRegionNac == undefined) {
+                codigoRegion = codigoRegionReg;
+            }
+            else
+            {
+                codigoRegion = codigoRegionNac;
+            }
+
+            $("#hiddenIdRegion").val(codigoRegion);
+
+            if (codigoRegion == "") {
+                $("#ddlRegion").css('border-color', '#b94a48');
+                document.getElementById('mensajeRegion').style.display = 'block';
+                return false;
+            }
+
+            if (numResolucion == "") {
+                $("#nresolucion").css('border-color', '#b94a48');
+                document.getElementById('mensajeSpan').style.display = 'block';
+                $("#mensajeSpan").html("N° Resolución Contrato no puede ser vacío.");
+                return false;
+            }
+            else if (numResolucion < 1) {
+                $("#nresolucion").css('border-color', '#b94a48');
+                document.getElementById('mensajeSpan').style.display = 'block';
+                $("#mensajeSpan").html("N° Resolución Contrato debe ser mayor a 0.");
+                return false;
+            }
+
+            if (numResolucion != '') {
+                $('.spinner').css('display', 'block');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ConsultaContrato")', //Llamada al metodo Json
+                    dataType: 'json',
+                    data: { numeroResolucion: numResolucion, idRegion: codigoRegion },
+                    success: function (auxSolicitudPago) {
+
+                        if (auxSolicitudPago._contratoSolicitudPago.idContrato > 0) {
+
+                            document.getElementById("btnSubmitGuardar").disabled = false;
+                            document.getElementById("btnSubmitRatificar").disabled = false;
+
+                            $('#nresolucionConsulta').val(auxSolicitudPago._contratoSolicitudPago.numeroResolucionContratoConsulta);
+                            $('#hiddenIdContrato').val(auxSolicitudPago._contratoSolicitudPago.idContrato);
+                            $('#pejecucion').val(auxSolicitudPago._contratoSolicitudPago.plazoEjecucion);
+                            $('#rut').val(auxSolicitudPago._contratoSolicitudPago.rutContrato);
+                            $('#tipoProveedor').val(auxSolicitudPago._contratoSolicitudPago.nombreTipoProveedor);
+                            $('#nombreRazonSocial').val(auxSolicitudPago._contratoSolicitudPago.nombreRazonSocial);
+                            $('#montoContrato').val(auxSolicitudPago._contratoSolicitudPago.montoContrato).val(function (index, value) {
+                                return value.replace(/\D/g, "")
+                                    .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                                    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                            });
+
+                            $('#pagados').val(auxSolicitudPago._contratoSolicitudPago.montoPagados).val(function (index, value) {
+                                return value.replace(/\D/g, "")
+                                    .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                                    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                            });
+
+                            $('#comprometidos').val(auxSolicitudPago._contratoSolicitudPago.montoComprometidos).val(function (index, value) {
+                                return value.replace(/\D/g, "")
+                                    .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                                    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                            });
+
+                            $('#montoPorPagar').val(auxSolicitudPago._contratoSolicitudPago.montoPorPagar).val(function (index, value) {
+                                return value.replace(/\D/g, "")
+                                    .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                                    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                            });
+
+                            var fresolucion = getDateIfDate(auxSolicitudPago._contratoSolicitudPago.fechaResolucionContrato);
+                            $('#fresolucion').val(fresolucion);
+                            var finicio = getDateIfDate(auxSolicitudPago._contratoSolicitudPago.fechaInicioContrato);
+                            $('#fcontrato').val(finicio);
+
+                            $('.spinner').css('display', 'none');
+
+                            if (auxSolicitudPago._contratoSolicitudPagoList.length > 0) {
+                                var dataSet = new Array;
+
+                                if (!('error' in auxSolicitudPago._contratoSolicitudPagoList)) {
+                                    $.each(auxSolicitudPago._contratoSolicitudPagoList, function (index, value) {
+                                        var tempArray = new Array;
+                                        for (var o in value) {
+                                            tempArray.push(value[o]);
+                                        }
+                                        dataSet.push(tempArray);
+
+                                    })
+                                    var object = auxSolicitudPago._contratoSolicitudPagoList
+
+                                    $('#mytable').DataTable({
+                                        destroy: true,
+                                        data: dataSet,
+                                        "paging": false,
+                                        "searching": false,
+                                        "info": false,
+                                        "ordering": false,
+
+                                        columns: [
+                                            { data: 0 },
+                                            { data: 1 },
+                                            { data: null, defaultContent: '', sorting: false }
+                                        ],
+                                        "columnDefs": [{
+                                            "targets": -1,
+                                            "createdCell": function (td, cellData, rowData, row, col) {
+                                                //console.log(cellData)
+                                                $(td).prepend(
+                                                    "<td style='text-align:center;'> <span style='color: #FF0000'>(**)&nbsp;</span> <input class='form-control amt' type='text' name='" + cellData[0] + "' id='" + cellData[2] + "', maxlength = '13', placeholder = '0', onkeyup = 'return separaMiles(event)', onkeypress = 'return calcularServicios(event)', onblur = 'calculoAvance();', onpaste = 'return false;', onCopy = 'return false', onCut = 'return false', onDrag = 'return false', onDrop = 'return false'></td>"
+                                                );
+                                            }
+                                        }]
+                                    });
+                                }
+                                else {
+                                    $('#divBusquedaError').show();
+                                    $("#strongBusquedaError").text("Error inesperado, intente más tarde.");
+                                }
+
+                                document.getElementById('detalleActividades').style.display = 'block';
+                                document.getElementById('detalleServicios').style.display = 'block';
+                                $('.spinner').css('display', 'none');
+                            }
+                        }
+                        else
+                        {
+                            $('.spinner').css('display', 'none');
+                            $("#nresolucion").css('border-color', '#b94a48');
+                            document.getElementById('mensajeSpan').style.display = 'block';
+                            $("#mensajeSpan").html("N° Resolución Contrato no existe o está asociado a otra región.");
+                            LimpiaContratoResolucionServicios();
+                            return false;
+                        }
+                    },
+                    error: function (ex) {
+                        $('.spinner').css('display', 'none');
+                        $('#divBusquedaError').show();
+                        $("#strongBusquedaError").text("Error inesperado, intente más tarde.");
+                    }
+                });
+                return false;
+            }
+
+        });
+
+        $('#btnSubmitGuardar').click(function () {
+
+            var cadenaFinal = '';
+            var montoTotalPagar = $('#montoTotalPagar').text();
+            montoTotalPagar = montoTotalPagar.split('.').join('');
+            $("#montoTotalPagarHidden").val(montoTotalPagar);
+
+            var presupuestoDisponible = $('#pDisponible').val();
+            presupuestoDisponible = presupuestoDisponible.split('.').join('');
+            $("#presupuestoDisponibleHidden").val(presupuestoDisponible);
+
+            var numResolucion = $('#nresolucion').val();
+            var numResolucionConsulta = $('#nresolucionConsulta').val();
+            //var numeroBolFact = $('#nbolfact').val();
+            //var fechaBolFact = $('#datepickerBolFact').val();
+            var fechaVB = $('#vbFecha').val();
+
+            if ($("#ddlTipoPago").val() == "") {
+                $("#ddlTipoPago").css('border-color', '#b94a48');
+                document.getElementById('msgTipoPago').style.display = 'block';
+                $("#msgTipoPago").html("El campo tipo de pago es obligatorio.");
+                error = 1;
+            }
+
+            if (montoTotalPagar == "" || numResolucion == "") { /*numeroBolFact == "" || fechaBolFact == "" || */
+
+                if (numResolucion == "") {
+                    $("#nresolucion").css('border-color', '#b94a48');
+                    document.getElementById('mensajeSpan').style.display = 'block';
+                    $("#mensajeSpan").html("N° Resolución Contrato no puede ser vacío.");
+                    $("#nresolucion").focus();
+                }
+
+           
+            }
+
+            if (numResolucion != numResolucionConsulta) {
+                $("#nresolucion").css('border-color', '#b94a48');
+                document.getElementById('mensajeSpan').style.display = 'block';
+                $("#mensajeSpan").html("N° Resolución Contrato es distinto al que ingreso.");
+                $("#nresolucion").focus();
+                return false;
+            }
+
+            if (montoTotalPagar != "") {
+                if (montoTotalPagar == 0) {
+                    //$('#montoTotalPagar').val('');
+                    document.getElementById('mensajeMontoMenor').style.display = 'block';
+                    //$("#montoTotalPagar").css('border', '1px solid #b94a48');
+                    return false;
+                }
+            }
+
+            var estado = true;
+
+            $(".amt").each(
+                function (index, value) {
+
+                    var monto = eval($(this).val().split('.').join(''));
+
+                    if (monto == undefined) {
+                        monto = 0;
+                    }
+
+                    if (monto >= 0) {
+                        var data = $(this).attr('name') + '¬' + $(this).attr('id') + '#' + monto + '°¬|';
+                        cadenaFinal += data;
+                    }
+                    else {
+                        estado = false;
+                        $("#" + id).css('border', '1px solid #b94a48');
+                        $("#mensaje_" + id).show();
+                    }
+                }
+            );
+
+            if (estado) {
+                $("#dataHidden").val(cadenaFinal);
+            }
+            else {
+                return false;
+            }
+
+            //SAT
+            var RegularizacionDePropiedades = false;
+            var RealizacionDeEstudiosDeTitulosYOtrasAsesoriasLegalesSobreBienesInmuebles = false;
+            var RevisionDeProyectosDeCalculoEstructuralYDeArquitectura = false;
+            var ElaboracionDeProyectostecnicos = false;
+            var IdentificacionYOrganizacionDeLaDemanda = false;
+            var valRegularizacionDePropiedades = 0;
+            var valRealizacionDeEstudiosDeTitulosYOtrasAsesoriasLegalesSobreBienesInmuebles = 0;
+            var valRevisionDeProyectosDeCalculoEstructuralYDeArquitectura = 0;
+            var valElaboracionDeProyectostecnicos = 0;
+            var valIdentificacionYOrganizacionDeLaDemanda= 0;
+
+            //SET
+            var EstudiosTecnicosEnTerrenos = false;
+            var ElaborarDiagnosticosYEnsayosTecnicosDeEdificaciones = false;
+            var OtroServicio = false;
+            var valEstudiosTecnicosEnTerrenos = 0;
+            var valElaborarDiagnosticosYEnsayosTecnicosDeEdificaciones= 0;
+            var valOtroServicio = 0;
+
+            if (!document.getElementById('49')) {
+                RegularizacionDePropiedades = false;
+            }
+            else {
+                RegularizacionDePropiedades = true;
+                valRegularizacionDePropiedades = $('#49').val().split('.').join('');
+            }
+
+            if (!document.getElementById('50')) {
+                RealizacionDeEstudiosDeTitulosYOtrasAsesoriasLegalesSobreBienesInmuebles = false;
+            }
+            else {
+
+                RealizacionDeEstudiosDeTitulosYOtrasAsesoriasLegalesSobreBienesInmuebles = true;
+                valRealizacionDeEstudiosDeTitulosYOtrasAsesoriasLegalesSobreBienesInmuebles = $('#50').val().split('.').join('');
+            }
+
+            if (!document.getElementById('51')) {
+                RevisionDeProyectosDeCalculoEstructuralYDeArquitectura = false;
+            }
+            else {
+
+                RevisionDeProyectosDeCalculoEstructuralYDeArquitectura = true;
+                valRevisionDeProyectosDeCalculoEstructuralYDeArquitectura = $('#51').val().split('.').join('');
+            }
+
+            if (!document.getElementById('52')) {
+                ElaboracionDeProyectostecnicos = false;
+            }
+            else {
+                ElaboracionDeProyectostecnicos = true;
+                valElaboracionDeProyectostecnicos = $('#52').val().split('.').join('');
+
+            }
+
+            if (!document.getElementById('53')) {
+                IdentificacionYOrganizacionDeLaDemanda = false;
+            }
+            else {
+
+                IdentificacionYOrganizacionDeLaDemanda = true;
+                valIdentificacionYOrganizacionDeLaDemanda = $('#53').val().split('.').join('');
+
+            }
+
+            if (!document.getElementById('54')) {
+                EstudiosTecnicosEnTerrenos = false;
+            }
+            else {
+                EstudiosTecnicosEnTerrenos = true;
+                valEstudiosTecnicosEnTerrenos = $('#54').val().split('.').join('');
+
+            }
+
+            if (!document.getElementById('55')) {
+                ElaborarDiagnosticosYEnsayosTecnicosDeEdificaciones = false;
+            }
+            else {
+                ElaborarDiagnosticosYEnsayosTecnicosDeEdificaciones = true;
+                valElaborarDiagnosticosYEnsayosTecnicosDeEdificaciones = $('#55').val().split('.').join('');
+
+            }
+
+            if (!document.getElementById('58')) {
+                OtroServicio = false;
+            }
+            else {
+                OtroServicio = true;
+                valOtroServicio = $('#58').val().split('.').join('');
+
+            }
+
+
+            if (RegularizacionDePropiedades || RealizacionDeEstudiosDeTitulosYOtrasAsesoriasLegalesSobreBienesInmuebles || RevisionDeProyectosDeCalculoEstructuralYDeArquitectura
+                || ElaboracionDeProyectostecnicos || IdentificacionYOrganizacionDeLaDemanda || EstudiosTecnicosEnTerrenos || ElaborarDiagnosticosYEnsayosTecnicosDeEdificaciones || OtroServicio) {
+
+
+                if (valRegularizacionDePropiedades > 0 || valRealizacionDeEstudiosDeTitulosYOtrasAsesoriasLegalesSobreBienesInmuebles > 0 || valRevisionDeProyectosDeCalculoEstructuralYDeArquitectura > 0 ||
+                    valElaboracionDeProyectostecnicos > 0 || valIdentificacionYOrganizacionDeLaDemanda > 0 || valEstudiosTecnicosEnTerrenos > 0 || valElaborarDiagnosticosYEnsayosTecnicosDeEdificaciones > 0
+                    || valOtroServicio > 0) {
+
+
+                    $('#btnSubmitGuardar').css('display', 'none');
+                    $('#btnGuardar').show();
+                    $("#errorSinMontos").hide();
+                    //document.getElementById("btnGuardar").click();
+
+                } else if (valRegularizacionDePropiedades == 0 && valRealizacionDeEstudiosDeTitulosYOtrasAsesoriasLegalesSobreBienesInmuebles == 0 && valRevisionDeProyectosDeCalculoEstructuralYDeArquitectura == 0 &&
+                    valElaboracionDeProyectostecnicos == 0 && valIdentificacionYOrganizacionDeLaDemanda == 0 && valEstudiosTecnicosEnTerrenos == 0 && valElaborarDiagnosticosYEnsayosTecnicosDeEdificaciones == 0
+                    && valOtroServicio == 0) {
+
+
+                    $("#49").css('border', '1px solid #b94a48');
+                    $("#50").css('border', '1px solid #b94a48');
+                    $("#51").css('border', '1px solid #b94a48');
+                    $("#52").css('border', '1px solid #b94a48');
+                    $("#53").css('border', '1px solid #b94a48');
+                    $("#54").css('border', '1px solid #b94a48');
+                    $("#55").css('border', '1px solid #b94a48');
+                    $("#58").css('border', '1px solid #b94a48');
+
+                    $("#49").focus();
+                    $("#50").focus();
+                    $("#51").focus();
+                    $("#52").focus();
+                    $("#53").focus();
+                    $("#54").focus();
+                    $("#55").focus();
+                    $("#58").focus();
+                    $("#avanceTotal").text("Sin información");
+                    $("#errorSinMontos").show();
+                    return false;
+                } else {
+
+                    $("#49").css('border', '1px solid #b94a48');
+                    $("#50").css('border', '1px solid #b94a48');
+                    $("#51").css('border', '1px solid #b94a48');
+                    $("#52").css('border', '1px solid #b94a48');
+                    $("#53").css('border', '1px solid #b94a48');
+                    $("#54").css('border', '1px solid #b94a48');
+                    $("#55").css('border', '1px solid #b94a48');
+                    $("#58").css('border', '1px solid #b94a48');
+
+                    $("#49").focus();
+                    $("#50").focus();
+                    $("#51").focus();
+                    $("#52").focus();
+                    $("#53").focus();
+                    $("#54").focus();
+                    $("#55").focus();
+                    $("#58").focus();
+                    $("#avanceTotal").text("Sin información");
+
+                    $("#errorSinMontos").show();
+                    return false;
+                }
+
+            } else {
+
+                return false;
+            }
+
+    });
+
+    function changeFocus() {
+        $("#49").css('border-color', '#66afe9');
+        $("#50").css('border-color', '#66afe9');
+        $("#51").css('border-color', '#66afe9');
+        $("#52").css('border-color', '#66afe9');
+        $("#53").css('border-color', '#66afe9');
+        $("#54").css('border-color', '#66afe9');
+        $("#55").css('border-color', '#66afe9');
+        $("#58").css('border-color', '#66afe9');
+        $("#errorSinMontos").hide();
+    }
+        $('#btnSubmitRatificar').click(function () {
+
+            var cadenaFinal = '';
+            var montoTotalPagar = $('#montoTotalPagar').text();
+
+
+            montoTotalPagar = montoTotalPagar.split('.').join('');
+            $("#montoTotalPagarHidden").val(montoTotalPagar);
+
+            var presupuestoDisponible = $('#pDisponible').val();
+            presupuestoDisponible = presupuestoDisponible.split('.').join('');
+            $("#presupuestoDisponibleHidden").val(presupuestoDisponible);
+
+            var numResolucion = $('#nresolucion').val();
+            
+            var fechaVB = $('#vbFecha').val();
+
+
+            if ( montoTotalPagar == "" || numResolucion == "")  { //numeroBolFact == "" || fechaBolFact == "" ||
+
+                if (numResolucion == "") {
+                    $("#nresolucion").css('border-color', '#b94a48');
+                    document.getElementById('mensajeSpan').style.display = 'block';
+                    $("#mensajeSpan").html("N° Resolución Contrato no puede ser vacío.");
+                    $("#nresolucion").focus();
+                }
+
+
+                if (montoTotalPagar == "") {
+                    document.getElementById('mensajeMonto').style.display = 'block';
+                   
+                }
+
+                return false;
+            }
+
+            if (montoTotalPagar != "") {
+                if (montoTotalPagar == 0) {
+                    $('#montoTotalPagar').val('');
+                    document.getElementById('mensajeMontoMenor').style.display = 'block';
+                   
+                    return false;
+                }
+            }
+
+            var estado = true;
+
+            $(".amt").each(
+                function (index, value) {
+
+                    var monto = eval($(this).val().split('.').join(''));
+
+                    if (monto == undefined)
+                    {
+                        monto = 0;
+                    }
+
+                    if (monto >= 0) {
+                        var data = $(this).attr('name') + '¬' + $(this).attr('id') + '#' + monto + '°¬|';
+                        cadenaFinal += data;
+                    }
+                    else {
+                        estado = false;
+                        $("#" + id).css('border', '1px solid #b94a48');
+                        $("#mensaje_" + id).show();
+                    }
+                }
+            );
+
+            if (estado) {
+                $("#dataHidden").val(cadenaFinal);
+            }
+            else {
+                return false;
+            }
+
+        });
+    //Obtencion monto presupuesto
+    $("#ddlRegion").change(function () {
+
+        $("#ddlRegion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeRegion').style.display = 'none';
+        LimpiaContratoResolucionServicios();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetMontoPresupuestoRegion")', //Llamada al metodo Json
+            dataType: 'json',
+            data: { idRegion: $("#ddlRegion").val() },
+
+            success: function (auxConsultaInformacionMonto) {//auxConsultaInformacionMonto contiene el JSON
+                if (auxConsultaInformacionMonto._contratoSolicitudPago.montoDisponibleContratoRegion >= 0) {
+
+                    $('#pDisponible').val(auxConsultaInformacionMonto._contratoSolicitudPago.montoDisponibleContratoRegion).val(function (index, value) {
+                        return value.replace(/\D/g, "")
+                            .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                    });
+                }
+                else
+                {
+                    $('#pDisponible').val('0');
+                }
+
+            },
+            error: function (ex) {
+                $('#pDisponible').val('0');
+            }
+        });
+        return false;
+    });
+
+    function quitaMsjFecha() {
+        document.getElementById('mensajeFecha').style.display = 'none';
+    }
+
+    function teclaPresiona()
+    {
+        $(document).ready(function () {
+            var flag = 0;
+            $('.amt').on('keydown', function (e) {
+                flag++;
+                if (flag > 1) {
+                    e.preventDefault();
+                }
+            });
+            $('.amt').on('keyup', function (e) {
+                flag = 0;
+            });
+        });
+    }
+
+    function separaMiles() {
+
+        teclaPresiona();
+
+        $(event.target).val(function (index, value) {
+            return value.replace(/\D/g, "")
+                .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".")
+                .replace(/^0+/, ''); ;
+        });
+    }
+
+    function calcular_total() {
+        var montoContrato = $("#montoContrato").val().split('.').join('');
+        var importe_total = 0;
+        $('.amt').keyup(function () {
+            importe_total = 0;
+            $(".amt").each(
+                function (index, value) {
+                    if ($.isNumeric($(this).val().split('.').join(''))) {
+                        importe_total = importe_total + eval($(this).val().split('.').join(''));
+                    }
+                }
+            );
+
+            var signo = '';
+
+            if (importe_total < 0) {
+                signo = '-';
+            }
+
+            importe_total = importe_total.toString().replace(/\D/g, "")
+                .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+
+            importe_total = signo + importe_total;
+
+
+
+            $("#montoTotalPagar").text(importe_total);
+            if (importe_total > 0) {
+
+                changeFocus();
+            } else if (importe_total == 0)
+            {
+                $("#montoTotalPagar").text("Sin información");
+
+            }else {
+                $("#avanceTotal").text("Sin información");
+
+            }
+
+
+
+        });
+    }
+
+    function getDateIfDate(d) {
+        var m = d.match(/\/Date\((\d+)\)\//);
+        return m ? (new Date(+m[1])).toLocaleDateString('es-cl', { month: '2-digit', day: '2-digit', year: 'numeric' }) : d;
+    }
+
+    function calculoAvance()
+    {
+        var montoComprometido = $("#comprometidos").val().split('.').join('');
+        var montoPorPagar = $("#montoPorPagar").val().split('.').join('');
+        var montoContrato = $("#montoContrato").val().split('.').join('');
+        var montoTotal = $("#montoTotalPagar").text().split('.').join('');
+        var montoComprometidoR = parseInt(montoComprometido);
+        var montoPorPagarR = parseInt(montoPorPagar);
+        var montoContratoR = parseInt(montoContrato);
+        var montoTotalR = parseInt(montoTotal);
+        var montoParcial = montoTotalR + montoComprometidoR;
+
+        var porcentaje = (montoParcial / montoContratoR) * 100;
+
+        var nporcentaje = porcentaje.toString();
+        var largo = nporcentaje.length;
+
+        if (largo > 3)
+        {
+            porcentaje = nporcentaje.substr(0, 4);
+        }
+
+
+        if (porcentaje > 0 && montoTotal > 0) {
+            $("#avanceTotal").text(porcentaje + ' %');
+        }
+        else
+        {
+            $("#avanceTotal").text('Sin Información');
+        }
+
+
+        if (montoTotalR > montoPorPagarR) {
+            document.getElementById('mensajeMontoMayor').style.display = 'block';
+            //$("#montoTotalPagar").css('border', '1px solid #b94a48');
+            //$("#avanceTotal").css('border', '1px solid #b94a48');
+            //$("#montoTotalPagar").focus();
+            return false;
+        }
+
+    }
+
+    function backPage() {
+    document.location = '@Url.Action("ListadoSolicitudPago", "Contrato")';
+    }
+
+    function numeros(e) {
+
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function calcularServicios(e) {
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+
+        //separaMiles();
+        calcular_total();
+
+        //$("#montoTotalPagar").css('border', '1px solid #ccc');
+        //$("#avanceTotal").css('border', '1px solid #ccc');
+        document.getElementById('mensajeMonto').style.display = 'none';
+        document.getElementById('mensajeMontoMayor').style.display = 'none';
+        document.getElementById('mensajeMontoMenor').style.display = 'none';
+
+        return patron.test(tecla_final);
+    }
+
+    function LimpiaValorIncio()
+    {
+        document.getElementById("btnSubmitGuardar").disabled = true;
+        document.getElementById("btnSubmitRatificar").disabled = true;
+        $('#pagados').val('');
+        $('#comprometidos').val('');
+        $('#porPagar').val('');
+        $('#nresolucion').val('');
+        $('#fresolucion').val('');
+        $('#pejecucion').val('');
+        $('#fcontrato').val('');
+        $('#montoContrato').val('');
+        $('#tipoProveedor').val('');
+        $('#nbolfact').val('');
+        $('#fbolfact').val('');
+        $('#montoTotalPagar').val('');
+        $('#fechaVB').val('');
+        $('#rut').val('');
+        $('#nombreRazonSocial').val('');
+        $('#montoPorPagar').val('');
+    }
+
+
+    function LimpiaFormulario() {
+
+        document.getElementById("btnSubmitGuardar").disabled = true;
+        document.getElementById("btnSubmitRatificar").disabled = true;
+        $('#rut').val('');
+        $('#nombreRazonSocial').val('');
+        $('#pagados').val('');
+        $('#comprometidos').val('');
+        $('#porPagar').val('');
+        $('#nresolucion').val('');
+        $('#fresolucion').val('');
+        $('#pejecucion').val('');
+        $('#fcontrato').val('');
+        $('#montoContrato').val('');
+        $('#tipoProveedor').val('');
+        $('#nbolfact').val('');
+        $('#fbolfact').val('');
+        $('#montoTotalPagar').val('');
+        $('#fechaVB').val('');
+        $('#datepickerBolFact').val('');
+        $('#datepicker').val('');
+        $('#montoPorPagar').val('');
+        $('#ddlRegion').val('');
+
+        $('input:checkbox').removeAttr('checked');
+        $('input:text').css('border', '1px solid #ccc');
+        document.getElementById('mensajeSpan').style.display = 'none';
+        document.getElementById('detalleActividades').style.display = 'none';
+        document.getElementById('detalleServicios').style.display = 'none';
+        document.getElementById('mensajeMontoMenor').style.display = 'none';
+        //document.getElementById('mensajeNumeroBolFact').style.display = 'none';
+        document.getElementById('mensajeMontoMayor').style.display = 'none';
+
+    }
+
+    function LimpiaFormularioDuplicado() {
+
+        document.getElementById("btnSubmitGuardar").disabled = true;
+        document.getElementById("btnSubmitRatificar").disabled = true;
+        $('#rut').val('');
+        $('#nombreRazonSocial').val('');
+        $('#pagados').val('');
+        $('#comprometidos').val('');
+        $('#porPagar').val('');
+        $('#fresolucion').val('');
+        $('#pejecucion').val('');
+        $('#fcontrato').val('');
+        $('#montoContrato').val('');
+        $('#tipoProveedor').val('');
+        $('#nbolfact').val('');
+        $('#fbolfact').val('');
+        $('#montoTotalPagar').val('');
+        $('#fechaVB').val('');
+        $('#datepickerBolFact').val('');
+        $('#datepicker').val('');
+
+        $('input:checkbox').removeAttr('checked');
+        $('input:text').css('border', '1px solid #ccc');
+        document.getElementById('mensajeSpan').style.display = 'none';
+        document.getElementById('detalleActividades').style.display = 'none';
+        document.getElementById('mensajeMontoMenor').style.display = 'none';
+        //document.getElementById('mensajeNumeroBolFact').style.display = 'none';
+    }
+
+    function LimpiaContratoResolucionServicios() {
+
+        document.getElementById("btnSubmitGuardar").disabled = true;
+        document.getElementById("btnSubmitRatificar").disabled = true;
+        $('#pejecucion').val('');
+        $('#rut').val('');
+        $('#tipoProveedor').val('');
+        $('#fresolucion').val('');
+        $('#fcontrato').val('');
+        $('#nombreRazonSocial').val('');
+        $('#montoContrato').val('');
+        $('#pagados').val('');
+        $('#comprometidos').val('');
+        $('#montoPorPagar').val('');
+        document.getElementById('detalleActividades').style.display = 'none';
+        document.getElementById('detalleServicios').style.display = 'none';
+    }
+
+    function LimpiaVBServicios() {
+
+        document.getElementById("btnSubmitGuardar").disabled = true;
+        document.getElementById("btnSubmitRatificar").disabled = true;
+        //document.getElementById('mensajeNumeroBolFact').style.display = 'none';
+        $("#nbolfact").css('border', '1px solid #ccc');
+        $("#datepickerBolFact").css('border', '1px solid #ccc');
+        $('#nbolfact').val('');
+        $('#datepickerBolFact').val('');
+        $('#montoTotalPagar').text('Sin Información');
+        $('#avanceTotal').text('Sin Información');
+        $('input:checkbox').removeAttr('checked');
+    }
+
+    function getDV() {
+        var numero = document.getElementById("rut");
+        var rutDV = document.getElementById("dv");
+
+        nuevo_numero = numero.value.toString().split('.').join('').split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+
+        document.getElementById("hiddenDV").value = dv;
+
+        if (numero.value == "") {
+
+            $('#dv').val('');
+        }
+
+        return dv;
+    }
+
+    function printDiv(nombreDiv) {
+        var contenido = document.getElementById(nombreDiv).innerHTML;
+        var contenidoOriginal = document.body.innerHTML;
+
+        document.body.innerHTML = contenido;
+
+        window.print();
+
+        document.body.innerHTML = contenidoOriginal;
+    }
+
+    window.addEventListener("pageshow", function (event) {
+        var historyTraversal = event.persisted ||
+            (typeof window.performance != "undefined" &&
+                window.performance.navigation.type === 2);
+        if (historyTraversal) {
+            // Handle page restore.
+            window.location.reload();
+        }
+    });
+
+
+</script>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Web_Trazabilidad_Test.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Programa" Type="int" Mode="In" />
+    <Parameter Name="CodigoProyecto" Type="varchar" Mode="In" />
+    <Parameter Name="Region" Type="int" Mode="In" />
+    <Parameter Name="Titulo" Type="int" Mode="In" />
+    <Parameter Name="Año" Type="int" Mode="In" />
+    <Parameter Name="Numerollamado" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Web_Trazabilidad_TestStoreContainer" />
+</Schema>

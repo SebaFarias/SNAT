@@ -1,0 +1,19 @@
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\NLog.config
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\Minvu.Snat.Helper.dll.config
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\Minvu.Snat.Helper.dll
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\Minvu.Snat.Helper.pdb
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\NLog.dll
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\NLog.xml
+C:\SNAT\Produccion\Minvu.Snat.Helper\obj\Release\Minvu.Snat.Helper.csproj.CoreCompileInputs.cache
+C:\SNAT\Produccion\Minvu.Snat.Helper\obj\Release\Minvu.Snat.Helper.dll
+C:\SNAT\Produccion\Minvu.Snat.Helper\obj\Release\Minvu.Snat.Helper.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\NLog.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\Minvu.Snat.Helper.dll.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\Minvu.Snat.Helper.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\Minvu.Snat.Helper.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\NLog.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\bin\Release\NLog.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\obj\Release\Minvu.Snat.Helper.csprojAssemblyReference.cache
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\obj\Release\Minvu.Snat.Helper.csproj.CopyComplete
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\obj\Release\Minvu.Snat.Helper.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Helper\obj\Release\Minvu.Snat.Helper.pdb

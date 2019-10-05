@@ -1,0 +1,24 @@
+﻿<div id="modalSesionExpirada" class="modal fade" data-backdrop="static" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h4 class="modal-title">La sesión ha expirado</h4>
+                </div>*@
+            <div class="modal-body">
+                <h2>Sesión expirada</h2>
+                <p>Por favor vuelva a ingresar a través del <a href="@Url.Content(System.Configuration.ConfigurationManager.AppSettings["PortalAutenticacion"].ToString())">Portal de autenticación </a> </p>
+                <br />
+                <br />
+            </div>
+            @*<div class="modal-footer">
+                </div>*@
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#modalSesionExpirada').modal();
+    });
+</script>

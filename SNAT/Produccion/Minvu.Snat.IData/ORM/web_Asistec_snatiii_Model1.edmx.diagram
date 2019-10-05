@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dac7f4392ac646d4b25bcc1d5d1acdd7" Name="Diagram1" ZoomLevel="13" >
+        <EntityTypeShape EntityType="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_FAMILIA" Width="2.625" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_PPPF_PROYECTO" Width="3.125" PointX="4.375" PointY="4.125" />
+        <EntityTypeShape EntityType="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_PROFESION" Width="1.5" PointX="5.375" PointY="1.5" />
+        <EntityTypeShape EntityType="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_PROFESIONALES" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="Web_Asistec_SnatIII_ContingenciaModel.FK_PROFESIONALES_PROFESION" />
+        <EntityTypeShape EntityType="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO" Width="1.5" PointX="8.25" PointY="4.5" />
+        <AssociationConnector Association="Web_Asistec_SnatIII_ContingenciaModel.FK_WEB_ASIS_REFERENCE_WEB_ASIS" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

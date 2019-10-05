@@ -1,0 +1,785 @@
+﻿@model Minvu.Snat.Domain.Forms.ConsultaContrato
+
+@{
+    ViewBag.Title = "Listado Solicitud Pago";
+}
+
+
+
+<style>
+    .dt-head-center {
+        text-align: center;
+    }
+
+    .dt-head-right {
+        text-align: right;
+    }
+</style>
+
+<div class="container">
+
+    @using (Html.BeginForm("ListadoSolicitudPago", "Contrato", FormMethod.Post, new { id = "formConsultaSolicitud", @class = "form-horizontal", enctype = "multipart/form-data", autocomplete = "off" }))
+    {
+
+
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Búsqueda de Solicitudes</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="año" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Año Presupuestario:</label>
+                                <div class="col-md-6">
+                                    @Html.DropDownListFor(model => model._contratoSolicitudPago.annoPresupuesto, new SelectList(Model._contratoEntities.lstAnoPresupuesto, "idAno", "ano"), "-- Seleccione --", new { @class = "form-control", id = "ddlAnno", name = "ddlAnno" })
+
+
+
+                                    @Html.HiddenFor(model => model._contratoSolicitudPago.annoPresupuesto)
+                                    <span id="mensajeAnno" class="text-danger" style="display:none">Debe Seleccionar Año</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_Ratificador"))
+                                {
+                                    <label class="control-label col-sm-3" for="nRegionPresupuesto" style="text-align:left">Región:</label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownListFor(model => model._regionEntities.idRegion, new SelectList(Model._listRegionEntities, "idRegion", "nombreRegion"), " Seleccione", new { @class = "form-control", @id = "ddlRegion", @name = "ddlRegion" })
+                                        <span id="mensajeRegion" class="text-danger" style="display:none">Debe Seleccionar Región</span>
+                                        @Html.HiddenFor(model => model._contratoSolicitudPago.idRegion, new { id = "hiddenIdRegion" })
+                                        @Html.HiddenFor(model => model._contratoSolicitudPago.nombreRegionPresupuesto, new { id = "ddlRegion" })
+                                    </div>
+                                }
+                                else if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConSolicitudPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_RatificadorReg"))
+                                {
+                                    <label class="control-label col-sm-3" for="nRegionPresupuesto" style="text-align:left">Región:</label>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(model => model._contratoSolicitudPago.nombreRegionPresupuesto, new { @class = "form-control", id = "nRegionPresupuesto", name = "nRegionPresupuesto", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly" })
+                                        @Html.HiddenFor(model => model._contratoSolicitudPago.idRegion, new { id = "hiddenIdRegion" })
+                                    </div>
+                                    <span id="mensajeRegion" class="text-danger" style="display:none"></span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="nresolucion" style="text-align:left">N° Resolución Contrato:</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model._contratoSolicitudPago.numeroResolucionContrato, new { @class = "form-control", placeholder = "Ingrese N° Resolución Contrato", maxlength = "8", id = "nresolucion", name = "nresolucion", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                    @Html.HiddenFor(model => model._contratoSolicitudPago.numeroResolucionContrato, new { id = "nresolucionConsulta" })
+                                    @Html.HiddenFor(model => model._contratoSolicitudPago.idContrato, new { id = "hiddenIdContrato" })
+                                    <span id="mensajeSpan" class="text-danger" style="display:none"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-7 col-sm-10">
+                            <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                            @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPagoReg"))
+                            {
+                                <button class="btn btn-primary" id="btnGenerarSolicitud" onclick="location.href='@Url.Action("SolicitudATPrevia", "Contrato")';return false;">Generar Solicitud</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-primary" disabled id="btnGenerarSolicitud" onclick="location.href='@Url.Action("SolicitudATPrevia", "Contrato")';return false;">Generar Solicitud</button>
+
+                            }
+
+                            <button class="btn btn-primary " type="submit" id="btnBuscarr">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                Buscar
+                            </button>
+
+                            @Html.ActionLink("Limpiar", "ListadoSolicitudPago", "Contrato", new { @class = "btn btn-default" })
+                            @*<button id="btnBuscar" type="submit" class="btn btn-primary">Buscar</button>*@
+                            @*<button type="button" class="btn btn-default" onclick="LimpiaRecarga()">Limpiar</button>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Detalle de Presupuesto Vigente</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-6" for="pDisponible" style="text-align:left">Monto Presupuesto Regional<span class="text-justify"> ($)</span>:</label>
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_Ratificador"))
+                                {
+                                    <div class="col-sm-4">
+                                        @Html.TextBox("pDisponibleRegion", Model._contratoSolicitudPago.montoPresupuestoNacional.ToString("N0"), new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                }
+                                else if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConSolicitudPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_RatificadorReg"))
+                                {
+                                    <div class="col-sm-4">
+                                        @Html.TextBox("pDisponibleRegion", Model._contratoSolicitudPago.montoPresupuestoRegional.ToString("N0"), new { @class = "form-control", @readonly = "readonly" })
+                                        <input type="text" name="presupuestoDisponibleHidden" id="presupuestoDisponibleHidden" value="" hidden>
+                                        <span id="mensajeRut" class="text-danger" style="display:none"></span>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-6" for="pSaldoDisponible" style="text-align:left">Saldo por Pagar Presupuesto<span class="text-justify"> ($)</span>:</label>
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_Ratificador"))
+                                {
+                                    <div class="col-sm-5">
+                                        @Html.TextBox("pSaldoPorPagarNacional", Model._contratoSolicitudPago.saldoPresupuestoNacional.ToString("N0"), new { @class = "form-control", @readonly = "readonly" })
+                                        <input type="text" name="presupuestoDisponibleHidden" id="presupuestoDisponibleHidden" value="" hidden>
+                                    </div>
+                                }
+                                else if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConSolicitudPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_RatificadorReg"))
+                                {
+                                    <div class="col-sm-5">
+                                        @Html.TextBox("pSaldoDisponibleRegion", Model._contratoSolicitudPago.saldoPresupuesto.ToString("N0"), new { @class = "form-control", @readonly = "readonly" })
+                                        <input type="text" name="presupuestoDisponibleHidden" id="presupuestoDisponibleHidden" value="" hidden>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        if (Model.consultaSolicitudContrato != null)
+        {
+            <div class="container" id="detallePresupuesto">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Resultado de la Búsqueda</h2>
+                    </div>
+                    <div class="panel-body" id="detalleActividades">
+
+
+                        <table id="mytable" name="mytable" class="table table-bordered table-striped text-center" role="grid">
+                            <thead>
+                                <tr>
+                                    <th>ID Solicitud</th>
+                                    <th>N° Resolución Contrato</th>
+                                    <th>Región</th>
+                                    <th>RUT Proveedor</th>
+                                    <th>Nombre / Razón Social</th>
+                                    <th>Monto Solicitud <span class="text-justify">($)</span></th>
+                                    <th>Tipo Servicio</th>
+                                    <th>Estado Solicitud</th>
+                                    <th>Fecha Solicitud</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model.consultaSolicitudContrato._contratoSolicitudPagoEntities)
+                                {
+                                    <tr class="odd" role="row">
+
+                                        <td class="sorting_1" style="vertical-align: middle;">@Html.ActionLink(@item.idSolicitudRegion.ToString(), "SolicitudATPrevia", "Contrato", new { idSolicitud = @item.idSolicitudRegion }, null)</td>
+                                        <td style="vertical-align: middle;">@item.numeroResolucionContrato</td>
+                                        <td style="vertical-align: middle;">@item.idRegion</td>
+                                        <td style="vertical-align: middle;">@item.rutContratoConsultaRat</td>
+                                        <td style="vertical-align: middle;">@item.nombreRazonSocial</td>
+                                        <td style="vertical-align: middle;">@item.montoContrato</td>
+                                        <td style="vertical-align: middle;">@item.nombreServicio</td>
+                                        <td style="vertical-align: middle;">@item.nombreMaestroServicio</td>
+                                        <td style="vertical-align: middle;">@item.fechaBolFactSolicitud</td>
+                                        @if (item.nombreMaestroEstadoContrato == "Guardada")
+                                        {
+                                            //(idSolicitud, idRegion, idResolucion
+                                            <td style='text-align:center;'><p data-placement='top' data-toggle='tooltip' title='Eliminar'><button type='button' onclick='setId();' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete'><span class='glyphicon glyphicon-trash'></span></button></p></td>
+                                        }
+                                        else
+                                        {
+                                            <td style='text-align:center;'><p data-placement='top' data-toggle='tooltip' title='Eliminar'><button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' disabled><span class='glyphicon glyphicon-trash'></span></button></p></td>
+                                        }
+
+
+
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+
+                        <input type="text" name="dataHidden" id="dataHidden" value="" hidden>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+
+
+</div>
+@*@using (Html.BeginForm("ConfirmaEliminaSolicitud", "Contrato", FormMethod.Post, new { id = "formEliminaContrato", autocomplete = "off" }))
+    {*@
+
+
+<input type="text" name="idEstadoHidden" id="idEstadoHidden" value="6" hidden>
+
+@*  }*@
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Confirmar Eliminación</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> ¿Desea eliminar el solicitud?</div>
+                <input type="text" name="idSolicitudHidden" id="idSolicitudHidden" value="" hidden>
+                <input type="text" name="idRegionHidden" id="idRegionHidden" value="" hidden>
+                <input type="text" name="idResolucionHidden" id="idResolucionHidden" value="" hidden>
+            </div>
+            <div class="modal-footer ">
+                <p class="navbar-text navbar-left" style="font-size:10px">
+                    Usuario Responsable: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName)
+                </p>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"> No</button>
+                <button type="submit" onclick="eliminaSolicitud();" class="btn btn-primary" data-dismiss="modal"> Sí</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalOk">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+            </div>
+            <div class="modal-body">
+                <div id="divBusqueda" class="alert alert-success oculta" style="display:none">
+                    <button class="close" type="button" data-dismiss="alert"></button>
+                    <strong id="strongBusqueda">Error</strong>
+                </div>
+                <div id="divBusquedaError" class="alert alert-warning oculta" style="display:none">
+                    <button class="close" type="button" data-dismiss="alert"></button>
+                    <strong id="strongBusquedaError">Error</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-btn-si">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="spinner" style="display:none">
+    <div class="center-div">
+        <div class="inner-div">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div id="divBusquedaSpan" class="alert alert-success oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaSpan">Error</strong>
+    </div>
+
+    <div id="divBusquedaErrorSpan" class="alert alert-danger oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaErrorSpan">Error</strong>
+    </div>
+
+    <div id="divBusquedaWarning" class="alert alert-warning oculta" style="text-align:center">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaWarning">Error</strong>
+    </div>
+</div>
+<div class="container">
+    <div class="form-group">
+        <div class="col-lg-5" style="text-align:left">
+            Los campos con
+            <span style="color:#FF0000">(*)&nbsp;</span>
+            son obligatorios.<br />
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .oculta {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $("#btnBuscarr").click(function () {
+
+              var annoPresupuesto = $('#ddlAnno').val();
+
+            if (annoPresupuesto == "") {
+                if (annoPresupuesto == "") {
+                    $("#ddlAnno").css('border-color', '#b94a48');
+                    document.getElementById('mensajeAnno').style.display = 'block';
+                }
+
+                return false;
+            }
+         
+
+        });
+
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        var flag = 0;
+        $('.amt').on('keydown', function (e) {
+            flag++;
+            if (flag > 1) {
+                e.preventDefault();
+            }
+        });
+        $('.amt').on('keyup', function (e) {
+            flag = 0;
+        });
+    });
+
+    $("#vbServicios").change(function () {
+
+        if (($('#vbServicios').is(':checked'))) {
+            document.getElementById('divRatificar').style.display = 'block';
+            document.getElementById('divGuardar').style.display = 'none';
+            $("#idEstadoHidden").val("7");
+        }
+        else {
+            document.getElementById('divRatificar').style.display = 'none';
+            document.getElementById('divGuardar').style.display = 'block';
+            $("#idEstadoHidden").val("6");
+        }
+    });
+
+        $(function () {
+
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1, d = date.getDate(), y = date.getFullYear();
+        var f2 = d + "/" + m + "/" + y;
+        var f1 = "01/01/" + y;
+        var dias = restaFechas(f1, f2);
+        var sumDias = 365 + dias;
+        var stardate = "-" + sumDias + "d";
+
+        $("#datepickerBolFact").datepicker(
+            {
+                format: 'dd-mm-yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true,
+                startDate: stardate,
+                endDate: new Date(),
+            }).attr('readonly', 'readonly');
+
+        $("#datepicker").datepicker(
+            {
+                format: 'dd-mm-yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true,
+            }).attr('readonly', 'readonly');
+        });
+
+        restaFechas = function (f1, f2) {
+            var aFecha1 = f1.split('/');
+            var aFecha2 = f2.split('/');
+            var fFecha1 = Date.UTC(aFecha1[2], aFecha1[1] - 1, aFecha1[0]);
+            var fFecha2 = Date.UTC(aFecha2[2], aFecha2[1] - 1, aFecha2[0]);
+            var dif = fFecha2 - fFecha1;
+            var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+            return dias;
+        }
+
+
+        $("#nresolucion").keyup(function () {
+            $("#nresolucion").css('border', '1px solid #ccc');
+            document.getElementById('mensajeSpan').style.display = 'none';
+        });
+
+        /*Ordena Fechas*/
+        jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+            "date-uk-pre": function (a) {
+                var ukDatea = a.split('-');
+                return (ukDatea[2] + ukDatea[1] + ukDatea[0]) * 1;
+            },
+
+            "date-uk-asc": function (a, b) {
+                return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+            },
+
+            "date-uk-desc": function (a, b) {
+                return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+            }
+        });
+
+        $("#ddlAnno").change(function () {
+            $("#ddlAnno").css('border', '1px solid #ccc');
+            document.getElementById('mensajeAnno').style.display = 'none';
+        });
+
+        $("#ddlRegion").change(function () {
+            $("#ddlRegion").css('border', '1px solid #ccc');
+            document.getElementById('mensajeRegion').style.display = 'none';
+        });
+
+
+    //Obtencion monto presupuesto
+    $("#ddlRegion").change(function () {
+
+        $("#ddlRegion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeRegion').style.display = 'none';
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetMontoPresupuestoRegion")', //Llamada al metodo Json
+            dataType: 'json',
+            data: { idRegion: $("#ddlRegion").val() },
+
+            success: function (auxConsultaInformacionMonto) {
+                if (auxConsultaInformacionMonto._contratoSolicitudPago.montoDisponibleContratoRegion >= 0) {
+                    //console.log(auxConsultaInformacionMonto);
+                    $('#pDisponible').val(auxConsultaInformacionMonto._contratoSolicitudPago.montoDisponibleContratoRegion).val(function (index, value) {
+                        return value.replace(/\D/g, "")
+                            .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                    });
+
+
+                    $('#pSaldoPorPagarNacional').val(auxConsultaInformacionMonto._contratoSolicitudPago.saldoPresupuestoRegion).val(function (index, value) {
+                        return value.replace(/\D/g, "")
+                            .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                    });
+
+                    $('#pDisponibleRegion').val(auxConsultaInformacionMonto._contratoSolicitudPago.montoPresupuesto).val(function (index, value) {
+                        return value.replace(/\D/g, "")
+                            .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                    });
+
+                }
+                else
+                {
+                    $('#pDisponible').val('0');
+                }
+
+            },
+            error: function (ex) {
+                $('#pDisponible').val('0');
+            }
+        });
+        return false;
+        });
+
+    function eliminaSolicitud() {
+
+       // document.getElementById('detalleActividades').style.display = 'none';
+
+        var idSolicitud = $('#idSolicitudHidden').val();
+        var idRegion = $('#idRegionHidden').val();
+        var idResolucion = $('#idResolucionHidden').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ConfirmaEliminaSolicitud")', //Llamada al metodo Json
+            dataType: 'json',
+            data: { idSolicitud: idSolicitud, idRegion: idRegion, idResolucion: idResolucion },
+            success: function (auxConsultaSolicitud) {
+                //console.log(auxConsultaSolicitud);
+                if (auxConsultaSolicitud._contratoSolicitudPagoEntities.length > 0) {
+
+                    $('#pSaldoPorPagarNacional').val(auxConsultaSolicitud._contratoSolicitudPago.saldoPresupuestoRegion).val(function (index, value) {
+                        return value.replace(/\D/g, "")
+                            .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                    });
+
+                    $('.spinner').css('display', 'none');
+
+                    var dataSet = new Array;
+
+                    if (!('error' in auxConsultaSolicitud._contratoSolicitudPagoEntities)) {
+                        $.each(auxConsultaSolicitud._contratoSolicitudPagoEntities, function (index, value) {
+                            var tempArray = new Array;
+                            for (var o in value) {
+                                tempArray.push(value[o]);
+                            }
+                            dataSet.push(tempArray);
+
+                        })
+                        var object = auxConsultaSolicitud._contratoSolicitudPagoEntities
+                        //console.log(dataSet);
+
+                        $('#mytable').DataTable({
+                            destroy: true,
+                            data: dataSet,
+                            "paging": true,
+                            "searching": true,
+                            "info": true,
+                            "ordering": true,
+
+                            columns: [
+                                {
+                                    data: 43,
+                                    "render": function (data, type, full, meta) {
+                                        return '<a href="' + data + '">Download</a>';
+                                    }
+                                },
+                                { data: 7 },
+                                { data: 4, className: 'dt-head-center' },
+                                { data: 12 },
+                                { data: 18 },
+                                { data: 21, render: $.fn.dataTable.render.number('.', '.', 0, ''), className: 'dt-head-right' },
+                                { data: 25 },
+                                { data: 26 },
+                                { data: 31 , "sType": "date-uk" },
+                                { data: null, defaultContent: '', sorting: false }
+                            ],
+                            "columnDefs": [{
+                                "targets": -1,
+                                "createdCell": function (td, cellData, rowData, row, col) {
+                                    //console.log(cellData);
+                                    if (cellData[26] == "Guardada") {
+                                        $(td).prepend(
+                                            "<td style='text-align:center;'><p data-placement='top' data-toggle='tooltip' title='Eliminar'><button type='button' onclick='setId(" + cellData[2] + "," + cellData[4] + "," + cellData[7] + ");' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete'><span class='glyphicon glyphicon-trash'></span></button></p></td>"
+                                        );
+                                    }
+                                    else {
+                                        $(td).prepend(
+                                            "<td style='text-align:center;'><p data-placement='top' data-toggle='tooltip' title='Eliminar'><button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' disabled><span class='glyphicon glyphicon-trash'></span></button></p></td>"
+                                        );
+                                    }
+                                }
+                            }]
+                        });
+                            $('#divBusquedaSpan').show();
+                            $("#strongBusquedaSpan").text("Se eliminó solicitud correctamente.");
+                    }
+                    else {
+                        $('#divBusquedaErrorSpan').show();
+                        $("#strongBusquedaErrorSpan").text("Error inesperado, intente más tarde.");
+                    }
+
+                    document.getElementById('detalleActividades').style.display = 'block';
+                    $('.spinner').css('display', 'none');
+
+                }
+                else {
+                    $('.spinner').css('display', 'none');
+                    //$("#nresolucion").css('border-color', '#b94a48');
+                    //document.getElementById('mensajeSpan').style.display = 'block';
+                    //$("#mensajeSpan").html("N° Resolución Contrato no existe o está asociado a otra región.");
+
+                    $('#divBusquedaWarning').show();
+                    $("#strongBusquedaWarning").text("No se encontraron resultados.");
+                    return false;
+                }
+            },
+            error: function (ex) {
+                $('.spinner').css('display', 'none');
+                $('#divBusquedaErrorSpan').show();
+                $("#strongBusquedaErrorSpan").text("Error inesperado, intente más tarde.");
+            }
+        });
+        return false;
+    }
+
+
+    function quitaMsjFecha() {
+        document.getElementById('mensajeFecha').style.display = 'none';
+    }
+
+    function separaMiles() {
+        $(event.target).val(function (index, value) {
+            return value.replace(/\D/g, "")
+                .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+        });
+    }
+
+    function calcular_total() {
+        var montoContrato = $("#montoContrato").val().split('.').join('');
+        var importe_total = 0;
+        $('.amt').keyup(function () {
+            importe_total = 0;
+            $(".amt").each(
+                function (index, value) {
+                    if ($.isNumeric($(this).val().split('.').join(''))) {
+                        importe_total = importe_total + eval($(this).val().split('.').join(''));
+                    }
+                }
+            );
+
+            var signo = '';
+
+            if (importe_total < 0) {
+                signo = '-';
+            }
+
+            importe_total = importe_total.toString().replace(/\D/g, "")
+                .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+
+            importe_total = signo + importe_total;
+
+            $("#montoTotalPagar").val(importe_total);
+
+        });
+    }
+
+    function getDateIfDate(d) {
+        var m = d.match(/\/Date\((\d+)\)\//);
+        return m ? (new Date(+m[1])).toLocaleDateString('es-cl', { month: '2-digit', day: '2-digit', year: 'numeric' }) : d;
+    }
+
+    function backPage() {
+    document.location = '@Url.Action("Index", "Home")';
+    }
+
+    function numeros(e) {
+
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function setId(idSolicitud, idRegion, idResolucion) {
+        var idSol = idSolicitud;
+        var idReg = idRegion;
+        var idRes = idResolucion;
+
+        $("#idSolicitudHidden").val(idSol);
+        $("#idRegionHidden").val(idReg);
+        $("#idResolucionHidden").val(idRes);
+    }
+
+    function numerosSeparadorMiles(e) {
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+
+        separaMiles();
+        calcular_total();
+
+        $("#montoTotalPagar").css('border', '1px solid #ccc');
+        $("#avanceTotal").css('border', '1px solid #ccc');
+        document.getElementById('mensajeMonto').style.display = 'none';
+        document.getElementById('mensajeMontoMayor').style.display = 'none';
+        document.getElementById('mensajeMontoMenor').style.display = 'none';
+
+        return patron.test(tecla_final);
+    }
+
+    function LimpiaValorIncio()
+    {
+        $('#nresolucion').val('');
+        //$('#pDisponibleTotal').val('');
+        //$('#pDisponible').val('');
+    }
+
+    function LimpiaFormulario()
+    {
+        $('#nresolucion').val('');
+        $("#ddlAnno").css('border', '1px solid #ccc');
+        document.getElementById('mensajeAnno').style.display = 'none';
+        $("#ddlRegion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeRegion').style.display = 'none';
+        $("#nresolucion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeSpan').style.display = 'none';
+        $('#ddlAnno').val('');
+        $('#ddlRegion').val('');
+        document.getElementById('detalleActividades').style.display = 'none';
+    }
+
+    function LimpiaRecarga()
+    {
+        window.location.reload();
+    }
+
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#mytable').DataTable({
+            "paging": true,
+            "searching": true,
+            "info": true,
+            "ordering": true
+        });
+    });
+
+</script>
+@if (Model._contratoSolicitudPago.codigoSalida != "")
+{
+    <script>
+            $(document).ready(function () {
+                if (@Model._contratoSolicitudPago.codigoSalida == "0") {
+                    $('#modalOk').modal('toggle');
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").html("@Model._contratoSolicitudPago.mensajeSalida");
+                    LimpiaFormulario();
+                    $('#nSolicitud').val("@Model._contratoSolicitudPago.numeroSolicitudPresupuesto");ñ
+
+                }
+                else {
+                    $('#modalOk').modal('toggle');
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").html("@Model._contratoSolicitudPago.mensajeSalida");
+                    $('#btnGenerarSolicitud').attr('disabled', 'true');
+                }
+
+            });
+    </script>
+}
+else
+{
+    <script>
+        $(document).ready(function () {
+            LimpiaValorIncio();
+        });
+    </script>
+}

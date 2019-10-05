@@ -1,0 +1,323 @@
+﻿@model Minvu.Snat.Domain.Forms.ConsultaVigenciaFamilia
+
+@{
+    ViewBag.Title = "ActualizacionVigencia";
+}
+
+
+<h4>@ViewBag.tipoOrigen - @ViewBag.nombreProyecto </h4>
+
+@if (Model != null)
+{
+    <script>
+        $(document).ready(function () {
+            document.getElementById('detalleProyectos').style.display = 'block';
+            hiddenCampos();
+        });
+    </script>
+
+    if (Model._beneficiarioRukanEntities.nombreBeneficiario == "" || Model._beneficiarioRukanEntities.rutBeneficiario == 0 || Model._beneficiarioEntities.rutBeneficiario == 0)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleProyectos').style.display = 'none';
+                document.getElementById('detalleProyectosVacio').style.display = 'block';
+            });
+        </script>
+    }
+
+    if (Model._beneficiarioRukanEntities.codigoSalida != "")
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleProyectos').style.display = 'none';
+                document.getElementById('detalleProyectosVacio').style.display = 'none';
+
+                //$('#divBusqueda').show();
+                //$("#strongBusqueda").text("Se actualizó proyecto correctamente. ");
+
+                if (@Model._beneficiarioRukanEntities.codigoSalida == "0") {
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").text("Se actualizó proyecto correctamente.");
+                }
+                else {
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").text("@Model._beneficiarioRukanEntities.mensajeSalida");
+                }
+
+            });
+        </script>
+
+    }
+}
+<br />
+<div class="container">
+    @using (Html.BeginForm("ActualizacionVigencia", "Incidentes", FormMethod.Post, new { id = "formConsultaBeneficiarios", @class = "form-horizontal", autocomplete = "off" }))
+    {
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="rut"><span style="color:#FF0000">(*)&nbsp;</span>Rut Beneficiario:</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model._beneficiarioEntities.rutBeneficiarioConsulta, new { @class = "form-control", placeholder = "Ingrese Rut sin puntos, guión ni Dv", maxlength = "8", onblur = "getDV();", id = "rut", name = "rut", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                <span id="mensajeSpan" class="text-danger" style="display:none"></span>
+            </div>
+            <div class="col-sm-1">
+                @Html.TextBoxFor(model => model._beneficiarioEntities.digitoVerificadorBeneficiario, new { @class = "form-control", placeholder = "Dv", id = "dv", name = "dv", @readonly = "readonly", disabled = "disabled" })
+                @*<span class="text-danger">@Html.ValidationMessageFor(model => model._beneficiarioEntities.digitoVerificadorBeneficiario)</span>*@
+            </div>
+        </div>
+        @*<div class="form-group">
+                <label class="control-label col-sm-2" for="nombre">Nombre Persona:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese Nombre Persona" name="nombre">
+                </div>
+            </div>*@
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                <button type="submit" id="btnSubmit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Buscar</button>
+                <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-5" style="text-align:left">
+                El campo con
+                <span style="color:#FF0000">(*)&nbsp;</span>
+                es obligatorio.
+            </div>
+        </div>
+    }
+    @using (Html.BeginForm("ConfirmaActualizaVigencia", "Incidentes", FormMethod.Post, new { id = "formActualizaVigencia", autocomplete = "off" }))
+    {
+        if (Model != null)
+        {
+            <div class="container" id="detalleProyectosVacio" style='display:none;'>
+                <h4>Proyectos Disponibles</h4>
+                <table id="mytable" class="table table-bordered table-striped" style="width:80%">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;" class="">@ViewBag.Message</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container" id="detalleProyectos" style='display:none;'>
+                <div class="container">
+                    <h3>Rukan:</h3>
+                    <table class="table table-bordered table-striped" style="width:70%">
+                        <thead>
+                            <tr>
+                                <th>Nombre Beneficiario</th>
+                                <th>Rut Beneficiario</th>
+                                <th>Fecha Vencimiento Subsidio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align:center;" class="">@Model._beneficiarioRukanEntities.nombreBeneficiario  @Model._beneficiarioRukanEntities.apellidoPaternoBeneficiario @Model._beneficiarioRukanEntities.apellidoMaternoBeneficiario</td>
+                                <td style="text-align:center;" class="">@Model._beneficiarioRukanEntities.rutBeneficiario.ToString().Trim()-@Model._beneficiarioRukanEntities.digitoVerificadorBeneficiario</td>
+                                @Html.HiddenFor(m => m._beneficiarioRukanEntities.rutBeneficiario)
+                                <td style="text-align:center;" class="">@Model._beneficiarioRukanEntities.fechaVigencia.ToString("dd/MM/yyyy")</td>
+                                @Html.HiddenFor(m => m._beneficiarioRukanEntities.fechaVigencia)
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container">
+                    <h3>SNAT:</h3>
+                    <table class="table table-bordered table-striped" style="width:70%">
+                        <thead>
+                            <tr>
+                                <th>Nombre Beneficiario</th>
+                                <th>Rut Beneficiario</th>
+                                <th>Fecha Vencimiento Subsidio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align:center;" class="">@Model._beneficiarioEntities.nombreBeneficiario  @Model._beneficiarioEntities.apellidoPaternoBeneficiario @Model._beneficiarioEntities.apellidoMaternoBeneficiario</td>
+                                <td style="text-align:center;" class="">@Model._beneficiarioEntities.rutBeneficiario.ToString().Trim()-@Model._beneficiarioEntities.digitoVerificadorBeneficiario</td>
+                                <td style="text-align:center;" class="">@Model._beneficiarioEntities.fechaVigencia.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ActualizarModal">Actualizar en SNAT</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse col-md-4 pull-left" id="navbar-collapse-1">
+                    <p class="navbar-text navbar-left">
+                        Usuario Responsable: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName)
+                    </p>
+                </div>
+            </div>
+
+            <!-- /.navbar-collapse -->
+        <!-- Modal -->
+            <div class="modal fade" id="ActualizarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">@ViewBag.nombreProyecto</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Confirma Actualización?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-primary">Sí</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <div class="spinner" style="display:none">
+        <div class="center-div">
+            <div class="inner-div">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="divBusqueda" class="alert alert-success oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusqueda">Error</strong>
+    </div>
+
+    <div id="divBusquedaError" class="alert alert-danger oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaError">Error</strong>
+    </div>
+</div>
+<style type="text/css">
+    .oculta {
+        display: none;
+    }
+</style>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $('#btnSubmit').click(function () {
+        var rut = $('#rut').val();
+        var numRut = parseInt(rut);
+
+        if (rut == "") {
+            $("#rut").css('border-color', '#b94a48');
+            document.getElementById('mensajeSpan').style.display = 'block';
+            $("#mensajeSpan").html("Rut no puede ser vacío.");
+            return false;
+        }
+        else if (numRut < 100000) {
+            $("#rut").css('border-color', '#b94a48');
+            document.getElementById('mensajeSpan').style.display = 'block';
+            $("#mensajeSpan").html("Rut inválido, debe ser mayor a 99999.");
+            return false;
+        }
+        else {
+            document.getElementById('mensajeSpan').style.display = 'none';
+            $('.spinner').css('display', 'block');
+        }
+    });
+
+    $("#rut").keypress(function () {
+        $("#rut").css('border-color', '#66afe9');
+    });
+
+    $(function () {
+        $("#datepicker").datepicker(
+            {
+                format: 'dd/mm/yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true
+            });
+    });
+
+    function numeros(e) {
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function backPage() {
+        document.location = '@Url.Action("MantenedorIncidentes", "Incidentes")';
+        }
+
+    function getDV() {
+        var numero = document.getElementById("rut");
+        var rutDV = document.getElementById("dv");
+
+        nuevo_numero = numero.value.toString().split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+
+        if (numero.value == "") {
+
+            $('#dv').val('');
+        }
+
+        return dv;
+    }
+
+    function hiddenCampos() {
+        var numero = document.getElementById("rut");
+
+        if (numero.value != "") {
+            getDV();
+            return false;
+        }
+    }
+
+    function LimpiaFormulario() {
+        $('#rut').val('');
+        $('#dv').val('');
+
+        if (document.getElementById('detalleProyectos') != null){
+            document.getElementById('detalleProyectos').style.display = 'none';
+            document.getElementById('detalleProyectosVacio').style.display = 'none';
+        }
+        document.getElementById('mensajeSpan').style.display = 'none';
+        $("#rut").css('border-color', '#66afe9');
+        $('#divBusqueda').hide();
+        $('#divBusquedaError').hide();
+
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

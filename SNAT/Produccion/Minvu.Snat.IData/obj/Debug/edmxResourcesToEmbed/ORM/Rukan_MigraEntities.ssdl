@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Rukan_MigraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="COMUNA">
+    <Key>
+      <PropertyRef Name="REG_ID" />
+      <PropertyRef Name="PRV_ID" />
+      <PropertyRef Name="COM_ID" />
+    </Key>
+    <Property Name="REG_ID" Type="int" Nullable="false" />
+    <Property Name="PRV_ID" Type="int" Nullable="false" />
+    <Property Name="COM_ID" Type="int" Nullable="false" />
+    <Property Name="COM_DES" Type="varchar" MaxLength="64" />
+    <Property Name="ZONA_SATURADA" Type="bit" />
+    <Property Name="ZONA_TERMICA" Type="int" />
+    <Property Name="COM_ID_SII" Type="int" />
+    <Property Name="COM_QTY_HAB" Type="bit" />
+    <Property Name="COM_QTY_HAB_EXCP" Type="bit" />
+    <Property Name="COM_TRA" Type="int" />
+    <Property Name="COM_MAX_CVS_ESP_TII" Type="int" />
+    <Property Name="COM_QTY_NUM_HAB" Type="int" />
+  </EntityType>
+  <EntityType Name="PROVINCIA">
+    <Key>
+      <PropertyRef Name="REG_ID" />
+      <PropertyRef Name="PRV_ID" />
+    </Key>
+    <Property Name="REG_ID" Type="int" Nullable="false" />
+    <Property Name="PRV_ID" Type="int" Nullable="false" />
+    <Property Name="PRV_DES" Type="varchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="REG_ID" />
+    </Key>
+    <Property Name="REG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REG_DES" Type="varchar" MaxLength="64" />
+    <Property Name="REG_ORD" Type="decimal" Precision="3" Scale="0" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Rukan_Migra.dbo.USERREGION' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="USERREGION">
+    <Key>
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="IDRegion" />
+    </Key>
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="IDRegion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Rut" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="DVRut" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="CodigoUnidad" Type="int" />
+    <Property Name="CodigoOrganismo" Type="int" />
+    <Property Name="CodigoEntidad" Type="int" />
+    <Property Name="TipoUsuario" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Pregunta" Type="varchar" MaxLength="256" />
+    <Property Name="Respuesta" Type="varchar" MaxLength="256" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="FechaExpiracion" Type="datetime" />
+    <Property Name="CambiarPassword" Type="bit" />
+  </EntityType>
+  <Association Name="FK_COMUNA_COMUNAS_D_PROVINCI">
+    <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="1" />
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVINCIA">
+        <PropertyRef Name="REG_ID" />
+        <PropertyRef Name="PRV_ID" />
+      </Principal>
+      <Dependent Role="COMUNA">
+        <PropertyRef Name="REG_ID" />
+        <PropertyRef Name="PRV_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROVINCI_PROVINCIA_REGION">
+    <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
+    <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="REG_ID" />
+      </Principal>
+      <Dependent Role="PROVINCIA">
+        <PropertyRef Name="REG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="PA_LISTAR_REGION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RUKAN_MIGRA_USP_CON_OBTIENE_FAMILIA_CAMBIO_VIGENCIA_AVC_RUT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RUT_BENEFICIARIO" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="RUKAN_MIGRA_USP_CON_OBTIENE_NUMERO_CERTIFICADO_PPPF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ACCION" Type="int" Mode="In" />
+    <Parameter Name="RUT" Type="varchar" Mode="In" />
+    <Parameter Name="NUM_CERTIFICADO" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="Rukan_MigraModelStoreContainer">
+    <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REGION" EntityType="Self.REGION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERREGION" EntityType="Self.USERREGION" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [USERREGION].[UserName] AS [UserName], 
+    [USERREGION].[IDRegion] AS [IDRegion]
+    FROM [dbo].[USERREGION] AS [USERREGION]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_COMUNA_COMUNAS_D_PROVINCI" Association="Self.FK_COMUNA_COMUNAS_D_PROVINCI">
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+      <End Role="COMUNA" EntitySet="COMUNA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROVINCI_PROVINCIA_REGION" Association="Self.FK_PROVINCI_PROVINCIA_REGION">
+      <End Role="REGION" EntitySet="REGION" />
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

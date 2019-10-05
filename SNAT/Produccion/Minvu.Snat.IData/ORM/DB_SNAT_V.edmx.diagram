@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ee7ec8057b64a15a2a65bff483d4bb5" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_SNAT_VModel.AUTORIZACION" Width="1.5" PointX="6" PointY="27.875" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.BENEFICIARIO" Width="1.5" PointX="7.5" PointY="47.875" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.CARACTERISTICAS_ESPECIALES" Width="1.5" PointX="3" PointY="33.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.CONTRATO_ATP" Width="1.5" PointX="9" PointY="19.625" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.CONVALIDACION_PROGRAMA_SISTEMA" Width="1.5" PointX="3" PointY="25.625" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.DIRECCION" Width="1.5" PointX="3" PointY="42.25" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.HOMOLOGACION_INFORMACION_SISTEMA" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.INFORMACION_PROYECTO" Width="1.5" PointX="5.25" PointY="39" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.INFORMACION_PROYECTO_SOLICITUD" Width="1.5" PointX="10.5" PointY="38.875" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_ALTERNATIVA_POSTULACION" Width="1.5" PointX="3" PointY="68.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_BANCO" Width="1.5" PointX="3" PointY="39.5" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_CLASE" Width="1.5" PointX="0.75" PointY="33.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_ESTADO_AUTORIZACION" Width="1.5" PointX="3.75" PointY="15.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_ESTADO_BENEFICIARIO" Width="1.5" PointX="3" PointY="59.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_ESTADO_BENEFICIO" Width="1.5" PointX="3" PointY="65.5" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_ESTADO_CONTRATO" Width="1.5" PointX="6.75" PointY="13.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_ESTADO_PROYECTO" Width="1.5" PointX="3" PointY="53.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_ESTADO_SOLICITUD" Width="1.5" PointX="6" PointY="23.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_INCREMENTO" Width="1.5" PointX="8.25" PointY="26.875" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_INFORMACION_SISTEMA_EXTERNO" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_LLAMADO" Width="1.5" PointX="3" PointY="45.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_MODALIDAD" Width="1.5" PointX="3.75" PointY="12" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_PARCIALIDAD" Width="1.5" PointX="1.5" PointY="49.375" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_PROGRAMA" Width="1.5" PointX="0.75" PointY="29.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_RESOLUCION" Width="1.5" PointX="3" PointY="55.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_SERVICIO" Width="1.5" PointX="1.5" PointY="12.25" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_SISTEMA" Width="1.5" PointX="0.75" PointY="25.875" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_SUB_MODALIDAD" Width="1.5" PointX="0.75" PointY="16" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_TIPO_DESTINO_PAGO" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_TIPO_INGRESO" Width="1.5" PointX="3" PointY="62" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_TIPO_PAGO" Width="1.5" PointX="6" PointY="20.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_TIPO_PROVEEDOR" Width="1.5" PointX="1.5" PointY="21.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_TIPO_PROVEEDOR_SISTEMA" Width="1.5" PointX="1.5" PointY="19" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_TIPO_SERVICIO_IGT" Width="1.5" PointX="6.75" PointY="5.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_TIPOLOGIA" Width="1.5" PointX="3.75" PointY="49.625" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MAESTRO_TITULO" Width="1.5" PointX="3.75" PointY="18.25" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.MODIFICACION_ESTADO_SOLICITUD" Width="1.5" PointX="13.5" PointY="38.625" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.PRESUPUESTO_REGIONAL" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.PROPIEDAD_TERRENO" Width="1.5" PointX="6.75" PointY="16.625" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.PROVEEDOR" Width="1.5" PointX="3.75" PointY="21.375" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.RESOLUCION_PRESUPUESTARIA" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.SERVICIO_PARCIALIDAD" Width="1.5" PointX="3" PointY="29.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.SOLICITUD_AUTORIZACION" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.SOLICITUD_PAGO" Width="1.5" PointX="8.25" PointY="32.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.SOLICITUD_PAGO_ATP" Width="2.5" PointX="11.25" PointY="20.25" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.SUB_MODALIDAD_PARCIALIDAD" Width="1.5" PointX="0.75" PointY="37.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TERRITORIO_CONTRATO" Width="1.5" PointX="6.75" PointY="8.625" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPO_ACTIVIDAD_MONTO" Width="1.5" PointX="13.5" PointY="17.625" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPO_AUTORIZACION" Width="1.5" PointX="8.25" PointY="29.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPO_INCREMENTO" Width="1.5" PointX="10.5" PointY="31.5" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPO_PARCIALIDAD" Width="1.5" PointX="12.75" PointY="35.5" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPO_PROVEEDOR_INFORMACION_PROYECTO" Width="1.5" PointX="7.5" PointY="42.625" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPO_SERVICIO" Width="1.5" PointX="10.5" PointY="35.25" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" Width="1.5" PointX="5.25" PointY="34.75" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPO_SERVICIOS_CONTRATO" Width="1.5" PointX="11.25" PointY="17.125" />
+        <EntityTypeShape EntityType="DB_SNAT_VModel.TIPOLOGIA_SERVICIO" Width="1.5" PointX="0.75" PointY="40.25" />
+        <AssociationConnector Association="DB_SNAT_VModel.AUTORIZACION_REFERENCE_MAESTRO_ESTADO_AUTORIZACION" />
+        <AssociationConnector Association="DB_SNAT_VModel.AUTORIZACION_REFERENCE_MAESTRO_MODALIDAD" />
+        <AssociationConnector Association="DB_SNAT_VModel.AUTORIZACION_REFERENCE_MAESTRO_PROGRAMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.AUTORIZACION_REFERENCE_MAESTRO_TIPOLOGIA" />
+        <AssociationConnector Association="DB_SNAT_VModel.AUTORIZACION_REFERENCE_MAESTRO_TITULO" />
+        <AssociationConnector Association="DB_SNAT_VModel.AUTORIZACION_REFERENCE_PROVEEDOR" />
+        <AssociationConnector Association="DB_SNAT_VModel.TIPO_AUTORIZACION_REFERENCE_AUTORIZACION" />
+        <AssociationConnector Association="DB_SNAT_VModel.BENEFICIARIO_REFERENCE_DIRECCION" />
+        <AssociationConnector Association="DB_SNAT_VModel.BENEFICIARIO_REFERENCE_INFORMACION_PROYECTO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_BENEFICIARIO_MAESTRO_ALTERNATIVA_POSTULACION" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_BENEFICIARIO_MAESTRO_ESTADO_BENEFICIARIO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CARACTER_REFERENCE_INFORMAC" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CARACTER_REFERENCE_MAESTRO_" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CARACTER_REFERENCE_MAESTRO_CLASE" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CARACTER_REFERENCE_MAESTRO_MODALIDAD" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CARACTER_REFERENCE_MAESTRO_PROGRAMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CARACTER_REFERENCE_MAESTROSUBMODALIDAD" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_SER_REFERENCE_CARACTER" />
+        <AssociationConnector Association="DB_SNAT_VModel.SOLICITUD_PAGO_REFERENCE_CARACTERISTICAS_ESPECIALES" />
+        <AssociationConnector Association="DB_SNAT_VModel.TIPO_INCREMENTO_REFERENCE_CARACTERISTICAS_ESPECIALES" />
+        <AssociationConnector Association="DB_SNAT_VModel.CONTRATO_ATP_REFERENCE_ESTADO_MAESTRO_CONTRATO" />
+        <AssociationConnector Association="DB_SNAT_VModel.CONTRATO_REFERENCE_TIPO_PROVEEDOR" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CONTRATO_REFERENCE_MAESTRO_" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CONTRATO_REFERENCE_PROPIEDA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CONTRATO_REFERENCE_PROVEEDO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CONTRATO_REFERENCE_TERRITOR" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SOLICITUD_PAGO_ATP_CONTRATO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_SERVICIOS_CONTRATO_CONTRATO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CONV_REFERENCE_MAESTRO_PROGRAMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_CONV_REFERENCE_MAESTRO_SISTEMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_DIRECCION" />
+        <AssociationConnector Association="DB_SNAT_VModel.INFORMACION_PROYECTO_REFERENCE_DIRECCION" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_HOMO_REFERENCE_MAESTRO_INFORMACION_SISTEMA_EXTERNO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFO_REFERENCE_MAESTRO_BANCO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFO_REFERENCE_MAESTRO_ESTADO_BENEFICIO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMAC_REFERENCE_MAESTRO_" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMAC_REFERENCE_MAESTRO_RESOLUCION" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_MAESTRO_ESTADO_PROYECTO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_INFORMACION_PROYECTO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_PROVEEDOR_INFORMACION_PROYECTO_INFORMACION_PROYECTO" />
+        <AssociationConnector Association="DB_SNAT_VModel.INFORMACION_PROYECTO_REFERENCE_MAESTRO_ALTERNATIVA_POSTULACION" />
+        <AssociationConnector Association="DB_SNAT_VModel.INFORMACION_PROYECTO_REFERENCE_MAESTRO_LLAMADO" />
+        <AssociationConnector Association="DB_SNAT_VModel.INFORMACION_PROYECTO_REFERENCE_MAESTRO_MODALIDAD" />
+        <AssociationConnector Association="DB_SNAT_VModel.INFORMACION_PROYECTO_REFERENCE_MAESTRO_TITULO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORM_REFERENCE_MAESTRO_BANCO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORM_REFERENCE_MAESTRO_ESTADO_BENEFICIO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_ALTERNATIVA_POSTULACION" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_LLAMADO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_MODALIDAD" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_PROGRAMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_RESOLUCION" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_TIPOLOGIA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_TITULO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SOLICITUD_PAGO_INFORMACION_PROYECTO_SOLICITUD" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_MAESTRO_ESTADO_BENEFICIARIO_MAESTRO_PROGRAMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_MODIFICACION_ESTADO_SOLICITUD_MAESTRO_ESTADO_SOLICITUD" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SOLICITUD_PAGO_ATP_ESTADO_SOLICITUD" />
+        <AssociationConnector Association="DB_SNAT_VModel.SOLICITUD_PAGO_REFERENCE_MAESTRO_ESTADO_SOLICITUD" />
+        <AssociationConnector Association="DB_SNAT_VModel.TIPO_INCREMENTO_REFERENCE_MAESTRO_INCREMENTO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SUB_MODA_REFERENCE_MAESTRO_PARCIALIDAD" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_MAESTRO_RESOLUCION_MAESTRO_PROGRAMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_MAESTRO_TIPO_INGRESO_MAESTRO_PROGRAMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SERVICIO_REFERENCE_MAESTRO_" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_ACTIVIDAD_MONTO_MAESTRO_SERVICIO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_SER_REFERENCE_MAESTRO_" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPOLOGI_TIPOLOGIA_MAESTRO_SERVICIO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SUB_MODA_REFERENCE_MAESTRO_" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SOLICITUD_PAGO_ATP_MAESTRO_TIPO_PAGO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SOLICITUD_PAGO_MAESTRO_TIPO_PAGO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPPRO_REFERENCE_MAESTRO_TIPO_PROVEEDOR__SISTEMA" />
+        <AssociationConnector Association="DB_SNAT_VModel.PROVEEDOR_REFERENCE_MAESTRO_TIPO_PROVEEDOR" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPOLOGI_REFERENCE_MAESTRO_" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_MODIFICACION_ESTADO_SOLICITUD_SOLICITUD_PAGO" />
+        <AssociationConnector Association="DB_SNAT_VModel.PRESUPUESTO_REGIONAL_REFERENCE_RESOLUCI_PRESUPUESTARIA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_PROVEEDOR_INFORMACION_PROYECTO_PROVEEDOR" />
+        <AssociationConnector Association="DB_SNAT_VModel.SOLICITUD_PAGO_REFERENCE_PROVEEDOR" />
+        <AssociationConnector Association="DB_SNAT_VModel.SOLICITUD_PAGO_REFERENCE_PROVEEDOR_MANDATO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SERVICIO_REFERENCE_SUB_MODA" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_SERVICIO_REFERENCE_TIPOLOGI" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_SER_REFERENCE_SERVICIO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_AUT_TIPO_AUTO_SOLICITU" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_SER_REFERENCE_SOLICITU" />
+        <AssociationConnector Association="DB_SNAT_VModel.TIPO_INCREMENTO_REFERENCE_SOLICITUD_PAGO" />
+        <AssociationConnector Association="DB_SNAT_VModel.TIPO_SERVICIO_REFERENCE_SOLICITUD_PAGO" />
+        <AssociationConnector Association="DB_SNAT_VModel.FK_TIPO_ACTIVIDAD_MONTO_SOLICITUD_PAGO_ATP" />
+        <AssociationConnector Association="DB_SNAT_VModel.TIPO_SERVICIO_REFERENCE_TIPO_SOLICITUD" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

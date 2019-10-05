@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Pago_Subsidios_FuenteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoOrdenAT" Type="bigint" Mode="In" />
+    <Parameter Name="LineaOrigen" Type="int" Mode="In" />
+    <Parameter Name="LineaAplicacion" Type="int" Mode="In" />
+    <Parameter Name="TipoLlamado" Type="int" Mode="In" />
+    <Parameter Name="MontoUF" Type="decimal" Mode="In" />
+    <Parameter Name="MontoPesos" Type="decimal" Mode="In" />
+    <Parameter Name="Nota" Type="varchar" Mode="In" />
+    <Parameter Name="ChequeRut" Type="int" Mode="In" />
+    <Parameter Name="ChequeDgv" Type="char" Mode="In" />
+    <Parameter Name="ChequeNombres" Type="varchar" Mode="In" />
+    <Parameter Name="MandatoRut" Type="int" Mode="In" />
+    <Parameter Name="MandatoDgv" Type="char" Mode="In" />
+    <Parameter Name="MandatoNombres" Type="varchar" Mode="In" />
+    <Parameter Name="FuncionarioCreaRut" Type="int" Mode="In" />
+    <Parameter Name="Organismo" Type="int" Mode="In" />
+    <Parameter Name="IndicaATPrevia" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Pago_Subsidios_FuenteModelStoreContainer" />
+</Schema>

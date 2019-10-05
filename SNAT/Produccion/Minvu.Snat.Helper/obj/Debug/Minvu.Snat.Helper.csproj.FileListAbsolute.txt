@@ -1,0 +1,10 @@
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Debug\NLog.config
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Debug\Minvu.Snat.Helper.dll.config
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Debug\Minvu.Snat.Helper.dll
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Debug\Minvu.Snat.Helper.pdb
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Debug\NLog.dll
+C:\SNAT\Produccion\Minvu.Snat.Helper\bin\Debug\NLog.xml
+C:\SNAT\Produccion\Minvu.Snat.Helper\obj\Debug\Minvu.Snat.Helper.csprojResolveAssemblyReference.cache
+C:\SNAT\Produccion\Minvu.Snat.Helper\obj\Debug\Minvu.Snat.Helper.csproj.CoreCompileInputs.cache
+C:\SNAT\Produccion\Minvu.Snat.Helper\obj\Debug\Minvu.Snat.Helper.dll
+C:\SNAT\Produccion\Minvu.Snat.Helper\obj\Debug\Minvu.Snat.Helper.pdb

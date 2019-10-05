@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "MantenedorIncidentes";
+}
+    <div class="container body-content">
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Listado de Incidentes</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div>
+                            <label class="radio-inline"><input type="radio" name="optradio" onclick="mostrarSnatIII()" checked="checked">SNAT III</label>
+                            @*<label class="radio-inline"><input type="radio" name="optradio" onclick="mostrarSnatDS49()" >SNAT DS49</label>*@
+                        </div>
+                        <br />
+                        <label class="control-label col-sm-2" for="ddllistado">Incidentes</label>
+                        <div id="incidentesSnatIII" class="col-md-4">
+                            <select name="incidentesSnatIII" class="form-control input-group-sm" id="ddlincidentesSnatIII" onchange="NavegaAccionSnatIII(this);">
+                                <option value="">-- Seleccione --</option>
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("In_ActVigenciaSubAVC"))
+                                {
+                                    <option value="0">Actualización de Vigencia Subsidio AVC</option>
+                                }
+                                @*<option value="1">Agregar/Quitar Marca DS49 Proyecto DS174</option>*@
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("In_AsigProfContratoPPPF"))
+                                {
+                                    <option value="2">Asignación de Profesionales a Contrato Serviu en PPPF</option>
+                                }
+                                @*<option value="3">Aumentar Vigencia a Subsidio Familia</option>*@
+                                @*<option value="4">Cambiar Monto Oferta FTO</option>*@
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("In_CambNumCertPPPF"))
+                                {
+                                    <option value="5">Cambiar Número de Certificado PPPF</option>
+                                }
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("In_CambTipoContPPPF"))
+                                {
+                                    <option value="6">Cambiar Tipo de Contrato PPPF</option>
+                                }
+                                @*<option value="7">Cambio Montos Servicios SNAT</option>*@
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("In_EliminarProyPPPF"))
+                                {
+                                    <option value="8">Eliminar Proyecto PPPF</option>
+                                }
+                                @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("In_MantenerProfPPPF"))
+                                {
+                                    <option value="9">Mantenedor de Profesionales PPPF</option>
+                                }
+                                @*<option value="10">Reemplazo de Beneficiario DS174</option>*@
+
+                            </select>
+                        </div>
+                        <div id="incidentesSnatDS49" class="col-md-4" style='display:none;'>
+                            <select name="incidentesSnatDS49" class="form-control input-group-sm" id="ddlincidentesSnatDS49" onchange="NavegaAccionSnatDS49(this);">
+                                <option value="">-- Seleccione --</option>
+                                @*<option value="0">Quitar DS49</option>
+                                <option value="1">Reemplazo de Beneficiario DS49</option>*@
+                            </select>
+                        </div>
+
+                    </div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="spinner" style="display:none">
+            <div class="center-div">
+                <div class="inner-div">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+    function NavegaAccionSnatIII(value) {
+
+        $('.spinner').css('display', 'block');
+
+        var selectIndex = value.selectedIndex;
+        var selectValue = value.options[selectIndex].text;
+        var selectedValue = value.value;
+
+        if (selectedValue == "0")
+            document.location = '@Url.Action("ActualizacionVigencia", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNAT III"})'.replace("selectValue", selectValue);
+        else if (selectedValue == "1")
+            document.location = '@Url.Action("Marca", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNAT III"})'.replace("selectValue", selectValue);
+        else if (selectedValue == "2")
+            document.location = '@Url.Action("AsignacionProfesionalesContrato", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNATIII"})'.replace("selectValue", selectValue);
+        else if (selectedValue == "3")
+            document.location = '@Url.Action("-", "Incidentes")';
+        else if (selectedValue == "4")
+            document.location = '@Url.Action("CambiarMontoOferta", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNAT III"})'.replace("selectValue", selectValue);
+        else if (selectedValue == "5")
+            document.location = '@Url.Action("CambiarNumeroCertificado", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNAT III"})'.replace("selectValue", selectValue);
+        else if (selectedValue == "6")
+            document.location = '@Url.Action("CambiarTipoContrato", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNAT III"})'.replace("selectValue", selectValue);
+        else if (selectedValue == "7")
+            document.location = '@Url.Action("-", "Incidentes")';
+        else if (selectedValue == "8")
+            document.location = '@Url.Action("EliminarProyecto", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNAT III"})'.replace("selectValue", selectValue);
+        else if (selectedValue == "9")
+            document.location = '@Url.Action("MantenedorProfesionales", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNAT III"})'.replace("selectValue", selectValue);
+        else if (selectedValue == "10")
+            document.location = '@Url.Action("ReemplazoBeneficiario", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNAT III"})'.replace("selectValue", selectValue);
+        else
+        { }
+    }
+
+    function NavegaAccionSnatDS49(value) {
+
+        var selectIndex = value.selectedIndex;
+        var selectValue = value.options[selectIndex].text;
+        var selectedValue = value.value;
+
+    if (selectedValue == "0")
+        document.location = '@Url.Action("Marca", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNATDS49"})'.replace("selectValue", selectValue);
+    else if (selectedValue == "1")
+        document.location = '@Url.Action("ReemplazoBeneficiario", "Incidentes", new { informacionProyecto = "selectValue", tipo = "SNATDS49"})'.replace("selectValue", selectValue);
+    else
+    { }
+    }
+
+    function mostrarSnatDS49(){
+        document.getElementById('incidentesSnatDS49').style.display = 'block';
+        document.getElementById('incidentesSnatIII').style.display = 'none';
+    }
+
+    function mostrarSnatIII() {
+        document.getElementById('incidentesSnatDS49').style.display = 'none';
+        document.getElementById('incidentesSnatIII').style.display = 'block';
+    }
+
+</script>

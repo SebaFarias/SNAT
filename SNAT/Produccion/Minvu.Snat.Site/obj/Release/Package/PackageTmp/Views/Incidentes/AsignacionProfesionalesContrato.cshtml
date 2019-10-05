@@ -1,0 +1,964 @@
+﻿@model Minvu.Snat.Domain.Forms.ConsultaProyectoPPPF
+
+@{
+    ViewBag.Title = "Asignación de Profesionales a Contrato Serviu en PPPF";
+}
+
+<h4>@ViewBag.tipoOrigen - @ViewBag.nombreProyecto </h4>
+
+@if (Model != null)
+{
+    <script>
+        $(document).ready(function () {
+            document.getElementById('detalleProyectos').style.display = 'block';
+            //hiddenCampos();
+        });
+    </script>
+
+    if (Model._auxinformacionProyectoEntities == null || Model._auxinformacionProyectoEntities.Count == 0)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleProyectosVacio').style.display = 'block';
+                document.getElementById('detalleProyectos').style.display = 'none';
+            });
+        </script>
+    }
+
+    if (Model._auxinformacionProyectoEntities == null)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleProyectos').style.display = 'none';
+                document.getElementById('detalleProyectosVacio').style.display = 'none';
+                $('.spinnerModal').css('display', 'none');
+                $('.spinner').css('display', 'none');
+
+            if (@Model._informacionProyectoEntities.codigoSalida == "0") {
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").text("Se actualizó profesional correctamente.");             
+                    $('.spinnerModal').css('display', 'none');
+                    $('.spinner').css('display', 'none');
+                }
+            else {                
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").text("@Model._informacionProyectoEntities.mensajeSalida");
+                    $('.spinnerModal').css('display', 'none');
+                    $('.spinner').css('display', 'none');
+
+                }
+            });
+        </script>
+
+    }
+}
+
+@if (ViewBag.mensajeExito == "0")
+{
+    <script>
+            $(document).ready(function () {
+                $('#divBusqueda').show();
+                $("#strongBusqueda").text("Se actualizó profesional correctamente.");
+            });
+    </script>
+}
+
+
+<div class="container">
+    @using (Html.BeginForm("AsignacionProfesionalesContrato", "Incidentes", FormMethod.Post, new { id = "formConsultaProyectos", @class = "form-horizontal", autocomplete = "off" }))
+    {
+        <div class="container">
+            <div class="page-header">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pry" style="text-align:left"><span style="color:#FF0000">(**)&nbsp;</span> Código Proyecto:</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model._informacionProyectoEntities.codigoProyectoPPPFConsulta, new { @class = "form-control", placeholder = "Ingrese Código Proyecto o Rut", id = "idCodigoProyecto", maxlength = "30", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", onblur = "changeFocus();" })
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.codigoProyectoPPPFConsulta)</span>
+                        <h6><span style="color:#FF0000">(!)&nbsp;</span>Si el código de proyecto es un RUT ingresar sin puntos, con dígito verificador y guión.</h6>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="idC" style="text-align:left"><span style="color:#FF0000">(**)&nbsp;</span> ID Contrato:</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model._informacionProyectoEntities.idContratoPPPFConsulta, new { @class = "form-control", placeholder = "Ingrese ID Contrato", onkeypress = "return numeros(event)", id = "idContrato", maxlength = "9", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", onblur = "changeFocus();" })
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.idContratoPPPFConsulta)</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="psat" style="text-align:left"><span style="color:#FF0000">(**)&nbsp;</span> Nombre PSAT:</label>
+                    <div class="col-sm-4">
+                        @Html.TextAreaFor(model => model._informacionProyectoEntities.nombreProyectoPPPFConsulta, new { @class = "form-control", placeholder = "Ingrese Nombre PSAT", id = "nombrePsat", maxlength = "200", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", onblur = "changeFocus();", @onkeydown = "ActualizarCantidad(this, contadorCaracteresDescripcion, 200);", @onkeyup = "ActualizarCantidad(this, contadorCaracteresDescripcion, 200);" })
+                        @*<span class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.nombreProyectoPPPFConsulta)</span>*@
+                        <span id="mensajeSpanNombre" class="text-danger" style="display:none">Debe contener al menos tres caracteres.</span>
+                        <div class="align-left help-block" id="contadorCaracteresDescripcion">200 caracteres restantes</div>
+                        @*<span id="mensajeSpanNombre" class="text-danger" style="display:none">Debe contener al menos tres caracteres.</span>*@
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                        <button id="btnSubmit" type="button" class="btn btn-primary">Buscar</button>
+                        <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-5" style="text-align:left">
+                    Seleccione al menos un campo con
+                    <span style="color:#FF0000">(**)&nbsp;</span>
+                    para realizar búsqueda.<br />
+                    @*<span style="color:#FF0000">(*)&nbsp;</span>Si el código de proyecto es un RUT ingresar sin puntos, con dígito verificador y guión.*@
+                </div>
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("ConfirmaModificaProfesional", "Incidentes", FormMethod.Post, new { id = "formModificaProfesional", autocomplete = "off" }))
+    {
+        //if (Model != null)
+        //{
+        <div class="container" id="detalleProyectosVacio" style='display:none;'>
+            <h4>Proyectos Disponibles</h4>
+            <table id="mytableNone" class="table table-bordered table-striped" style="width:80%">
+                <tbody>
+                    <tr>
+                        <td style="text-align:center;" class="">@ViewBag.Message</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive" id="detalleProyectos" style='display:none; width:103%'>
+            <h4>Proyectos Disponibles</h4>
+            <table id="grillaProy" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Código Proyecto</th>
+                        <th>ID Contrato</th>
+                        <th>N° Certificado</th>
+                        <th>Título</th>
+                        <th>Nombre PSAT</th>
+                        <th>Nombre Proyecto</th>
+                        <th>Profesional FTO</th>
+                        <th>Rut Profesional FTO</th>
+                        <th>Profesional FTO Reemplazo</th>
+                        <th>Rut Profesional FTO Reemplazo</th>
+                        <th style="display:none"></th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        @*<div class="table-responsive" id="detalleProyectos" style='display:none;'>
+                <h4>Profesionales Disponibles</h4>
+                <table id="mytable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Código Proyecto</th>
+                            <th>ID Contrato</th>
+                            <th>N° Certificado</th>
+                            <th>Título</th>
+                            <th>Nombre PSAT</th>
+                            <th>Nombre Proyecto</th>
+                            <th>Profesional FTO</th>
+                            <th>Rut Profesional FTO</th>
+                            <th>Profesional FTO Reemplazo</th>
+                            <th>Rut Profesional FTO Reemplazo</th>
+                            <th>Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                  @if (Model._auxinformacionProyectoEntities != null)
+                  {
+                    foreach (var items in Model._auxinformacionProyectoEntities)
+                    {
+                        <tr>
+                            <td style="text-align:center;" id="codigoProyecto">@items.codigoProyectoPPPF</td>
+                            <td style="text-align:center;" class="">@items.idContrato</td>
+                            @Html.Hidden("idProyectoPPPF", items.idProyectoPPPF)
+                            <td style="text-align:center;" class="">@items.numeroCertificadoPPPF</td>
+                            <td style="text-align:center;" class="">@items.idMaestroTitulo.ToString().Replace("1","Título I").Replace("2","Título II").Replace("3", "Título III")</td>
+                            <td style="text-align:center;" class="">@items.nombrePSATPPPF</td>
+                            <td style="text-align:center;" class="">@items.nombreProyectoPPPF</td>
+                            <td style="text-align:center;" class="">@items.profesionalFTO</td>
+                            <td style="text-align:center;" class="">@items.rutProfesionalFTO</td>
+                            <td style="text-align:center;" class="">@items.profesionalReemplazoFTO</td>
+                            <td style="text-align:center;" class="">@items.rutprofesionalReemplazoFTO</td>
+                            <td style="text-align:center;"><p data-placement="top" data-toggle="tooltip" title="Editar">
+                            <button type="button" name="btnEditModal" id="btnEditModal" onclick="setId(@items.idProyectoPPPF);" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" contenteditable="false"><span class="glyphicon glyphicon-edit"></span>
+                            </button></p></td>
+                        </tr>
+                    }
+                  }
+
+                    </tbody>
+                </table>
+            </div>*@
+
+            <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true" class="">×   </span><span class="sr-only">Cerrar</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Editar Datos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Rut Profesional FTO:</label>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(model => model._informacionProyectoEntities.rutProfesionalFTOConsulta, new { @class = "form-control", placeholder = "Ingrese Rut sin puntos, guión ni Dv", maxlength = "8", onblur = "getDVModal();", id = "rutM", name = "rutM", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false"})
+                                        <span id="mensajeSpanModal" class="text-danger" style="display:none"></span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        @Html.TextBoxFor(model => model._informacionProyectoEntities.dvProfesionalFTOConsulta, new { @class = "form-control", placeholder = "Dv", id = "dvM", name = "dvM", @readonly = "readonly", disabled = "disabled" })
+                                    </div>
+                                </div>
+                            <br />
+                                <br />
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Rut Profesional FTO Reemplazo:</label>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(model => model._informacionProyectoEntities.rutprofesionalReemplazoFTO, new { @class = "form-control", placeholder = "Ingrese Rut sin puntos, guión ni Dv", maxlength = "8", onblur = "getDVModalRe();", id = "rutMRe", name = "rutMRe", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                        <span id="mensajeSpanModalRe" class="text-danger" style="display:none"></span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        @Html.TextBoxFor(model => model._informacionProyectoEntities.dvprofesionalReemplazoFTO, new { @class = "form-control", placeholder = "Dv", id = "dvMRe", name = "dvMRe", @readonly = "readonly", disabled = "disabled" })
+                                    </div>                                    
+                                </div>
+                            <input type="text" name="idProyectoHidden" id="idProyectoHidden" value="" hidden>
+                            <input type="text" name="tipoContratoHidden" id="tipoContratoHidden" value="" hidden>
+                                <br />
+                                <br />
+                                <div class="form-group">
+                                    <div id="divModal" class="alert alert-success oculta" style="width:45%">
+                                        <button class="close" type="button" data-dismiss="alert"></button>
+                                        <strong id="strongModal">Error</strong>
+                                    </div>
+                                    <div id="divModalError" class="alert alert-danger oculta" style="width:100%">
+                                        <button class="close" type="button" data-dismiss="alert"></button>
+                                        <strong id="strongModalError">Error</strong>
+                                    </div>
+                                </div>
+                            <br />
+                            <div class="form-group">
+                                <div class="col-lg-5" style="text-align:left">
+                                    El campo con
+                                    <span style="color:#FF0000">(*)&nbsp;</span>
+                                    es obligatorio.
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <p class="navbar-text navbar-left" style="font-size:10px">
+                            Usuario Responsable: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName)
+                        </p>
+                        <button id="btnCerrar" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button id="btnEdit" type="button" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+            @*<div class="spinnerModal" id="load" style="display:none">
+                <div class="center-div">
+                    <div class="inner-div">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+        //}
+    }
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalOk">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divBusqueda" class="alert alert-success oculta">
+                        <button class="close" type="button" data-dismiss="alert"></button>
+                        <strong id="strongBusqueda">Error</strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-btn-si">Cerrar</button>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spinner" style="display:none">
+        <div class="center-div">
+            <div class="inner-div">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="divBusqueda" class="alert alert-success oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusqueda">Error</strong>
+    </div>
+
+    <div id="divBusquedaError" class="alert alert-danger oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaError">Error</strong>
+    </div>
+
+    <div id="divBusquedaWarning" class="alert alert-warning oculta" style="text-align:center"> 
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaWarning">Error</strong>
+    </div>
+</div>
+<style type="text/css">
+    .oculta {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        $('#mytable').dataTable();
+    });
+
+    $('#myModal').on('hidden.bs.modal', function () {
+        $('.modal-body').find('lable,input,textarea').val('');
+        document.getElementById('mensajeSpanModal').style.display = 'none';
+        document.getElementById('mensajeSpanModalRe').style.display = 'none';
+        $("#rutM").css('border', '1px solid #ccc');
+        $("#rutMRe").css('border', '1px solid #ccc');
+        $('#divModalError').hide();
+    });
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+
+        $('#idCodigoProyecto').keypress(function (e) {
+            changeFocus();
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            var texto = $('#idCodigoProyecto').val();
+
+            if (keycode == '32') {
+                if (texto.length == 0) {
+                    return false;
+                } else if ((texto.substring(texto.length - 1, texto.length)) == ' ') {
+                    return false;
+                }
+            }
+        });
+
+        $('#nombrePsat').keypress(function (e) {
+            changeFocus();
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            var texto = $('#nombrePsat').val();
+
+            if (keycode == '32') {
+                if (texto.length == 0) {
+                    return false;
+                } else if ((texto.substring(texto.length - 1, texto.length)) == ' ') {
+                    return false;
+                }
+            }
+        });
+
+        $('#nombrePsat').keypress(function (e) {
+            var texto = $('#nombrePsat').val();
+
+            if (texto.trim().length >= 0) {
+                if (texto.trim().length < 2) {
+                    document.getElementById('mensajeSpanNombre').style.display = 'block';
+                    $("#nombrePsat").css('border-color', '#b94a48');
+                }
+                else {
+                    document.getElementById('mensajeSpanNombre').style.display = 'none';
+                }
+            }
+        });
+
+
+    });
+
+    $('#rutM').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+        }
+    });
+
+    $('#idCodigoProyecto').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+        }
+    });
+
+    $('#idContrato').on('input', function (e) {
+        if (!/^[ 0-9]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ 0-9]+/ig, "");
+        }
+    });
+
+    $('#nombrePsat').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-[()]]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-[()]]+/ig, "");
+        }
+    });
+
+    $('#btnSubmit').click(function () {
+
+        $('#divBusqueda').hide();
+        $('#divBusquedaError').hide();
+        $('#divBusquedaWarning').hide();
+
+        var idCodigoProyecto = $('#idCodigoProyecto').val();
+        var idContrato = $('#idContrato').val();
+        var nombrePsat = $('#nombrePsat').val();
+        
+        if (nombrePsat.trim().length > 0) {
+            if (nombrePsat.trim().length <= 2) {
+                document.getElementById('mensajeSpanNombre').style.display = 'block';
+                $("#nombrePsat").css('border-color', '#b94a48');
+                return false;
+            }
+        }
+
+        if (idCodigoProyecto.trim() != "" || idContrato != "" || nombrePsat.trim() != "") {
+
+            $('.spinner').css('display', 'block');
+
+            var jsonObject = {
+                "codigoProyectoPPPF": idCodigoProyecto,
+                "idContrato": idContrato,
+                "nombrePSATPPPF": nombrePsat,
+                "informacionDisponible": true
+            };
+
+            $.ajax({
+                url: '/Incidentes/AsignacionProfesionalesContrato',
+                type: "POST",
+                data: JSON.stringify(jsonObject),
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success: function (obj, textstatus) {
+                    if (obj.length > 0) {
+                        var dataSet = new Array;
+                        if (!('error' in obj)) {
+                            $.each(obj, function (index, value) {
+                                var tempArray = new Array;
+                                for (var o in value) {
+                                    tempArray.push(value[o]);
+                                }
+                                dataSet.push(tempArray);
+                            })
+                            $('#grillaProy').DataTable({
+                                destroy: true,
+                                data: dataSet,
+                                scrollX: false,
+                                columns: [
+                                    { data: 0 },
+                                    { data: 1 },
+                                    { data: 2 },
+                                    { data: 3 },
+                                    { data: 4 },
+                                    { data: 5 },
+                                    { data: 6 },
+                                    { data: 7 },
+                                    { data: 8 },
+                                    { data: 9 },
+                                    { data: 10, visible: false },
+                                    { data: null, defaultContent: '', sorting: false }
+
+                                ],
+                                "columnDefs": [{
+                                    "targets": -1,
+                                    "createdCell": function (td, cellData, rowData, row, col) {
+
+                                        if (cellData[7] != "Sin Asignar") {
+                                            var dat = cellData[7].split('-');
+                                            var rutP = dat[0];
+                                            var dvP = dat[1];
+                                        }
+                                        else
+                                        {
+                                            var rutP = null;
+                                            var dvP = null;
+                                        }
+
+                                        if (cellData[9] != "Sin Asignar") {
+                                            var dat1 = cellData[9].split('-');
+                                            var rutPRe = dat1[0];
+                                            var dvPRe = dat1[1];
+                                        }
+                                        else
+                                        {
+                                            var rutPRe = null;
+                                            var dvPRe = null;
+                                        }                                        
+
+                                        $(td).prepend(
+                                            "<td style='text-align:center;'><p data-placement='top' data-toggle='tooltip' title='Editar'><button type='button' name='btnEditModal' id='btnEditModal' onclick='setId(" + cellData[10] + "," + cellData[13] + "," + rutP + "," + dvP + "," + rutPRe + "," + dvPRe + ");' class='btn btn-success btn-xs' data-toggle='modal' data-target='#myModal' contenteditable='false'><span class='glyphicon glyphicon-edit'></span></button></p></td>"
+                                        );
+                                    }
+                                }]
+                            });
+
+                        }
+                        else {
+                            //alert(obj.error);
+                            $('#divBusquedaError').show();
+                            $("#strongBusquedaError").text("Error inesperado, intente mas tarde.");
+                        }
+                        
+                        if (obj.length > 0) {
+                            $('.spinner').css('display', 'none');
+                            document.getElementById('detalleProyectos').style.display = 'block';
+                        }
+                        else {
+                            $('.spinner').css('display', 'none');
+                            document.getElementById('detalleProyectos').style.display = 'none';
+                            document.getElementById('detalleProyectosVacio').style.display = 'block';
+                            //$('#divBusquedaWarning').show();
+                            //$("#strongBusquedaWarning").text("La busqueda no arrojo resultados, el proyecto no corresponde a PSAT Serviu.");
+                        }
+                    }
+                    else {
+                        $('.spinner').css('display', 'none');
+                        document.getElementById('detalleProyectos').style.display = 'none';
+                        document.getElementById('detalleProyectosVacio').style.display = 'block';
+                        //$('#divBusquedaWarning').show();
+                        //$("#strongBusquedaWarning").text("La busqueda no arrojo resultados, el proyecto no corresponde a PSAT Serviu.");
+                    }
+                },
+                error: function (obj, textstatus) {
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").text("Error inesperado, intente mas tarde.");
+                    //alert(obj.msg);
+                }
+            });
+
+        }
+        else
+        {
+            document.getElementById('detalleProyectos').style.display = 'none';
+            $('#divBusquedaError').show();
+            $("#strongBusquedaError").text("Debe seleccionar al menos un criterio de búsqueda. ");
+            $("#idCodigoProyecto").css('border-color', '#b94a48');
+            $("#idContrato").css('border-color', '#b94a48');
+            $("#nombrePsat").css('border-color', '#b94a48');
+            return false;
+        }
+    });
+
+    $('#btnEditModal').click(function () {
+
+        $('#load').hide();
+        document.getElementById('mensajeSpan').style.display = 'none';
+        $("#rutM").css('border-color', '#66afe9');
+        $('#rutM').val('');
+        $('#dvM').val('');
+        $('#divModal').hide();
+        $('#divModalError').hide();
+    });
+
+    // Evento que envía una petición Ajax al servidor
+    $('#btnEdit').click(function (e) {
+
+        $('#load').hide();
+        //$('.spinnerModal').css('display', 'none');
+        $('#divBusquedaWarning').hide();
+        $('#divModalError').hide();
+
+        var rutM = $('#rutM').val();
+        var rutMRe = $('#rutMRe').val();
+        var numRut = parseInt(rutM);
+        var numRutRE = parseInt(rutM);
+        var idProy = $('#idProyectoHidden').val();
+        var tContrato = $('#tipoContratoHidden').val();
+
+        if (rutM == "" || rutMRe == "") {
+
+            if (rutM == "") {
+                $("#rutM").css('border-color', '#b94a48');
+                document.getElementById('mensajeSpanModal').style.display = 'block';
+                $("#mensajeSpanModal").html("Rut no puede ser vacío.");                
+            }
+            if (numRut < 100000) {
+                $("#rutM").css('border-color', '#b94a48');
+                document.getElementById('mensajeSpanModal').style.display = 'block';
+                $("#mensajeSpanModal").html("Rut inválido, debe ser mayor a 99999.");            
+            }
+
+            if (rutMRe == "") {
+                $("#rutMRe").css('border-color', '#b94a48');
+                document.getElementById('mensajeSpanModalRe').style.display = 'block';
+                $("#mensajeSpanModalRe").html("Rut no puede ser vacío.");                
+            }
+            if (numRutRE < 100000) {
+                $("#rutMRe").css('border-color', '#b94a48');
+                document.getElementById('mensajeSpanModalRe').style.display = 'block';
+                $("#mensajeSpanModalRe").html("Rut inválido, debe ser mayor a 99999.");            
+            }
+
+            return false;
+        }
+
+        if (rutM == rutMRe)
+        {
+            $("#rutMRe").css('border-color', '#b94a48');
+            $("#rutM").css('border-color', '#b94a48');
+            document.getElementById('mensajeSpanModalRe').style.display = 'block';
+            document.getElementById('mensajeSpanModal').style.display = 'block';
+            $("#mensajeSpanModalRe").html("El Rut debe ser distinto.");
+            $("#mensajeSpanModal").html("El Rut debe ser distinto.");   
+            return false;
+        }
+
+
+        //$('.spinnerModal').css('display', 'block');
+        //$('#load').show();
+
+        document.getElementById('mensajeSpanModal').style.display = 'none';
+        $("#rutM").css('border-color', '#66afe9');
+
+        document.getElementById('mensajeSpanModalRe').style.display = 'none';
+        $("#rutMRe").css('border-color', '#66afe9');
+
+        var jsonObject = {
+            "rutBeneficiario": rutM,
+            "rutBeneficiarioConsulta": rutMRe,
+            "idInformacionProyecto": idProy,
+            "tipoOrigen": tContrato
+        };
+
+        $.ajax({
+            url: "@Url.Action("ConfirmaModificaProfesional")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (response) {
+                var message = response;
+        },
+            success: function (response) {
+                var codigo = response.codigoSalida;
+                var obj = response.auxConsultaInformacionProyecto._auxinformacionProyectoEntities;                
+                if (codigo == "0") {
+
+                    $('#myModal').modal('hide');
+                    $('#modalOk').modal('toggle');
+
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").text("Se actualizó profesional correctamente.");
+
+                    var dataSet = new Array;
+                    if (!('error' in obj)) {                        
+                        $.each(obj, function (index, value) {
+                            var tempArray = new Array;
+                            for (var o in value) {
+                                tempArray.push(value[o]);
+                            }
+                            dataSet.push(tempArray);
+                        })
+                        $('#grillaProy').DataTable({
+                            destroy: true,
+                            data: dataSet,
+                            scrollX: false,
+                            paging: false,
+                            searching: false,
+                            info: false,
+                            columns: [
+                                { data: 0, sorting: false },
+                                { data: 1, sorting: false },
+                                { data: 2, sorting: false },
+                                { data: 3, sorting: false },
+                                { data: 4, sorting: false },
+                                { data: 5, sorting: false },
+                                { data: 6, sorting: false },
+                                { data: 7, sorting: false },
+                                { data: 8, sorting: false },
+                                { data: 9, sorting: false },
+                                { data: 10, sorting: false, visible: false },
+                                { data: null, defaultContent: '', sorting: false }
+
+                            ],
+                            "columnDefs": [{
+                                "targets": -1,
+                                "createdCell": function (td, cellData, rowData, row, col) {
+                                    if (cellData[7] != "Sin Asignar") {
+                                        var dat = cellData[7].split('-');
+                                        var rutP = dat[0];
+                                        var dvP = dat[1];
+                                    }
+                                    else {
+                                        var rutP = null;
+                                        var dvP = null;
+                                    }
+
+                                    if (cellData[9] != "Sin Asignar") {
+                                        var dat1 = cellData[9].split('-');
+                                        var rutPRe = dat1[0];
+                                        var dvPRe = dat1[1];
+                                    }
+                                    else {
+                                        var rutPRe = null;
+                                        var dvPRe = null;
+                                    }                       
+
+                                    $(td).prepend(
+                                        "<td style='text-align:center;'><p data-placement='top' data-toggle='tooltip' title='Editar'><button type='button' name='btnEditModal' id='btnEditModal' onclick='setId(" + cellData[10] + "," + cellData[13] + "," + rutP + "," + dvP + "," + rutPRe + "," + dvPRe + ");' class='btn btn-success btn-xs' data-toggle='modal' data-target='#myModal' contenteditable='false'><span class='glyphicon glyphicon-edit'></span></button></p></td>"
+                                    );
+                                }
+                            }]
+                        });
+                    }
+                    else {
+                        alert(obj.error);
+                    }
+
+                }
+                else
+                {
+                    $('.spinnerModal').css('display', 'none');
+                    $('#divModalError').show();
+                    $("#strongModalError").text(response.mensaje);
+                    $('#divModal').hide();
+                }
+            }
+        });
+
+    });
+
+    $("#rutM").keypress(function () {
+        $("#rutM").css('border', '1px solid #ccc');
+        document.getElementById('mensajeSpanModal').style.display = 'none';
+        $('#divModalError').hide();        
+    });
+
+    $("#rutMRe").keypress(function () {
+        $("#rutMRe").css('border', '1px solid #ccc');
+        document.getElementById('mensajeSpanModalRe').style.display = 'none';
+        $('#divModalError').hide();
+    });
+
+    function ActualizarCantidad(ingreso, salida, max) {
+        var ln = $(ingreso).val().length;
+        if (ln >= max) {
+            $(salida).text('Límite de caracteres alcanzado');
+        } else {
+            var ch = max - ln;
+            $(salida).text(ch + ' caracteres restantes');
+        }
+    }
+
+    function setId(idProyectoPPPF, tipoContrato, rutP, dvP, rutPRe, dvPRe) {
+
+        var idPro = idProyectoPPPF;
+        var tContrato = tipoContrato;
+        var rutProf = rutP;
+        var dvProf = dvP;
+        var rutProfRe = rutPRe;
+        var dvProfRe = dvPRe;
+
+        $("#idProyectoHidden").val(idPro);
+        $("#tipoContratoHidden").val(tContrato);
+        document.getElementById('rutM').value = rutProf;
+        document.getElementById('dvM').value = dvProf;
+        document.getElementById('rutMRe').value = rutProfRe;
+        document.getElementById('dvMRe').value = dvProfRe;        
+    }
+
+    function backPage() {
+    document.location = '@Url.Action("MantenedorIncidentes", "Incidentes")';
+    }
+
+    function numeros(e) {
+
+        changeFocus();
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function getDV() {
+        var numero = document.getElementById("rut");
+        var rutDV = document.getElementById("dv");
+
+        nuevo_numero = numero.value.toString().split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+        document.getElementById("hiddenDV").value = dv;
+
+        if (numero.value != "") {
+            document.getElementById("idCodigoProyecto").disabled = true;
+            document.getElementById("idContrato").disabled = true;
+            document.getElementById("nombrePsat").disabled = true;
+
+            $('#idCodigoProyecto').val('');
+            $('#idContrato').val('');
+            $('#nombrePsat').val('');
+        }
+        else {
+            document.getElementById("idCodigoProyecto").disabled = false;
+            document.getElementById("idContrato").disabled = false;
+            document.getElementById("nombrePsat").disabled = false;
+
+            $('#idCodigoProyecto').val('');
+            $('#idContrato').val('');
+            $('#nombrePsat').val('');
+            $('#dv').val('');
+        }
+
+        return dv;
+    }
+
+    function getDVModal() {
+        var numero = document.getElementById("rutM");
+        var rutDV = document.getElementById("dvM");
+
+        nuevo_numero = numero.value.toString().split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+
+        if (numero.value == "") {
+
+            $('#dvM').val('');
+        }
+
+        return dv;
+    }
+
+    function getDVModalRe() {
+        var numero = document.getElementById("rutMRe");
+        var rutDV = document.getElementById("dvMRe");
+
+        nuevo_numero = numero.value.toString().split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+
+        if (numero.value == "") {
+
+            $('#dvMRe').val('');
+        }
+
+        return dv;
+    }
+
+    function changeFocus()
+    {
+        $("#idCodigoProyecto").css('border-color', '#66afe9');
+        $("#idContrato").css('border-color', '#66afe9');
+        $("#nombrePsat").css('border-color', '#66afe9');
+    }
+
+    function hiddenCampos() {
+
+        var codigo = document.getElementById("idCodigoProyecto");
+        var contrato = document.getElementById("idContrato");
+        var nombre = document.getElementById("nombrePsat");
+
+        if (codigo.value != "") {
+            document.getElementById("idContrato").disabled = true;
+            document.getElementById("nombrePsat").disabled = true;
+
+            $('#idContrato').val('');
+            $('#nombrePsat').val('');
+            return false;
+        }
+
+        if (contrato.value != "") {
+            document.getElementById("idCodigoProyecto").disabled = true;
+            document.getElementById("nombrePsat").disabled = true;
+
+            $('#idCodigoProyecto').val('');
+            $('#nombrePsat').val('');
+            return false;
+        }
+
+        if (nombre.value != "") {
+            document.getElementById("idCodigoProyecto").disabled = true;
+            document.getElementById("idContrato").disabled = true;
+
+            $('#idCodigoProyecto').val('');
+            $('#idContrato').val('');
+            return false;
+        }
+    }
+
+    function LimpiaFormulario() {
+
+        changeFocus();
+
+        $(contadorCaracteresDescripcion).text('200 caracteres restantes');
+        $('#idCodigoProyecto').val('');
+        $('#idContrato').val('');
+        $('#nombrePsat').val('');
+
+        document.getElementById("idCodigoProyecto").disabled = false;
+        document.getElementById("idContrato").disabled = false;
+        document.getElementById("nombrePsat").disabled = false;
+        document.getElementById('mensajeSpanNombre').style.display = 'none';
+
+        if (document.getElementById('detalleProyectos') != null) {
+            document.getElementById('detalleProyectos').style.display = 'none';
+            document.getElementById('detalleProyectosVacio').style.display = 'none';
+            $('#divBusqueda').hide();
+            $('#divBusquedaError').hide();
+            $('#divBusquedaWarning').hide();
+        }
+    }
+
+    function quitaacentos(s) {
+        var r = s.toLowerCase();
+        r = r.replace(new RegExp(/\s/g), "");
+        r = r.replace(new RegExp(/[àáâãäå]/g), "a");
+        r = r.replace(new RegExp(/[èéêë]/g), "e");
+        r = r.replace(new RegExp(/[ìíîï]/g), "i");
+        r = r.replace(new RegExp(/ñ/g), "n");
+        r = r.replace(new RegExp(/[òóôõö]/g), "o");
+        r = r.replace(new RegExp(/[ùúûü]/g), "u");
+
+        return r;
+    }
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

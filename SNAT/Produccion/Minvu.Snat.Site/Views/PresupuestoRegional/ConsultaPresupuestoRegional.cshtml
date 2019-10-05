@@ -1,0 +1,673 @@
+﻿@model Minvu.Snat.Domain.Forms.PresupuestoRegional
+
+@{
+    ViewBag.Title = "Consulta Presupuesto Regional";
+}
+
+@if (Model._obtienePresupuestoRegionalEntities != null)
+{
+    if (Model._obtienePresupuestoRegionalEntities.Count > 0)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detallePresupuesto').style.display = 'block';
+            });
+        </script>
+    }
+    else
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detallePresupuestoVacio').style.display = 'none';
+                $('#modalOk').modal('toggle');
+                $('#divBusquedaError').show();
+                $("#strongBusquedaError").text("Presupuesto no se encuentra disponible.");
+            });
+        </script>
+    }
+}
+
+
+
+<style>
+    .no-border {
+        border: 0;
+        box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+    }
+</style>
+
+<div class="container">
+    @using (Html.BeginForm("ConsultaPresupuestoRegional", "PresupuestoRegional", FormMethod.Post, new { id = "formConsultaPresupuesto", @class = "form-horizontal" }))
+    {
+        <div class="container" style='width:105%'>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Consulta Presupuesto</h2>
+                </div>
+
+                @if (Model._obtienePresupuestoRegionalEntities.Count > 0)
+                {
+                    var yearNow = ViewBag.yearNow;
+                    var yearNext = ViewBag.yearNext;
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="año" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Año Presupuestario:</label>
+                                    <div class="col-md-6">
+
+                                        @Html.DropDownListFor(model => model._presupuestoRegionalEntities.annoPresupuesto, new SelectList(Model._presupuestoRegionalEntities.lstAnoPresupuesto, "idAno", "ano"), "-- Seleccione --", new { @class = "form-control", id = "ddlAnno", name = "ddlAnno" })
+
+                                        @Html.HiddenFor(model => model._presupuestoRegionalEntities.annoPresupuesto)
+                                        <span id="mensajeAnno" class="text-danger" style="display:none">Debe seleccionar año</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="estado" style="text-align:left">Región:</label>
+
+                                    @*@if ((Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Ig_ConPresupuesto")) && Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Ig_ConPresupuestoReg"))*@
+                                    @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConPresupuesto"))
+                                    {
+                                        <div class="col-sm-9">
+                                            @Html.DropDownListFor(m => m._presupuestoRegionalEntities.idRegion,
+                     new SelectList(Model._regionPresupuestoEntities, "idRegion", "nombreRegion", Model._presupuestoRegionalEntities.idRegion),
+                     new { @class = "form-control", id = "ddlRegion", name = "ddlRegion" })
+                                            <span id="mensajeRegion" class="text-danger" style="display:none">Debe seleccionar región</span>
+                                        </div>
+                                    }
+
+                                    else if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConPresupuestoReg"))
+                                    {
+                                        <div class="col-sm-9">
+                                            @Html.DropDownListFor(m => m._regionUserEntities,
+                                            new SelectList(Model._regionUserEntities, "idRegion", "nombreRegion", Model._regionUserEntities),
+                                            new { @class = "form-control", id = "ddlRegion", name = "ddlRegion", @readonly = "readonly", disabled = "disabled" })
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="resolucion" style="text-align:left">N° Resolución:</label>
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model._presupuestoRegionalEntities.idPresupuestoRegionalConsulta, new { @class = "form-control pre", placeholder = "Ingrese Número de Resolución", maxlength = "6", id = "numeroResolucion", name = "numeroResolucion", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                        @*@Html._presupuestoRegionalEntiti.annoPresupuesto = yearNow*@
+                                        @*<span class="text-danger">@Html.ValidationMessageFor(model => model._presupuestoRegionalEntities.idPresupuestoRegional)</span>*@
+                                        <span id="mensajeNumero" class="text-danger" style="display:none">Número Resolución debe ser mayor a cero.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="año"><span style="color:#FF0000">(*)&nbsp;</span>Año Presupuestario:</label>
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model._presupuestoRegionalEntities.annoPresupuesto, new SelectList(Model._presupuestoRegionalEntities.lstAnoPresupuesto, "idAno", "ano"), "-- Seleccione --", new { @class = "form-control", id = "ddlAnno", name = "ddlAnno" })
+
+                                        @Html.HiddenFor(model => model._presupuestoRegionalEntities.annoPresupuesto)
+                                        <span id="mensajeAnno" class="text-danger" style="display:none">Debe seleccionar año</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="estado">Región:</label>
+
+                                    @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConPresupuesto"))
+                                    {
+                                        <div class="col-sm-9">
+                                            @Html.DropDownListFor(m => m._regionPresupuestoEntities,
+                                            new SelectList(Model._regionPresupuestoEntities, "idRegion", "nombreRegion", Model._regionPresupuestoEntities),
+                                            new { @class = "form-control", id = "ddlRegion", name = "ddlRegion" })
+                                        </div>
+                                    }
+
+                                    else if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConPresupuestoReg"))
+                                    {
+                                        <div class="col-sm-9">
+                                            @Html.DropDownListFor(m => m._regionUserEntities,
+                                            new SelectList(Model._regionUserEntities, "idRegion", "nombreRegion", Model._regionUserEntities),
+                                            new { @class = "form-control", id = "ddlRegion", name = "ddlRegion", @readonly = "readonly", disabled = "disabled" })
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="resolucion">N° Resolución</label>
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model._presupuestoRegionalEntities.idPresupuestoRegionalConsulta, new { @class = "form-control pre", placeholder = "Ingrese Número de Resolución", maxlength = "6", id = "numeroResolucion", name = "numeroResolucion", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                        <span id="mensajeNumero" class="text-danger" style="display:none">N° Resolución debe ser mayor a cero.</span>
+                                        @*<span class="text-danger">@Html.ValidationMessageFor(model => model._presupuestoRegionalEntities.idPresupuestoRegional)</span>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <div class="col-sm-offset-7 col-sm-10">
+                        <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                        <button id="btnSubmit" type="submit" class="btn btn-primary">Buscar</button>
+                        <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="form-group">
+                    <div class="col-lg-5" style="text-align:left">
+                        Los campos con
+                        <span style="color:#FF0000">(*)&nbsp;</span>
+                        son obligatorios.<br />
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="panel" id="detallePresupuesto" style='display:none;'>
+                <div class="panel panel-info">
+                    @if (Model._obtienePresupuestoRegionalEntities.Count > 0) 
+                    {
+                        long monto = 0;
+                        foreach (var item in Model._obtienePresupuestoRegionalEntities)
+                        {
+                            monto = item.idResolucionPresupuestaria;
+
+                            break;
+
+                        }
+                        if (monto > 0)
+                        {
+
+                            var fechaResolucion = Model._obtienePresupuestoRegionalEntities[0].fechaResolucionPresupuestoRegional.ToString("dd-MM-yyyy");
+                            var resolucion = Model._obtienePresupuestoRegionalEntities[0].idResolucionPresupuestaria;
+                            var vigencia = Model._obtienePresupuestoRegionalEntities[0].vigencia;
+                            var nombreArchivo = Model._obtienePresupuestoRegionalEntities[0].nombreArchivo;
+
+
+
+                            <br />
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="resolucion" style="text-align:left">Estado Resolución:</label>
+                                            <div class="col-md-6">
+                                                @Html.TextBoxFor(model => model._presupuestoRegionalEntities.vigencia, new { @class = "form-control pre", id = "estadoResolucion", name = "vigencia", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled", @Value = vigencia })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            @if (Convert.ToBoolean(Session["VerificarExistenciaArchivo"]))
+                                            {
+                                                <label class="control-label col-sm-2" for="estado" style="text-align:left">Archivo:</label>
+                                                <div id="fileDownload" class="col-md-8" style="display:block">
+                                                    <u style="color:#66afe9">@Html.ActionLink("Descargar Resolución Presupuestaria", "Download", "PresupuestoRegional", new { nombre = nombreArchivo }, new { @style = "color:#66afe9", @class = "form-control no-border" })</u>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <label class="control-label col-sm-6" for="estado" style="text-align:left">No existe archivo en el repositorio para descargar</label>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="fecha" style="text-align:left">Fecha de Resolución:</label>
+                                            <div class="col-sm-6">
+                                                @Html.TextBoxFor(model => model._presupuestoRegionalEntities.fechaResolucionPresupuestoRegional, new { @class = "form-control", id = "fecha", name = "fecha", @readonly = "readonly", disabled = "disabled", @Value = fechaResolucion })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <table id="mytable" class="table table-bordered table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2" scope="col" style="text-align:center;">Región</th>
+                                            <th rowspan="2" scope="col" style="text-align:center;">Presupuesto<br /><span class="text-justify">($)</span></th>
+                                            <th colspan="2" scope="col" style="text-align:center;">Monto Contratos</th>
+                                            <th rowspan="2" scope="col" style="text-align:center;">Presupuesto Disponible<br /><span class="text-justify">($)</span></th>
+                                            <th colspan="2" scope="col" style="text-align:center;">Solicitudes Comprometidas</th>
+                                            <th colspan="2" scope="col" style="text-align:center;">Solicitudes Pagadas</th>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="col" style="text-align:center;" title="Servicio de asistencia técnica">S.A.T<br /><span class="text-justify">($)</span></th>
+                                            <th scope="col" style="text-align:center;" title="Servicio de estudios técnicos">S.E.T<br /><span class="text-justify">($)</span></th>
+
+                                            <th scope="col" style="text-align:center;" title="Servicio de asistencia técnica">S.A.T<br /><span class="text-justify">($)</span></th>
+                                            <th scope="col" style="text-align:center;" title="Servicio de estudios técnicos">S.E.T<br /><span class="text-justify">($)</span></th>
+                                            <th scope="col" style="text-align:center;" title="Servicio de asistencia técnica">S.A.T<br /><span class="text-justify">($)</span></th>
+                                            <th scope="col" style="text-align:center;" title="Servicio de estudios técnicos">S.E.T<br /><span class="text-justify">($)</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model._obtienePresupuestoRegionalEntities.Count > 0)
+                                        {
+
+                                            int suma = 0;
+                                            foreach (var items in Model._obtienePresupuestoRegionalEntities)
+                                            {
+                                                suma = 1 + suma;
+                                                <tr>
+
+                                                    @if (suma != Model._obtienePresupuestoRegionalEntities.Count)
+                                                    {
+                                                        <td style="text-align:left;">@Model._regionEntities[items.codigoRegionPresupuestoRegional - 1].nombreRegion</td>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style="text-align:center;">@Model._regionEntities[items.codigoRegionPresupuestoRegional - 1].nombreRegion</td>
+                                                    }
+                                                    <td style="text-align:center;">@items.montoPresupuestoRegional.ToString("N0")</td>
+                                                    <td style="text-align:center;">@items.montoContatoSat.ToString("N0")</td>
+                                                    <td style="text-align:center;">@items.montoContatoSet.ToString("N0")</td>
+                                                    <td style="text-align:center;">@items.presupuestoDisponible.ToString("N0")</td>
+                                                    <td style="text-align:center;">@items.montoComprometidoSAT.ToString("N0")</td>
+                                                    <td style="text-align:center;">@items.montoComprometidoSET.ToString("N0")</td>
+                                                    <td style="text-align:center;">@items.montoPagadoSAT.ToString("N0")</td>
+                                                    <td style="text-align:center;">@items.montoPagadoSET.ToString("N0")</td>
+
+                                                </tr>
+                                            }
+                                            @*<tr>
+                                                <td style="text-align:center;">Total Presupuesto</td>
+                                                @*<td style="text-align:center;"><input type="text" id="totalRegiones" class="form-control" readonly="readonly" disabled="disabled" /></td>*@
+                                            @*<td style="text-align:center;">@Model._obtienePresupuestoRegionalEntities[Model._obtienePresupuestoRegionalEntities.Count - 1].suma.ToString("N0")</td>
+                                                </tr>*@
+                                        }
+                                    </tbody>
+                                </table>
+                                <input type="text" name="dataHidden" id="dataHidden" value="" hidden>
+                            </div>
+
+
+                        }
+                        <br />
+                        if (monto == 0)
+                        {
+                            <div class="container">
+                                <div class="alert alert-warning" role="alert">
+                                    No se encontraron resultados.
+                                </div>
+                            </div>
+                        }
+
+
+                    }
+                    else
+                    {
+                        <br />
+                        <div class="container">
+                            <div class="alert alert-danger" role="alert">
+                                No se encontraron resultados.
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="panel" id="detallePresupuestoVacio" style='display:none;'>
+                <div class="panel panel-info">
+                    <table id="mytable" class="table table-bordered table-striped" style="width:105%">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" scope="col" style="text-align:center;">Región</th>
+                                <th rowspan="2" scope="col" style="text-align:center;">Presupuesto</th>
+                                <th colspan="2" scope="col" style="text-align:center;">Monto Comprometido</th>
+                                <th colspan="2" scope="col" style="text-align:center;">Monto Pagado</th>
+                                <th rowspan="2" scope="col" style="text-align:center;">Saldo por Pagar</th>
+                            </tr>
+                            <tr>
+                                <th scope="col" style="text-align:center;" title="Servicio de asistencia técnica">S.A.T</th>
+                                <th scope="col" style="text-align:center;" title="Servicio de estudios técnicos">S.E.T</th>
+                                <th scope="col" style="text-align:center;" title="Servicio de asistencia técnica">S.A.T</th>
+                                <th scope="col" style="text-align:center;" title="Servicio de estudios técnicos">S.E.T</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>No existe Presupuesto</tr>
+                        </tbody>
+                    </table>
+                    <input type="text" name="dataHidden" id="dataHidden" value="" hidden>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content"></div>
+                </div>
+                <div class="modal-dialog">
+                    <div class="modal-content"></div>
+                </div>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true" class="">×   </span><span class="sr-only">Cerrar</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Agregar Datos</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span> Presupuesto:</label>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoPresupuestoRegional, new { @class = "form-control", placeholder = "Monto de Presupuesto", maxlength = "15", id = "montoPresupuesto", name = "montoPresupuesto", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                        @*<span id="mensajeSpan" class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.rutProfesionalFTOConsulta)</span>*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span> Monto Comprometido S.A.T.:</label>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoComprometidoSAT, new { @class = "form-control", placeholder = "Monto Comprometido S.A.T.", maxlength = "13", id = "montoComprometidoSAT", name = "montoComprometidoSAT", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                        @*<span id="mensajeSpan" class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.rutProfesionalFTOConsulta)</span>*@
+                                    </div>
+                                    <input type="text" name="idProyectoHidden" id="idProyectoHidden" value="" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span> Monto Comprometido S.E.T.:</label>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoComprometidoSET, new { @class = "form-control", placeholder = "Ingrese Monto Comprometido S.E.T.", maxlength = "13", id = "montoComprometidoSET", name = "montoComprometidoSET", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                        @*<span id="mensajeSpan" class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.rutProfesionalFTOConsulta)</span>*@
+                                    </div>
+                                    <input type="text" name="idProyectoHidden" id="idProyectoHidden" value="" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span> Monto Pagado S.A.T.:</label>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoPagadoSAT, new { @class = "form-control", placeholder = "Ingrese Monto Pagado S.A.T.", maxlength = "13", id = "montoPagadoSAT", name = "montoPagadoSAT", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                        @*<span id="mensajeSpan" class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.rutProfesionalFTOConsulta)</span>*@
+                                    </div>
+                                    <input type="text" name="idProyectoHidden" id="idProyectoHidden" value="" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span> Monto Pagado S.E.T.:</label>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoPagadoSET, new { @class = "form-control", placeholder = "Ingrese Monto Pagado S.E.T.", maxlength = "13", id = "montoPagadoSET", name = "montoPagadoSET", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                        @*<span id="mensajeSpan" class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.rutProfesionalFTOConsulta)</span>*@
+                                    </div>
+                                    <input type="text" name="idProyectoHidden" id="idProyectoHidden" value="" hidden>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <p class="navbar-text navbar-left" style="font-size:10px">
+                                Usuario Responsable: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName)
+                            </p>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" id="btnIngresar" class="btn btn-primary">Ingresar</button>
+                            <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalOk">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+            </div>
+            <div class="modal-body">
+                <div id="divBusquedaError" class="alert alert-warning oculta">
+                    <button class="close" type="button" data-dismiss="alert"></button>
+                    <strong id="strongBusquedaError">Error</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-btn-si">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spinner" style="display:none">
+    <div class="center-div">
+        <div class="inner-div">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .oculta {
+        display: none;
+    }
+</style>
+
+<script>
+    
+
+    $('#numeroResolucion').val(@Model._presupuestoRegionalEntities.idPresupuestoRegionalConsulta);
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        calcular_total();
+
+        var check = $("#checkTodos").val();
+        if (check)
+        {
+            $("#ddlRegion").attr("readonly", true);
+            $("#ddlRegion").attr("disabled", true);
+            $("#todos").val(true);
+        }
+    });
+
+    $('#checkTodos').click(function () {
+        var check = $("#checkTodos").val();
+        var dll = document.getElementById("ddlRegion");
+        var read = dll.getAttribute("readonly");
+
+        if (read == null) {
+            $("#ddlRegion").attr("readonly", true);
+            $("#ddlRegion").attr("disabled", true);
+            $("#todos").val(true);
+        }
+        else {
+            $("#ddlRegion").attr("readonly", false);
+            $("#ddlRegion").attr("disabled", false);
+            $("#todos").val(false);
+        }
+    });
+
+    function calcular_total() {
+        $('.amt').keyup(function () {
+        var importe_total = 0
+        $(".amt").each(
+            function (index, value) {
+                if ($.isNumeric($(this).val().split('.').join(''))) {
+                    importe_total = importe_total + eval($(this).val().split('.').join(''));
+                }
+            }
+        );
+
+        var signo = '';
+
+        if (importe_total < 0)
+        {
+            signo = '-';
+        }
+
+        importe_total = importe_total.toString().replace(/\D/g, "")
+            .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+
+        importe_total = signo + importe_total;
+
+        $("#totalRegiones").val(importe_total)
+
+    });
+    }
+
+    $('#btnSubmit').click(function () {
+        var cadenaFinal = '';
+        var selectAnno = $('#ddlAnno').val();
+        //var numResolucion = $('#numeroResolucion').val();
+        var fechaResolucion = $('#datepicker').val();
+        var observacion = $('#observacion').val();
+        var region = $('#ddlRegion').val();
+
+        if (selectAnno == '')
+        {
+            document.getElementById('mensajeAnno').style.display = 'block';
+            $("#ddlAnno").css('border', '1px solid #b94a48');
+            $("#ddlAnno").focus();
+            return false;
+        }
+
+        //if (numResolucion != '') {
+        //    if (numResolucion <= 0) {
+        //        document.getElementById('mensajeNumero').style.display = 'block';
+        //        $("#numeroResolucion").css('border', '1px solid #b94a48');
+        //        $("#numeroResolucion").focus();
+        //        return false;
+        //    }
+        //}
+
+        if (region == '')
+        {
+            document.getElementById('mensajeRegion').style.display = 'block';
+            $("#ddlRegion").css('border', '1px solid #b94a48');
+            $("#ddlRegion").focus();
+            return false;
+        }
+
+        $('#estadoResolucion').val('');
+
+        $('.spinner').css('display', 'block');
+
+        $(".amt").each(
+            function (index, value) {
+                var data = selectAnno + '¬' + numResolucion + '¬' + fechaResolucion + '¬' + $(this).attr('id') + '¬' + eval($(this).val().split('.').join('')) + '¬' + observacion + '|';
+                cadenaFinal += data;
+            }
+        );
+        $("#dataHidden").val(cadenaFinal);
+    });
+
+    function saldoPagar() {
+
+    }
+    function quitaMsjError() {
+        document.getElementById('mensajeAnno').style.display = 'none';
+    }
+
+    function quitaMsjErrorRegion() {
+        document.getElementById('ddlRegion').style.display = 'none';
+    }
+    function quitaMsjFecha() {
+        document.getElementById('mensajeFecha').style.display = 'none';
+    }
+
+    $("#ddlAnno").change(function () {
+        $("#ddlAnno").css('border', '1px solid #ccc');
+        document.getElementById('mensajeAnno').style.display = 'none';
+    });
+    $("#datepicker").change(function () {
+        $("#datepicker").css('border', '1px solid #ccc');
+    });
+    $("#numeroResolucion").keypress(function () {
+        $("#numeroResolucion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeNumero').style.display = 'none';
+    });
+
+    function backPage() {
+    document.location = '@Url.Action("Index", "Home")';
+    }
+
+    function numeros(e) {
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    $(function () {
+        $("#datepicker").datepicker(
+            {
+                format: 'dd/mm/yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true
+            });
+    });
+
+    $('.amt').keyup(function () {
+            $(event.target).val(function (index, value) {
+                return value.replace(/\D/g, "")
+                    .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+            });
+        }
+    );
+
+    $("#numeroResolucion").on({
+        "focus": function (event) {
+            $(event.target).select();
+        },
+        "keyup": function (event) {
+            $(event.target).val(function (index, value) {
+                return value.split('.').join('');
+            });
+        }
+    });
+
+    function LimpiaFormulario() {
+        $('#numeroResolucion').val('');
+        $('#ddlAnno').val('');
+        document.getElementById('detallePresupuesto').style.display = 'none';
+        document.getElementById('mensajeAnno').style.display = 'none';
+        document.getElementById('mensajeNumero').style.display = 'none';
+        $("#numeroResolucion").css('border', '1px solid #ccc');
+        $("#ddlRegion").val("0");
+
+    }
+
+    $('#observacion').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-]+/ig, "");
+        }
+    });
+
+</script>
+

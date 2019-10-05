@@ -1,0 +1,70 @@
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\NLog.config
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Domain.dll.config
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Domain.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Domain.pdb
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.ReportViewer.Common.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.ReportViewer.DataVisualization.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.ReportViewer.WebForms.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Helper.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.IData.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\NLog.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Helpers.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Mvc.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Razor.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.Deployment.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.Razor.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\EntityFramework.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Helper.pdb
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Helper.dll.config
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.IData.pdb
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.IData.dll.config
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\NLog.xml
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Helpers.xml
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Mvc.xml
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Razor.xml
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.xml
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.Deployment.xml
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.Razor.xml
+C:\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\EntityFramework.xml
+C:\SNAT\Produccion\Minvu.Snat.Domain\obj\Release\Minvu.Snat.Domain.csprojResolveAssemblyReference.cache
+C:\SNAT\Produccion\Minvu.Snat.Domain\obj\Release\Minvu.Snat.Domain.csproj.CoreCompileInputs.cache
+C:\SNAT\Produccion\Minvu.Snat.Domain\obj\Release\Minvu.Snat.Domain.dll
+C:\SNAT\Produccion\Minvu.Snat.Domain\obj\Release\Minvu.Snat.Domain.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\NLog.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Domain.dll.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Domain.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Domain.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.ReportViewer.Common.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.ReportViewer.WebForms.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Helper.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.IData.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\NLog.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Helpers.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Mvc.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Razor.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.Razor.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\EntityFramework.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Helper.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.Helper.dll.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.IData.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\Minvu.Snat.IData.dll.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\NLog.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Helpers.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Mvc.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.Razor.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\System.Web.WebPages.Razor.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\bin\Release\EntityFramework.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\obj\Release\Minvu.Snat.Domain.csprojAssemblyReference.cache
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\obj\Release\Minvu.Snat.Domain.csproj.CopyComplete
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\obj\Release\Minvu.Snat.Domain.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.Domain\obj\Release\Minvu.Snat.Domain.pdb

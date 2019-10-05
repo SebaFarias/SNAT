@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>@ViewBag.Title - RUKAN</title>
+    <link rel="icon" type="image/png" href="~/favicon.ico">
+    @Styles.Render("~/NormaGrafica/bootstrap")
+    @Styles.Render("~/NormaGrafica/css/styles")
+    @*@Styles.Render("~/Content/datatables/styles")*@
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="~NormaGrafica/js/html5shiv.js"></script>
+    <script src="~NormaGrafica/js/respond.min.js"></script>
+    <script src="~NormaGrafica/js/css3-mediaqueries.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/NormaGrafica")
+    @*@Scripts.Render("~/Scripts/datatable")
+    @Scripts.Render("~/Scripts/datepicker")*@
+    @RenderSection("scripts", required: false)
+</head>
+<body class="inside cat-vivienda">
+    <!-- Menu Lateral -->
+    @*<div class="panel panel-default menu-lateral">
+            <div class="panel-heading">
+                <h3 class="panel-title">Menú Rukan</h3>
+            </div>
+            <div class="bs-docs-sidebar">
+                @MenuLateralHelper.GenerarMenu()
+            </div>
+        </div>*@
+    <!-- fin Menu Lateral -->
+    <!-- Menu Navegacion -->
+    <nav class="navbar nav-minvu navbar-default header-site" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="title">
+                    <a href="@Url.Content(System.Configuration.ConfigurationManager.AppSettings["PortalAutenticacion"].ToString())" class="navbar-brand" sl-processed="1">SNAT</a>
+                </h1>
+                <br />
+                <h2 class="cat-app-minvu cat-title default-title" style="padding-right:50px;">Plataforma Tecnológica de Subsidios</h2>
+            </div>
+
+            <!-- nav links, formularios, y otros contenidos para el toggle ( palanca)  -->
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <br>
+                <p class="navbar-text navbar-right">No se ha iniciado la sesión</p>
+            </div><!-- /.navbar-collapse -->
+
+        </div>
+    </nav>
+    <!-- Menu Navegacion -->
+    <!-- Body -->
+    <div class="container" style="min-height: 600px; padding:30px;">
+        @RenderBody()
+    </div>
+    <!-- Body -->
+    <!-- footer -->
+    <footer class="footer-site" role="contentinfo">
+        <div class="container clearfix">
+            <span class="separator-line"></span>
+            <div class="row">
+                <div class="col-md-8">
+                    @*<a title="Créditos del sistema" href="/Cuenta/Creditos" class="btn btn-default" style="width:200px;" target="_blank"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Créditos</a>*@
+                    <a href="http://portalsiac.minvu.cl/" title="Contacto SIAC" class="btn btn-default" style="width:200px;" target="_blank"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contacto SIAC</a>
+                </div>
+                <div class="col-md-4 address-footer info-footer ">
+                    <ul>
+                        <li class="address-f">
+                            <h2 class="minvu-name">
+                                Ministerio de Vivienda y Urbanismo
+                            </h2>
+                            <p>
+                                Alameda 924, Santiago, Chile
+                                <br>
+                                Código postal: 6513482
+                                <br>
+                                Teléfono (56-2) 2901 1000
+                                <br>
+                                Fax: 29012800 <br>
+                            </p>
+                            <strong>@SiteHelper.GetVersion()</strong>
+                        </li>
+                        <li>
+                            <a href="http://www.minvu.cl" target="_blank" title="ir al MINVU"><img src="~/NormaGrafica/images/minvu-logo-footer.jpg" alt="Logo minvu"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer -->
+</body>
+</html>

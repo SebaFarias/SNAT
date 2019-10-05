@@ -1,0 +1,21 @@
+﻿<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h2 class="panel-title">Mantenedor de Incidentes</h2>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-md-2 control-label input-sm" for="ddlregion">Listado Incidentes</label>
+                <div id="CurrentExchange" class="col-md-4">
+                    <select name="incidentes" class="form-control input-group-sm" id="ddlincidentes" onchange="NavigatePage(this.value);">
+                        <option value="">-- Seleccione --</option>
+                        <option value="0">Reemplazo de beneficiarios</option>
+                        <option value="1">Eliminar Proyecto PPPF</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>

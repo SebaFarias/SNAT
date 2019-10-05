@@ -1,0 +1,532 @@
+﻿@model Minvu.Snat.Domain.Forms.ConsultaProyectoPPPF
+@{
+    ViewBag.Title = "CambiarNumeroCertificado";
+}
+<h4>@ViewBag.tipoOrigen - @ViewBag.nombreProyecto </h4>
+<br />
+@if (Model != null)
+{
+    <script>
+        $(document).ready(function () {
+            document.getElementById('detalleProyectos').style.display = 'block';
+            //hiddenCampos();
+        });
+    </script>
+
+    if (Model._informacionProyectoRukanEntities.rutProyectoPPPF == null || Model._informacionProyectoCertEntities == null)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleProyectos').style.display = 'none';
+                document.getElementById('detalleProyectosVacio').style.display = 'block';
+            });
+        </script>
+    }
+
+    if (Model._informacionProyectoRukanEntities.codigoSalida != "")
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleProyectos').style.display = 'none';
+                document.getElementById('detalleProyectosVacio').style.display = 'none';
+
+                if (@Model._informacionProyectoRukanEntities.codigoSalida == "0") {
+                    document.getElementById('detalleProyectos').style.display = 'block';
+                    $('#divBusqueda').focus();
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").text("Se actualizó número certificado correctamente.");
+
+                }
+                else {
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").text("@Model._informacionProyectoRukanEntities.mensajeSalida");
+                }
+            });
+        </script>
+
+    }
+}
+
+<div class="container">
+    @using (Html.BeginForm("CambiarNumeroCertificado", "Incidentes", FormMethod.Post, new { id = "formConsultaProyectosPPPF", @class = "form-horizontal", autocomplete = "off" }))
+    {
+        <div class="container">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="rut" style="text-align:left"><span style="color:#FF0000">(**)&nbsp;</span> Código Proyecto:</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model._informacionProyectoEntities.codigoProyectoPPPFConsulta, new { @class = "form-control", placeholder = "Ingrese Código de Proyecto o Rut", maxlength = "15", id = "rut", name = "rut", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", onblur = "changeFocus();" })
+                    <span class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.codigoProyectoPPPFConsulta)</span>
+                    <h6><span style="color:#FF0000">(!)&nbsp;</span>Si el código de proyecto es un RUT ingresar sin puntos, con dígito verificador y guión.</h6>
+                </div>
+                @*<div class="col-sm-1">
+                        @Html.TextBoxFor(model => model._informacionProyectoEntities.dvProyectoPPPF, new { @class = "form-control", placeholder = "Dv", id = "dv", name = "dv", @readonly = "readonly", disabled = "disabled" })
+                        @Html.HiddenFor(model => model._informacionProyectoEntities.dvProyectoPPPF, new { id = "hiddenDV" })
+                    </div>*@
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="numero" style="text-align:left"><span style="color:#FF0000">(**)&nbsp;</span> Número Certificado:</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model._informacionProyectoEntities.numeroCertificadoPPPFConsulta, new { @class = "form-control", placeholder = "Ingrese Número de Certificado", id = "numero", name = "numero", maxlength = "30", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", onblur = "changeFocus();" })
+                    <span class="text-danger">@Html.ValidationMessageFor(model => model._informacionProyectoEntities.numeroCertificadoPPPFConsulta)</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                    <button type="submit" id="btnSubmit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Buscar</button>
+                    <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-5" style="text-align:left">
+                    Seleccione al menos un campo con
+                    <span style="color:#FF0000">(**)&nbsp;</span>
+                    para realizar búsqueda.<br />
+                    @*<span style="color:#FF0000">(*)&nbsp;</span>Si el código de proyecto es un RUT ingresar sin puntos, con dígito verificador y guión.*@
+                </div>
+            </div>
+        </div>
+    }
+    @using (Html.BeginForm("ConfirmaCambioCertificado", "Incidentes", FormMethod.Post, new { id = "formActualizaCambio", name= "formActualizaCambio", autocomplete = "off" }))
+    {
+        if (Model != null)
+        {
+            <div class="container" id="detalleProyectosVacio" style='display:none;'>
+                <h4>Proyectos Disponibles</h4>
+                <table id="mytable" class="table table-bordered table-striped" style="width:80%">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;" class="">@ViewBag.Message</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+                <div class="container" id="detalleProyectos" style='display:none;'>
+                    <div class="container">
+                        <h3>Rukan:</h3>
+                        <table class="table table-bordered table-striped" style="width:70%">
+                            <thead>
+                                <tr>
+                                    <th>ID Contrato</th>
+                                    <th>Título</th>
+                                    <th>Año Llamado</th>
+                                    <th>N° Llamado</th>
+                                    <th>Nombre Proyecto</th>
+                                    <th>Código Proyecto</th>
+                                    <th>Número Certificado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:center;" class="">No Aplica</td>
+                                    <td style="text-align:center;" class="">@Model._informacionProyectoRukanEntities.maestroTitulo</td>
+                                    <td style="text-align:center;" class="">@Model._informacionProyectoRukanEntities.idMaestroPrograma</td>
+                                    <td style="text-align:center;" class="">@Model._informacionProyectoRukanEntities.idMaestroLlamado</td>
+                                    <td style="text-align:center;" class="">@Model._informacionProyectoRukanEntities.nombreProyectoPPPF</td>
+                                    @Html.HiddenFor(m => m._informacionProyectoRukanEntities.nombreProyectoPPPF)
+                                    <td style="text-align:center;" class="">@Model._informacionProyectoRukanEntities.rutProyectoPPPF-@Model._informacionProyectoRukanEntities.dvProyectoPPPF</td>
+
+                                    @if (Model._informacionProyectoRukanEntities.dvProyectoPPPF != null)
+                                    {
+                                        @Html.HiddenFor(m => m._informacionProyectoRukanEntities.codigoProyectoPPPF)
+                                    }
+                                    else
+                                    {
+                                        @Html.HiddenFor(m => m._informacionProyectoRukanEntities.rutProyectoPPPF)
+                                    }
+                                    <td style="text-align:center;" class="">@Model._informacionProyectoRukanEntities.numeroCertificadoPPPF</td>
+                                    @Html.HiddenFor(m => m._informacionProyectoRukanEntities.numeroCertificadoPPPF)
+                                    @Html.HiddenFor(m => m._informacionProyectoRukanEntities.rutProyectoPPPF)
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="container">
+                        <h3>SNAT:</h3>
+                        <table class="table table-bordered table-striped" style="width:70%">
+                            <thead>
+                                <tr>
+                                    <th>ID Contrato</th>
+                                    <th>Título</th>
+                                    <th>Año Llamado</th>
+                                    <th>N° Llamado</th>
+                                    <th>Nombre Proyecto</th>
+                                    <th>Código Proyecto</th>
+                                    <th>Número Certificado</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @if (Model != null)
+                                {
+                                    if (Model._informacionProyectoCertEntities != null)
+                                    {
+                                        foreach (var items in Model._informacionProyectoCertEntities)
+                                        {
+                                            <tr>
+                                                @if (!string.IsNullOrEmpty(items.idContrato.ToString()))
+                                                {
+                                                    <td style="text-align:center;" class="">@items.idContrato</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="text-align:center;" class="">Sin Información</td>
+                                                }
+
+                                                @if (!string.IsNullOrEmpty(items.maestroTitulo.ToString()))
+                                                {
+                                                    <td style="text-align:center;" class="">@items.maestroTitulo</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="text-align:center;" class="">Sin Información</td>
+                                                }
+
+                                                @if (!string.IsNullOrEmpty(items.idMaestroPrograma.ToString()))
+                                                {
+                                                    <td style="text-align:center;" class="">@items.idMaestroPrograma</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="text-align:center;" class="">Sin Información</td>
+                                                }
+
+                                                @if (items.idMaestroLlamado > 0)
+                                                {
+                                                    <td style="text-align:center;" class="">@items.idMaestroLlamado</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="text-align:center;" class="">Sin Información</td>
+                                                }
+
+                                                @if (!string.IsNullOrEmpty(items.nombreProyectoPPPF))
+                                                {
+                                                    <td style="text-align:center;" class="">@items.nombreProyectoPPPF</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="text-align:center;" class="">Sin Información</td>
+                                                }
+
+                                                @if (!string.IsNullOrEmpty(items.codigoProyectoPPPF))
+                                                {
+                                                    <td style="text-align:center;" class="">@items.codigoProyectoPPPF</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="text-align:center;" class="">Sin Información</td>
+                                                }
+
+                                                @if (!string.IsNullOrEmpty(items.numeroCertificadoPPPF))
+                                                {
+                                                    <td style="text-align:center;" class="">@items.numeroCertificadoPPPF</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="text-align:center;" class="">Sin Información</td>
+                                                }
+                                                <td><input type="radio" id="numCertificado" name="rdbCert" value="@items.idProyectoPPPF"></td>                                              
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>                        
+                        <input type="text" name="idProyectoPPPF" id="idProyectoPPPF" value="" hidden>
+                    </div>
+                    <div class="container">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" id="btnActualiza" class="btn btn-primary" data-toggle="modal" >Actualizar en SNAT</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse col-md-4 pull-left" id="navbar-collapse-1">
+                        <p class="navbar-text navbar-left">
+                            Usuario Responsable: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName)
+                        </p>
+                    </div>
+                </div>
+            <!-- /.navbar-collapse -->
+            <!-- Modal -->
+                <div class="modal fade" id="ActualizarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">@ViewBag.nombreProyecto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Confirma Actualización?
+                            </div>
+                            <div class="modal-footer">
+                                <p class="navbar-text navbar-left" style="font-size:10px">
+                                    Usuario Responsable: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName)
+                                </p>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary">Sí</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
+    }
+    <div class="spinner" style="display:none">
+        <div class="center-div">
+            <div class="inner-div">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div id="divBusqueda" class="alert alert-success oculta" tabindex='1'>
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusqueda">Error</strong>
+    </div>
+
+    <div id="divBusquedaError" class="alert alert-danger oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaError">Error</strong>
+    </div>
+</div>
+<style type="text/css">
+    .oculta {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+
+
+    $('#numero').keypress(function (e) {
+        changeFocus();
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        var texto = $('#numero').val();
+
+        if (keycode == '32') {
+            if (texto.length == 0) {
+                return false;
+            } else if ((texto.substring(texto.length - 1, texto.length)) == ' ') {
+                return false;
+            }
+        }
+        });
+
+    $('#rut').keypress(function (e) {
+        changeFocus();
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        var texto = $('#rut').val();
+
+        if (keycode == '32') {
+            if (texto.length == 0) {
+                return false;
+            } else if ((texto.substring(texto.length - 1, texto.length)) == ' ') {
+                return false;
+            }
+        }
+    });
+
+    });
+
+        $('#rut').on('input', function (e) {
+            if (!/^[ a-z0-9áéíóúüñ-]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+            }
+        });
+
+        $('#numero').on('input', function (e) {
+            if (!/^[ a-z0-9áéíóúüñ°-]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z0-9áéíóúüñ°]+/ig, "");
+            }
+        });
+
+        $('#btnActualiza').click(function () {
+            var estadoCheck = false;
+
+            $('input[type=radio]').each(function () {
+                if ($(this).prop('checked')) {
+                    var cert = $(this).val();
+                    $("#idProyectoPPPF").val(cert);
+                    $('#ActualizarModal').modal('show');
+                    $('#divBusquedaError').hide();
+                    estadoCheck = true;
+                }
+                //else
+                //{                    
+                //    $('#divBusquedaError').show();
+                //    $("#strongBusquedaError").text("Debe seleccionar un certificado a reemplazar en SNAT.");
+                //    return false;
+                //}
+            })
+
+            if (!estadoCheck)
+            {
+                  $('#divBusquedaError').show();
+                  $("#strongBusquedaError").text("Debe seleccionar un certificado a reemplazar en SNAT.");
+                  return false;
+            }
+        });
+
+        $('#btnSubmit').click(function () {
+
+        $('#divBusqueda').hide();
+        var rut = $('#rut').val();
+        var numero = $('#numero').val();
+
+
+        if (rut.trim() != "" || numero.trim() != "") {
+
+            $('.spinner').css('display', 'block');
+        }
+        else if (rut != "") {
+            if (rut.length > 0) {
+                if (rut > 0) {
+                    $('.spinner').css('display', 'block');
+                }
+            }
+            else {
+                return false;
+            }
+
+        }
+        else {
+            $('#divBusquedaError').show();
+            $("#strongBusquedaError").text("Debe seleccionar al menos un criterio de búsqueda. ");
+            $("#rut").css('border-color', '#b94a48');
+            $("#numero").css('border-color', '#b94a48');
+            return false;
+        }
+    });
+
+    $(function () {
+        $("#datepicker").datepicker(
+            {
+                format: 'dd/mm/yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true
+            });
+    });
+
+    function numeros(e) {
+        changeFocus();
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function backPage() {
+        document.location = '@Url.Action("MantenedorIncidentes", "Incidentes")';
+    }
+
+    function changeFocus() {
+        $("#rut").css('border-color', '#66afe9');
+        $("#numero").css('border-color', '#66afe9');
+    }
+
+    function getDV() {
+        var numero = document.getElementById("rut");
+        var rutDV = document.getElementById("dv");
+
+        nuevo_numero = numero.value.toString().split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+        document.getElementById("hiddenDV").value = dv;
+
+        if (numero.value != "") {
+            document.getElementById("numero").disabled = true;
+            $('#numero').val('');
+        }
+        else {
+            document.getElementById("numero").disabled = false;
+            $('#numero').val('');
+            $('#dv').val('');
+        }
+
+        return dv;
+    }
+
+    function hiddenNumero() {
+        var numero = document.getElementById("numero");
+
+        if (numero.value != "") {
+            document.getElementById("rut").disabled = true;
+            $('#dv').val('');
+        }
+        else {
+            document.getElementById("rut").disabled = false;
+            $('#dv').val('');
+        }
+    }
+
+    function hiddenCampos() {
+        var rut = document.getElementById("rut");
+        var numero = document.getElementById("numero");
+
+        if (rut.value != "") {
+            document.getElementById("numero").disabled = true;
+            $('#numero').val('');
+            return false;
+        }
+
+        if (numero.value != "") {
+            document.getElementById("rut").disabled = true;
+            $('#dv').val('');
+            return false;
+        }
+    }
+
+    function LimpiaFormulario() {
+        $('#rut').val('');
+        $('#dv').val('');
+        $('#numero').val('');
+
+        changeFocus();
+
+        document.getElementById("rut").disabled = false;
+        document.getElementById("numero").disabled = false;
+
+        if (document.getElementById('detalleProyectos') != null) {
+            document.getElementById('detalleProyectos').style.display = 'none';
+            document.getElementById('detalleProyectosVacio').style.display = 'none';
+            $('#divBusqueda').hide();
+            $('#divBusquedaError').hide();
+        }
+        $('#divBusqueda').hide();
+        $('#divBusquedaError').hide();
+    }
+
+    function LimpiaCabecera() {
+        $('#rut').val('');
+        $('#dv').val('');
+        $('#numero').val('');
+    }
+
+</script>

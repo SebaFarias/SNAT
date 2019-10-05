@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Web_Asistec_SnatIII_ContingenciaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="WEB_ASISTEC_SNATIII_FAMILIA">
+    <Key>
+      <PropertyRef Name="FAM_RUT" />
+    </Key>
+    <Property Name="FAM_RUT" Type="int" Nullable="false" />
+    <Property Name="FAM_DGV" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="FAM_TIP" Type="int" />
+    <Property Name="FAM_NOM" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FAM_APP_PAT" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FAM_APP_MAT" Type="varchar" MaxLength="100" />
+    <Property Name="REG_COD" Type="int" />
+    <Property Name="COM_COD" Type="int" />
+    <Property Name="PRV_COD" Type="int" />
+    <Property Name="FAM_EST_CIV" Type="varchar" MaxLength="200" />
+    <Property Name="FAM_FEC_NAC" Type="datetime" />
+    <Property Name="FAM_NAC" Type="varchar" MaxLength="16" />
+    <Property Name="FAM_SEX" Type="char" MaxLength="1" />
+    <Property Name="FAM_CLL" Type="varchar" MaxLength="50" />
+    <Property Name="FAM_CLL_NUM" Type="varchar" MaxLength="10" />
+    <Property Name="FAM_BLK" Type="varchar" MaxLength="10" />
+    <Property Name="FAM_DEP" Type="varchar" MaxLength="6" />
+    <Property Name="FAM_MZN" Type="varchar" MaxLength="5" />
+    <Property Name="FAM_SITI" Type="varchar" MaxLength="5" />
+    <Property Name="FAM_TIP_VIV" Type="varchar" MaxLength="200" />
+    <Property Name="FAM_VIV_ROL" Type="varchar" MaxLength="32" />
+    <Property Name="FAM_VIV_NUM_CERT" Type="varchar" MaxLength="15" />
+    <Property Name="FAM_VIV_FEC_CERT" Type="datetime" />
+    <Property Name="FAM_VIV_NOM_RSP" Type="varchar" MaxLength="50" />
+    <Property Name="FAM_ENT_NOM" Type="varchar" MaxLength="128" />
+    <Property Name="FAM_CYG_NOM" Type="varchar" MaxLength="100" />
+    <Property Name="FAM_CYG_APP_PAT" Type="varchar" MaxLength="100" />
+    <Property Name="FAM_CYG_APP_MAT" Type="varchar" MaxLength="100" />
+    <Property Name="FAM_COM_FIC" Type="varchar" MaxLength="64" />
+    <Property Name="FAM_PJE_FIC" Type="numeric" Precision="10" Scale="3" />
+    <Property Name="FAM_FOL_FIC" Type="numeric" Precision="9" Scale="0" />
+    <Property Name="FAM_INDC_ALLG" Type="varchar" MaxLength="2" />
+    <Property Name="FAM_INDC_TIP_VIV" Type="varchar" MaxLength="2" />
+    <Property Name="FAM_INDC_ELIM_AGU" Type="varchar" MaxLength="2" />
+    <Property Name="FAM_INDC_HACN" Type="varchar" MaxLength="2" />
+    <Property Name="FAM_INDC_AGU" Type="varchar" MaxLength="2" />
+    <Property Name="FAM_FEC_ING" Type="datetime" />
+    <Property Name="FAM_EST" Type="int" />
+    <Property Name="FAM_TIP_FND" Type="int" />
+    <Property Name="FAM_TIP_FND_DESC" Type="varchar" MaxLength="50" />
+    <Property Name="REG_COD_FAM" Type="int" />
+    <Property Name="COM_COD_FAM" Type="int" />
+    <Property Name="PRV_COD_FAM" Type="int" />
+    <Property Name="FAM_FON" Type="varchar" MaxLength="50" />
+    <Property Name="FAM_MAIL" Type="varchar" MaxLength="320" />
+    <Property Name="FAM_POB" Type="varchar" MaxLength="50" />
+    <Property Name="FAM_DSCA" Type="int" />
+    <Property Name="FAM_RUKAN" Type="int" />
+    <Property Name="FAM_SUB_PAG" Type="int" />
+    <Property Name="FAM_NUM_CER_SUB" Type="varchar" MaxLength="50" />
+    <Property Name="FAM_RES_BNF" Type="varchar" MaxLength="10" />
+    <Property Name="FAM_SEPR_HECH" Type="int" />
+    <Property Name="FAM_FEC_INI_VIG_SUB" Type="datetime" />
+    <Property Name="FAM_FEC_FIN_VIG_SUB" Type="datetime" />
+    <Property Name="FAM_TIP_LLA" Type="int" />
+    <Property Name="FAM_TIP_LLA_DESC" Type="varchar" MaxLength="200" />
+    <Property Name="FAM_CYG_RUT" Type="int" />
+    <Property Name="FAM_CYG_DGV" Type="varchar" MaxLength="1" />
+    <Property Name="FAM_OBS_FEC" Type="datetime" />
+    <Property Name="FAM_OBS_FAM" Type="varchar" MaxLength="500" />
+    <Property Name="FAM_OBS_VIV" Type="varchar" MaxLength="500" />
+    <Property Name="FAM_OBS_SUB" Type="varchar" MaxLength="500" />
+    <Property Name="FAM_OBS_USR" Type="varchar" MaxLength="50" />
+    <Property Name="FAM_ASG_DRT" Type="int" />
+    <Property Name="FAM_PRY_PISA" Type="int" />
+    <Property Name="FAM_PRG" Type="int" />
+    <Property Name="FAM_MTO_VIV_TIP_RUKAN" Type="decimal" Precision="9" Scale="3" />
+    <Property Name="FAM_ANO_LLA" Type="int" />
+    <Property Name="FAM_TIP_SPS" Type="int" />
+  </EntityType>
+  <EntityType Name="WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO">
+    <Key>
+      <PropertyRef Name="PPPF_CTO_PRY_ID" />
+    </Key>
+    <Property Name="PPPF_CTO_PRY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PPPF_CTO_ID" Type="int" />
+    <Property Name="PPPF_PRY_ID" Type="int" />
+    <Property Name="PPPF_CTO_RUT_PROF" Type="int" />
+    <Property Name="PPPF_CTO_RUT_PROF_RMPLZ" Type="int" />
+    <Property Name="PPPF_CTO_RUT_SERVIU" Type="int" />
+    <Property Name="PPPF_CTO_RUT_SERVIU_RMPLZ" Type="int" />
+    <Property Name="PPPF_CTO_RUT_SPV" Type="int" />
+    <Property Name="PPPF_CTO_RUT_SPV_RMPLZ" Type="int" />
+  </EntityType>
+  <EntityType Name="WEB_ASISTEC_SNATIII_PPPF_PROYECTO">
+    <Key>
+      <PropertyRef Name="PPPF_PRY_ID" />
+    </Key>
+    <Property Name="PPPF_PRY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PPPF_PRY_COD" Type="varchar" MaxLength="50" />
+    <Property Name="PPPF_PRY_CER" Type="varchar" MaxLength="50" />
+    <Property Name="PPPF_PRY_NOM" Type="varchar" MaxLength="200" />
+    <Property Name="PPPF_PRY_ANO" Type="int" />
+    <Property Name="PPPF_PRY_TIT" Type="int" />
+    <Property Name="PPPF_PRY_QTY_FAM" Type="int" />
+    <Property Name="PPPF_PRY_TIP" Type="int" />
+    <Property Name="PPPF_PSAT_RUT" Type="int" />
+    <Property Name="REG_COD" Type="int" />
+    <Property Name="PRV_COD" Type="int" />
+    <Property Name="COM_COD" Type="int" />
+    <Property Name="PPPF_NUM_LLAM" Type="int" />
+  </EntityType>
+  <EntityType Name="WEB_ASISTEC_SNATIII_PROFESION">
+    <Key>
+      <PropertyRef Name="PROF_PROF_ID" />
+    </Key>
+    <Property Name="PROF_PROF_ID" Type="int" Nullable="false" />
+    <Property Name="PROF_PROF_NOM" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PROF_PROF_EST" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WEB_ASISTEC_SNATIII_PROFESIONALES">
+    <Key>
+      <PropertyRef Name="PROF_RUT" />
+    </Key>
+    <Property Name="PROF_RUT" Type="int" Nullable="false" />
+    <Property Name="PROF_PROF_ID" Type="int" Nullable="false" />
+    <Property Name="PROF_EST" Type="int" Nullable="false" />
+    <Property Name="PROF_DGV" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="PROF_NOM" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PROF_APP_PAT" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PROF_APP_MAT" Type="varchar" MaxLength="50" />
+    <Property Name="PROF_ITO" Type="int" />
+  </EntityType>
+  <Association Name="FK_PROFESIONALES_PROFESION">
+    <End Role="WEB_ASISTEC_SNATIII_PROFESION" Type="Self.WEB_ASISTEC_SNATIII_PROFESION" Multiplicity="1" />
+    <End Role="WEB_ASISTEC_SNATIII_PROFESIONALES" Type="Self.WEB_ASISTEC_SNATIII_PROFESIONALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WEB_ASISTEC_SNATIII_PROFESION">
+        <PropertyRef Name="PROF_PROF_ID" />
+      </Principal>
+      <Dependent Role="WEB_ASISTEC_SNATIII_PROFESIONALES">
+        <PropertyRef Name="PROF_PROF_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WEB_ASIS_REFERENCE_WEB_ASIS">
+    <End Role="WEB_ASISTEC_SNATIII_PPPF_PROYECTO" Type="Self.WEB_ASISTEC_SNATIII_PPPF_PROYECTO" Multiplicity="0..1" />
+    <End Role="WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO" Type="Self.WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WEB_ASISTEC_SNATIII_PPPF_PROYECTO">
+        <PropertyRef Name="PPPF_PRY_ID" />
+      </Principal>
+      <Dependent Role="WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO">
+        <PropertyRef Name="PPPF_PRY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="WEB_ASISTEC_SNATIII_ACTUALIZA_CERTIFICADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodProyecto" Type="varchar" Mode="In" />
+    <Parameter Name="nNumCertificado" Type="varchar" Mode="In" />
+    <Parameter Name="vUsuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_ACTUALIZA_PROFESIONAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nIdProyecto" Type="int" Mode="In" />
+    <Parameter Name="nRutProfesional" Type="int" Mode="In" />
+    <Parameter Name="nRutReemplazo" Type="int" Mode="In" />
+    <Parameter Name="nTipoContrato" Type="int" Mode="In" />
+    <Parameter Name="vUsuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_ACTUALIZA_VIGENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodProyecto" Type="int" Mode="In" />
+    <Parameter Name="nFechaVigencia" Type="date" Mode="In" />
+    <Parameter Name="vUsuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_CAMBIO_TIPO_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nIdContrato" Type="int" Mode="In" />
+    <Parameter Name="nTipoContrato" Type="int" Mode="In" />
+    <Parameter Name="vUsuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_CONSULTA_CONTRATO_PPPF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ACCION" Type="int" Mode="In" />
+    <Parameter Name="PPPF_CTO_ID" Type="int" Mode="In" />
+    <Parameter Name="PPPF_CTO_RUT" Type="varchar" Mode="In" />
+    <Parameter Name="PPPF_NOMBRE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_CONSULTA_PROFESIONAL_PPPF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PROF_RUT" Type="int" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_CONSULTA_PROYECTO_PPPF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ACCION" Type="int" Mode="In" />
+    <Parameter Name="PPPF_CTO_ID" Type="int" Mode="In" />
+    <Parameter Name="PPPF_CTO_RUT" Type="varchar" Mode="In" />
+    <Parameter Name="PPPF_NOMBRE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_CONSULTA_PROYECTO_SERVIU_PPPF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ACCION" Type="int" Mode="In" />
+    <Parameter Name="PPPF_CTO_ID" Type="int" Mode="In" />
+    <Parameter Name="PPPF_CTO_RUT" Type="varchar" Mode="In" />
+    <Parameter Name="PPPF_NOMBRE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_ELIMINA_PROYECTO_PPPF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vCodProyecto" Type="varchar" Mode="In" />
+    <Parameter Name="nIdContrato" Type="int" Mode="In" />
+    <Parameter Name="vUsuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_INSERT_UPDATE_PROFESIONAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nRutProfesional" Type="int" Mode="In" />
+    <Parameter Name="nDvProfesional" Type="char" Mode="In" />
+    <Parameter Name="vNombreProfesional" Type="varchar" Mode="In" />
+    <Parameter Name="vApellidoPatProfesional" Type="varchar" Mode="In" />
+    <Parameter Name="vApellidoMatProfesional" Type="varchar" Mode="In" />
+    <Parameter Name="nIdProfesion" Type="int" Mode="In" />
+    <Parameter Name="nProfesionalITO" Type="int" Mode="In" />
+    <Parameter Name="vUsuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WEB_ASISTEC_SNATIII_VERIFICAR_PROYECTOS_SNAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pIdprograma" Type="bigint" Mode="In" />
+    <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="Web_Asistec_SnatIII_ContingenciaModelStoreContainer">
+    <EntitySet Name="WEB_ASISTEC_SNATIII_FAMILIA" EntityType="Self.WEB_ASISTEC_SNATIII_FAMILIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO" EntityType="Self.WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WEB_ASISTEC_SNATIII_PPPF_PROYECTO" EntityType="Self.WEB_ASISTEC_SNATIII_PPPF_PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WEB_ASISTEC_SNATIII_PROFESION" EntityType="Self.WEB_ASISTEC_SNATIII_PROFESION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WEB_ASISTEC_SNATIII_PROFESIONALES" EntityType="Self.WEB_ASISTEC_SNATIII_PROFESIONALES" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PROFESIONALES_PROFESION" Association="Self.FK_PROFESIONALES_PROFESION">
+      <End Role="WEB_ASISTEC_SNATIII_PROFESION" EntitySet="WEB_ASISTEC_SNATIII_PROFESION" />
+      <End Role="WEB_ASISTEC_SNATIII_PROFESIONALES" EntitySet="WEB_ASISTEC_SNATIII_PROFESIONALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WEB_ASIS_REFERENCE_WEB_ASIS" Association="Self.FK_WEB_ASIS_REFERENCE_WEB_ASIS">
+      <End Role="WEB_ASISTEC_SNATIII_PPPF_PROYECTO" EntitySet="WEB_ASISTEC_SNATIII_PPPF_PROYECTO" />
+      <End Role="WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO" EntitySet="WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

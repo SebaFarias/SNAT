@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="42973c35f53340ecbff57a86ac92a545" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="Rukan_MigraModel.COMUNA" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="Rukan_MigraModel.PROVINCIA" Width="1.5" PointX="3" PointY="1.75" />
+        <EntityTypeShape EntityType="Rukan_MigraModel.REGION" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="Rukan_MigraModel.USERS" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Rukan_MigraModel.USERREGION" Width="1.5" PointX="2.75" PointY="5.75" />
+        <AssociationConnector Association="Rukan_MigraModel.FK_COMUNA_COMUNAS_D_PROVINCI" />
+        <AssociationConnector Association="Rukan_MigraModel.FK_PROVINCI_PROVINCIA_REGION" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

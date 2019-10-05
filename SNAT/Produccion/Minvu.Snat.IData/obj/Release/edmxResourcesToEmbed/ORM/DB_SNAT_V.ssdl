@@ -1,0 +1,2515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_SNAT_VModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AUTORIZACION">
+    <Key>
+      <PropertyRef Name="IDAUTORIZACION" />
+    </Key>
+    <Property Name="IDAUTORIZACION" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDMAESTROESTADOAUTORIZACION" Type="bigint" />
+    <Property Name="ESPECIALAUTORIZACION" Type="bit" />
+    <Property Name="CANTIDADPROYECTOSAUTORIZACION" Type="int" />
+    <Property Name="CANTIDADSOLICITUDPAGOAUTORIZACION" Type="int" />
+    <Property Name="MONTOTOTALAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="USUARIORESPONSABLEAUTORIZACION" Type="varchar" MaxLength="200" />
+    <Property Name="FECHAINGRESOAUTORIZACION" Type="datetime" />
+    <Property Name="CODIGOREGIONAUTORIZACION" Type="bigint" />
+    <Property Name="NUMEROAUTORIZACION" Type="bigint" />
+    <Property Name="IDMAESTROMODALIDAD" Type="bigint" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+    <Property Name="IDMAESTROTIPOLOGIA" Type="bigint" />
+    <Property Name="IDMAESTROTITULO" Type="bigint" />
+    <Property Name="IDPROVEEDOR" Type="bigint" />
+    <Property Name="FECHAUFAUTORIZACION" Type="date" />
+    <Property Name="FECHAINYECCIONAUTORIZACION" Type="date" />
+    <Property Name="VALORUFPESOAUTORIZACION" Type="bigint" />
+  </EntityType>
+  <EntityType Name="BENEFICIARIO">
+    <Key>
+      <PropertyRef Name="IDBENEFICIARIO" />
+    </Key>
+    <Property Name="IDBENEFICIARIO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDDIRECCION" Type="bigint" />
+    <Property Name="IDINFORMACIONPROYECTO" Type="bigint" />
+    <Property Name="RUTBENEFICIARIO" Type="int" />
+    <Property Name="DIGITOVERIFICADORBENEFICIARIO" Type="char" MaxLength="1" />
+    <Property Name="NOMBREBENEFICIARIO" Type="varchar" MaxLength="100" />
+    <Property Name="APELLIDOPATERNOBENEFICIARIO" Type="varchar" MaxLength="100" />
+    <Property Name="APELLIDOMATERNOBENEFICIARIO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOBENEFICIARIO" Type="bit" />
+    <Property Name="IDMAESTROALTERNATIVAPOSTULACION" Type="bigint" />
+    <Property Name="FECHAINICIOVIGENCIASUBSIDIOBENEFICIARIO" Type="datetime" />
+    <Property Name="FECHATERMINOVIGENCIASUBSIDIOBENEFICIARIO" Type="datetime" />
+    <Property Name="FECHAADSCRIPCIONPROYECTOBENEFICIARIO" Type="datetime" />
+    <Property Name="IDMAESTROESTADOBENEFICIARIO" Type="bigint" />
+  </EntityType>
+  <EntityType Name="CARACTERISTICAS_ESPECIALES">
+    <Key>
+      <PropertyRef Name="IDCARACTERISTICASESPECIALES" />
+    </Key>
+    <Property Name="IDCARACTERISTICASESPECIALES" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+    <Property Name="IDMAESTROMODALIDAD" Type="bigint" />
+    <Property Name="IDMAESTROTIPOLOGIA" Type="bigint" />
+    <Property Name="IDINFORMACIONPROYECTO" Type="bigint" />
+    <Property Name="IDMAESTROCLASE" Type="bigint" />
+    <Property Name="IDMAESTROSUBMODALIDAD" Type="bigint" />
+  </EntityType>
+  <EntityType Name="CONTRATO_ATP">
+    <Key>
+      <PropertyRef Name="IDCONTRATOATP" />
+    </Key>
+    <Property Name="IDCONTRATOATP" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDTERRITORIOCONTRATO" Type="bigint" />
+    <Property Name="IDPROPIEDADTERRENO" Type="bigint" />
+    <Property Name="IDPROVEEDOR" Type="bigint" />
+    <Property Name="IDMAESTROTIPOSERVICIOIGT" Type="bigint" />
+    <Property Name="NUMERORESOLUCIONCONTRATOATP" Type="bigint" />
+    <Property Name="ARCHIVOCONTRATOATP" Type="varbinary(max)" />
+    <Property Name="AGNOPRESUPUESTOCONTRATOATP" Type="int" />
+    <Property Name="OBSERVACIONCONTRATOATP" Type="varchar" MaxLength="200" />
+    <Property Name="FECHACREACIONCONTRATOATP" Type="date" />
+    <Property Name="FECHAACTUALIZACIONCONTRATOATP" Type="date" />
+    <Property Name="PRODUCTOCONTRATOATP" Type="varchar" MaxLength="200" />
+    <Property Name="DESCRIPCIONPRODUCTOCONTRATOATP" Type="varchar" MaxLength="200" />
+    <Property Name="USUARIOCONTRATOATP" Type="varchar" MaxLength="50" />
+    <Property Name="PLAZOEJECUCIONCONTRATOATP" Type="int" />
+    <Property Name="FECHAINICIOCONTRATOATP" Type="datetime" />
+    <Property Name="NOMBREARCHIVOCONTRATOATP" Type="varchar" MaxLength="200" />
+    <Property Name="FECHARESOLUCIONCONTRATOATP" Type="datetime" />
+    <Property Name="MONTOCONTRATOCONTRATOATP" Type="bigint" />
+    <Property Name="IDMAESTROTIPOPROVEEDOR" Type="bigint" />
+    <Property Name="IDMAESTROESTADOCONTRATO" Type="bigint" />
+  </EntityType>
+  <EntityType Name="CONVALIDACION_PROGRAMA_SISTEMA">
+    <Key>
+      <PropertyRef Name="IDCONVALIDACIONPROGRAMASISTEMA" />
+    </Key>
+    <Property Name="IDCONVALIDACIONPROGRAMASISTEMA" Type="bigint" Nullable="false" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+    <Property Name="IDMAESTROSISTEMA" Type="bigint" />
+    <Property Name="CODIGOPROGRAMAEXTERNOCONVALIDACIONPROGRAMASISTEMA" Type="bigint" />
+    <Property Name="ESTADOMAESTROPROGRAMACONVALIDACIONPROGRAMASISTEMA" Type="bit" />
+  </EntityType>
+  <EntityType Name="DIRECCION">
+    <Key>
+      <PropertyRef Name="IDDIRECCION" />
+    </Key>
+    <Property Name="IDDIRECCION" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NUMERODIRECCION" Type="varchar" MaxLength="100" />
+    <Property Name="CODIGOCOMUNADIRECCION" Type="int" />
+    <Property Name="CODIGOPROVINCIADIRECCION" Type="int" />
+    <Property Name="CODIGOREGIONDIRECCION" Type="int" />
+    <Property Name="DESCRIPCIONDIRECCION" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="HOMOLOGACION_INFORMACION_SISTEMA">
+    <Key>
+      <PropertyRef Name="IDHOMOLOGACIONINFORMACIONSISTEMA" />
+    </Key>
+    <Property Name="IDHOMOLOGACIONINFORMACIONSISTEMA" Type="bigint" Nullable="false" />
+    <Property Name="IDMAESTROINFORMACIONSISTEMAEXTERNO" Type="bigint" Nullable="false" />
+    <Property Name="CODIGOSISTEMAINTERNOHOMOLOGACIONINFORMACIONSISTEMA" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="NOMBRETABLAHOMOLOGACIONINFORMACIONSISTEMA" Type="varchar" MaxLength="100" />
+    <Property Name="COLUMNACODIGOTABLAHOMOLOGACIONINFORMACIONSISTEMA" Type="varchar" MaxLength="100" />
+    <Property Name="COLUMNADETALLETABLAHOMOLOGACIONINFORMACIONSISTEMA" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="INFORMACION_PROYECTO">
+    <Key>
+      <PropertyRef Name="IDINFORMACIONPROYECTO" />
+    </Key>
+    <Property Name="IDINFORMACIONPROYECTO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDDIRECCION" Type="bigint" />
+    <Property Name="IDMAESTROTITULO" Type="bigint" />
+    <Property Name="IDMAESTROMODALIDAD" Type="bigint" />
+    <Property Name="IDMAESTROLLAMADO" Type="bigint" />
+    <Property Name="IDMAESTROALTERNATIVAPOSTULACION" Type="bigint" />
+    <Property Name="CODIGOPROYECTOINFORMACIONPROYECTO" Type="varchar" MaxLength="15" />
+    <Property Name="NOMBREPROYECTOINFORMACIONPROYECTO" Type="varchar" MaxLength="200" />
+    <Property Name="FECHACALIFICACIONDEFINITIVAINFORMACIONPROYECTO" Type="datetime" />
+    <Property Name="ESTADOPROYECTOINFORMACIONPROYECTO" Type="bit" />
+    <Property Name="RESOLUCIONATINFORMACIONPROYECTO" Type="varchar" MaxLength="200" />
+    <Property Name="FECHARESOLUCIONATINFORMACIONPROYECTO" Type="datetime" />
+    <Property Name="CANTIDADVIVIENDASINFORMACIONPROYECTO" Type="int" />
+    <Property Name="CANTIDADBENEFICIARIOSINFORMACIONPROYECTO" Type="int" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+    <Property Name="MONTOSUBSIDIOBASEINFORMACIONPROYECTO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOSUBSIDIOBASEFACTIBILIDADINFORMACIONPROYECTO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MARCALOCALIZACIONINFORMACIONPROYECTO" Type="bit" />
+    <Property Name="MARCAFACTIBILIZACIONINFORMACIONPROYECTO" Type="bit" />
+    <Property Name="FECHAFACTIBILIZACIONINFORMACIONPROYECTO" Type="datetime" />
+    <Property Name="NUMEROFAMILIASADSCRITASINFORMACIONPROYECTO" Type="int" />
+    <Property Name="IDMAESTRORESOLUCION" Type="bigint" />
+    <Property Name="AGNOFACTIBILIDADINFORMACIONPROYECTO" Type="int" />
+    <Property Name="IDMAESTROESTADOPROYECTO" Type="bigint" />
+    <Property Name="IDMAESTROESTADOBENEFICIO" Type="bigint" />
+    <Property Name="IDMAESTROBANCO" Type="bigint" />
+    <Property Name="AVANCEOBRAINFORMACIONPROYECTO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="ESTADOAVANCEOBRAINFORMACIONPROYECTO" Type="varchar" MaxLength="200" />
+    <Property Name="PERMISOUSUARIOADMINISTRATIVOINFORMACIONPROYECTO" Type="bit" />
+    <Property Name="NOMBREUSUARIOOTORGAPERMISOINFORMACIONPROYECTO" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="INFORMACION_PROYECTO_SOLICITUD">
+    <Key>
+      <PropertyRef Name="IDINFORMACIONPROYECTOSOLICITUD" />
+    </Key>
+    <Property Name="IDINFORMACIONPROYECTOSOLICITUD" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDINFORMACIONPROYECTO" Type="bigint" Nullable="false" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+    <Property Name="IDMAESTROLLAMADO" Type="bigint" />
+    <Property Name="IDMAESTROMODALIDAD" Type="bigint" />
+    <Property Name="IDMAESTROTITULO" Type="bigint" />
+    <Property Name="IDMAESTRORESOLUCION" Type="bigint" />
+    <Property Name="IDDIRECCION" Type="bigint" />
+    <Property Name="IDMAESTROTIPOLOGIA" Type="bigint" />
+    <Property Name="IDMAESTROALTERNATIVAPOSTULACION" Type="bigint" />
+    <Property Name="CODIGOPROYECTOINFORMACIONPROYECTOSOLICITUD" Type="varchar" MaxLength="15" />
+    <Property Name="NOMBREPROYECTOINFORMACIONPROYECTOSOLICITUD" Type="varchar" MaxLength="200" />
+    <Property Name="FECHACALIFICACIONDEFINITIVAINFORMACIONPROYECTOSOLICITUD" Type="datetime" />
+    <Property Name="RESOLUCIONATINFORMACIONPROYECTOSOLICITUD" Type="varchar" MaxLength="200" />
+    <Property Name="FECHARESOLUCIONATINFORMACIONPROYECTOSOLICITUD" Type="datetime" />
+    <Property Name="CANTIDADVIVIENDASINFORMACIONPROYECTOSOLICITUD" Type="int" />
+    <Property Name="CANTIDADBENEFICIARIOSINFORMACIONPROYECTOSOLICITUD" Type="int" />
+    <Property Name="MONTOSUBSIDIOBASEINFORMACIONPROYECTOSOLICITUD" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOSUBSIDIOBASEFACTIBILIDADINFORMACIONPROYECTOSOLICITUD" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MARCALOCALIZACIONINFORMACIONPROYECTOSOLICITUD" Type="bit" />
+    <Property Name="MARCAFACTIBILIZACIONINFORMACIONPROYECTOSOLICITUD" Type="bit" />
+    <Property Name="FECHAFACTIBILIZACIONINFORMACIONPROYECTOSOLICITUD" Type="datetime" />
+    <Property Name="NUMEROFAMILIASADSCRITASINFORMACIONPROYECTOSOLICITUD" Type="int" />
+    <Property Name="AGNOFACTIBILIDADINFORMACIONPROYECTOSOLICITUD" Type="int" />
+    <Property Name="IDMAESTROESTADOPROYECTO" Type="bigint" />
+    <Property Name="FECHAINGRESOINFORMACIONPROYECTOSOLICITUD" Type="datetime" Nullable="false" />
+    <Property Name="IDMAESTROESTADOBENEFICIO" Type="bigint" />
+    <Property Name="IDMAESTROBANCO" Type="bigint" />
+    <Property Name="AVANCEOBRAINFORMACIONPROYECTOSOLICITUD" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="ESTADOAVANCEOBRAINFORMACIONPROYECTOSOLICITUD" Type="varchar" MaxLength="255" />
+    <Property Name="PERMISOUSUARIOADMINISTRATIVOINFORMACIONPROYECTOSOLICITUD" Type="bit" />
+    <Property Name="NOMBREUSUARIOOTORGAPERMISOINFORMACIONPROYECTOSOLICITUD" Type="varchar" MaxLength="200" />
+    <Property Name="CodigoInternoSNATInformacionProyectoSolicitud" Type="bigint" />
+  </EntityType>
+  <EntityType Name="MAESTRO_ALTERNATIVA_POSTULACION">
+    <Key>
+      <PropertyRef Name="IDMAESTROALTERNATIVAPOSTULACION" />
+    </Key>
+    <Property Name="IDMAESTROALTERNATIVAPOSTULACION" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROALTERNATIVAPOSTULACION" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROALTERNATIVAPOSTULACION" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_BANCO">
+    <Key>
+      <PropertyRef Name="IDMAESTROBANCO" />
+    </Key>
+    <Property Name="IDMAESTROBANCO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREMAESTROBANCO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROBANCO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_CLASE">
+    <Key>
+      <PropertyRef Name="IDMAESTROCLASE" />
+    </Key>
+    <Property Name="IDMAESTROCLASE" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROCLASE" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROCLASE" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_ESTADO_AUTORIZACION">
+    <Key>
+      <PropertyRef Name="IDMAESTROESTADOAUTORIZACION" />
+    </Key>
+    <Property Name="IDMAESTROESTADOAUTORIZACION" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROESTADOAUTORIZACION" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROESTADOAUTORIZACION" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_ESTADO_BENEFICIARIO">
+    <Key>
+      <PropertyRef Name="IDMAESTROESTADOBENEFICIARIO" />
+    </Key>
+    <Property Name="IDMAESTROESTADOBENEFICIARIO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREMAESTROESTADOBENEFICIARIO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROESTADOBENEFICIARIO" Type="bit" Nullable="false" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+  </EntityType>
+  <EntityType Name="MAESTRO_ESTADO_BENEFICIO">
+    <Key>
+      <PropertyRef Name="IDMAESTROESTADOBENEFICIO" />
+    </Key>
+    <Property Name="IDMAESTROESTADOBENEFICIO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREMAESTROESTADOBENEFICIO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROESTADOBENEFICIO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_ESTADO_CONTRATO">
+    <Key>
+      <PropertyRef Name="IDMAESTROESTADOCONTRATO" />
+    </Key>
+    <Property Name="IDMAESTROESTADOCONTRATO" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROESTADOCONTRATO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROESTADOCONTRATO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_ESTADO_PROYECTO">
+    <Key>
+      <PropertyRef Name="IDMAESTROESTADOPROYECTO" />
+    </Key>
+    <Property Name="IDMAESTROESTADOPROYECTO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREMAESTROESTADOPROYECTO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROESTADOPROYECTO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MAESTRO_ESTADO_SOLICITUD">
+    <Key>
+      <PropertyRef Name="IDMAESTROESTADOSOLICITUD" />
+    </Key>
+    <Property Name="IDMAESTROESTADOSOLICITUD" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROESTADOSOLICITUD" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROESTADOSOLICITUD" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_INCREMENTO">
+    <Key>
+      <PropertyRef Name="IDMAESTROINCREMENTO" />
+    </Key>
+    <Property Name="IDMAESTROINCREMENTO" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROINCREMENTO" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOMAESTROINCREMENTO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_INFORMACION_SISTEMA_EXTERNO">
+    <Key>
+      <PropertyRef Name="IDMAESTROINFORMACIONSISTEMAEXTERNO" />
+    </Key>
+    <Property Name="IDMAESTROINFORMACIONSISTEMAEXTERNO" Type="bigint" Nullable="false" />
+    <Property Name="DESCRIPCIONMAESTROINFORMACIONSISTEMAEXTERNO" Type="varchar" MaxLength="200" />
+    <Property Name="VALORIDMAESTROINFORMACIONSISTEMAEXTERNO" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="MAESTRO_LLAMADO">
+    <Key>
+      <PropertyRef Name="IDMAESTROLLAMADO" />
+    </Key>
+    <Property Name="IDMAESTROLLAMADO" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROLLAMADO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROLLAMADO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_MODALIDAD">
+    <Key>
+      <PropertyRef Name="IDMAESTROMODALIDAD" />
+    </Key>
+    <Property Name="IDMAESTROMODALIDAD" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROMODALIDAD" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROMODALIDAD" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_PARCIALIDAD">
+    <Key>
+      <PropertyRef Name="IDMAESTROPARCIALIDAD" />
+    </Key>
+    <Property Name="IDMAESTROPARCIALIDAD" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROPARCIALIDAD" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROPARCIALIDAD" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_PROGRAMA">
+    <Key>
+      <PropertyRef Name="IDMAESTROPROGRAMA" />
+    </Key>
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROPROGRAMA" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOMAESTROPROGRAMA" Type="bit" />
+    <Property Name="CODIGOENTRAZABILIDAD" Type="int" />
+  </EntityType>
+  <EntityType Name="MAESTRO_RESOLUCION">
+    <Key>
+      <PropertyRef Name="IDMAESTRORESOLUCION" />
+    </Key>
+    <Property Name="IDMAESTRORESOLUCION" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTRORESOLUCION" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTRORESOLUCION" Type="bit" />
+    <Property Name="FECHAMAESTRORESOLUCION" Type="date" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+  </EntityType>
+  <EntityType Name="MAESTRO_SERVICIO">
+    <Key>
+      <PropertyRef Name="IDMAESTROSERVICIO" />
+    </Key>
+    <Property Name="IDMAESTROSERVICIO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREMAESTROSERVICIO" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOMAESTROSERVICIO" Type="bit" />
+    <Property Name="NOMBREABREVIADOMAESTROSERVICIO" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MAESTRO_SISTEMA">
+    <Key>
+      <PropertyRef Name="IDMAESTROSISTEMA" />
+    </Key>
+    <Property Name="IDMAESTROSISTEMA" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROSISTEMA" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOMAESTROSISTEMA" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_SUB_MODALIDAD">
+    <Key>
+      <PropertyRef Name="IDMAESTROSUBMODALIDAD" />
+    </Key>
+    <Property Name="IDMAESTROSUBMODALIDAD" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROSUBMODALIDAD" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROSUBMODALIDAD" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_TIPO_DESTINO_PAGO">
+    <Key>
+      <PropertyRef Name="IDMAESTROTIPODESTINOPAGO" />
+    </Key>
+    <Property Name="IDMAESTROTIPODESTINOPAGO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREMAESTROTIPODESTINOPAGO" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOMAESTROTIPODESTINOPAGO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_TIPO_INGRESO">
+    <Key>
+      <PropertyRef Name="IDMAESTROTIPOINGRESO" />
+    </Key>
+    <Property Name="IDMAESTROTIPOINGRESO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREMAESTROTIPOINGRESO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROTIPOINGRESO" Type="bit" Nullable="false" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+  </EntityType>
+  <EntityType Name="MAESTRO_TIPO_PAGO">
+    <Key>
+      <PropertyRef Name="IDMAESTROTIPOPAGO" />
+    </Key>
+    <Property Name="IDMAESTROTIPOPAGO" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROTIPOPAGO" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOMAESTROTIPOPAGO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_TIPO_PROVEEDOR">
+    <Key>
+      <PropertyRef Name="IDMAESTROTIPOPROVEEDOR" />
+    </Key>
+    <Property Name="IDMAESTROTIPOPROVEEDOR" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROTIPOPROVEEDOR" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOMAESTROTIPOPROVEEDOR" Type="bit" />
+    <Property Name="IDMAESTROTIPOPROVEEDORSISTEMA" Type="bigint" />
+  </EntityType>
+  <EntityType Name="MAESTRO_TIPO_PROVEEDOR_SISTEMA">
+    <Key>
+      <PropertyRef Name="IDMAESTROTIPOPROVEEDORSISTEMA" />
+    </Key>
+    <Property Name="IDMAESTROTIPOPROVEEDORSISTEMA" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROTIPOPROVEEDORSISTEMA" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROTIPOPROVEEDORSISTEMA" Type="bit" />
+  </EntityType>
+  <EntityType Name="MAESTRO_TIPO_SERVICIO_IGT">
+    <Key>
+      <PropertyRef Name="IDMAESTROTIPOSERVICIOIGT" />
+    </Key>
+    <Property Name="IDMAESTROTIPOSERVICIOIGT" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROTIPOSERVICIOIGT" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOMAESTROTIPOSERVICIOIGT" Type="bit" />
+    <Property Name="TIPOSERVICIOMAESTROTIPOSERVICIOIGT" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="MAESTRO_TIPOLOGIA">
+    <Key>
+      <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+    </Key>
+    <Property Name="IDMAESTROTIPOLOGIA" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROTIPOLOGIA" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROTIPOLOGIA" Type="bit" />
+    <Property Name="NOMBREABREVIADOMAESTROTIPOLOGIA" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="MAESTRO_TITULO">
+    <Key>
+      <PropertyRef Name="IDMAESTROTITULO" />
+    </Key>
+    <Property Name="IDMAESTROTITULO" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREMAESTROTITULO" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADOMAESTROTITULO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MODIFICACION_ESTADO_SOLICITUD">
+    <Key>
+      <PropertyRef Name="IDMODIFICACIONESTADOSOLICITUD" />
+    </Key>
+    <Property Name="IDMODIFICACIONESTADOSOLICITUD" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDSOLICITUDPAGO" Type="bigint" Nullable="false" />
+    <Property Name="IDMAESTROESTADOSOLICITUD" Type="bigint" Nullable="false" />
+    <Property Name="FECHAMODIFICACIONESTADOSOLICITUD" Type="datetime" Nullable="false" />
+    <Property Name="USUARIORESPONSABLEMODIFICACIONESTADOSOLICITUD" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRESUPUESTO_REGIONAL">
+    <Key>
+      <PropertyRef Name="IDPRESUPUESTOREGIONAL_" />
+    </Key>
+    <Property Name="IDPRESUPUESTOREGIONAL_" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDRESOLUCIONPRESUPUESTARIA" Type="int" />
+    <Property Name="CODIGOREGIONPRESUPUESTOREGIONAL" Type="int" />
+    <Property Name="MONTOPRESUPUESTOREGIONAL" Type="bigint" />
+    <Property Name="USUARIOPRESUPUESTOREGIONAL" Type="varchar" MaxLength="30" />
+    <Property Name="FECHAPRESUPUESTOREGIONAL" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PROPIEDAD_TERRENO">
+    <Key>
+      <PropertyRef Name="IDPROPIEDADTERRENO" />
+    </Key>
+    <Property Name="IDPROPIEDADTERRENO" Type="bigint" Nullable="false" />
+    <Property Name="NOMBREPROPIEDADTERRENO" Type="varchar" MaxLength="200" />
+    <Property Name="ESTADOPROPIEDADTERRENO" Type="bit" />
+  </EntityType>
+  <EntityType Name="PROVEEDOR">
+    <Key>
+      <PropertyRef Name="IDPROVEEDOR" />
+    </Key>
+    <Property Name="IDPROVEEDOR" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDMAESTROTIPOPROVEEDOR" Type="bigint" />
+    <Property Name="RUTPROVEEDOR" Type="int" />
+    <Property Name="DVPROVEDIGITOVERIFICADORPROVEEDOR" Type="char" MaxLength="1" />
+    <Property Name="NOMBREPROVEEDOR" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="RESOLUCION_PRESUPUESTARIA">
+    <Key>
+      <PropertyRef Name="IDRESOLUCIONPRESUPUESTARIA" />
+    </Key>
+    <Property Name="IDRESOLUCIONPRESUPUESTARIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ANORESOLUCIONPRESUPUESTARIA" Type="smallint" />
+    <Property Name="NUMERORESOLUCIONPRESUPUESTARIA" Type="int" />
+    <Property Name="FECHARESOLUCIONPRESUPUESTARIA" Type="datetime" />
+    <Property Name="USUARIORESOLUCIONPRESUPUESTARIA" Type="varchar" MaxLength="30" />
+    <Property Name="NOMBREARCHIVOPRESUPUESTO" Type="varchar" MaxLength="50" />
+    <Property Name="ESTADORESOLUCIONPRESUPUESTARIA" Type="bit" />
+  </EntityType>
+  <EntityType Name="SERVICIO_PARCIALIDAD">
+    <Key>
+      <PropertyRef Name="IDSERVICIOPARCIALIDAD" />
+    </Key>
+    <Property Name="IDSUBMODALIDADPARCIALIDAD" Type="bigint" />
+    <Property Name="IDGRUPOSUBMODALIDADPARCIALIDAD" Type="bigint" />
+    <Property Name="IDTIPOLOGIASERVICIO" Type="bigint" />
+    <Property Name="IDGRUPOTIPOLOGIASERVICIO" Type="bigint" />
+    <Property Name="IDSERVICIOPARCIALIDAD" Type="bigint" Nullable="false" />
+    <Property Name="NUMEROPLANTILLASERVICIOPARCIALIDAD" Type="int" />
+    <Property Name="OBSERVACIONSERVICIOPARCIALIDAD" Type="varchar" MaxLength="255" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+    <Property Name="ESTADOSERVICIOPARCIALIDAD" Type="bit" />
+  </EntityType>
+  <EntityType Name="SOLICITUD_AUTORIZACION">
+    <Key>
+      <PropertyRef Name="IDSOLICITUDAUTORIZACION" />
+    </Key>
+    <Property Name="IDSOLICITUDAUTORIZACION" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NUMEROAUTORIZACIONSOLICITUDAUTORIZACION" Type="bigint" Nullable="false" />
+    <Property Name="NUMEROSOLICITUDSOLICITUDAUTORIZACION" Type="bigint" />
+    <Property Name="CODIGOPROYECTOSOLICITUDAUTORIZACION" Type="bigint" />
+    <Property Name="NOMBREPROYECTOSOLICITUDAUTORIZACION" Type="varchar" MaxLength="100" />
+    <Property Name="UBICACIONCOMUNASOLICITUDAUTORIZACION" Type="varchar" MaxLength="100" />
+    <Property Name="S1SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S2SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S3SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S4SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S5SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S6SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S7SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S8SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S9SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="S10SOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="FTOSOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOFTOTOTALSOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOATSOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOAPAGOSOLICITUDAUTORIZACION" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="SOLICITUD_PAGO">
+    <Key>
+      <PropertyRef Name="IDSOLICITUDPAGO" />
+    </Key>
+    <Property Name="IDSOLICITUDPAGO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDMAESTROESTADOSOLICITUD" Type="bigint" />
+    <Property Name="FOLIOBOLETAGARANTIASOLICITUDPAGO" Type="varchar" MaxLength="200" />
+    <Property Name="NUMEROFAMILIASPAGARSOLICITUDPAGO" Type="int" />
+    <Property Name="USUARIORESPONSABLESOLICITUDPAGO" Type="varchar" MaxLength="100" />
+    <Property Name="IDCARACTERISTICASESPECIALES" Type="bigint" />
+    <Property Name="IDMAESTROTIPOPAGO" Type="bigint" />
+    <Property Name="FECHAREALCREACIONSOLICITUDPAGO" Type="date" />
+    <Property Name="FECHACREACIONSOLICITUDPAGO" Type="date" />
+    <Property Name="IDMAESTROTIPODESTINOPAGO" Type="bigint" />
+    <Property Name="MONTOTOTALPROYECTOSOLICITUDPAGO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOPAGADOSOLICITUDPAGO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOCOMPROMETIDOSOLICITUDPAGO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="SALDOPORPAGARSOLICITUDPAGO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="AVANCEOBRASOLICITUDPAGO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="NUMERORESOLUCIONCONTRATOSOLICITUDPAGO" Type="bigint" />
+    <Property Name="MONTOSOLICITUDSOLICITUDPAGO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="IDPROVEEDOR" Type="bigint" />
+    <Property Name="NUMEROVIVIENDASSOLICITUDPAGO" Type="int" />
+    <Property Name="IDINFORMACIONPROYECTOSOLICITUD" Type="bigint" />
+    <Property Name="OBSERVACIONESSOLICITUDPAGO" Type="varchar" MaxLength="200" />
+    <Property Name="FECHARESOLUCIONSOLICITUDPAGO" Type="date" />
+    <Property Name="IDMAESTROPROGRAMA" Type="bigint" />
+    <Property Name="FECHABOLETAGARANTIASOLICITUDPAGO" Type="date" />
+    <Property Name="PAGOMANDANTOSOLICITUDPAGO" Type="bit" />
+    <Property Name="IDMANDANTOPROVEEDORSOLICITUDPAGO" Type="bigint" />
+  </EntityType>
+  <EntityType Name="SOLICITUD_PAGO_ATP">
+    <Key>
+      <PropertyRef Name="IDSOLICITUDATP" />
+    </Key>
+    <Property Name="IDSOLICITUDATP" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCONTRATOATP" Type="bigint" />
+    <Property Name="AGNOPRESUPUESTOSOLICITUDPAGOATP" Type="int" />
+    <Property Name="PRESUPUESTOREGIONALSOLICITUDPAGOATP" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="CODIGOREGIONSOLICITUDPAGOATP" Type="int" />
+    <Property Name="MONTOPAGADOSOLICITUDPAGOATP" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOCOMPROMETIDOSOLICITUDPAGOATP" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOPORPAGARSOLICITUDPAGOATP" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="NUMEROBOLETAFACTURASOLICITUDPAGOATP" Type="bigint" />
+    <Property Name="FECHABOLETAFACTURASOLICITUDPAGOATP" Type="datetime" />
+    <Property Name="MONTOTOTALAPAGARSOLICITUDPAGOATP" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="VBSERVICIOSOLICITUDPAGOATP" Type="bit" />
+    <Property Name="VBRESPONSABLESOLICITUDPAGOATP" Type="varchar" MaxLength="200" />
+    <Property Name="VBFECHASOLICITUDPAGOATP" Type="datetime" />
+    <Property Name="IDMAESTROESTADOSOLICITUD" Type="bigint" />
+    <Property Name="FECHACREACIONSOLICITUDPAGOATP" Type="date" />
+    <Property Name="USUARIOCREACIONSOLICITUDPAGOATP" Type="varchar" MaxLength="100" />
+    <Property Name="IDMAESTROTIPOPAGO" Type="bigint" />
+    <Property Name="FECHAINYECCIONAUTORIZACION" Type="date" />
+    <Property Name="VALORUFPESOAUTORIZACION" Type="bigint" />
+    <Property Name="MONTOPESOAUTORIZACION" Type="bigint" />
+  </EntityType>
+  <EntityType Name="SUB_MODALIDAD_PARCIALIDAD">
+    <Key>
+      <PropertyRef Name="IDSUBMODALIDADPARCIALIDAD" />
+      <PropertyRef Name="IDGRUPOSUBMODALIDADPARCIALIDAD" />
+    </Key>
+    <Property Name="IDSUBMODALIDADPARCIALIDAD" Type="bigint" Nullable="false" />
+    <Property Name="IDMAESTROPARCIALIDAD" Type="bigint" />
+    <Property Name="IDMAESTROSUBMODALIDAD" Type="bigint" />
+    <Property Name="IDGRUPOSUBMODALIDADPARCIALIDAD" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TERRITORIO_CONTRATO">
+    <Key>
+      <PropertyRef Name="IDTERRITORIOCONTRATO" />
+    </Key>
+    <Property Name="IDTERRITORIOCONTRATO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CODIGOPROVINCIATERRITORIOCONTRATO" Type="bigint" />
+    <Property Name="CODIGOREGIONTERRITORIOCONTRATO" Type="bigint" />
+    <Property Name="CODIGOCOMUNATERRITORIOCONTRATO" Type="bigint" />
+    <Property Name="ESTADOTERRITORIOCONTRATO" Type="bit" />
+    <Property Name="FECHACREACIONTERRITORIOCONTRATO" Type="date" />
+    <Property Name="FECHAACTUALIZACIONTERRITORIOCONTRATO" Type="date" />
+    <Property Name="USUARIOTERRITORIOCONTRATO" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TIPO_ACTIVIDAD_MONTO">
+    <Key>
+      <PropertyRef Name="IDTIPOACTIVIDADMONTO" />
+    </Key>
+    <Property Name="IDTIPOACTIVIDADMONTO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDSOLICITUDATP" Type="bigint" />
+    <Property Name="TIPOSERVICIOTIPOACTIVIDADMONTO" Type="varchar" MaxLength="50" />
+    <Property Name="IDMAESTROSERVICIO" Type="bigint" />
+    <Property Name="MONTOPAGOTIPOACTIVIDADMONTO" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="TIPO_AUTORIZACION">
+    <Key>
+      <PropertyRef Name="IDTIPOAUTORIZACION" />
+    </Key>
+    <Property Name="IDTIPOAUTORIZACION" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDSOLICITUDPAGO" Type="bigint" />
+    <Property Name="IDAUTORIZACION" Type="bigint" />
+    <Property Name="ESTADOTIPOAUTORIZACION" Type="bit" />
+  </EntityType>
+  <EntityType Name="TIPO_INCREMENTO">
+    <Key>
+      <PropertyRef Name="IDTIPOINCREMENTO" />
+    </Key>
+    <Property Name="IDTIPOINCREMENTO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDMAESTROINCREMENTO" Type="bigint" />
+    <Property Name="IDCARACTERISTICASESPECIALES" Type="bigint" />
+    <Property Name="IDSOLICITUDPAGO" Type="bigint" />
+    <Property Name="SELECCIONADOTIPOINCREMENTO" Type="bit" />
+    <Property Name="ESTADOTIPOINCREMENTO" Type="bit" />
+  </EntityType>
+  <EntityType Name="TIPO_PARCIALIDAD">
+    <Key>
+      <PropertyRef Name="IDTIPOPARCIALIDAD" />
+    </Key>
+    <Property Name="IDTIPOPARCIALIDAD" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDTIPOSERVICIO" Type="bigint" />
+    <Property Name="ESTADOTIPOPARCIALIDAD" Type="bit" />
+    <Property Name="PORCENTAJETIPOPARCIALIDAD" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="TIPO_PROVEEDOR_INFORMACION_PROYECTO">
+    <Key>
+      <PropertyRef Name="IDTIPOPROVEEDORINFORMACIONPROYECTO" />
+    </Key>
+    <Property Name="IDTIPOPROVEEDORINFORMACIONPROYECTO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPROVEEDOR" Type="bigint" Nullable="false" />
+    <Property Name="IDINFORMACIONPROYECTO" Type="bigint" Nullable="false" />
+    <Property Name="ESTADOTIPOPROVEEDORINFORMACIONPROYECTO" Type="bit" />
+  </EntityType>
+  <EntityType Name="TIPO_SERVICIO">
+    <Key>
+      <PropertyRef Name="IDTIPOSERVICIO" />
+    </Key>
+    <Property Name="IDTIPOSERVICIO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDSOLICITUDPAGO" Type="bigint" />
+    <Property Name="MONTOASIGNACIONDIRECTATIPOSERVICIO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="TOTALSERVICIOTIPOSERVICIO" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOINCREMENTOTIPOSERVICIO" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA">
+    <Key>
+      <PropertyRef Name="IDTIPOSERVICIOPARCIALIDADCARACTERISTICA" />
+    </Key>
+    <Property Name="IDTIPOSERVICIOPARCIALIDADCARACTERISTICA" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDSERVICIOPARCIALIDAD" Type="bigint" />
+    <Property Name="IDCARACTERISTICASESPECIALES" Type="bigint" />
+    <Property Name="ESTADOTIPOSERVICIOPARCIALIDADCARACTERISTICA" Type="bit" />
+    <Property Name="MONTOSERVICIOTIPOSERVICIOPARCIALIDADCARACTERISTICA" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="MONTOPARCIALIDADTIPOSERVICIOPARCIALIDADCARACTERISTICA" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PORCENTAJEPARCIALIDADTIPOSERVICIOPARCIALIDADCARACTERISTICA" Type="int" />
+    <Property Name="IDSOLICITUDPAGO" Type="bigint" />
+    <Property Name="MONTOASIGNACIONDIRECTATIPOSERVICIOPARCIALIDADCARACTERISTICA" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="TIPO_SERVICIOS_CONTRATO">
+    <Key>
+      <PropertyRef Name="IDTIPOSERVICIOSCONTRATO" />
+    </Key>
+    <Property Name="IDTIPOSERVICIOSCONTRATO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDMAESTROSERVICIO" Type="bigint" />
+    <Property Name="IDCONTRATOATP" Type="bigint" />
+    <Property Name="ESTADOTIPOSERVICIOSCONTRATO" Type="bit" />
+  </EntityType>
+  <EntityType Name="TIPOLOGIA_SERVICIO">
+    <Key>
+      <PropertyRef Name="IDTIPOLOGIASERVICIO" />
+      <PropertyRef Name="IDGRUPOTIPOLOGIASERVICIO" />
+    </Key>
+    <Property Name="IDMAESTROTIPOLOGIA" Type="bigint" />
+    <Property Name="IDTIPOLOGIASERVICIO" Type="bigint" Nullable="false" />
+    <Property Name="IDGRUPOTIPOLOGIASERVICIO" Type="bigint" Nullable="false" />
+    <Property Name="IDMAESTROSERVICIO" Type="bigint" />
+  </EntityType>
+  <Association Name="AUTORIZACION_REFERENCE_MAESTRO_ESTADO_AUTORIZACION">
+    <End Role="MAESTRO_ESTADO_AUTORIZACION" Type="Self.MAESTRO_ESTADO_AUTORIZACION" Multiplicity="0..1" />
+    <End Role="AUTORIZACION" Type="Self.AUTORIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_AUTORIZACION">
+        <PropertyRef Name="IDMAESTROESTADOAUTORIZACION" />
+      </Principal>
+      <Dependent Role="AUTORIZACION">
+        <PropertyRef Name="IDMAESTROESTADOAUTORIZACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AUTORIZACION_REFERENCE_MAESTRO_MODALIDAD">
+    <End Role="MAESTRO_MODALIDAD" Type="Self.MAESTRO_MODALIDAD" Multiplicity="0..1" />
+    <End Role="AUTORIZACION" Type="Self.AUTORIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_MODALIDAD">
+        <PropertyRef Name="IDMAESTROMODALIDAD" />
+      </Principal>
+      <Dependent Role="AUTORIZACION">
+        <PropertyRef Name="IDMAESTROMODALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AUTORIZACION_REFERENCE_MAESTRO_PROGRAMA">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="AUTORIZACION" Type="Self.AUTORIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="AUTORIZACION">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AUTORIZACION_REFERENCE_MAESTRO_TIPOLOGIA">
+    <End Role="MAESTRO_TIPOLOGIA" Type="Self.MAESTRO_TIPOLOGIA" Multiplicity="0..1" />
+    <End Role="AUTORIZACION" Type="Self.AUTORIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPOLOGIA">
+        <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+      </Principal>
+      <Dependent Role="AUTORIZACION">
+        <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AUTORIZACION_REFERENCE_MAESTRO_TITULO">
+    <End Role="MAESTRO_TITULO" Type="Self.MAESTRO_TITULO" Multiplicity="0..1" />
+    <End Role="AUTORIZACION" Type="Self.AUTORIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TITULO">
+        <PropertyRef Name="IDMAESTROTITULO" />
+      </Principal>
+      <Dependent Role="AUTORIZACION">
+        <PropertyRef Name="IDMAESTROTITULO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AUTORIZACION_REFERENCE_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="0..1" />
+    <End Role="AUTORIZACION" Type="Self.AUTORIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Principal>
+      <Dependent Role="AUTORIZACION">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BENEFICIARIO_REFERENCE_DIRECCION">
+    <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="0..1" />
+    <End Role="BENEFICIARIO" Type="Self.BENEFICIARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DIRECCION">
+        <PropertyRef Name="IDDIRECCION" />
+      </Principal>
+      <Dependent Role="BENEFICIARIO">
+        <PropertyRef Name="IDDIRECCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BENEFICIARIO_REFERENCE_INFORMACION_PROYECTO">
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="0..1" />
+    <End Role="BENEFICIARIO" Type="Self.BENEFICIARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDINFORMACIONPROYECTO" />
+      </Principal>
+      <Dependent Role="BENEFICIARIO">
+        <PropertyRef Name="IDINFORMACIONPROYECTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTRATO_ATP_REFERENCE_ESTADO_MAESTRO_CONTRATO">
+    <End Role="MAESTRO_ESTADO_CONTRATO" Type="Self.MAESTRO_ESTADO_CONTRATO" Multiplicity="0..1" />
+    <End Role="CONTRATO_ATP" Type="Self.CONTRATO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_CONTRATO">
+        <PropertyRef Name="IDMAESTROESTADOCONTRATO" />
+      </Principal>
+      <Dependent Role="CONTRATO_ATP">
+        <PropertyRef Name="IDMAESTROESTADOCONTRATO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CONTRATO_REFERENCE_TIPO_PROVEEDOR">
+    <End Role="MAESTRO_TIPO_PROVEEDOR" Type="Self.MAESTRO_TIPO_PROVEEDOR" Multiplicity="0..1" />
+    <End Role="CONTRATO_ATP" Type="Self.CONTRATO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPO_PROVEEDOR">
+        <PropertyRef Name="IDMAESTROTIPOPROVEEDOR" />
+      </Principal>
+      <Dependent Role="CONTRATO_ATP">
+        <PropertyRef Name="IDMAESTROTIPOPROVEEDOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BENEFICIARIO_MAESTRO_ALTERNATIVA_POSTULACION">
+    <End Role="MAESTRO_ALTERNATIVA_POSTULACION" Type="Self.MAESTRO_ALTERNATIVA_POSTULACION" Multiplicity="0..1" />
+    <End Role="BENEFICIARIO" Type="Self.BENEFICIARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ALTERNATIVA_POSTULACION">
+        <PropertyRef Name="IDMAESTROALTERNATIVAPOSTULACION" />
+      </Principal>
+      <Dependent Role="BENEFICIARIO">
+        <PropertyRef Name="IDMAESTROALTERNATIVAPOSTULACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BENEFICIARIO_MAESTRO_ESTADO_BENEFICIARIO">
+    <End Role="MAESTRO_ESTADO_BENEFICIARIO" Type="Self.MAESTRO_ESTADO_BENEFICIARIO" Multiplicity="0..1" />
+    <End Role="BENEFICIARIO" Type="Self.BENEFICIARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_BENEFICIARIO">
+        <PropertyRef Name="IDMAESTROESTADOBENEFICIARIO" />
+      </Principal>
+      <Dependent Role="BENEFICIARIO">
+        <PropertyRef Name="IDMAESTROESTADOBENEFICIARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARACTER_REFERENCE_INFORMAC">
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="0..1" />
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDINFORMACIONPROYECTO" />
+      </Principal>
+      <Dependent Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDINFORMACIONPROYECTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARACTER_REFERENCE_MAESTRO_">
+    <End Role="MAESTRO_TIPOLOGIA" Type="Self.MAESTRO_TIPOLOGIA" Multiplicity="0..1" />
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPOLOGIA">
+        <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+      </Principal>
+      <Dependent Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARACTER_REFERENCE_MAESTRO_CLASE">
+    <End Role="MAESTRO_CLASE" Type="Self.MAESTRO_CLASE" Multiplicity="0..1" />
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_CLASE">
+        <PropertyRef Name="IDMAESTROCLASE" />
+      </Principal>
+      <Dependent Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDMAESTROCLASE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARACTER_REFERENCE_MAESTRO_MODALIDAD">
+    <End Role="MAESTRO_MODALIDAD" Type="Self.MAESTRO_MODALIDAD" Multiplicity="0..1" />
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_MODALIDAD">
+        <PropertyRef Name="IDMAESTROMODALIDAD" />
+      </Principal>
+      <Dependent Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDMAESTROMODALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARACTER_REFERENCE_MAESTRO_PROGRAMA">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARACTER_REFERENCE_MAESTROSUBMODALIDAD">
+    <End Role="MAESTRO_SUB_MODALIDAD" Type="Self.MAESTRO_SUB_MODALIDAD" Multiplicity="0..1" />
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_SUB_MODALIDAD">
+        <PropertyRef Name="IDMAESTROSUBMODALIDAD" />
+      </Principal>
+      <Dependent Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDMAESTROSUBMODALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRATO_REFERENCE_MAESTRO_">
+    <End Role="MAESTRO_TIPO_SERVICIO_IGT" Type="Self.MAESTRO_TIPO_SERVICIO_IGT" Multiplicity="0..1" />
+    <End Role="CONTRATO_ATP" Type="Self.CONTRATO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPO_SERVICIO_IGT">
+        <PropertyRef Name="IDMAESTROTIPOSERVICIOIGT" />
+      </Principal>
+      <Dependent Role="CONTRATO_ATP">
+        <PropertyRef Name="IDMAESTROTIPOSERVICIOIGT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRATO_REFERENCE_PROPIEDA">
+    <End Role="PROPIEDAD_TERRENO" Type="Self.PROPIEDAD_TERRENO" Multiplicity="0..1" />
+    <End Role="CONTRATO_ATP" Type="Self.CONTRATO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROPIEDAD_TERRENO">
+        <PropertyRef Name="IDPROPIEDADTERRENO" />
+      </Principal>
+      <Dependent Role="CONTRATO_ATP">
+        <PropertyRef Name="IDPROPIEDADTERRENO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRATO_REFERENCE_PROVEEDO">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="0..1" />
+    <End Role="CONTRATO_ATP" Type="Self.CONTRATO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Principal>
+      <Dependent Role="CONTRATO_ATP">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRATO_REFERENCE_TERRITOR">
+    <End Role="TERRITORIO_CONTRATO" Type="Self.TERRITORIO_CONTRATO" Multiplicity="0..1" />
+    <End Role="CONTRATO_ATP" Type="Self.CONTRATO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TERRITORIO_CONTRATO">
+        <PropertyRef Name="IDTERRITORIOCONTRATO" />
+      </Principal>
+      <Dependent Role="CONTRATO_ATP">
+        <PropertyRef Name="IDTERRITORIOCONTRATO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONV_REFERENCE_MAESTRO_PROGRAMA">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="CONVALIDACION_PROGRAMA_SISTEMA" Type="Self.CONVALIDACION_PROGRAMA_SISTEMA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="CONVALIDACION_PROGRAMA_SISTEMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONV_REFERENCE_MAESTRO_SISTEMA">
+    <End Role="MAESTRO_SISTEMA" Type="Self.MAESTRO_SISTEMA" Multiplicity="0..1" />
+    <End Role="CONVALIDACION_PROGRAMA_SISTEMA" Type="Self.CONVALIDACION_PROGRAMA_SISTEMA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_SISTEMA">
+        <PropertyRef Name="IDMAESTROSISTEMA" />
+      </Principal>
+      <Dependent Role="CONVALIDACION_PROGRAMA_SISTEMA">
+        <PropertyRef Name="IDMAESTROSISTEMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOMO_REFERENCE_MAESTRO_INFORMACION_SISTEMA_EXTERNO">
+    <End Role="MAESTRO_INFORMACION_SISTEMA_EXTERNO" Type="Self.MAESTRO_INFORMACION_SISTEMA_EXTERNO" Multiplicity="1" />
+    <End Role="HOMOLOGACION_INFORMACION_SISTEMA" Type="Self.HOMOLOGACION_INFORMACION_SISTEMA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_INFORMACION_SISTEMA_EXTERNO">
+        <PropertyRef Name="IDMAESTROINFORMACIONSISTEMAEXTERNO" />
+      </Principal>
+      <Dependent Role="HOMOLOGACION_INFORMACION_SISTEMA">
+        <PropertyRef Name="IDMAESTROINFORMACIONSISTEMAEXTERNO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFO_REFERENCE_MAESTRO_BANCO">
+    <End Role="MAESTRO_BANCO" Type="Self.MAESTRO_BANCO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_BANCO">
+        <PropertyRef Name="IDMAESTROBANCO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTROBANCO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFO_REFERENCE_MAESTRO_ESTADO_BENEFICIO">
+    <End Role="MAESTRO_ESTADO_BENEFICIO" Type="Self.MAESTRO_ESTADO_BENEFICIO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_BENEFICIO">
+        <PropertyRef Name="IDMAESTROESTADOBENEFICIO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTROESTADOBENEFICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORM_REFERENCE_MAESTRO_BANCO">
+    <End Role="MAESTRO_BANCO" Type="Self.MAESTRO_BANCO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_BANCO">
+        <PropertyRef Name="IDMAESTROBANCO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROBANCO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORM_REFERENCE_MAESTRO_ESTADO_BENEFICIO">
+    <End Role="MAESTRO_ESTADO_BENEFICIO" Type="Self.MAESTRO_ESTADO_BENEFICIO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_BENEFICIO">
+        <PropertyRef Name="IDMAESTROESTADOBENEFICIO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROESTADOBENEFICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMAC_REFERENCE_MAESTRO_">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMAC_REFERENCE_MAESTRO_RESOLUCION">
+    <End Role="MAESTRO_RESOLUCION" Type="Self.MAESTRO_RESOLUCION" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_RESOLUCION">
+        <PropertyRef Name="IDMAESTRORESOLUCION" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTRORESOLUCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_MAESTRO_ESTADO_PROYECTO">
+    <End Role="MAESTRO_ESTADO_PROYECTO" Type="Self.MAESTRO_ESTADO_PROYECTO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_PROYECTO">
+        <PropertyRef Name="IDMAESTROESTADOPROYECTO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTROESTADOPROYECTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_DIRECCION">
+    <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DIRECCION">
+        <PropertyRef Name="IDDIRECCION" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDDIRECCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_INFORMACION_PROYECTO">
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDINFORMACIONPROYECTO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDINFORMACIONPROYECTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_ALTERNATIVA_POSTULACION">
+    <End Role="MAESTRO_ALTERNATIVA_POSTULACION" Type="Self.MAESTRO_ALTERNATIVA_POSTULACION" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ALTERNATIVA_POSTULACION">
+        <PropertyRef Name="IDMAESTROALTERNATIVAPOSTULACION" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROALTERNATIVAPOSTULACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_LLAMADO">
+    <End Role="MAESTRO_LLAMADO" Type="Self.MAESTRO_LLAMADO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_LLAMADO">
+        <PropertyRef Name="IDMAESTROLLAMADO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROLLAMADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_MODALIDAD">
+    <End Role="MAESTRO_MODALIDAD" Type="Self.MAESTRO_MODALIDAD" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_MODALIDAD">
+        <PropertyRef Name="IDMAESTROMODALIDAD" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROMODALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_PROGRAMA">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_RESOLUCION">
+    <End Role="MAESTRO_RESOLUCION" Type="Self.MAESTRO_RESOLUCION" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_RESOLUCION">
+        <PropertyRef Name="IDMAESTRORESOLUCION" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTRORESOLUCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_TIPOLOGIA">
+    <End Role="MAESTRO_TIPOLOGIA" Type="Self.MAESTRO_TIPOLOGIA" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPOLOGIA">
+        <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_TITULO">
+    <End Role="MAESTRO_TITULO" Type="Self.MAESTRO_TITULO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TITULO">
+        <PropertyRef Name="IDMAESTROTITULO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROTITULO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MAESTRO_ESTADO_BENEFICIARIO_MAESTRO_PROGRAMA">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="MAESTRO_ESTADO_BENEFICIARIO" Type="Self.MAESTRO_ESTADO_BENEFICIARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="MAESTRO_ESTADO_BENEFICIARIO">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MAESTRO_RESOLUCION_MAESTRO_PROGRAMA">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="MAESTRO_RESOLUCION" Type="Self.MAESTRO_RESOLUCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="MAESTRO_RESOLUCION">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MAESTRO_TIPO_INGRESO_MAESTRO_PROGRAMA">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="MAESTRO_TIPO_INGRESO" Type="Self.MAESTRO_TIPO_INGRESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="MAESTRO_TIPO_INGRESO">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MODIFICACION_ESTADO_SOLICITUD_MAESTRO_ESTADO_SOLICITUD">
+    <End Role="MAESTRO_ESTADO_SOLICITUD" Type="Self.MAESTRO_ESTADO_SOLICITUD" Multiplicity="1" />
+    <End Role="MODIFICACION_ESTADO_SOLICITUD" Type="Self.MODIFICACION_ESTADO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROESTADOSOLICITUD" />
+      </Principal>
+      <Dependent Role="MODIFICACION_ESTADO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROESTADOSOLICITUD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MODIFICACION_ESTADO_SOLICITUD_SOLICITUD_PAGO">
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="1" />
+    <End Role="MODIFICACION_ESTADO_SOLICITUD" Type="Self.MODIFICACION_ESTADO_SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Principal>
+      <Dependent Role="MODIFICACION_ESTADO_SOLICITUD">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICIO_REFERENCE_MAESTRO_">
+    <End Role="MAESTRO_PROGRAMA" Type="Self.MAESTRO_PROGRAMA" Multiplicity="0..1" />
+    <End Role="SERVICIO_PARCIALIDAD" Type="Self.SERVICIO_PARCIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PROGRAMA">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Principal>
+      <Dependent Role="SERVICIO_PARCIALIDAD">
+        <PropertyRef Name="IDMAESTROPROGRAMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICIO_REFERENCE_SUB_MODA">
+    <End Role="SUB_MODALIDAD_PARCIALIDAD" Type="Self.SUB_MODALIDAD_PARCIALIDAD" Multiplicity="0..1" />
+    <End Role="SERVICIO_PARCIALIDAD" Type="Self.SERVICIO_PARCIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUB_MODALIDAD_PARCIALIDAD">
+        <PropertyRef Name="IDSUBMODALIDADPARCIALIDAD" />
+        <PropertyRef Name="IDGRUPOSUBMODALIDADPARCIALIDAD" />
+      </Principal>
+      <Dependent Role="SERVICIO_PARCIALIDAD">
+        <PropertyRef Name="IDSUBMODALIDADPARCIALIDAD" />
+        <PropertyRef Name="IDGRUPOSUBMODALIDADPARCIALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICIO_REFERENCE_TIPOLOGI">
+    <End Role="TIPOLOGIA_SERVICIO" Type="Self.TIPOLOGIA_SERVICIO" Multiplicity="0..1" />
+    <End Role="SERVICIO_PARCIALIDAD" Type="Self.SERVICIO_PARCIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOLOGIA_SERVICIO">
+        <PropertyRef Name="IDTIPOLOGIASERVICIO" />
+        <PropertyRef Name="IDGRUPOTIPOLOGIASERVICIO" />
+      </Principal>
+      <Dependent Role="SERVICIO_PARCIALIDAD">
+        <PropertyRef Name="IDTIPOLOGIASERVICIO" />
+        <PropertyRef Name="IDGRUPOTIPOLOGIASERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PAGO_ATP_CONTRATO">
+    <End Role="CONTRATO_ATP" Type="Self.CONTRATO_ATP" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO_ATP" Type="Self.SOLICITUD_PAGO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTRATO_ATP">
+        <PropertyRef Name="IDCONTRATOATP" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO_ATP">
+        <PropertyRef Name="IDCONTRATOATP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PAGO_ATP_ESTADO_SOLICITUD">
+    <End Role="MAESTRO_ESTADO_SOLICITUD" Type="Self.MAESTRO_ESTADO_SOLICITUD" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO_ATP" Type="Self.SOLICITUD_PAGO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROESTADOSOLICITUD" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO_ATP">
+        <PropertyRef Name="IDMAESTROESTADOSOLICITUD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PAGO_ATP_MAESTRO_TIPO_PAGO">
+    <End Role="MAESTRO_TIPO_PAGO" Type="Self.MAESTRO_TIPO_PAGO" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO_ATP" Type="Self.SOLICITUD_PAGO_ATP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPO_PAGO">
+        <PropertyRef Name="IDMAESTROTIPOPAGO" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO_ATP">
+        <PropertyRef Name="IDMAESTROTIPOPAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PAGO_INFORMACION_PROYECTO_SOLICITUD">
+    <End Role="INFORMACION_PROYECTO_SOLICITUD" Type="Self.INFORMACION_PROYECTO_SOLICITUD" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INFORMACION_PROYECTO_SOLICITUD">
+        <PropertyRef Name="IDINFORMACIONPROYECTOSOLICITUD" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDINFORMACIONPROYECTOSOLICITUD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PAGO_MAESTRO_TIPO_PAGO">
+    <End Role="MAESTRO_TIPO_PAGO" Type="Self.MAESTRO_TIPO_PAGO" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPO_PAGO">
+        <PropertyRef Name="IDMAESTROTIPOPAGO" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDMAESTROTIPOPAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUB_MODA_REFERENCE_MAESTRO_">
+    <End Role="MAESTRO_SUB_MODALIDAD" Type="Self.MAESTRO_SUB_MODALIDAD" Multiplicity="0..1" />
+    <End Role="SUB_MODALIDAD_PARCIALIDAD" Type="Self.SUB_MODALIDAD_PARCIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_SUB_MODALIDAD">
+        <PropertyRef Name="IDMAESTROSUBMODALIDAD" />
+      </Principal>
+      <Dependent Role="SUB_MODALIDAD_PARCIALIDAD">
+        <PropertyRef Name="IDMAESTROSUBMODALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUB_MODA_REFERENCE_MAESTRO_PARCIALIDAD">
+    <End Role="MAESTRO_PARCIALIDAD" Type="Self.MAESTRO_PARCIALIDAD" Multiplicity="0..1" />
+    <End Role="SUB_MODALIDAD_PARCIALIDAD" Type="Self.SUB_MODALIDAD_PARCIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_PARCIALIDAD">
+        <PropertyRef Name="IDMAESTROPARCIALIDAD" />
+      </Principal>
+      <Dependent Role="SUB_MODALIDAD_PARCIALIDAD">
+        <PropertyRef Name="IDMAESTROPARCIALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_ACTIVIDAD_MONTO_MAESTRO_SERVICIO">
+    <End Role="MAESTRO_SERVICIO" Type="Self.MAESTRO_SERVICIO" Multiplicity="0..1" />
+    <End Role="TIPO_ACTIVIDAD_MONTO" Type="Self.TIPO_ACTIVIDAD_MONTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_SERVICIO">
+        <PropertyRef Name="IDMAESTROSERVICIO" />
+      </Principal>
+      <Dependent Role="TIPO_ACTIVIDAD_MONTO">
+        <PropertyRef Name="IDMAESTROSERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_ACTIVIDAD_MONTO_SOLICITUD_PAGO_ATP">
+    <End Role="SOLICITUD_PAGO_ATP" Type="Self.SOLICITUD_PAGO_ATP" Multiplicity="0..1" />
+    <End Role="TIPO_ACTIVIDAD_MONTO" Type="Self.TIPO_ACTIVIDAD_MONTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_PAGO_ATP">
+        <PropertyRef Name="IDSOLICITUDATP" />
+      </Principal>
+      <Dependent Role="TIPO_ACTIVIDAD_MONTO">
+        <PropertyRef Name="IDSOLICITUDATP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_AUT_TIPO_AUTO_SOLICITU">
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="0..1" />
+    <End Role="TIPO_AUTORIZACION" Type="Self.TIPO_AUTORIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Principal>
+      <Dependent Role="TIPO_AUTORIZACION">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_PROVEEDOR_INFORMACION_PROYECTO_INFORMACION_PROYECTO">
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="1" />
+    <End Role="TIPO_PROVEEDOR_INFORMACION_PROYECTO" Type="Self.TIPO_PROVEEDOR_INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDINFORMACIONPROYECTO" />
+      </Principal>
+      <Dependent Role="TIPO_PROVEEDOR_INFORMACION_PROYECTO">
+        <PropertyRef Name="IDINFORMACIONPROYECTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_PROVEEDOR_INFORMACION_PROYECTO_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="TIPO_PROVEEDOR_INFORMACION_PROYECTO" Type="Self.TIPO_PROVEEDOR_INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Principal>
+      <Dependent Role="TIPO_PROVEEDOR_INFORMACION_PROYECTO">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_SER_REFERENCE_CARACTER">
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="0..1" />
+    <End Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" Type="Self.TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDCARACTERISTICASESPECIALES" />
+      </Principal>
+      <Dependent Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA">
+        <PropertyRef Name="IDCARACTERISTICASESPECIALES" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_SER_REFERENCE_MAESTRO_">
+    <End Role="MAESTRO_SERVICIO" Type="Self.MAESTRO_SERVICIO" Multiplicity="0..1" />
+    <End Role="TIPO_SERVICIOS_CONTRATO" Type="Self.TIPO_SERVICIOS_CONTRATO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_SERVICIO">
+        <PropertyRef Name="IDMAESTROSERVICIO" />
+      </Principal>
+      <Dependent Role="TIPO_SERVICIOS_CONTRATO">
+        <PropertyRef Name="IDMAESTROSERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_SER_REFERENCE_SERVICIO">
+    <End Role="SERVICIO_PARCIALIDAD" Type="Self.SERVICIO_PARCIALIDAD" Multiplicity="0..1" />
+    <End Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" Type="Self.TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICIO_PARCIALIDAD">
+        <PropertyRef Name="IDSERVICIOPARCIALIDAD" />
+      </Principal>
+      <Dependent Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA">
+        <PropertyRef Name="IDSERVICIOPARCIALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_SER_REFERENCE_SOLICITU">
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="0..1" />
+    <End Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" Type="Self.TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Principal>
+      <Dependent Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_SERVICIOS_CONTRATO_CONTRATO">
+    <End Role="CONTRATO_ATP" Type="Self.CONTRATO_ATP" Multiplicity="0..1" />
+    <End Role="TIPO_SERVICIOS_CONTRATO" Type="Self.TIPO_SERVICIOS_CONTRATO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTRATO_ATP">
+        <PropertyRef Name="IDCONTRATOATP" />
+      </Principal>
+      <Dependent Role="TIPO_SERVICIOS_CONTRATO">
+        <PropertyRef Name="IDCONTRATOATP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPOLOGI_REFERENCE_MAESTRO_">
+    <End Role="MAESTRO_TIPOLOGIA" Type="Self.MAESTRO_TIPOLOGIA" Multiplicity="0..1" />
+    <End Role="TIPOLOGIA_SERVICIO" Type="Self.TIPOLOGIA_SERVICIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPOLOGIA">
+        <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+      </Principal>
+      <Dependent Role="TIPOLOGIA_SERVICIO">
+        <PropertyRef Name="IDMAESTROTIPOLOGIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPOLOGI_TIPOLOGIA_MAESTRO_SERVICIO">
+    <End Role="MAESTRO_SERVICIO" Type="Self.MAESTRO_SERVICIO" Multiplicity="0..1" />
+    <End Role="TIPOLOGIA_SERVICIO" Type="Self.TIPOLOGIA_SERVICIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_SERVICIO">
+        <PropertyRef Name="IDMAESTROSERVICIO" />
+      </Principal>
+      <Dependent Role="TIPOLOGIA_SERVICIO">
+        <PropertyRef Name="IDMAESTROSERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPPRO_REFERENCE_MAESTRO_TIPO_PROVEEDOR__SISTEMA">
+    <End Role="MAESTRO_TIPO_PROVEEDOR_SISTEMA" Type="Self.MAESTRO_TIPO_PROVEEDOR_SISTEMA" Multiplicity="0..1" />
+    <End Role="MAESTRO_TIPO_PROVEEDOR" Type="Self.MAESTRO_TIPO_PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPO_PROVEEDOR_SISTEMA">
+        <PropertyRef Name="IDMAESTROTIPOPROVEEDORSISTEMA" />
+      </Principal>
+      <Dependent Role="MAESTRO_TIPO_PROVEEDOR">
+        <PropertyRef Name="IDMAESTROTIPOPROVEEDORSISTEMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="INFORMACION_PROYECTO_REFERENCE_DIRECCION">
+    <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DIRECCION">
+        <PropertyRef Name="IDDIRECCION" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDDIRECCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="INFORMACION_PROYECTO_REFERENCE_MAESTRO_ALTERNATIVA_POSTULACION">
+    <End Role="MAESTRO_ALTERNATIVA_POSTULACION" Type="Self.MAESTRO_ALTERNATIVA_POSTULACION" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ALTERNATIVA_POSTULACION">
+        <PropertyRef Name="IDMAESTROALTERNATIVAPOSTULACION" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTROALTERNATIVAPOSTULACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="INFORMACION_PROYECTO_REFERENCE_MAESTRO_LLAMADO">
+    <End Role="MAESTRO_LLAMADO" Type="Self.MAESTRO_LLAMADO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_LLAMADO">
+        <PropertyRef Name="IDMAESTROLLAMADO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTROLLAMADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="INFORMACION_PROYECTO_REFERENCE_MAESTRO_MODALIDAD">
+    <End Role="MAESTRO_MODALIDAD" Type="Self.MAESTRO_MODALIDAD" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_MODALIDAD">
+        <PropertyRef Name="IDMAESTROMODALIDAD" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTROMODALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="INFORMACION_PROYECTO_REFERENCE_MAESTRO_TITULO">
+    <End Role="MAESTRO_TITULO" Type="Self.MAESTRO_TITULO" Multiplicity="0..1" />
+    <End Role="INFORMACION_PROYECTO" Type="Self.INFORMACION_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TITULO">
+        <PropertyRef Name="IDMAESTROTITULO" />
+      </Principal>
+      <Dependent Role="INFORMACION_PROYECTO">
+        <PropertyRef Name="IDMAESTROTITULO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRESUPUESTO_REGIONAL_REFERENCE_RESOLUCI_PRESUPUESTARIA">
+    <End Role="RESOLUCION_PRESUPUESTARIA" Type="Self.RESOLUCION_PRESUPUESTARIA" Multiplicity="0..1" />
+    <End Role="PRESUPUESTO_REGIONAL" Type="Self.PRESUPUESTO_REGIONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESOLUCION_PRESUPUESTARIA">
+        <PropertyRef Name="IDRESOLUCIONPRESUPUESTARIA" />
+      </Principal>
+      <Dependent Role="PRESUPUESTO_REGIONAL">
+        <PropertyRef Name="IDRESOLUCIONPRESUPUESTARIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PROVEEDOR_REFERENCE_MAESTRO_TIPO_PROVEEDOR">
+    <End Role="MAESTRO_TIPO_PROVEEDOR" Type="Self.MAESTRO_TIPO_PROVEEDOR" Multiplicity="0..1" />
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_TIPO_PROVEEDOR">
+        <PropertyRef Name="IDMAESTROTIPOPROVEEDOR" />
+      </Principal>
+      <Dependent Role="PROVEEDOR">
+        <PropertyRef Name="IDMAESTROTIPOPROVEEDOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SOLICITUD_PAGO_REFERENCE_CARACTERISTICAS_ESPECIALES">
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDCARACTERISTICASESPECIALES" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDCARACTERISTICASESPECIALES" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SOLICITUD_PAGO_REFERENCE_MAESTRO_ESTADO_SOLICITUD">
+    <End Role="MAESTRO_ESTADO_SOLICITUD" Type="Self.MAESTRO_ESTADO_SOLICITUD" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_ESTADO_SOLICITUD">
+        <PropertyRef Name="IDMAESTROESTADOSOLICITUD" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDMAESTROESTADOSOLICITUD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SOLICITUD_PAGO_REFERENCE_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SOLICITUD_PAGO_REFERENCE_PROVEEDOR_MANDATO">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="0..1" />
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="IDPROVEEDOR" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDMANDANTOPROVEEDORSOLICITUDPAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TIPO_AUTORIZACION_REFERENCE_AUTORIZACION">
+    <End Role="AUTORIZACION" Type="Self.AUTORIZACION" Multiplicity="0..1" />
+    <End Role="TIPO_AUTORIZACION" Type="Self.TIPO_AUTORIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTORIZACION">
+        <PropertyRef Name="IDAUTORIZACION" />
+      </Principal>
+      <Dependent Role="TIPO_AUTORIZACION">
+        <PropertyRef Name="IDAUTORIZACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TIPO_INCREMENTO_REFERENCE_CARACTERISTICAS_ESPECIALES">
+    <End Role="CARACTERISTICAS_ESPECIALES" Type="Self.CARACTERISTICAS_ESPECIALES" Multiplicity="0..1" />
+    <End Role="TIPO_INCREMENTO" Type="Self.TIPO_INCREMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARACTERISTICAS_ESPECIALES">
+        <PropertyRef Name="IDCARACTERISTICASESPECIALES" />
+      </Principal>
+      <Dependent Role="TIPO_INCREMENTO">
+        <PropertyRef Name="IDCARACTERISTICASESPECIALES" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TIPO_INCREMENTO_REFERENCE_MAESTRO_INCREMENTO">
+    <End Role="MAESTRO_INCREMENTO" Type="Self.MAESTRO_INCREMENTO" Multiplicity="0..1" />
+    <End Role="TIPO_INCREMENTO" Type="Self.TIPO_INCREMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO_INCREMENTO">
+        <PropertyRef Name="IDMAESTROINCREMENTO" />
+      </Principal>
+      <Dependent Role="TIPO_INCREMENTO">
+        <PropertyRef Name="IDMAESTROINCREMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TIPO_INCREMENTO_REFERENCE_SOLICITUD_PAGO">
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="0..1" />
+    <End Role="TIPO_INCREMENTO" Type="Self.TIPO_INCREMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Principal>
+      <Dependent Role="TIPO_INCREMENTO">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TIPO_SERVICIO_REFERENCE_SOLICITUD_PAGO">
+    <End Role="SOLICITUD_PAGO" Type="Self.SOLICITUD_PAGO" Multiplicity="0..1" />
+    <End Role="TIPO_SERVICIO" Type="Self.TIPO_SERVICIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_PAGO">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Principal>
+      <Dependent Role="TIPO_SERVICIO">
+        <PropertyRef Name="IDSOLICITUDPAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TIPO_SERVICIO_REFERENCE_TIPO_SOLICITUD">
+    <End Role="TIPO_SERVICIO" Type="Self.TIPO_SERVICIO" Multiplicity="0..1" />
+    <End Role="TIPO_PARCIALIDAD" Type="Self.TIPO_PARCIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_SERVICIO">
+        <PropertyRef Name="IDTIPOSERVICIO" />
+      </Principal>
+      <Dependent Role="TIPO_PARCIALIDAD">
+        <PropertyRef Name="IDTIPOSERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="BUSQUEDA_AUTORIZACION_DE_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CODIGOPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="IDMAESTROPROGRAMA" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROTIPOLOGIA" Type="bigint" Mode="In" />
+    <Parameter Name="IDAUTORIZACION" Type="bigint" Mode="In" />
+    <Parameter Name="NOMBREPROVEEDOR" Type="varchar" Mode="In" />
+    <Parameter Name="IDMAESTROMODALIDAD" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROLLAMADO" Type="bigint" Mode="In" />
+    <Parameter Name="CODIGOREGIONDIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOPROVINCIADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOCOMUNADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="IDMAESTROSERVICIO" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROTIPOPROVEEDOR" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROTITULO" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROESTADOAUTORIZACION" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDAUTORIZACION" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_GRILLA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDAUTORIZACION" Type="bigint" Mode="In" />
+    <Parameter Name="IDTIPOPROVEEDOR" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_GRILLA_PDF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDAUTORIZACION" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="BUSQUEDA_SUMA_SOLICITUD_AUTORIZACION_DE_PAGO_GRILLA_PDF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDAUTORIZACION" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="CABECERA_AUTORIZACION_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDAUTORIZACION" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="CONSULTA_ACTIVIDADES_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDCONTRATO" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="CONSULTA_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDCONTRATO" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CONSULTA_LISTADO_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ACCION" Type="int" Mode="In" />
+    <Parameter Name="ANNOPRESUPUESTO" Type="int" Mode="In" />
+    <Parameter Name="CODIGOREGION" Type="int" Mode="In" />
+    <Parameter Name="TIPOSERVICIO" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="CONSULTA_LISTADO_SOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ACCION" Type="int" Mode="In" />
+    <Parameter Name="NUMERORESOLUCION" Type="bigint" Mode="In" />
+    <Parameter Name="CODIGOREGION" Type="int" Mode="In" />
+    <Parameter Name="ANNOPRESUPUESTO" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CONSULTA_PRESUPUESTO_REGIONAL_IGTD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ACCION" Type="int" Mode="In" />
+    <Parameter Name="CONSULTA_PRESUPUESTO_NUMERO" Type="int" Mode="In" />
+    <Parameter Name="CONSULTA_PRESUPUESTO_ANNO" Type="int" Mode="In" />
+    <Parameter Name="CONSULTA_PRESUPUESTO_REGION" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ELIMINA_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDCONTRATO" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="ELIMINA_SOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSOLICITUD" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="INSERTA_BENEFICIARIOS_SNATDS49" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RUTBENEFICIARIO" Type="int" Mode="In" />
+    <Parameter Name="DIGITOVERIFICADORBENEFICIARIO" Type="char" Mode="In" />
+    <Parameter Name="NOMBREBENEFICIARIO" Type="varchar" Mode="In" />
+    <Parameter Name="APELLIDOPATERNOBENEFICIARIO" Type="varchar" Mode="In" />
+    <Parameter Name="APELLIDOMATERNOBENEFICIARIO" Type="varchar" Mode="In" />
+    <Parameter Name="ESTADOBENEFICIARIO" Type="bit" Mode="In" />
+    <Parameter Name="IDMAESTROALTERNATIVAPOSTULACION" Type="bigint" Mode="In" />
+    <Parameter Name="FECHAINICIOVIGENCIASUBSIDIOBENEFICIARIO" Type="datetime" Mode="In" />
+    <Parameter Name="FECHATERMINOVIGENCIASUBSIDIOBENEFICIARIO" Type="datetime" Mode="In" />
+    <Parameter Name="FECHAADSCRIPCIONPROYECTOBENEFICIARIO" Type="datetime" Mode="In" />
+    <Parameter Name="CODIGOPROYECTO" Type="bigint" Mode="In" />
+    <Parameter Name="CODIGOCOMUNADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOPROVINCIADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOREGIONDIRECCION" Type="int" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_CONTRATO_SAT_SET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RUTPROVEEDOR" Type="int" Mode="In" />
+    <Parameter Name="DVPROVEEDOR" Type="varchar" Mode="In" />
+    <Parameter Name="NOMBREPROVEEDOR" Type="varchar" Mode="In" />
+    <Parameter Name="TIPOPROVEEDOR" Type="int" Mode="In" />
+    <Parameter Name="ANNOCONTRATO" Type="int" Mode="In" />
+    <Parameter Name="CODIGOREGION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOPROVINCIA" Type="int" Mode="In" />
+    <Parameter Name="CODIGOCOMUNA" Type="int" Mode="In" />
+    <Parameter Name="PLAZOEJECUCION" Type="int" Mode="In" />
+    <Parameter Name="PROPIEDADTERRENO" Type="varchar" Mode="In" />
+    <Parameter Name="NUMERORESOLUCION" Type="bigint" Mode="In" />
+    <Parameter Name="FECHARESOLUCIONCONTRATO" Type="datetime" Mode="In" />
+    <Parameter Name="FECHAINICIOCONTRATO" Type="datetime" Mode="In" />
+    <Parameter Name="NOMBREARCHIVO" Type="varchar" Mode="In" />
+    <Parameter Name="IDTIPOSERVICIO" Type="bigint" Mode="In" />
+    <Parameter Name="ESTADOTIPOSERVICIO1" Type="int" Mode="In" />
+    <Parameter Name="ESTADOTIPOSERVICIO2" Type="int" Mode="In" />
+    <Parameter Name="ESTADOTIPOSERVICIO3" Type="int" Mode="In" />
+    <Parameter Name="ESTADOTIPOSERVICIO4" Type="int" Mode="In" />
+    <Parameter Name="ESTADOTIPOSERVICIO5" Type="int" Mode="In" />
+    <Parameter Name="ESTADOTIPOSERVICIO6" Type="int" Mode="In" />
+    <Parameter Name="ESTADOTIPOSERVICIO7" Type="int" Mode="In" />
+    <Parameter Name="NOMBRETIPOSERVICIO8" Type="varchar" Mode="In" />
+    <Parameter Name="PRODUCTOCONTRATO" Type="varchar" Mode="In" />
+    <Parameter Name="DESCRIPCIONPRODUCTO" Type="varchar" Mode="In" />
+    <Parameter Name="MONTOCONTRATO" Type="bigint" Mode="In" />
+    <Parameter Name="OBSERVACIONCONTRATO" Type="varchar" Mode="In" />
+    <Parameter Name="USUARIO" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_GENERACION_AUTORIZACION_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SOLICITUDPAGOLIST" Type="varchar(max)" Mode="In" />
+    <Parameter Name="USUARIORESPONSABLE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_GENERACION_SOLICITUD_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDMAESTROESTADOSOLICITUD" Type="bigint" Mode="In" />
+    <Parameter Name="FOLIOBOLETAGARANTIASOLICITUDPAGO" Type="varchar" Mode="In" />
+    <Parameter Name="NUMEROFAMILIASPAGARSOLICITUDPAGO" Type="int" Mode="In" />
+    <Parameter Name="USUARIORESPONSABLESOLICITUDPAGO" Type="varchar" Mode="In" />
+    <Parameter Name="IDCARACTERISTICASESPECIALES" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROTIPOPAGO" Type="bigint" Mode="In" />
+    <Parameter Name="FECHAREALCREACIONSOLICITUDPAGO" Type="date" Mode="In" />
+    <Parameter Name="FECHACREACIONSOLICITUDPAGO" Type="date" Mode="In" />
+    <Parameter Name="IDMAESTROTIPODESTINOPAGO" Type="bigint" Mode="In" />
+    <Parameter Name="MONTOTOTALPROYECTOSOLICITUDPAGO" Type="decimal" Mode="In" />
+    <Parameter Name="MONTOPAGADOSOLICITUDPAGO" Type="decimal" Mode="In" />
+    <Parameter Name="MONTOCOMPROMETIDOSOLICITUDPAGO" Type="decimal" Mode="In" />
+    <Parameter Name="SALDOPORPAGARSOLICITUDPAGO" Type="decimal" Mode="In" />
+    <Parameter Name="NUMERORESOLUCIONCONTRATOSOLICITUDPAGO" Type="bigint" Mode="In" />
+    <Parameter Name="MONTOSOLICITUDSOLICITUDPAGO" Type="decimal" Mode="In" />
+    <Parameter Name="IDPROVEEDOR" Type="bigint" Mode="In" />
+    <Parameter Name="NUMEROVIVIENDASSOLICITUDPAGO" Type="int" Mode="In" />
+    <Parameter Name="OBSERVACIONESSOLICITUDPAGO" Type="varchar" Mode="In" />
+    <Parameter Name="IDMAESTROTIPOPROVEEDOR" Type="bigint" Mode="In" />
+    <Parameter Name="NOMBREPROVEEDOR" Type="varchar" Mode="In" />
+    <Parameter Name="RUTPROVEEDOR" Type="int" Mode="In" />
+    <Parameter Name="DVPROVEDIGITOVERIFICADORPROVEEDOR" Type="char" Mode="In" />
+    <Parameter Name="AVANCEOBRAMUNIN" Type="decimal" Mode="In" />
+    <Parameter Name="ESTADOAVANCEOBRA" Type="varchar" Mode="In" />
+    <Parameter Name="FECHARESOLUCIONSOLICITUDPAGO" Type="date" Mode="In" />
+    <Parameter Name="FECHABOLETAGARANTIA" Type="date" Mode="In" />
+    <Parameter Name="IDPROVEEDORMANDATO" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_MODIFICACION_ESTADO_SOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSOLICITUDPAGO" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROESTADOSOLICITUD" Type="bigint" Mode="In" />
+    <Parameter Name="USUARIORESPONSABLEMODIFICACIONESTADOSOLICITUD" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_PRESUPUESTO_REGIONAL_IGTD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ANNORESOLUCION" Type="smallint" Mode="In" />
+    <Parameter Name="NUMERORESOLUCION" Type="int" Mode="In" />
+    <Parameter Name="FECHARESOLUCION" Type="datetime" Mode="In" />
+    <Parameter Name="CODIGOREGION" Type="int" Mode="In" />
+    <Parameter Name="MONTOPRESUPUESTOREGIONAL" Type="bigint" Mode="In" />
+    <Parameter Name="OBSERVACION" Type="varchar" Mode="In" />
+    <Parameter Name="NOMBREARCHIVO" Type="varchar" Mode="In" />
+    <Parameter Name="USUARIO" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_PROYECTO_SNAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CODIGOPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="NOMBREPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="ESTADOPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="IDREGION" Type="int" Mode="In" />
+    <Parameter Name="IDPROVINCIA" Type="int" Mode="In" />
+    <Parameter Name="IDCOMUNA" Type="int" Mode="In" />
+    <Parameter Name="PROGRAMA" Type="varchar" Mode="In" />
+    <Parameter Name="TIPOLOGIA" Type="int" Mode="In" />
+    <Parameter Name="TIPOBANCO" Type="varchar" Mode="In" />
+    <Parameter Name="TIPOPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="MODALIDAD" Type="varchar" Mode="In" />
+    <Parameter Name="VIVIENDASTOTALPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="FAMILIASDS49PROYECTO" Type="int" Mode="In" />
+    <Parameter Name="NUMEROFAMILIASADSCRITAS" Type="int" Mode="In" />
+    <Parameter Name="ROLENTIDAD" Type="int" Mode="In" />
+    <Parameter Name="RUTENTIDAD" Type="int" Mode="In" />
+    <Parameter Name="DIGITOENTIDAD" Type="varchar" Mode="In" />
+    <Parameter Name="NOMBREENTIDAD" Type="varchar" Mode="In" />
+    <Parameter Name="MONTOSUBSIDIOBASE" Type="decimal" Mode="In" />
+    <Parameter Name="MONTOSUBSIDIO" Type="decimal" Mode="In" />
+    <Parameter Name="MARCALOCALIZACION" Type="bit" Mode="In" />
+    <Parameter Name="MARCAFACTIBILIZACION" Type="bit" Mode="In" />
+    <Parameter Name="MONTOTOTALSUBSIDIOUF" Type="decimal" Mode="In" />
+    <Parameter Name="MARCAASOCIACIONGRUPO" Type="bit" Mode="In" />
+    <Parameter Name="NOMBREEMPRESACONSTRUCTORA" Type="varchar" Mode="In" />
+    <Parameter Name="RUTEMPRESACONSTRUCTORA" Type="int" Mode="In" />
+    <Parameter Name="DIGITOEMPRESACONSTRUCTORA" Type="varchar" Mode="In" />
+    <Parameter Name="FECHACALIFICACIONDIFINITIVA" Type="date" Mode="In" />
+    <Parameter Name="MONTOSUBSIDIOBASECONFACTIBILIZACION" Type="decimal" Mode="In" />
+    <Parameter Name="FECHACPI" Type="date" Mode="In" />
+    <Parameter Name="TIPOENTIDADPATROCINANTE" Type="int" Mode="In" />
+    <Parameter Name="ANOCPI" Type="int" Mode="In" />
+    <Parameter Name="FECHAFACTIBILIDADPROYECTO" Type="date" Mode="In" />
+    <Parameter Name="AGNOFACTIBILIDADINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="INDIVIDUALGRUPAL" Type="varchar" Mode="In" />
+    <Parameter Name="SUBMODALIDAD" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_PROYECTO_SNATDS49" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDMAESTROALTERNATIVAPOSTULACION" Type="bigint" Mode="In" />
+    <Parameter Name="CODIGOPROYECTOINFORMACIONPROYECTO" Type="bigint" Mode="In" />
+    <Parameter Name="NOMBREPROYECTOINFORMACIONPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="FECHACALIFICACIONDEFINITIVAINFORMACIONPROYECTO" Type="datetime" Mode="In" />
+    <Parameter Name="ESTADOPROYECTOINFORMACIONPROYECTO" Type="bit" Mode="In" />
+    <Parameter Name="CANTIDADVIVIENDASINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="CANTIDADBENEFICIARIOSINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="AGNOFACTIBILIDADINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="MONTOSUBSIDIOBASEINFORMACIONPROYECTO" Type="decimal" Mode="In" />
+    <Parameter Name="MONTOSUBSIDIOBASEFACTIBILIDADINFORMACIONPROYECTO" Type="decimal" Mode="In" />
+    <Parameter Name="MARCALOCALIZACIONINFORMACIONPROYECTO" Type="bit" Mode="In" />
+    <Parameter Name="MARCAFACTIBILIZACIONINFORMACIONPROYECTO" Type="bit" Mode="In" />
+    <Parameter Name="FECHAFACTIBILIZACIONINFORMACIONPROYECTO" Type="datetime" Mode="In" />
+    <Parameter Name="NUMEROFAMILIASABSCRITASINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="CODIGOCOMUNADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOPROVINCIADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOREGIONDIRECCION" Type="int" Mode="In" />
+    <Parameter Name="RUTENTIDAD" Type="int" Mode="In" />
+    <Parameter Name="DIGITOENTIDAD" Type="char" Mode="In" />
+    <Parameter Name="NOMBREENTIDAD" Type="varchar" Mode="In" />
+    <Parameter Name="RUTEMPRESACONSTRUCTORA" Type="int" Mode="In" />
+    <Parameter Name="DIGITOEMPRESACONSTRUCTORA" Type="char" Mode="In" />
+    <Parameter Name="NOMBREEMPRESACONSTRUCTORA" Type="varchar" Mode="In" />
+    <Parameter Name="DESCTIPOMODALIDAD" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_PROYECTOS_SNATDS10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoProyecto" Type="bigint" Mode="In" />
+    <Parameter Name="nombreProyecto" Type="varchar" Mode="In" />
+    <Parameter Name="AlternativaPostulacion" Type="varchar" Mode="In" />
+    <Parameter Name="Titulo" Type="varchar" Mode="In" />
+    <Parameter Name="regionProyecto" Type="int" Mode="In" />
+    <Parameter Name="provinciaProyecto" Type="int" Mode="In" />
+    <Parameter Name="comunaProyecto" Type="int" Mode="In" />
+    <Parameter Name="AnioLlamado" Type="int" Mode="In" />
+    <Parameter Name="NumeroLlamado" Type="int" Mode="In" />
+    <Parameter Name="cantidadBeneficiarios" Type="int" Mode="In" />
+    <Parameter Name="cantidadViviendas" Type="int" Mode="In" />
+    <Parameter Name="Modalidad" Type="varchar" Mode="In" />
+    <Parameter Name="Tipologia" Type="varchar" Mode="In" />
+    <Parameter Name="ModalidadEjecucionObra" Type="varchar" Mode="In" />
+    <Parameter Name="RutPrestadorAsistenciaTecnica" Type="varchar" Mode="In" />
+    <Parameter Name="PrestadorAsistenciaTecnica" Type="varchar" Mode="In" />
+    <Parameter Name="estadoProyecto" Type="bit" Mode="In" />
+    <Parameter Name="NombreEstadoProyecto" Type="varchar" Mode="In" />
+    <Parameter Name="EstadoBeneficio" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_PROYECTOS_SNATDS19" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CODIGOPROYECTOINFORMACIONPROYECTO" Type="bigint" Mode="In" />
+    <Parameter Name="NOMBREPROYECTOINFORMACIONPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="ESTADOPROYECTOINFORMACIONPROYECTO" Type="bit" Mode="In" />
+    <Parameter Name="CANTIDADVIVIENDASINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="CANTIDADBENEFICIARIOSINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="CODIGOCOMUNADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOPROVINCIADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOREGIONDIRECCION" Type="int" Mode="In" />
+    <Parameter Name="DESCDIRECCION" Type="varchar" Mode="In" />
+    <Parameter Name="NUMERODIRECCION" Type="varchar" Mode="In" />
+    <Parameter Name="MAESTROESTADOPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="ESTADOBENEFICIO" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROBANCO" Type="bigint" Mode="In" />
+    <Parameter Name="TIPOLLAMADO" Type="varchar" Mode="In" />
+    <Parameter Name="AVANCEOBRA" Type="int" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_PROYECTOS_SNATDS49" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CODIGOPROYECTOINFORMACIONPROYECTO" Type="bigint" Mode="In" />
+    <Parameter Name="NOMBREPROYECTOINFORMACIONPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="NOMBREESTADOPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="CODIGOREGIONDIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOPROVINCIADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="CODIGOCOMUNADIRECCION" Type="int" Mode="In" />
+    <Parameter Name="NOMBRETIPOLOGIA" Type="varchar" Mode="In" />
+    <Parameter Name="NOMBREBANCO" Type="varchar" Mode="In" />
+    <Parameter Name="MODALIDAD" Type="varchar" Mode="In" />
+    <Parameter Name="CANTIDADVIVIENDASINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="CANTIDADBENEFICIARIOSINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="NUMEROFAMILIASADSCRITASINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="RUTENTIDAD" Type="int" Mode="In" />
+    <Parameter Name="DIGITOENTIDAD" Type="char" Mode="In" />
+    <Parameter Name="NOMBREENTIDAD" Type="varchar" Mode="In" />
+    <Parameter Name="MONTOSUBSIDIOBASEINFORMACIONPROYECTO" Type="decimal" Mode="In" />
+    <Parameter Name="MARCALOCALIZACIONINFORMACIONPROYECTO" Type="bit" Mode="In" />
+    <Parameter Name="MARCAFACTIBILIZACIONINFORMACIONPROYECTO" Type="bit" Mode="In" />
+    <Parameter Name="IDMAESTROALTERNATIVAPOSTULACION" Type="bigint" Mode="In" />
+    <Parameter Name="NOMBREEMPRESACONSTRUCTORA" Type="varchar" Mode="In" />
+    <Parameter Name="RUTEMPRESACONSTRUCTORA" Type="int" Mode="In" />
+    <Parameter Name="DIGITOEMPRESACONSTRUCTORA" Type="char" Mode="In" />
+    <Parameter Name="FECHACALIFICACIONDEFINITIVAINFORMACIONPROYECTO" Type="datetime" Mode="In" />
+    <Parameter Name="MONTOSUBSIDIOBASEFACTIBILIDADINFORMACIONPROYECTO" Type="decimal" Mode="In" />
+    <Parameter Name="AGNOFACTIBILIDADINFORMACIONPROYECTO" Type="int" Mode="In" />
+    <Parameter Name="FECHAFACTIBILIZACIONINFORMACIONPROYECTO" Type="datetime" Mode="In" />
+    <Parameter Name="ESTADOBENEFICIO" Type="varchar(max)" Mode="In" />
+    <Parameter Name="IDMAESTROPROGRAMA" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROLLAMADO" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="INSERTA_SOLICITUD_ATP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSOLICITUDATP" Type="bigint" Mode="In" />
+    <Parameter Name="IDCONTRATO" Type="bigint" Mode="In" />
+    <Parameter Name="ANNOPRESUPUESTO" Type="int" Mode="In" />
+    <Parameter Name="MONTOPRESUPESTO" Type="bigint" Mode="In" />
+    <Parameter Name="CODIGOREGION" Type="int" Mode="In" />
+    <Parameter Name="MONTOPAGADO" Type="bigint" Mode="In" />
+    <Parameter Name="MONTOCOMPROMETIDO" Type="bigint" Mode="In" />
+    <Parameter Name="MONTOPORPAGAR" Type="bigint" Mode="In" />
+    <Parameter Name="ACTIVIDADES" Type="varchar(max)" Mode="In" />
+    <Parameter Name="NUMEROBOLFACT" Type="bigint" Mode="In" />
+    <Parameter Name="FECHABOLETAFACT" Type="datetime" Mode="In" />
+    <Parameter Name="MONTOTOTALAPAGAR" Type="bigint" Mode="In" />
+    <Parameter Name="VBSERVICIO" Type="bit" Mode="In" />
+    <Parameter Name="VBRESPONSABLE" Type="varchar" Mode="In" />
+    <Parameter Name="VBFECHA" Type="datetime" Mode="In" />
+    <Parameter Name="ESTADOSOLICITUD" Type="bigint" Mode="In" />
+    <Parameter Name="IDMAESTROTIPOPAGO" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SNAT_SIMPLIFICADO_V_CONSULTA_ANO_CONTRATO_ATP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SNAT_SIMPLIFICADO_V_CONSULTA_SERVICIOS_SOLICITUD_ATP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nIdSolicitudPago" Type="bigint" Mode="In" />
+    <Parameter Name="nRegion" Type="varchar" Mode="In" />
+    <Parameter Name="nResolucionContrato" Type="varchar" Mode="In" />
+    <Parameter Name="nFechaResolucionContrato" Type="varchar" Mode="In" />
+    <Parameter Name="nMontoContrato" Type="varchar" Mode="In" />
+    <Parameter Name="nRutProveedor" Type="varchar" Mode="In" />
+    <Parameter Name="nMontoAutorizacionPago" Type="varchar" Mode="In" />
+    <Parameter Name="nFechaDevengo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SNAT_SIMPLIFICADO_V_UPD_AUTORIZACION_ORDEN_PAGO_SIMP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ORD_PAG_NUM_DOC" Type="varchar" Mode="In" />
+    <Parameter Name="USER" Type="varchar" Mode="In" />
+    <Parameter Name="IndicaATPrevia" Type="int" Mode="In" />
+    <Parameter Name="Comentario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SNAT_SIMPLIFICADO_V_UPD_REPARO_ORDEN_PAGO_SIMP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ORD_PAG_NUM_DOC" Type="varchar" Mode="In" />
+    <Parameter Name="USER" Type="varchar" Mode="In" />
+    <Parameter Name="IndicaATPrevia" Type="int" Mode="In" />
+    <Parameter Name="Comentario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SNAT_SIMPLIFICADO_V_USP_CON_LISTADO_AUTORIZACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pCODIGOPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="pIDPROGRAMA" Type="bigint" Mode="In" />
+    <Parameter Name="pIDTIPOLOGIA" Type="bigint" Mode="In" />
+    <Parameter Name="pIDLLAMADO" Type="bigint" Mode="In" />
+    <Parameter Name="pIDTIPOPROVEEDOR" Type="bigint" Mode="In" />
+    <Parameter Name="pNOMBREPROVEEDOR" Type="varchar" Mode="In" />
+    <Parameter Name="pIDSERVICIO" Type="bigint" Mode="In" />
+    <Parameter Name="pREGION" Type="bigint" Mode="In" />
+    <Parameter Name="pPROVINCIA" Type="bigint" Mode="In" />
+    <Parameter Name="pCOMUNA" Type="bigint" Mode="In" />
+    <Parameter Name="pIDMODALIDAD" Type="bigint" Mode="In" />
+    <Parameter Name="pIDAUTORIZACION" Type="bigint" Mode="In" />
+    <Parameter Name="pIDMAESTROTITULO" Type="bigint" Mode="In" />
+    <Parameter Name="pIDMAESTROESTADOAUTORIZACION" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SNAT_SIMPLIFICADO_V_USP_CON_LISTADO_SOLICITUDES_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pCODIGOPROYECTO" Type="varchar" Mode="In" />
+    <Parameter Name="pIDPROGRAMA" Type="bigint" Mode="In" />
+    <Parameter Name="pIDTIPOLOGIA" Type="bigint" Mode="In" />
+    <Parameter Name="pIDLLAMADO" Type="bigint" Mode="In" />
+    <Parameter Name="pIDTIPOPROVEEDOR" Type="bigint" Mode="In" />
+    <Parameter Name="pNOMBREPROVEEDOR" Type="varchar" Mode="In" />
+    <Parameter Name="pNOMBRESERVICIO" Type="varchar(max)" Mode="In" />
+    <Parameter Name="pREGION" Type="bigint" Mode="In" />
+    <Parameter Name="pPROVINCIA" Type="bigint" Mode="In" />
+    <Parameter Name="pCOMUNA" Type="bigint" Mode="In" />
+    <Parameter Name="pIDMODALIDAD" Type="bigint" Mode="In" />
+    <Parameter Name="pIDAUTORIZACION" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DB_SNAT_VModelStoreContainer">
+    <EntitySet Name="AUTORIZACION" EntityType="Self.AUTORIZACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BENEFICIARIO" EntityType="Self.BENEFICIARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CARACTERISTICAS_ESPECIALES" EntityType="Self.CARACTERISTICAS_ESPECIALES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONTRATO_ATP" EntityType="Self.CONTRATO_ATP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONVALIDACION_PROGRAMA_SISTEMA" EntityType="Self.CONVALIDACION_PROGRAMA_SISTEMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DIRECCION" EntityType="Self.DIRECCION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOMOLOGACION_INFORMACION_SISTEMA" EntityType="Self.HOMOLOGACION_INFORMACION_SISTEMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INFORMACION_PROYECTO" EntityType="Self.INFORMACION_PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INFORMACION_PROYECTO_SOLICITUD" EntityType="Self.INFORMACION_PROYECTO_SOLICITUD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_ALTERNATIVA_POSTULACION" EntityType="Self.MAESTRO_ALTERNATIVA_POSTULACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_BANCO" EntityType="Self.MAESTRO_BANCO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_CLASE" EntityType="Self.MAESTRO_CLASE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_ESTADO_AUTORIZACION" EntityType="Self.MAESTRO_ESTADO_AUTORIZACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_ESTADO_BENEFICIARIO" EntityType="Self.MAESTRO_ESTADO_BENEFICIARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_ESTADO_BENEFICIO" EntityType="Self.MAESTRO_ESTADO_BENEFICIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_ESTADO_CONTRATO" EntityType="Self.MAESTRO_ESTADO_CONTRATO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_ESTADO_PROYECTO" EntityType="Self.MAESTRO_ESTADO_PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_ESTADO_SOLICITUD" EntityType="Self.MAESTRO_ESTADO_SOLICITUD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_INCREMENTO" EntityType="Self.MAESTRO_INCREMENTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_INFORMACION_SISTEMA_EXTERNO" EntityType="Self.MAESTRO_INFORMACION_SISTEMA_EXTERNO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_LLAMADO" EntityType="Self.MAESTRO_LLAMADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_MODALIDAD" EntityType="Self.MAESTRO_MODALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_PARCIALIDAD" EntityType="Self.MAESTRO_PARCIALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_PROGRAMA" EntityType="Self.MAESTRO_PROGRAMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_RESOLUCION" EntityType="Self.MAESTRO_RESOLUCION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_SERVICIO" EntityType="Self.MAESTRO_SERVICIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_SISTEMA" EntityType="Self.MAESTRO_SISTEMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_SUB_MODALIDAD" EntityType="Self.MAESTRO_SUB_MODALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_TIPO_DESTINO_PAGO" EntityType="Self.MAESTRO_TIPO_DESTINO_PAGO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_TIPO_INGRESO" EntityType="Self.MAESTRO_TIPO_INGRESO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_TIPO_PAGO" EntityType="Self.MAESTRO_TIPO_PAGO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_TIPO_PROVEEDOR" EntityType="Self.MAESTRO_TIPO_PROVEEDOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_TIPO_PROVEEDOR_SISTEMA" EntityType="Self.MAESTRO_TIPO_PROVEEDOR_SISTEMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_TIPO_SERVICIO_IGT" EntityType="Self.MAESTRO_TIPO_SERVICIO_IGT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_TIPOLOGIA" EntityType="Self.MAESTRO_TIPOLOGIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO_TITULO" EntityType="Self.MAESTRO_TITULO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MODIFICACION_ESTADO_SOLICITUD" EntityType="Self.MODIFICACION_ESTADO_SOLICITUD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRESUPUESTO_REGIONAL" EntityType="Self.PRESUPUESTO_REGIONAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROPIEDAD_TERRENO" EntityType="Self.PROPIEDAD_TERRENO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RESOLUCION_PRESUPUESTARIA" EntityType="Self.RESOLUCION_PRESUPUESTARIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SERVICIO_PARCIALIDAD" EntityType="Self.SERVICIO_PARCIALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SOLICITUD_AUTORIZACION" EntityType="Self.SOLICITUD_AUTORIZACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SOLICITUD_PAGO" EntityType="Self.SOLICITUD_PAGO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SOLICITUD_PAGO_ATP" EntityType="Self.SOLICITUD_PAGO_ATP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUB_MODALIDAD_PARCIALIDAD" EntityType="Self.SUB_MODALIDAD_PARCIALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TERRITORIO_CONTRATO" EntityType="Self.TERRITORIO_CONTRATO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_ACTIVIDAD_MONTO" EntityType="Self.TIPO_ACTIVIDAD_MONTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_AUTORIZACION" EntityType="Self.TIPO_AUTORIZACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_INCREMENTO" EntityType="Self.TIPO_INCREMENTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_PARCIALIDAD" EntityType="Self.TIPO_PARCIALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_PROVEEDOR_INFORMACION_PROYECTO" EntityType="Self.TIPO_PROVEEDOR_INFORMACION_PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_SERVICIO" EntityType="Self.TIPO_SERVICIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" EntityType="Self.TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_SERVICIOS_CONTRATO" EntityType="Self.TIPO_SERVICIOS_CONTRATO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPOLOGIA_SERVICIO" EntityType="Self.TIPOLOGIA_SERVICIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="AUTORIZACION_REFERENCE_MAESTRO_ESTADO_AUTORIZACION" Association="Self.AUTORIZACION_REFERENCE_MAESTRO_ESTADO_AUTORIZACION">
+      <End Role="MAESTRO_ESTADO_AUTORIZACION" EntitySet="MAESTRO_ESTADO_AUTORIZACION" />
+      <End Role="AUTORIZACION" EntitySet="AUTORIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="AUTORIZACION_REFERENCE_MAESTRO_MODALIDAD" Association="Self.AUTORIZACION_REFERENCE_MAESTRO_MODALIDAD">
+      <End Role="MAESTRO_MODALIDAD" EntitySet="MAESTRO_MODALIDAD" />
+      <End Role="AUTORIZACION" EntitySet="AUTORIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="AUTORIZACION_REFERENCE_MAESTRO_PROGRAMA" Association="Self.AUTORIZACION_REFERENCE_MAESTRO_PROGRAMA">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="AUTORIZACION" EntitySet="AUTORIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="AUTORIZACION_REFERENCE_MAESTRO_TIPOLOGIA" Association="Self.AUTORIZACION_REFERENCE_MAESTRO_TIPOLOGIA">
+      <End Role="MAESTRO_TIPOLOGIA" EntitySet="MAESTRO_TIPOLOGIA" />
+      <End Role="AUTORIZACION" EntitySet="AUTORIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="AUTORIZACION_REFERENCE_MAESTRO_TITULO" Association="Self.AUTORIZACION_REFERENCE_MAESTRO_TITULO">
+      <End Role="MAESTRO_TITULO" EntitySet="MAESTRO_TITULO" />
+      <End Role="AUTORIZACION" EntitySet="AUTORIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="AUTORIZACION_REFERENCE_PROVEEDOR" Association="Self.AUTORIZACION_REFERENCE_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="AUTORIZACION" EntitySet="AUTORIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="BENEFICIARIO_REFERENCE_DIRECCION" Association="Self.BENEFICIARIO_REFERENCE_DIRECCION">
+      <End Role="DIRECCION" EntitySet="DIRECCION" />
+      <End Role="BENEFICIARIO" EntitySet="BENEFICIARIO" />
+    </AssociationSet>
+    <AssociationSet Name="BENEFICIARIO_REFERENCE_INFORMACION_PROYECTO" Association="Self.BENEFICIARIO_REFERENCE_INFORMACION_PROYECTO">
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+      <End Role="BENEFICIARIO" EntitySet="BENEFICIARIO" />
+    </AssociationSet>
+    <AssociationSet Name="CONTRATO_ATP_REFERENCE_ESTADO_MAESTRO_CONTRATO" Association="Self.CONTRATO_ATP_REFERENCE_ESTADO_MAESTRO_CONTRATO">
+      <End Role="MAESTRO_ESTADO_CONTRATO" EntitySet="MAESTRO_ESTADO_CONTRATO" />
+      <End Role="CONTRATO_ATP" EntitySet="CONTRATO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="CONTRATO_REFERENCE_TIPO_PROVEEDOR" Association="Self.CONTRATO_REFERENCE_TIPO_PROVEEDOR">
+      <End Role="MAESTRO_TIPO_PROVEEDOR" EntitySet="MAESTRO_TIPO_PROVEEDOR" />
+      <End Role="CONTRATO_ATP" EntitySet="CONTRATO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BENEFICIARIO_MAESTRO_ALTERNATIVA_POSTULACION" Association="Self.FK_BENEFICIARIO_MAESTRO_ALTERNATIVA_POSTULACION">
+      <End Role="MAESTRO_ALTERNATIVA_POSTULACION" EntitySet="MAESTRO_ALTERNATIVA_POSTULACION" />
+      <End Role="BENEFICIARIO" EntitySet="BENEFICIARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BENEFICIARIO_MAESTRO_ESTADO_BENEFICIARIO" Association="Self.FK_BENEFICIARIO_MAESTRO_ESTADO_BENEFICIARIO">
+      <End Role="MAESTRO_ESTADO_BENEFICIARIO" EntitySet="MAESTRO_ESTADO_BENEFICIARIO" />
+      <End Role="BENEFICIARIO" EntitySet="BENEFICIARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARACTER_REFERENCE_INFORMAC" Association="Self.FK_CARACTER_REFERENCE_INFORMAC">
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARACTER_REFERENCE_MAESTRO_" Association="Self.FK_CARACTER_REFERENCE_MAESTRO_">
+      <End Role="MAESTRO_TIPOLOGIA" EntitySet="MAESTRO_TIPOLOGIA" />
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARACTER_REFERENCE_MAESTRO_CLASE" Association="Self.FK_CARACTER_REFERENCE_MAESTRO_CLASE">
+      <End Role="MAESTRO_CLASE" EntitySet="MAESTRO_CLASE" />
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARACTER_REFERENCE_MAESTRO_MODALIDAD" Association="Self.FK_CARACTER_REFERENCE_MAESTRO_MODALIDAD">
+      <End Role="MAESTRO_MODALIDAD" EntitySet="MAESTRO_MODALIDAD" />
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARACTER_REFERENCE_MAESTRO_PROGRAMA" Association="Self.FK_CARACTER_REFERENCE_MAESTRO_PROGRAMA">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARACTER_REFERENCE_MAESTROSUBMODALIDAD" Association="Self.FK_CARACTER_REFERENCE_MAESTROSUBMODALIDAD">
+      <End Role="MAESTRO_SUB_MODALIDAD" EntitySet="MAESTRO_SUB_MODALIDAD" />
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRATO_REFERENCE_MAESTRO_" Association="Self.FK_CONTRATO_REFERENCE_MAESTRO_">
+      <End Role="MAESTRO_TIPO_SERVICIO_IGT" EntitySet="MAESTRO_TIPO_SERVICIO_IGT" />
+      <End Role="CONTRATO_ATP" EntitySet="CONTRATO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRATO_REFERENCE_PROPIEDA" Association="Self.FK_CONTRATO_REFERENCE_PROPIEDA">
+      <End Role="PROPIEDAD_TERRENO" EntitySet="PROPIEDAD_TERRENO" />
+      <End Role="CONTRATO_ATP" EntitySet="CONTRATO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRATO_REFERENCE_PROVEEDO" Association="Self.FK_CONTRATO_REFERENCE_PROVEEDO">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="CONTRATO_ATP" EntitySet="CONTRATO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRATO_REFERENCE_TERRITOR" Association="Self.FK_CONTRATO_REFERENCE_TERRITOR">
+      <End Role="TERRITORIO_CONTRATO" EntitySet="TERRITORIO_CONTRATO" />
+      <End Role="CONTRATO_ATP" EntitySet="CONTRATO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONV_REFERENCE_MAESTRO_PROGRAMA" Association="Self.FK_CONV_REFERENCE_MAESTRO_PROGRAMA">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="CONVALIDACION_PROGRAMA_SISTEMA" EntitySet="CONVALIDACION_PROGRAMA_SISTEMA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONV_REFERENCE_MAESTRO_SISTEMA" Association="Self.FK_CONV_REFERENCE_MAESTRO_SISTEMA">
+      <End Role="MAESTRO_SISTEMA" EntitySet="MAESTRO_SISTEMA" />
+      <End Role="CONVALIDACION_PROGRAMA_SISTEMA" EntitySet="CONVALIDACION_PROGRAMA_SISTEMA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOMO_REFERENCE_MAESTRO_INFORMACION_SISTEMA_EXTERNO" Association="Self.FK_HOMO_REFERENCE_MAESTRO_INFORMACION_SISTEMA_EXTERNO">
+      <End Role="MAESTRO_INFORMACION_SISTEMA_EXTERNO" EntitySet="MAESTRO_INFORMACION_SISTEMA_EXTERNO" />
+      <End Role="HOMOLOGACION_INFORMACION_SISTEMA" EntitySet="HOMOLOGACION_INFORMACION_SISTEMA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFO_REFERENCE_MAESTRO_BANCO" Association="Self.FK_INFO_REFERENCE_MAESTRO_BANCO">
+      <End Role="MAESTRO_BANCO" EntitySet="MAESTRO_BANCO" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFO_REFERENCE_MAESTRO_ESTADO_BENEFICIO" Association="Self.FK_INFO_REFERENCE_MAESTRO_ESTADO_BENEFICIO">
+      <End Role="MAESTRO_ESTADO_BENEFICIO" EntitySet="MAESTRO_ESTADO_BENEFICIO" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORM_REFERENCE_MAESTRO_BANCO" Association="Self.FK_INFORM_REFERENCE_MAESTRO_BANCO">
+      <End Role="MAESTRO_BANCO" EntitySet="MAESTRO_BANCO" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORM_REFERENCE_MAESTRO_ESTADO_BENEFICIO" Association="Self.FK_INFORM_REFERENCE_MAESTRO_ESTADO_BENEFICIO">
+      <End Role="MAESTRO_ESTADO_BENEFICIO" EntitySet="MAESTRO_ESTADO_BENEFICIO" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMAC_REFERENCE_MAESTRO_" Association="Self.FK_INFORMAC_REFERENCE_MAESTRO_">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMAC_REFERENCE_MAESTRO_RESOLUCION" Association="Self.FK_INFORMAC_REFERENCE_MAESTRO_RESOLUCION">
+      <End Role="MAESTRO_RESOLUCION" EntitySet="MAESTRO_RESOLUCION" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_MAESTRO_ESTADO_PROYECTO" Association="Self.FK_INFORMACION_PROYECTO_MAESTRO_ESTADO_PROYECTO">
+      <End Role="MAESTRO_ESTADO_PROYECTO" EntitySet="MAESTRO_ESTADO_PROYECTO" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_DIRECCION" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_DIRECCION">
+      <End Role="DIRECCION" EntitySet="DIRECCION" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_INFORMACION_PROYECTO" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_INFORMACION_PROYECTO">
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_ALTERNATIVA_POSTULACION" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_ALTERNATIVA_POSTULACION">
+      <End Role="MAESTRO_ALTERNATIVA_POSTULACION" EntitySet="MAESTRO_ALTERNATIVA_POSTULACION" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_LLAMADO" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_LLAMADO">
+      <End Role="MAESTRO_LLAMADO" EntitySet="MAESTRO_LLAMADO" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_MODALIDAD" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_MODALIDAD">
+      <End Role="MAESTRO_MODALIDAD" EntitySet="MAESTRO_MODALIDAD" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_PROGRAMA" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_PROGRAMA">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_RESOLUCION" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_RESOLUCION">
+      <End Role="MAESTRO_RESOLUCION" EntitySet="MAESTRO_RESOLUCION" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_TIPOLOGIA" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_TIPOLOGIA">
+      <End Role="MAESTRO_TIPOLOGIA" EntitySet="MAESTRO_TIPOLOGIA" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_TITULO" Association="Self.FK_INFORMACION_PROYECTO_SOLICITUD_MAESTRO_TITULO">
+      <End Role="MAESTRO_TITULO" EntitySet="MAESTRO_TITULO" />
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MAESTRO_ESTADO_BENEFICIARIO_MAESTRO_PROGRAMA" Association="Self.FK_MAESTRO_ESTADO_BENEFICIARIO_MAESTRO_PROGRAMA">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="MAESTRO_ESTADO_BENEFICIARIO" EntitySet="MAESTRO_ESTADO_BENEFICIARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MAESTRO_RESOLUCION_MAESTRO_PROGRAMA" Association="Self.FK_MAESTRO_RESOLUCION_MAESTRO_PROGRAMA">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="MAESTRO_RESOLUCION" EntitySet="MAESTRO_RESOLUCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MAESTRO_TIPO_INGRESO_MAESTRO_PROGRAMA" Association="Self.FK_MAESTRO_TIPO_INGRESO_MAESTRO_PROGRAMA">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="MAESTRO_TIPO_INGRESO" EntitySet="MAESTRO_TIPO_INGRESO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MODIFICACION_ESTADO_SOLICITUD_MAESTRO_ESTADO_SOLICITUD" Association="Self.FK_MODIFICACION_ESTADO_SOLICITUD_MAESTRO_ESTADO_SOLICITUD">
+      <End Role="MAESTRO_ESTADO_SOLICITUD" EntitySet="MAESTRO_ESTADO_SOLICITUD" />
+      <End Role="MODIFICACION_ESTADO_SOLICITUD" EntitySet="MODIFICACION_ESTADO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MODIFICACION_ESTADO_SOLICITUD_SOLICITUD_PAGO" Association="Self.FK_MODIFICACION_ESTADO_SOLICITUD_SOLICITUD_PAGO">
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+      <End Role="MODIFICACION_ESTADO_SOLICITUD" EntitySet="MODIFICACION_ESTADO_SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICIO_REFERENCE_MAESTRO_" Association="Self.FK_SERVICIO_REFERENCE_MAESTRO_">
+      <End Role="MAESTRO_PROGRAMA" EntitySet="MAESTRO_PROGRAMA" />
+      <End Role="SERVICIO_PARCIALIDAD" EntitySet="SERVICIO_PARCIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICIO_REFERENCE_SUB_MODA" Association="Self.FK_SERVICIO_REFERENCE_SUB_MODA">
+      <End Role="SUB_MODALIDAD_PARCIALIDAD" EntitySet="SUB_MODALIDAD_PARCIALIDAD" />
+      <End Role="SERVICIO_PARCIALIDAD" EntitySet="SERVICIO_PARCIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICIO_REFERENCE_TIPOLOGI" Association="Self.FK_SERVICIO_REFERENCE_TIPOLOGI">
+      <End Role="TIPOLOGIA_SERVICIO" EntitySet="TIPOLOGIA_SERVICIO" />
+      <End Role="SERVICIO_PARCIALIDAD" EntitySet="SERVICIO_PARCIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PAGO_ATP_CONTRATO" Association="Self.FK_SOLICITUD_PAGO_ATP_CONTRATO">
+      <End Role="CONTRATO_ATP" EntitySet="CONTRATO_ATP" />
+      <End Role="SOLICITUD_PAGO_ATP" EntitySet="SOLICITUD_PAGO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PAGO_ATP_ESTADO_SOLICITUD" Association="Self.FK_SOLICITUD_PAGO_ATP_ESTADO_SOLICITUD">
+      <End Role="MAESTRO_ESTADO_SOLICITUD" EntitySet="MAESTRO_ESTADO_SOLICITUD" />
+      <End Role="SOLICITUD_PAGO_ATP" EntitySet="SOLICITUD_PAGO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PAGO_ATP_MAESTRO_TIPO_PAGO" Association="Self.FK_SOLICITUD_PAGO_ATP_MAESTRO_TIPO_PAGO">
+      <End Role="MAESTRO_TIPO_PAGO" EntitySet="MAESTRO_TIPO_PAGO" />
+      <End Role="SOLICITUD_PAGO_ATP" EntitySet="SOLICITUD_PAGO_ATP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PAGO_INFORMACION_PROYECTO_SOLICITUD" Association="Self.FK_SOLICITUD_PAGO_INFORMACION_PROYECTO_SOLICITUD">
+      <End Role="INFORMACION_PROYECTO_SOLICITUD" EntitySet="INFORMACION_PROYECTO_SOLICITUD" />
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PAGO_MAESTRO_TIPO_PAGO" Association="Self.FK_SOLICITUD_PAGO_MAESTRO_TIPO_PAGO">
+      <End Role="MAESTRO_TIPO_PAGO" EntitySet="MAESTRO_TIPO_PAGO" />
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUB_MODA_REFERENCE_MAESTRO_" Association="Self.FK_SUB_MODA_REFERENCE_MAESTRO_">
+      <End Role="MAESTRO_SUB_MODALIDAD" EntitySet="MAESTRO_SUB_MODALIDAD" />
+      <End Role="SUB_MODALIDAD_PARCIALIDAD" EntitySet="SUB_MODALIDAD_PARCIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUB_MODA_REFERENCE_MAESTRO_PARCIALIDAD" Association="Self.FK_SUB_MODA_REFERENCE_MAESTRO_PARCIALIDAD">
+      <End Role="MAESTRO_PARCIALIDAD" EntitySet="MAESTRO_PARCIALIDAD" />
+      <End Role="SUB_MODALIDAD_PARCIALIDAD" EntitySet="SUB_MODALIDAD_PARCIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_ACTIVIDAD_MONTO_MAESTRO_SERVICIO" Association="Self.FK_TIPO_ACTIVIDAD_MONTO_MAESTRO_SERVICIO">
+      <End Role="MAESTRO_SERVICIO" EntitySet="MAESTRO_SERVICIO" />
+      <End Role="TIPO_ACTIVIDAD_MONTO" EntitySet="TIPO_ACTIVIDAD_MONTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_ACTIVIDAD_MONTO_SOLICITUD_PAGO_ATP" Association="Self.FK_TIPO_ACTIVIDAD_MONTO_SOLICITUD_PAGO_ATP">
+      <End Role="SOLICITUD_PAGO_ATP" EntitySet="SOLICITUD_PAGO_ATP" />
+      <End Role="TIPO_ACTIVIDAD_MONTO" EntitySet="TIPO_ACTIVIDAD_MONTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_AUT_TIPO_AUTO_SOLICITU" Association="Self.FK_TIPO_AUT_TIPO_AUTO_SOLICITU">
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+      <End Role="TIPO_AUTORIZACION" EntitySet="TIPO_AUTORIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_PROVEEDOR_INFORMACION_PROYECTO_INFORMACION_PROYECTO" Association="Self.FK_TIPO_PROVEEDOR_INFORMACION_PROYECTO_INFORMACION_PROYECTO">
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+      <End Role="TIPO_PROVEEDOR_INFORMACION_PROYECTO" EntitySet="TIPO_PROVEEDOR_INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_PROVEEDOR_INFORMACION_PROYECTO_PROVEEDOR" Association="Self.FK_TIPO_PROVEEDOR_INFORMACION_PROYECTO_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="TIPO_PROVEEDOR_INFORMACION_PROYECTO" EntitySet="TIPO_PROVEEDOR_INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_SER_REFERENCE_CARACTER" Association="Self.FK_TIPO_SER_REFERENCE_CARACTER">
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+      <End Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" EntitySet="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_SER_REFERENCE_MAESTRO_" Association="Self.FK_TIPO_SER_REFERENCE_MAESTRO_">
+      <End Role="MAESTRO_SERVICIO" EntitySet="MAESTRO_SERVICIO" />
+      <End Role="TIPO_SERVICIOS_CONTRATO" EntitySet="TIPO_SERVICIOS_CONTRATO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_SER_REFERENCE_SERVICIO" Association="Self.FK_TIPO_SER_REFERENCE_SERVICIO">
+      <End Role="SERVICIO_PARCIALIDAD" EntitySet="SERVICIO_PARCIALIDAD" />
+      <End Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" EntitySet="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_SER_REFERENCE_SOLICITU" Association="Self.FK_TIPO_SER_REFERENCE_SOLICITU">
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+      <End Role="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" EntitySet="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_SERVICIOS_CONTRATO_CONTRATO" Association="Self.FK_TIPO_SERVICIOS_CONTRATO_CONTRATO">
+      <End Role="CONTRATO_ATP" EntitySet="CONTRATO_ATP" />
+      <End Role="TIPO_SERVICIOS_CONTRATO" EntitySet="TIPO_SERVICIOS_CONTRATO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPOLOGI_REFERENCE_MAESTRO_" Association="Self.FK_TIPOLOGI_REFERENCE_MAESTRO_">
+      <End Role="MAESTRO_TIPOLOGIA" EntitySet="MAESTRO_TIPOLOGIA" />
+      <End Role="TIPOLOGIA_SERVICIO" EntitySet="TIPOLOGIA_SERVICIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPOLOGI_TIPOLOGIA_MAESTRO_SERVICIO" Association="Self.FK_TIPOLOGI_TIPOLOGIA_MAESTRO_SERVICIO">
+      <End Role="MAESTRO_SERVICIO" EntitySet="MAESTRO_SERVICIO" />
+      <End Role="TIPOLOGIA_SERVICIO" EntitySet="TIPOLOGIA_SERVICIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPPRO_REFERENCE_MAESTRO_TIPO_PROVEEDOR__SISTEMA" Association="Self.FK_TIPPRO_REFERENCE_MAESTRO_TIPO_PROVEEDOR__SISTEMA">
+      <End Role="MAESTRO_TIPO_PROVEEDOR_SISTEMA" EntitySet="MAESTRO_TIPO_PROVEEDOR_SISTEMA" />
+      <End Role="MAESTRO_TIPO_PROVEEDOR" EntitySet="MAESTRO_TIPO_PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="INFORMACION_PROYECTO_REFERENCE_DIRECCION" Association="Self.INFORMACION_PROYECTO_REFERENCE_DIRECCION">
+      <End Role="DIRECCION" EntitySet="DIRECCION" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="INFORMACION_PROYECTO_REFERENCE_MAESTRO_ALTERNATIVA_POSTULACION" Association="Self.INFORMACION_PROYECTO_REFERENCE_MAESTRO_ALTERNATIVA_POSTULACION">
+      <End Role="MAESTRO_ALTERNATIVA_POSTULACION" EntitySet="MAESTRO_ALTERNATIVA_POSTULACION" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="INFORMACION_PROYECTO_REFERENCE_MAESTRO_LLAMADO" Association="Self.INFORMACION_PROYECTO_REFERENCE_MAESTRO_LLAMADO">
+      <End Role="MAESTRO_LLAMADO" EntitySet="MAESTRO_LLAMADO" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="INFORMACION_PROYECTO_REFERENCE_MAESTRO_MODALIDAD" Association="Self.INFORMACION_PROYECTO_REFERENCE_MAESTRO_MODALIDAD">
+      <End Role="MAESTRO_MODALIDAD" EntitySet="MAESTRO_MODALIDAD" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="INFORMACION_PROYECTO_REFERENCE_MAESTRO_TITULO" Association="Self.INFORMACION_PROYECTO_REFERENCE_MAESTRO_TITULO">
+      <End Role="MAESTRO_TITULO" EntitySet="MAESTRO_TITULO" />
+      <End Role="INFORMACION_PROYECTO" EntitySet="INFORMACION_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="PRESUPUESTO_REGIONAL_REFERENCE_RESOLUCI_PRESUPUESTARIA" Association="Self.PRESUPUESTO_REGIONAL_REFERENCE_RESOLUCI_PRESUPUESTARIA">
+      <End Role="RESOLUCION_PRESUPUESTARIA" EntitySet="RESOLUCION_PRESUPUESTARIA" />
+      <End Role="PRESUPUESTO_REGIONAL" EntitySet="PRESUPUESTO_REGIONAL" />
+    </AssociationSet>
+    <AssociationSet Name="PROVEEDOR_REFERENCE_MAESTRO_TIPO_PROVEEDOR" Association="Self.PROVEEDOR_REFERENCE_MAESTRO_TIPO_PROVEEDOR">
+      <End Role="MAESTRO_TIPO_PROVEEDOR" EntitySet="MAESTRO_TIPO_PROVEEDOR" />
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="SOLICITUD_PAGO_REFERENCE_CARACTERISTICAS_ESPECIALES" Association="Self.SOLICITUD_PAGO_REFERENCE_CARACTERISTICAS_ESPECIALES">
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="SOLICITUD_PAGO_REFERENCE_MAESTRO_ESTADO_SOLICITUD" Association="Self.SOLICITUD_PAGO_REFERENCE_MAESTRO_ESTADO_SOLICITUD">
+      <End Role="MAESTRO_ESTADO_SOLICITUD" EntitySet="MAESTRO_ESTADO_SOLICITUD" />
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="SOLICITUD_PAGO_REFERENCE_PROVEEDOR" Association="Self.SOLICITUD_PAGO_REFERENCE_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="SOLICITUD_PAGO_REFERENCE_PROVEEDOR_MANDATO" Association="Self.SOLICITUD_PAGO_REFERENCE_PROVEEDOR_MANDATO">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="TIPO_AUTORIZACION_REFERENCE_AUTORIZACION" Association="Self.TIPO_AUTORIZACION_REFERENCE_AUTORIZACION">
+      <End Role="AUTORIZACION" EntitySet="AUTORIZACION" />
+      <End Role="TIPO_AUTORIZACION" EntitySet="TIPO_AUTORIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="TIPO_INCREMENTO_REFERENCE_CARACTERISTICAS_ESPECIALES" Association="Self.TIPO_INCREMENTO_REFERENCE_CARACTERISTICAS_ESPECIALES">
+      <End Role="CARACTERISTICAS_ESPECIALES" EntitySet="CARACTERISTICAS_ESPECIALES" />
+      <End Role="TIPO_INCREMENTO" EntitySet="TIPO_INCREMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="TIPO_INCREMENTO_REFERENCE_MAESTRO_INCREMENTO" Association="Self.TIPO_INCREMENTO_REFERENCE_MAESTRO_INCREMENTO">
+      <End Role="MAESTRO_INCREMENTO" EntitySet="MAESTRO_INCREMENTO" />
+      <End Role="TIPO_INCREMENTO" EntitySet="TIPO_INCREMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="TIPO_INCREMENTO_REFERENCE_SOLICITUD_PAGO" Association="Self.TIPO_INCREMENTO_REFERENCE_SOLICITUD_PAGO">
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+      <End Role="TIPO_INCREMENTO" EntitySet="TIPO_INCREMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="TIPO_SERVICIO_REFERENCE_SOLICITUD_PAGO" Association="Self.TIPO_SERVICIO_REFERENCE_SOLICITUD_PAGO">
+      <End Role="SOLICITUD_PAGO" EntitySet="SOLICITUD_PAGO" />
+      <End Role="TIPO_SERVICIO" EntitySet="TIPO_SERVICIO" />
+    </AssociationSet>
+    <AssociationSet Name="TIPO_SERVICIO_REFERENCE_TIPO_SOLICITUD" Association="Self.TIPO_SERVICIO_REFERENCE_TIPO_SOLICITUD">
+      <End Role="TIPO_SERVICIO" EntitySet="TIPO_SERVICIO" />
+      <End Role="TIPO_PARCIALIDAD" EntitySet="TIPO_PARCIALIDAD" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

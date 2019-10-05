@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Pago_Subsidios_FuenteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodigoOrdenAT" Type="bigint" Mode="In" />
+          <Parameter Name="LineaOrigen" Type="int" Mode="In" />
+          <Parameter Name="LineaAplicacion" Type="int" Mode="In" />
+          <Parameter Name="TipoLlamado" Type="int" Mode="In" />
+          <Parameter Name="MontoUF" Type="decimal" Mode="In" />
+          <Parameter Name="MontoPesos" Type="decimal" Mode="In" />
+          <Parameter Name="Nota" Type="varchar" Mode="In" />
+          <Parameter Name="ChequeRut" Type="int" Mode="In" />
+          <Parameter Name="ChequeDgv" Type="char" Mode="In" />
+          <Parameter Name="ChequeNombres" Type="varchar" Mode="In" />
+          <Parameter Name="MandatoRut" Type="int" Mode="In" />
+          <Parameter Name="MandatoDgv" Type="char" Mode="In" />
+          <Parameter Name="MandatoNombres" Type="varchar" Mode="In" />
+          <Parameter Name="FuncionarioCreaRut" Type="int" Mode="In" />
+          <Parameter Name="Organismo" Type="int" Mode="In" />
+          <Parameter Name="IndicaATPrevia" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Pago_Subsidios_FuenteModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Pago_Subsidios_FuenteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Pago_Subsidios_FuenteEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA" ReturnType="Collection(Pago_Subsidios_FuenteModel.ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA_Result)">
+            <Parameter Name="CodigoOrdenAT" Mode="In" Type="Int64" />
+            <Parameter Name="LineaOrigen" Mode="In" Type="Int32" />
+            <Parameter Name="LineaAplicacion" Mode="In" Type="Int32" />
+            <Parameter Name="TipoLlamado" Mode="In" Type="Int32" />
+            <Parameter Name="MontoUF" Mode="In" Type="Decimal" />
+            <Parameter Name="MontoPesos" Mode="In" Type="Decimal" />
+            <Parameter Name="Nota" Mode="In" Type="String" />
+            <Parameter Name="ChequeRut" Mode="In" Type="Int32" />
+            <Parameter Name="ChequeDgv" Mode="In" Type="String" />
+            <Parameter Name="ChequeNombres" Mode="In" Type="String" />
+            <Parameter Name="MandatoRut" Mode="In" Type="Int32" />
+            <Parameter Name="MandatoDgv" Mode="In" Type="String" />
+            <Parameter Name="MandatoNombres" Mode="In" Type="String" />
+            <Parameter Name="FuncionarioCreaRut" Mode="In" Type="Int32" />
+            <Parameter Name="Organismo" Mode="In" Type="Int32" />
+            <Parameter Name="IndicaATPrevia" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA_Result">
+          <Property Type="Int32" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="26" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Pago_Subsidios_FuenteModelStoreContainer" CdmEntityContainer="Pago_Subsidios_FuenteEntities" >
+          <FunctionImportMapping FunctionImportName="ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA" FunctionName="Pago_Subsidios_FuenteModel.Store.ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Pago_Subsidios_FuenteModel.ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA_Result">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

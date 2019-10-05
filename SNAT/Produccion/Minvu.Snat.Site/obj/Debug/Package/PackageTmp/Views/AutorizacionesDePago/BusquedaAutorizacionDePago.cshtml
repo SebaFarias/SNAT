@@ -1,0 +1,581 @@
+﻿@model Minvu.Snat.Domain.Forms.BusquedaAutorizaciondePago
+@{
+    ViewBag.Title = "Busqueda Autorización de Pago";
+}
+<script>
+    function ActualizarCantidad(ingreso, salida, max) {
+        var ln = $(ingreso).val().length;
+        if (ln >= max) {
+            $(salida).text('Límite de caracteres alcanzado');
+        } else {
+            var ch = max - ln;
+            $(salida).text(ch + ' caracteres restantes');
+        }
+    }
+
+    $(document).ready(function () {
+        $('#nombreProveedor').on('input', function (e) {
+            if (!/^[ a-z0-9áéíóúüñ.-[()]]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-[()]]+/ig, "");
+            }
+        });
+
+        $('#nombreProveedor').keypress(function (e) {
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            var texto = $('#nombreProveedor').val();
+
+            if (keycode == '32') {
+                if (texto.length == 0) {
+                    return false;
+                } else if ((texto.substring(texto.length - 1, texto.length)) == ' ') {
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    // con esta función comprobás que sea un número
+    function es_numero(input) {
+        return !isNaN(input) && parseInt(input) == input;
+    }
+    //ahora verificas que sea no sea mayor que 100
+    function comprobar(value_elemento) {
+
+        var laedad = value_elemento.value;
+        if (es_numero(laedad)) {
+
+        } else {
+
+            value_elemento.value = "";
+        }
+    }
+</script>
+
+<script>
+    function valida(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+
+        //Tecla de retroceso para borrar, siempre la permite
+        if (tecla == 8) {
+            return true;
+        }
+
+        // Patron de entrada, en este caso solo acepta numeros
+        patron = /[0-9]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+</script>
+
+@if (Model._listadoAutorizacionEntities != null && Model._listadoAutorizacionEntities.Count > 0)
+{
+    <script>
+        $(document).ready(function () {
+            $('#grillaProyectos').DataTable({
+                "pagingType": "simple_numbers" // "simple" option for 'Previous' and 'Next' buttons only
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+}
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#codPr").rules("remove", "required");
+        $("#ddlPrograma").rules("remove", "required");
+        $("#ddlTipologia").rules("remove", "required");
+        $("#ddlLlamado").rules("remove", "required");
+        $("#ddlServicio").rules("remove", "required");
+        $("#ddlTipoProveedor").rules("remove", "required");
+        $("#dllModalidad").rules("remove", "required");
+
+        $("#codPr").removeClass("input-validation-error")
+        $("#ddlPrograma").removeClass("input-validation-error")
+        $("#ddlTipologia").removeClass("input-validation-error")
+        $("#ddlLlamado").removeClass("input-validation-error")
+        $("#ddlServicio").removeClass("input-validation-error")
+        $("#ddlTipoProveedor").removeClass("input-validation-error")
+        $("#dllModalidad").removeClass("input-validation-error")
+
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        //ddlRegion Selectedchange event
+        $("#ddlRegion").change(function () {
+            $("#ddlProvincia").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetProvincias")', //Llamada al metodo Json
+                dataType: 'json',
+                data: { idRegion: $("#ddlRegion").val() },//Obtenemos el "value" seleccionado del ddlregion y lo pasamos como input al metodo json "GetProvincias".
+                success: function (provincia) {//provincia contiene el JSON formateado a list de provincia obtenido
+                    $("#ddlProvincia").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                    $.each(provincia, function (i, provincia) {
+                        //Se añaden las opciones obtenidas para el ddlProvincia
+                        $("#ddlProvincia").append('<option value="' + provincia.Value + '">' +
+                            provincia.Text + '</option>');
+                    });
+                    //Obtencion de todas las Comunas
+                    $(function () {
+                        $("#ddlComuna").empty();
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetComunasRegion")', //Llamada al metodo Json
+                            dataType: 'json',
+                            data: { idRegion: $("#ddlRegion").val() },//Paso vacio el idProvincia como input al metodo json "GetComunas".
+
+                            success: function (comuna) {//provincia contiene el JSON formateado a list de provincia obtenido
+                                $("#ddlComuna").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                                $.each(comuna, function (i, comuna) {
+                                    //Se añaden las opciones obtenidas para el ddlProvincia
+                                    $("#ddlComuna").append('<option value="' + comuna.Value + '">' +
+                                        comuna.Text + '</option>');
+                                });
+                            },
+                            error: function (ex) {
+                                alert('Error al obtener Comunas.' + ex);
+                            }
+                        });
+                        return false;
+                    });
+                },
+                error: function (ex) {
+                    alert('Error al obtener provincias.' + ex);
+                }
+            });
+            return false;
+        })
+
+        //ddlProvincia Selectedchange event
+        $("#ddlProvincia").change(function () {
+            $("#ddlComuna").empty();
+
+            if ($("#ddlProvincia").val() == '') {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetComunasRegion")', //Llamada al metodo Json
+                    dataType: 'json',
+                    data: { idRegion: $("#ddlRegion").val() },//Paso vacio el idProvincia como input al metodo json "GetComunasRegion".
+
+                    success: function (comuna) {//provincia contiene el JSON formateado a list de provincia obtenido
+                        $("#ddlComuna").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                        $.each(comuna, function (i, comuna) {
+                            //Se añaden las opciones obtenidas para el ddlProvincia
+                            $("#ddlComuna").append('<option value="' + comuna.Value + '">' +
+                                comuna.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Error al obtener Comunas.' + ex);
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetComunas")', //Llamada al metodo Json
+                    dataType: 'json',
+                    data: { idProvincia: $("#ddlProvincia").val() },//Obtenemos el "value" seleccionado del ddlProvincia y lo pasamos como input al metodo json "GetComunas".
+                    success: function (comuna) {//comuna contiene el JSON formateado a list de comunas obtenido
+                        $("#ddlComuna").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                        $.each(comuna, function (i, comuna) {
+                            //Se añaden las opciones obtenidas para el ddlComuna
+                            $("#ddlComuna").append('<option value="' + comuna.Value + '">' +
+                                comuna.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Error al obtener Comunas.' + ex);
+                    }
+                });
+            }
+
+            return false;
+        })
+
+        //ddlComuna Selectedchange event
+        $("#ddlComuna").change(function () {
+            if ($("#ddlProvincia").value != '') {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("SetProvinciaComuna")', //Llamada al metodo Json
+                    dataType: 'json',
+                    data: { idComuna: $("#ddlComuna").val() },//Obtenemos el "value" seleccionado del ddlComuna y lo pasamos como input al metodo json "GetComunas".
+                    success: function (idProvincia) {//Obtengo el idProvincia segun la comuna enviada
+                        $("#ddlProvincia").val(idProvincia);
+                    },
+                    error: function (ex) {
+                        alert('Error al obtener idProvincia.' + ex);
+                    }
+                });
+                return false;
+            }
+        })
+       // ddlPrograma Selectedchange event
+        $("#ddlPrograma").change(function () {
+            $("#ddlTipologia").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetTipologiaPrograma")', //Llamada al metodo Json
+                dataType: 'json',
+                data: { idPrograma: $("#ddlPrograma").val() },//Obtenemos el "value" seleccionado del ddlTipologia y lo pasamos como input al metodo json "GetServicioTipologia".
+                success: function (servicios) {//provincia contiene el JSON formateado a list de provincia obtenido
+                    $("#ddlTipologia").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                    $.each(servicios, function (i, servicios) {
+                        //Se añaden las opciones obtenidas para el ddlProvincia
+                        $("#ddlTipologia").append('<option value="' + servicios.Value + '">' +
+                            servicios.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Error al obtener tipologias.' + ex);
+                }
+            });
+            return false;
+        })
+
+
+        //ddlTipologia Selectedchange event
+       $("#ddlTipologia").change(function () {
+            $("#ddlServicio").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetServicioTipologia")', //Llamada al metodo Json
+                dataType: 'json',
+                data: { idTipologia: $("#ddlTipologia").val(), idPrograma: $("#ddlPrograma").val() },//Obtenemos el "value" seleccionado del ddlTipologia y lo pasamos como input al metodo json "GetServicioTipologia".@*CambioQA*@
+                success: function (servicios) {//provincia contiene el JSON formateado a list de provincia obtenido
+                   $("#ddlServicio").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                    $.each(servicios, function (i, servicios) {
+                        //Se añaden las opciones obtenidas para el ddlProvincia
+                        $("#ddlServicio").append('<option value="' + servicios.Value + '">' +
+                            servicios.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Error al obtener servicios.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+    </script>
+
+
+@using (Html.BeginForm("BusquedaAutorizacionDePago", "AutorizacionesDePago", FormMethod.Post, new { id = "formSolicitudPago" }))
+{
+   
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h2 class="panel-title">Búsqueda de Autorización de pago</h2>
+        </div>
+
+        <!-- #region Informacion proyecto -->
+        <div class="panel-body">
+            <div class="row">
+                @*<a class="pull-right control-label input-sm" data-toggle="collapse" data-target="#demo">Búsqueda avanzada</a>*@
+            </div>
+
+            <div class="form-group  col-md-12">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._informacionProyectoEntities.codigoProyectoInformacionProyecto, new { @class = "input-sm" })
+                </div>
+                <div class="control-display col-md-4">
+                    @Html.TextBoxFor(model => model._informacionProyectoEntities.codigoProyectoInformacionProyecto, new { @class = "form-control input-sm", onkeypress = "return valida(event)", @maxlength = "8", @id = "codPr", placeholder = "Ingrese código proyecto", @onblur = "comprobar(this)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                </div>
+
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._RegionesEntities.idRegion, new { @class = "input-sm" })
+                </div>
+               
+                <div class="col-md-4">
+
+                    @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_ConsultarAutPagoReg"))
+                    {
+                        @Html.DropDownListFor(m => m._regionUserEntities,
+                                      new SelectList(Model._regionUserEntities, "idRegion", "nombreRegion", Model._regionUserEntities),
+                                      new { @class = "form-control", id = "ddlRegion", name = "ddlRegion", @readonly = "readonly", disabled = "disabled" })
+                    }
+
+                    else 
+                    {
+                        @Html.DropDownListFor(model => model._RegionesEntities.idRegion, new SelectList(Model.lstRegiones, "idRegion", "nombreRegion"), "-- Seleccione --", new { @class = "form-control input-sm", id = "ddlRegion", name = "ddlRegion" })
+
+                    }
+                </div>
+
+            </div>
+            <div class="row"></div>
+            <div class="form-group  col-md-12">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._maestroProgramaEntities.nombreMaestroPrograma, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model._maestroProgramaEntities.idMaestroPrograma, new SelectList(Model._lstPrograma, "idMaestroPrograma", "nombreMaestroPrograma"), "-- Seleccione --", new { @class = "form-control input-sm", id = "ddlPrograma", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                </div>
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._ProvinciasEntities.idProvincia, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model._ProvinciasEntities.idProvincia, new SelectList(Model.lstProvincias, "idProvincia", "nombreProvincia"), "-- Seleccione --", new { @class = "form-control input-sm", id = "ddlProvincia", name = "ddlProvincia" })
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._maestroTipologiaEntities.nombreMaestroTipologia, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model._maestroTipologiaEntities.idMaestroTipologia, new SelectList(Model.lstTipologias, "idMaestroTipologia", "nombreMaestroTipologia"), "-- Seleccione --", new { @class = "form-control input-sm", id = "ddlTipologia", name = "ddlTipologia" })
+                </div>
+
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._ComunasEntities.idComuna, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model._ComunasEntities.idComuna, new SelectList(Model.lstComunas, "idComuna", "nombreComuna"), "-- Seleccione --", new { @class = "form-control input-sm", id = "ddlComuna", name = "ddlComuna" })
+                </div>
+            </div>
+
+            <div class="form-group  col-md-12">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._maestroServicioEntities.nombreMaestroServicio, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model._maestroServicioEntities.nombreMaestroServicio, new SelectList(Model.lstServicios, "idMaestroServicio", "nombreMaestroServicio"), "-- Seleccione --", new { @class = "form-control input-sm", id = "ddlServicio", name = "ddlServicio" })
+                </div>
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._maestroLlamadoEntities.nombreMaestroLlamado, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model._maestroLlamadoEntities.idMaestroLlamado, new SelectList(Model.lstLlamado, "idMaestroLlamado", "nombreMaestroLlamado"), "-- Seleccione --", new { @class = "form-control input-sm", id = "ddlLlamado", name = "ddlLlamado" })
+                </div>
+
+            </div>
+
+            <div class="form-group col-md-12">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._proovedorEntities.nombreProveedor, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @*@Html.TextBoxFor(model => model._proovedorEntities.nombreProveedor, new { @class = "form-control", placeholder = "Ingrese Nombre PSAT", id = "nombrePsat", maxlength = "200", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", onblur = "changeFocus();", @onkeydown = "ActualizarCantidad(this, contadorCaracteresDescripcion, 100);", @onkeyup = "ActualizarCantidad(this, contadorCaracteresDescripcion, 200);" })
+                <span class="text-danger">@Html.ValidationMessageFor(model => model._proovedorEntities.nombreProveedor)</span>*@
+                    @Html.TextAreaFor(model => model._proovedorEntities.nombreProveedor, new { @class = "form-control input-sm", placeholder = "Ingrese Nombre proveedor", id = "nombreProveedor", maxlength = "100", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @onkeydown = "ActualizarCantidad(this, contadorCaracteresDescripcion, 100);", @onkeyup = "ActualizarCantidad(this, contadorCaracteresDescripcion, 100);" })
+                    <div class="align-left help-block input-sm" id="contadorCaracteresDescripcion">100 caracteres restantes</div>
+                </div>
+
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._maestroTipoProveedorEntities.nombreMaestroTipoProveedor, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model._maestroTipoProveedorEntities.idMaestroTipoProveedor, new SelectList(Model.lstTipoProveedor, "idMaestroTipoProveedor", "nombreMaestroTipoProveedor"), "-- Seleccione --", new { @class = "form-control input-sm", id = "ddlTipoProveedor", name = "ddlTipoProveedor" })
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-4 ">
+                        @Html.Label("Incluir eliminados en la búsqueda: ", new { @class = "input-sm", @style = "margin-left: -15px;" })
+                    </div>
+                    
+                    <div class="col-md-3 ">
+                        @Html.CheckBoxFor(model => model._maestroEstadoAutorizacionEntities.estadoMaestroEstadoAutorizacion, new { id = "estadoMaestroEstadoAutorizacion" })
+                    </div>
+                </div>
+                
+                
+            </div>
+           
+            @*<div class="form-group col-md-12">
+                <div class="control-label col-md-9"></div>
+                <div class="control-label col-md-3">
+                     @Html.Label("Incluir eliminados en la busqueda: ", new { @class = "input-sm"}) @Html.CheckBoxFor(model => model._maestroEstadoAutorizacionEntities.estadoMaestroEstadoAutorizacion,  new { id = "estadoMaestroEstadoAutorizacion", @class = "pull-rigth " })
+                </div>
+              </div>*@
+
+
+            <div class="form-group  col-md-12 collapse" id="demo">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._maestroModalidadEntities.nombreMaestroModalidad, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model._maestroModalidadEntities.idMaestroModalidad, new SelectList(Model.lstModalidades, "idMaestroModalidad", "nombreMaestroModalidad"), "-- Seleccione --", new { @class = "form-control input-sm", id = "dllModalidad", name = "dllModalidad" })
+                </div>
+
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model._autorizacionEntities.idAutorizacion, new { @class = "input-sm" })
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model._autorizacionEntities.idAutorizacion, new { @class = "form-control input-sm", @placeholder = "No aplica", @disabled = "disabled", @maxlength = "8", @id = "idAut", @onblur = "comprobar(this)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                </div>
+                
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <div class="pull-right">
+                    <button class="btn btn-primary btn-sm" type="submit" id="btnBuscar">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        Buscar proyecto
+                    </button>
+                    @Html.ActionLink("Limpiar", "BusquedaAutorizacionDePago", "AutorizacionesDePago", new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #endregion -->
+
+    <div class="panel panel-info">
+        <br />
+        <br />
+
+        <div id="divGrillaProyecto">
+            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6">
+                        @*<div class="dataTables_filter" id="grillaProyectos_filter">
+                                <label>
+                                    Buscar:
+                                    <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+
+                                </label>
+
+                            </div>*@
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="gridscroll-wrapper-div">
+                            <table class="table table-bordered table-condensed table-hover small text-center dataTable no-footer" id="grillaProyectos" role="grid">
+                                <thead>
+                                    <tr class="active" role="row">
+                                        <th tabindex="0" class="text-center sorting_asc" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Numero de autorización de pago" aria-sort="ascending" rowspan="1" colspan="1">N° Autorización</th>
+                                        @*<th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Id de la autorización de pago" aria-sort="ascending" rowspan="1" colspan="1">ID Autorización</th>*@
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Región" aria-sort="ascending" rowspan="1" colspan="1">Región </th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="N° de proyectos" aria-sort="ascending" rowspan="1" colspan="1">N° de proyectos </th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Programa " aria-sort="ascending" rowspan="1" colspan="1">Programa </th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Tipología" aria-sort="ascending" rowspan="1" colspan="1">Tipología </th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Tipo proveedor" aria-sort="ascending" rowspan="1" colspan="1">Tipo proveedor </th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Rut proveedor " aria-sort="ascending" rowspan="1" colspan="1">Rut proveedor </th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Nombre proveedor" aria-sort="ascending" rowspan="1" colspan="1">Nombre proveedor</th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Monto autorización (UF)" aria-sort="ascending" rowspan="1" colspan="1">Monto autorización (UF)</th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Fecha autorización" aria-sort="ascending" rowspan="1" colspan="1">Fecha autorización</th>
+                                        <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Estado autorización" aria-sort="ascending" rowspan="1" colspan="1">Estado autorización</th>
+                                        @*<th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Estado autorización" aria-sort="ascending" rowspan="1" colspan="1">Contiene aut. especial</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                    @if (Model._listadoAutorizacionEntities != null && Model._listadoAutorizacionEntities.Count > 0)
+                                    {
+                                        foreach (var item in Model._listadoAutorizacionEntities)
+                                        {
+                                            <tr class="odd" role="row">
+                                                @*<td class="sorting_1" style="vertical-align: middle;"> @item.numeroAutorizacion</td>*@
+                                                <td class="sorting_1" style="vertical-align: middle;">@Html.ActionLink(@item.numeroAutorizacion.ToString(), "DetalleAutorizacionDePago", "AutorizacionesDePago", new { IdAutorizacion = @item.idAutorizacion, IdTipoProveedor = @item.IdTipoProveedor }, null)</td>
+                                                @*<td style="vertical-align: middle;">@item.idAutorizacion</td>*@
+                                                <td style="vertical-align: middle;">@item.nombreRegion</td>
+                                                <td style="vertical-align: middle;">@item.cantidadProyecto</td>
+                                                <td style="vertical-align: middle;">@item.nombrePrograma</td>
+                                                <td style="vertical-align: middle;">@item.nombreTipologia</td>
+                                                <td style="vertical-align: middle;">@item.nombreTipoProveedor</td>
+                                                @*<td style="vertical-align: middle;">@item.rutProveedor</td>*@
+                                                @if (@item.rutProveedor.Trim() == "0-0")
+                                                {
+                                                    <td style="vertical-align: middle;">No aplica</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="vertical-align: middle;">@item.rutProveedor</td>
+                                                }
+                                                <td style="vertical-align: middle;">@item.nombreProveedor</td>
+                                                <td style="vertical-align: middle;">@item.MontoEntero,@item.MontoDecimal</td>
+                                                <td style="vertical-align: middle;">@item.FechaIngresoAutorizacion</td>
+                                                <td style="vertical-align: middle;">@item.nombreEstadoAutorizacion</td>
+                                                @*<td style="vertical-align: middle;">@item.especialAutorizacion</td>*@
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="16" align="center">
+                                                No existen datos
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="spinner" style="display:none">
+    <div class="center-div">
+        <div class="inner-div">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#btnBuscar').click(function () {
+        $('.spinner').css('display', 'block');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+    ////Puntos de Miles en montos de grilla
+    //$(document).ready(function () {
+    //    var grilla = document.getElementById('grillaProyectos');
+    //    var i = 1;
+
+    //    for (i = 1; i < grilla.rows.length; i++) {
+    //        var numero = grilla.rows[i].cells[8].innerHTML;//Numero completo
+    //        var parteDecimal = '';//parte decimal del Numero completo
+    //        var indice = numero.indexOf(',');//indice desde donde se encuentra la coma del decimal
+    //        var parteEntera = '';//parte entera del numero completo
+
+    //        if (indice > 0) {
+    //            parteDecimal = numero.substring(indice, numero.length);
+    //            parteEntera = numero.substring(0, numero.indexOf(','))
+    //        } else {
+    //            parteEntera = numero;
+    //        }
+
+    //        parteEntera = parteEntera.replace(/\.\b/gi, '');//Reseteo valor sin puntos
+
+    //        parteEntera = parteEntera.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+    //        parteEntera = parteEntera.split('').reverse().join('').replace(/^[\.]/, '');
+
+    //        grilla.rows[i].cells[8].innerHTML = parteEntera + parteDecimal;
+    //    }
+    //});
+</script>

@@ -1,0 +1,398 @@
+﻿@model Minvu.Snat.Domain.Forms.ConsultaProfesionalPPPF
+@{
+    ViewBag.Title = "MantenedorProfesionales";
+}
+
+<h4>@ViewBag.tipoOrigen - @ViewBag.nombreProyecto </h4>
+<br />
+
+@if (Model != null)
+{
+    <script>
+        $(document).ready(function () {
+            document.getElementById('detalleProfesionales').style.display = 'block';            
+        });
+    </script>
+
+    if (Model._informacionProfesionalEntities.codigoSalida == "0")
+    {
+        <script>
+            $(document).ready(function () {
+                $('#divBusqueda').show();
+                document.getElementById('detalleProfesionales').style.display = 'block';  
+                $("#profesionalITO").prop("disabled", true);
+                document.getElementById("ddlProfesion").disabled = true;
+                document.getElementById("btnGuardar").disabled = true;
+                $("#strongBusqueda").text("Se ingresó profesional correctamente.");
+            });
+        </script>
+
+    }
+
+    if (Model._informacionProfesionalEntities.codigoSalida == "1")
+    {
+        if (Model._informacionProfesionalEntities.idProfesion != 0)
+        {
+            <script>
+            $(document).ready(function() {
+                $('#divBusquedaProf').show();
+                $("#strongBusquedaProf").text("Profesional se encuentra en SNAT.");
+                $("#profesionalITO").prop("disabled", true);
+                document.getElementById("ddlProfesion").disabled = true;
+                document.getElementById("btnGuardar").disabled = true;
+            });
+            </script>
+        }
+        else if(!Model._informacionProfesionalEntities.menorEdad && !Model._informacionProfesionalEntities.fallecido)
+        {
+            <script>
+                $(document).ready(function () {
+                    $('#divBusquedaProfError').show();
+                    $("#strongBusquedaProfError").text("Profesional no se encuentra en SNAT, favor agregarlo al Mantenedor de Profesionales.");
+                });
+            </script>
+
+        }
+    }
+
+    if (Model._informacionProfesionalEntities.menorEdad)
+    {
+        <script>
+                $(document).ready(function () {
+                    $('#divBusquedaProfMenor').show();
+                    $("#strongBusquedaProfMenor").text("¡El Rut del Profesional ingresado, no puede ser menor de edad!");
+                    $("#profesionalITO").prop("disabled", true);
+                    document.getElementById("btnGuardar").disabled = true;
+                    document.getElementById("ddlProfesion").disabled = true;                                        
+                });
+        </script>
+    }
+
+    if (Model._informacionProfesionalEntities.fallecido)
+    {
+        <script>
+                $(document).ready(function () {
+                    $('#divBusquedaProfMenor').show();
+                    $("#strongBusquedaProfMenor").text("¡El Rut del Profesional ingresado, se encuentra fallecido!");
+                    $("#profesionalITO").prop("disabled", true);
+                    document.getElementById("btnGuardar").disabled = true;
+                    document.getElementById("ddlProfesion").disabled = true;
+                });
+        </script>
+    }
+
+    if (Model._informacionProfesionalEntities.codigoSalida != "0" && Model._informacionProfesionalEntities.rutProfesional == "")
+    {
+        <script>
+                $(document).ready(function () {
+                    document.getElementById('detalleProfesionales').style.display = 'none';
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").text("@Model._informacionProfesionalEntities.mensajeSalida");
+                });
+        </script>
+
+    }
+}
+
+<div class="container">
+@using (Html.BeginForm("MantenedorProfesionales", "Incidentes", FormMethod.Post, new { id = "formConsultaProfesionales", @class = "form-horizontal", autocomplete = "off" }))
+{
+    <div class="container">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="rut"><span style="color:#FF0000">(*)&nbsp;</span> Rut Profesional:</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model._informacionProfesionalEntities.rutProfesional, new { @class = "form-control amt", placeholder = "Ingrese Rut sin puntos, guión ni Dv", maxlength = "8", onblur = "getDV();", id = "rut", name = "rut", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                <span id="mensajeSpan" class="text-danger" style="display:none"></span>
+            </div>
+            <div class="col-sm-1">
+                @Html.TextBoxFor(model => model._informacionProfesionalEntities.dvProfesional, new { @class = "form-control", placeholder = "Dv", id = "dv", name = "dv", @readonly = "readonly", disabled= "disabled" })
+                @Html.HiddenFor(model => model._informacionProfesionalEntities.dvProfesional, new { id="hiddenDV" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                <button type="submit" id="btnSubmit" class="btn btn-primary">Buscar</button>
+                <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div id="divBusquedaProf" class="alert alert-success oculta" style="width:50%">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaProf">Error</strong>
+    </div>
+    <div id="divBusquedaProfError" class="alert alert-danger oculta" style="width:50%">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaProfError">Error</strong>
+    </div>
+    <div id="divBusquedaProfMenor" class="alert alert-warning oculta" style="width:50%">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaProfMenor">Error</strong>
+    </div>
+
+}
+@using (Html.BeginForm("GuardaProfesional", "Incidentes", FormMethod.Post, new { id = "formModificaProfesional", @class = "form-horizontal", autocomplete = "off" }))
+{
+    if (Model != null)
+    {
+        <div class="container" id="detalleProfesionales" style='display:none;'>
+            @if (Model._auxinformacionProfesionalEntities != null)
+{
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="nombre">Nombres:</label>
+                <div class="col-sm-4">
+                    @Html.HiddenFor(model => model._informacionProfesionalEntities.rutProfesional)
+                    @Html.HiddenFor(model => model._informacionProfesionalEntities.dvProfesional)
+
+                    @Html.TextBoxFor(model => model._informacionProfesionalEntities.nombreProfesional, new { @class = "form-control", placeholder = "Ingrese Nombre", id = "nombre", name = "nombre", @readonly = "readonly" })
+                    <span class="help-block">@Html.ValidationMessageFor(model => model._informacionProfesionalEntities.nombreProfesional)</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="paterno">Apellido Paterno:</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model._informacionProfesionalEntities.apellidoPaternoProfesional, new { @class = "form-control", placeholder = "Ingrese Apellido Paterno", id = "apPaterno", name = "apPaterno", @readonly = "readonly" })
+                    <span class="help-block">@Html.ValidationMessageFor(model => model._informacionProfesionalEntities.apellidoPaternoProfesional)</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="materno">Apellido Materno:</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model._informacionProfesionalEntities.apellidoMaternoProfesional, new { @class = "form-control", placeholder = "Ingrese Apellido Materno", id = "apMaterno", name = "apMaterno", @readonly = "readonly" })
+                    <span class="help-block">@Html.ValidationMessageFor(model => model._informacionProfesionalEntities.apellidoMaternoProfesional)</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="estado"><span style="color:#FF0000">(*)&nbsp;</span> Profesión:</label>
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(m => m._informacionProfesionalEntities.idProfesion,
+                    new SelectList(Model._auxinformacionProfesionalEntities, "idProfesion", "nombreProfesion", Model._informacionProfesionalEntities.idProfesion),
+                    "-----Seleccione-----", new { @class = "form-control", id="ddlProfesion", name= "ddlProfesion", onblur= "quitaMsjError();" })
+                    @*<span class="text-danger">@Html.ValidationMessageFor(model => model._informacionProfesionalEntities.idProfesion)</span>*@
+                <span id="mensaje" class="text-danger" style="display:none">La profesión es obligatoria</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Profesional FTO:</label>
+                <div class="col-sm-3">
+                    @Html.CheckBoxFor(m => m._informacionProfesionalEntities.profesionalITO, new { @class = "checkbox", id= "profesionalITO" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" id="btnGuardar" class="btn btn-primary" data-toggle="modal" data-target="#myModal" contenteditable="false">Guardar</button>
+                    @*<button type="button" class="btn btn-secondary" onclick="backPage()">Volver </button>*@
+                </div>
+            </div>
+               }
+        </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">@ViewBag.nombreProyecto</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Confirma los cambios realizados?
+                        </div>
+                        <div class="modal-footer">
+                            <p class="navbar-text navbar-left" style="font-size:10px">
+                                Usuario Responsable: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName)
+                            </p>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-primary">Sí</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            }
+
+    <div class="form-group">
+        <div class="col-lg-5" style="text-align:left">
+            El campo con
+            <span style="color:#FF0000">(*)&nbsp;</span>
+            es obligatorio.
+        </div>
+    </div>
+
+    <div class="spinner" style="display:none">
+        <div class="center-div">
+            <div class="inner-div">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div id="divBusqueda" class="alert alert-success oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusqueda">Error</strong>
+    </div>
+    <div id="divBusquedaError" class="alert alert-danger oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaError">Error</strong>
+    </div>
+</div>
+
+<style type="text/css">
+    .oculta {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $('#rut').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+        }
+    });
+
+    $('#btnSubmit').click(function () {
+        $('#divBusqueda').hide();
+        $('#divBusquedaProf').hide();
+        $('#divBusquedaProfError').hide();
+        $('#divBusquedaProfMenor').hide();
+
+        var rut = $('#rut').val();
+        var rutNuevo = rut.split('.').join('');
+
+        var numRut = parseInt(rutNuevo);
+
+        if (rut == "") {
+            $("#rut").css('border-color', '#b94a48');
+            document.getElementById('mensajeSpan').style.display = 'block';
+            $("#mensajeSpan").html("Rut no puede ser vacío.");
+            return false;
+        }
+        else if (numRut < 100000) {
+            $("#rut").css('border-color', '#b94a48');
+            document.getElementById('mensajeSpan').style.display = 'block';
+            $("#mensajeSpan").html("Rut inválido, debe ser mayor a 99999.");
+            return false;
+        }
+        else
+        {
+            document.getElementById('mensajeSpan').style.display = 'none';
+            $('.spinner').css('display', 'block');
+        }
+
+    });
+
+    $("#rut").keypress(function () {
+        $("#rut").css('border-color', '#66afe9');
+        document.getElementById('mensajeSpan').style.display = 'none';
+        //$('#divBusquedaProf').hide();
+        $('#divBusquedaProfError').hide();
+        //$('#divBusquedaProfMenor').hide();
+    });
+
+    $("#ddlProfesion").change(function () {
+        $("#ddlProfesion").css('border', '1px solid #ccc');
+    });
+
+    $('#btnGuardar').click(function () {
+        var select = $('#ddlProfesion').val();
+
+        if (select == "") {
+
+            document.getElementById('mensaje').style.display = 'block';
+            $("#ddlProfesion").css('border', '1px solid #b94a48');
+            //$('#divBusqueda').show();
+            //$("#strongBusqueda").text("Debe seleccionar una profesión. ");
+            return false;
+        }
+        else {
+            document.getElementById('mensaje').style.display = 'none';
+            $('#divBusquedaProf').hide();
+            $('#divBusquedaProfError').hide();
+            //$('#divBusqueda').hide();
+        }
+
+    });
+
+    function quitaMsjError() {
+        document.getElementById('mensaje').style.display = 'none';
+        //$('#divBusqueda').hide();
+    }
+
+    function numeros(e) {
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function backPage() {
+        document.location = '@Url.Action("MantenedorIncidentes", "Incidentes")';
+        }
+
+    function getDV() {
+        var numero = document.getElementById("rut");
+        var rutDV = document.getElementById("dv");
+
+        //numero = numero.value.toString().split('.').join('').split("").reverse().join("");
+        //alert(numero);
+
+        nuevo_numero = numero.value.toString().split('.').join('').split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+
+        document.getElementById("hiddenDV").value = dv;
+
+        if (numero.value == "") {
+
+            $('#dv').val('');
+        }
+
+        return dv;
+    }
+
+    function hiddenCampos() {
+        $('#rut').val('');
+        $('#dv').val('');
+    }
+
+    function LimpiaFormulario() {
+        $('#rut').val('');
+        $('#dv').val('');
+
+        if (document.getElementById('detalleProfesionales') != null) {
+            document.getElementById('detalleProfesionales').style.display = 'none';
+        }
+        document.getElementById('mensajeSpan').style.display = 'none';
+        $("#rut").css('border-color', '#66afe9');
+        $('#divBusqueda').hide();
+        $('#divBusquedaProf').hide();
+        $('#divBusquedaProfError').hide();
+        $('#divBusquedaProfMenor').hide();
+    }
+        </script>

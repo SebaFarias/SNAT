@@ -1,0 +1,253 @@
+﻿
+@{
+    ViewBag.Title = "BusquedautorizacionDePago";
+}
+
+
+
+
+<div class="container">
+
+
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h2 class="panel-title">Búsqueda de solicitud de pago</h2>
+        </div>
+
+
+
+        <!-- #region Informacion proyecto -->
+
+        <div class="panel-body">
+            <div class="row">
+                <a class="pull-right control-label input-sm" data-toggle="collapse" data-target="#demo">Búsqueda avanzada</a>
+
+            </div>
+
+            <div class="form-group">
+
+                <label class="col-md-2 control-label input-sm" for="ddlregion">Código de proyecto</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm NumerosEnteros validarRegex" id="codigoProyecto" />
+                </div>
+                <label class="col-md-2 control-label input-sm" for="ddlregion">Región</label>
+                <div class="col-md-4">
+
+                    <select name="region" class="form-control input-sm" id="ddlregion">
+                        <option value="">-- Seleccione --</option>
+                        <option value="15">XV - Región de Arica y Parinacota</option>
+                        <option value="1">I - Región de Tarapacá</option>
+                        <option value="2">II- Región de Antofagasta</option>
+                        <option value="3">III - Región de Atacama</option>
+                        <option value="4">IV - Región de Coquimbo</option>
+                        <option value="5">V - Región de Valparaíso</option>
+                        <option value="13">Región Metropolitana</option>
+                        <option value="6">VI - Región del Libertador Gral.Bdo.O’Higgins</option>
+                        <option value="7">VII - Región del Maule</option>
+                        <option value="8">VIII - Región del Bío-Bío</option>
+                        <option value="9">IX - Región de La Araucanía</option>
+                        <option value="14">XIV - Región de los Rios</option>
+                        <option value="10">X - Región de Los Lagos</option>
+                        <option value="11">XI - Región de Aisén del General C. Ibañez</option>
+                        <option value="12">XII -Región de Magallanes y Antártica Chilena</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+
+                <label class="col-md-2 control-label input-sm" for="ddlPrograma">Programa</label>
+                <div class="col-md-4">
+                    <select name="ddlPrograma" class="form-control input-sm" id="ddlPrograma">
+                        <option value="">-- Seleccione --</option>
+                        <option value="1">DS174</option>
+                        <option value="2">DS255 PPPF</option>
+                        <option value="3">DS49</option>
+                        <option value="4">DS10</option>
+                        <option value="5">DS N°1</option>
+                        <option value="6">DS N°19</option>
+                    </select>
+                </div>
+
+                <label class="col-md-2 control-label input-sm" for="ddlProvincia">Provincia</label>
+                <div class="col-md-4">
+                    <select name="ddlProvincia" class="form-control input-sm" id="ddlProvincia">
+                        <option value="">-- Seleccione --</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="col-md-2 control-label input-sm" for="ddlTipologia">Tipología</label>
+                <div class="col-md-4">
+                    <select name="ddlTipologia" class="form-control input-sm" id="ddlTipologia">
+                        <option value="">-- Seleccione --</option>
+                    </select>
+                </div>
+
+                <label class="col-md-2 control-label input-sm" for="ddlComuna">Comuna</label>
+                <div class="col-md-4">
+                    <select name="ddlComuna" class="form-control input-sm" id="ddlComuna">
+                        <option value="">-- Seleccione --</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+                <div class="form-group">
+                    <label class="col-md-2 control-label input-sm" for="TipoLlamado">Tipo llamado</label>
+                    <div class="col-md-4">
+                        <input class="form-control input-sm NumerosEnteros validarRegex" id="TipoLlamado" />
+                    </div>
+                    <label class="col-md-2 control-label input-sm" for="ddlServicio">Servicio</label>
+                    <div class="col-md-4">
+                        <select name="ddlServicio" class="form-control input-sm" id="ddlServicio">
+                            <option value="">-- Seleccione --</option>
+                        </select>
+                    </div>
+                  
+                </div>
+         
+            <br />
+            <div class="form-group">
+                <label class="col-md-2 control-label input-sm" for="nombreProveedor">Nombre proveedor</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm NumerosEnteros validarRegex" id="nombreProveedor" />
+                </div>
+
+                <label class="col-md-2 control-label input-sm" for="ddlTipoProveedor">Tipo proveedor</label>
+                <div class="col-md-4">
+                    <select name="ddlTipoProveedor" class="form-control input-sm" id="ddlTipoProveedor">
+                        <option value="">-- Seleccione --</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group collapse" id="demo">
+                <label class="col-md-2 control-label input-sm" for="idAutorizacion">Modalidad</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm NumerosEnteros validarRegex" id="idModalidad" />
+                </div>
+
+                <label class="col-md-2 control-label input-sm" for="ddlEstadoAutorizacion">ID autorización</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm NumerosEnteros validarRegex" id="TipoLlamado" />
+                </div>
+
+
+            </div>
+            <br />
+            <div class="pull-right">
+                <br />
+                <button class="btn btn-primary btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    buscar proyecto
+                </button>
+                <button class="btn btn-primary btn-sm" type="reset">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    Limpiar
+                </button>
+             @Html.ActionLink("Generar solicitud de pago", "generacionDeSolicitudPago", "Servicios", new { @class = "btn btn-primary  btn-sm" }) 
+ 
+            </div>
+
+        </div>
+
+        <!-- #endregion -->
+    </div>
+
+    <div id="divGrillaProyecto">
+        <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+                    <div class="dataTables_filter" id="grillaProyectos_filter">
+                        <label>
+                            Buscar:
+                            <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+
+                    <table class="table table-bordered table-condensed table-hover small text-center dataTable no-footer" id="grillaProyectos" role="grid">
+                        <thead>
+                            <tr class="active" role="row">
+                                <th tabindex="0" class="text-center sorting_asc" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Id solicitud" aria-sort="ascending" rowspan="1" colspan="1">ID Solicitud</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Region" aria-sort="ascending" rowspan="1" colspan="1">Región</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Codigo de proyecto o n° rut" aria-sort="ascending" rowspan="1" colspan="1">Código de proyecto o N° Rut</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Tipologia" aria-sort="ascending" rowspan="1" colspan="1">Tipología</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="N vivienda" aria-sort="ascending" rowspan="1" colspan="1">N° Viviendas </th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="servicio" aria-sort="ascending" rowspan="1" colspan="1">Servicio </th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Rut proveedor" aria-sort="ascending" rowspan="1" colspan="1">Rut proveedor</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Nombre proveedor " aria-sort="ascending" rowspan="1" colspan="1">Nombre proveedor </th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Estado solicitud" aria-sort="ascending" rowspan="1" colspan="1">Estado solicitud</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Monto solicitud" aria-sort="ascending" rowspan="1" colspan="1">Monto solicitud (UF)</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="N° autorización" aria-sort="ascending" rowspan="1" colspan="1">N° autorización</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Estado autorización" aria-sort="ascending" rowspan="1" colspan="1">Estado autorización</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="Acciones" aria-sort="ascending" rowspan="1" colspan="1">Acciones</th>
+                                <th tabindex="0" class="text-center sorting" aria-controls="grillaProyecto" style="vertical-align: middle;" aria-label="A pago" aria-sort="ascending" rowspan="1" colspan="1">A pago</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            <tr class="odd" role="row">
+                                <td class="sorting_1" style="vertical-align: middle;">@Html.ActionLink("88", "informacionservicios", "Servicios") </td>
+                                <td style="vertical-align: middle;">Metropolitana</td>
+                                <td style="vertical-align: middle;">130689</td>
+                                <td style="vertical-align: middle;">CCH</td>
+                                <td style="vertical-align: middle;">84</td>
+                                <td style="vertical-align: middle;">III</td>
+                                <td style="vertical-align: middle;">76.839.154-5</td>
+                                <td style="vertical-align: middle;">Consultora Rolando Silva Ltds</td>
+                                <td style="vertical-align: middle;">En autorización de pago</td>
+                                <td style="vertical-align: middle;">125</td>
+                                <td style="vertical-align: middle;">103</td>
+                                <td style="vertical-align: middle;">En ratificación</td>
+                                <td style="vertical-align: middle;">-</td>
+                                <td style="vertical-align: middle;"><div class="form-check">
+                                <input type="checkbox" class="form-check-input"  disabled="true" checked="checked" id="exampleCheck1">  
+</div></td>
+                            </tr>
+
+
+                        </tbody>
+
+
+
+
+                    </table>
+
+                    <div class="pull-right">
+                        <br />
+                   
+                        <button class="btn btn-primary btn-sm" type="submit" disabled="true">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" ></span>
+                            Generar pago
+                        </button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+             $(document).ready(function () {
+                 $("#myInput").on("keyup", function () {
+                     var value = $(this).val().toLowerCase();
+                     $("#myTable tr").filter(function () {
+                         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                     });
+                 });
+             });
+</script>

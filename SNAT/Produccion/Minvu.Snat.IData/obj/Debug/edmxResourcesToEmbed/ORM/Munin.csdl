@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Web_Trazabilidad_Test" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Web_Trazabilidad_Test_Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO" ReturnType="Collection(Web_Trazabilidad_Test.WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO_Result)">
+      <Parameter Name="Programa" Mode="In" Type="Int32" />
+      <Parameter Name="CodigoProyecto" Mode="In" Type="String" />
+      <Parameter Name="Region" Mode="In" Type="Int32" />
+      <Parameter Name="Titulo" Mode="In" Type="Int32" />
+      <Parameter Name="Año" Mode="In" Type="Int32" />
+      <Parameter Name="Numerollamado" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO_Result">
+    <Property Type="String" Name="Programa" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="CodigoPrograma" Nullable="true" />
+    <Property Type="String" Name="AlternativaPostulacion" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CodigoProyecto" Nullable="true" />
+    <Property Type="String" Name="RegiónProyecto" Nullable="true" />
+    <Property Type="String" Name="TituloProyecto" Nullable="true" />
+    <Property Type="String" Name="AnoLlamadoProyecto" Nullable="true" />
+    <Property Type="String" Name="NroLlamadoProyecto" Nullable="true" />
+    <Property Type="String" Name="TipologiaProyecto" Nullable="true" />
+    <Property Type="String" Name="AvanceRealActual" Nullable="true" />
+    <Property Type="String" Name="EstadoGeneralDescripcion" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="EstadoGeneral" Nullable="true" />
+    <Property Type="String" Name="RutEC" Nullable="true" />
+    <Property Type="String" Name="DvEC" Nullable="true" />
+    <Property Type="String" Name="NombreEC" Nullable="true" />
+    <Property Type="String" Name="NombreEmpresaFiscalizadora" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="IdEC" Nullable="true" />
+    <Property Type="String" Name="EstadoFiniquitadaEC" Nullable="true" />
+  </ComplexType>
+</Schema>

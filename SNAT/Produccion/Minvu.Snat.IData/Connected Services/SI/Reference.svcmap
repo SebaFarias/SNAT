@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b760e0d9-ec11-44e7-bc26-28c43d456ad2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://wsminvune.minvu.cl/Minvu.Sii/SII_orc_datcontrib_prt_sii_datcontrib.asmx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SII_orc_datcontrib_prt_sii_datcontrib.disco" MetadataType="Disco" ID="e60d079b-0430-4cb9-879d-e140a41a2eb7" SourceId="1" SourceUrl="http://wsminvune.minvu.cl/Minvu.Sii/SII_orc_datcontrib_prt_sii_datcontrib.asmx?disco" />
+    <MetadataFile FileName="SII_orc_datcontrib_prt_sii_datcontrib.wsdl" MetadataType="Wsdl" ID="43c90d92-4fae-47c2-8bb7-287ffae80ac6" SourceId="1" SourceUrl="http://wsminvune.minvu.cl/Minvu.Sii/SII_orc_datcontrib_prt_sii_datcontrib.asmx?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

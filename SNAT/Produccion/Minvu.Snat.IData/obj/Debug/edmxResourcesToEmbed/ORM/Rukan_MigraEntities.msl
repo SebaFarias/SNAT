@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Rukan_MigraModelStoreContainer" CdmEntityContainer="Rukan_MigraEntities">
+    <EntitySetMapping Name="COMUNA">
+      <EntityTypeMapping TypeName="Rukan_MigraModel.COMUNA">
+        <MappingFragment StoreEntitySet="COMUNA">
+          <ScalarProperty Name="COM_QTY_NUM_HAB" ColumnName="COM_QTY_NUM_HAB" />
+          <ScalarProperty Name="COM_MAX_CVS_ESP_TII" ColumnName="COM_MAX_CVS_ESP_TII" />
+          <ScalarProperty Name="COM_TRA" ColumnName="COM_TRA" />
+          <ScalarProperty Name="COM_QTY_HAB_EXCP" ColumnName="COM_QTY_HAB_EXCP" />
+          <ScalarProperty Name="COM_QTY_HAB" ColumnName="COM_QTY_HAB" />
+          <ScalarProperty Name="COM_ID_SII" ColumnName="COM_ID_SII" />
+          <ScalarProperty Name="ZONA_TERMICA" ColumnName="ZONA_TERMICA" />
+          <ScalarProperty Name="ZONA_SATURADA" ColumnName="ZONA_SATURADA" />
+          <ScalarProperty Name="COM_DES" ColumnName="COM_DES" />
+          <ScalarProperty Name="COM_ID" ColumnName="COM_ID" />
+          <ScalarProperty Name="PRV_ID" ColumnName="PRV_ID" />
+          <ScalarProperty Name="REG_ID" ColumnName="REG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROVINCIA">
+      <EntityTypeMapping TypeName="Rukan_MigraModel.PROVINCIA">
+        <MappingFragment StoreEntitySet="PROVINCIA">
+          <ScalarProperty Name="PRV_DES" ColumnName="PRV_DES" />
+          <ScalarProperty Name="PRV_ID" ColumnName="PRV_ID" />
+          <ScalarProperty Name="REG_ID" ColumnName="REG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGION">
+      <EntityTypeMapping TypeName="Rukan_MigraModel.REGION">
+        <MappingFragment StoreEntitySet="REGION">
+          <ScalarProperty Name="REG_ORD" ColumnName="REG_ORD" />
+          <ScalarProperty Name="REG_DES" ColumnName="REG_DES" />
+          <ScalarProperty Name="REG_ID" ColumnName="REG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="Rukan_MigraModel.USERS">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="CambiarPassword" ColumnName="CambiarPassword" />
+          <ScalarProperty Name="FechaExpiracion" ColumnName="FechaExpiracion" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+          <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+          <ScalarProperty Name="CodigoEntidad" ColumnName="CodigoEntidad" />
+          <ScalarProperty Name="CodigoOrganismo" ColumnName="CodigoOrganismo" />
+          <ScalarProperty Name="CodigoUnidad" ColumnName="CodigoUnidad" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="DVRut" ColumnName="DVRut" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERREGION">
+      <EntityTypeMapping TypeName="Rukan_MigraModel.USERREGION">
+        <MappingFragment StoreEntitySet="USERREGION">
+          <ScalarProperty Name="IDRegion" ColumnName="IDRegion" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PA_LISTAR_REGION" FunctionName="Rukan_MigraModel.Store.PA_LISTAR_REGION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Rukan_MigraModel.PA_LISTAR_REGION_Result">
+          <ScalarProperty Name="REG_DES" ColumnName="REG_DES" />
+          <ScalarProperty Name="REG_ID" ColumnName="REG_ID" />
+          <ScalarProperty Name="REG_ORD" ColumnName="REG_ORD" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RUKAN_MIGRA_USP_CON_OBTIENE_FAMILIA_CAMBIO_VIGENCIA_AVC_RUT" FunctionName="Rukan_MigraModel.Store.RUKAN_MIGRA_USP_CON_OBTIENE_FAMILIA_CAMBIO_VIGENCIA_AVC_RUT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Rukan_MigraModel.RUKAN_MIGRA_USP_CON_OBTIENE_FAMILIA_CAMBIO_VIGENCIA_AVC_RUT_Result">
+          <ScalarProperty Name="RUT_FAMILIA" ColumnName="RUT_FAMILIA" />
+          <ScalarProperty Name="DV_FAMILIA" ColumnName="DV_FAMILIA" />
+          <ScalarProperty Name="NUEVA_VIGENCIA" ColumnName="NUEVA_VIGENCIA" />
+          <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+          <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
+          <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RUKAN_MIGRA_USP_CON_OBTIENE_NUMERO_CERTIFICADO_PPPF" FunctionName="Rukan_MigraModel.Store.RUKAN_MIGRA_USP_CON_OBTIENE_NUMERO_CERTIFICADO_PPPF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Rukan_MigraModel.RUKAN_MIGRA_USP_CON_OBTIENE_NUMERO_CERTIFICADO_PPPF_Result">
+          <ScalarProperty Name="PER_RUT" ColumnName="PER_RUT" />
+          <ScalarProperty Name="PER_DIG" ColumnName="PER_DIG" />
+          <ScalarProperty Name="BNF_CER_NUM" ColumnName="BNF_CER_NUM" />
+          <ScalarProperty Name="ID_PER_NOM" ColumnName="ID_PER_NOM" />
+          <ScalarProperty Name="ID_PER_PAT" ColumnName="ID_PER_PAT" />
+          <ScalarProperty Name="ID_PER_MAT" ColumnName="ID_PER_MAT" />
+          <ScalarProperty Name="LLA_NUM" ColumnName="LLA_NUM" />
+          <ScalarProperty Name="LLA_ANO" ColumnName="LLA_ANO" />
+          <ScalarProperty Name="LIN_PRO_ID" ColumnName="LIN_PRO_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

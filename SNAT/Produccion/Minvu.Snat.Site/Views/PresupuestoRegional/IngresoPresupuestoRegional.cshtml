@@ -1,0 +1,636 @@
+﻿@model Minvu.Snat.Domain.Forms.PresupuestoRegional
+
+@{
+    ViewBag.Title = "Ingreso Presupuesto Regional";
+}
+
+@if (Model._presupuestoRegionalEntities != null)
+{
+    <script>
+            $(document).ready(function () {
+                if (@Model._presupuestoRegionalEntities.codigoSalida == "0") {
+                    $('#modalOk').modal('toggle');
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").html("@Model._presupuestoRegionalEntities.mensajeSalida");
+                    document.getElementById('detallePresupuesto').style.display = 'block';
+                    LimpiarPresupuesto();
+
+                }
+                else {
+                    $('#modalOk').modal('toggle');
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").html("@Model._presupuestoRegionalEntities.mensajeSalida");
+                    document.getElementById('detallePresupuesto').style.display = 'block';
+                    LimpiarPresupuesto();
+                }
+            });
+    </script>
+}
+
+<div class="container">
+    @using (Html.BeginForm("GuardarPresupuestoRegional", "PresupuestoRegional", FormMethod.Post, new { id = "formIngresoPresupuesto", @class = "form-horizontal", enctype = "multipart/form-data", autocomplete = "off" }))
+    {
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Ingreso Presupuesto</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="año" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Año Presupuestario:</label>
+                                <div class="col-md-8">
+                                    <select name="ddlAnno" class="form-control input-sm" id="ddlAnno">
+                                        <option value="">-- Seleccione --</option>
+                                        <option value="@ViewBag.yearNow">@ViewBag.yearNow</option>
+                                        <option value="@ViewBag.yearNext">@ViewBag.yearNext</option>
+                                    </select>
+                                    <span id="mensajeAnno" class="text-danger" style="display:none">Debe seleccionar año</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-6" for="fecha" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Fecha de Resolución:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="datepicker" onkeypress="return numeros(event);" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" style="background-color:#fff;" />
+                                    <span id="mensajeFecha" class="text-danger" style="display:none">Debe seleccionar fecha </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="importData" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Documento Resolución:</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="file" name="file" title="seleccionar fichero" id="importData" accept="application/pdf" onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])" />
+                                    <span id="fileUp" class="custom-file-control" style="display:none"></span><br />
+                                    <span class="text-warning">(Archivo formato PDF máximo 5 MB.)</span>
+                                    <span id="mensajeArchivo" class="text-danger" style="display:none">Debe seleccionar archivo </span>
+                                    <span id="mensajeArchivo5MB" class="text-danger" style="display:none">El documento excede el tamaño máximo </span>
+                                    <span id="mensajeArchivoNoPDF" class="text-danger" style="display:none"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-6" for="resolucion" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span>Número Resolución:</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model._presupuestoRegionalEntities.idPresupuestoRegional, new { @class = "form-control pre", placeholder = "Ingrese Número de Resolución", maxlength = "6", id = "numeroResolucion", name = "numeroResolucion", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                                    @*<span class="text-danger">@Html.ValidationMessageFor(model => model._presupuestoRegionalEntities.idPresupuestoRegional)</span>*@
+                                    <span id="mensajeNumero" class="text-danger" style="display:none">El número de resolución es obligatorio </span>
+                                    <span id="mensajeNumeroCero" class="text-danger" style="display:none">N° Resolución debe ser mayor a cero </span>
+                                    <span id="mensajeNumeroExiste" class="text-danger" style="display:none">Número esolución ya existe</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="form-group">
+                <div class="col-lg-5" style="text-align:left">
+                    Los campos con
+                    <span style="color:#FF0000">(*)&nbsp;</span>
+                    son obligatorios.<br />
+                    @*<span style="color:#FF0000">(*)&nbsp;</span>Si el código de proyecto es un RUT ingresar sin puntos, con dígito verificador y guión.*@
+                </div>
+            </div>
+            <span id="mensajeMonto" class="text-danger" style="display:none">Debe ingresar al menos un monto</span>
+        </div>
+        <div class="container" id="detallePresupuesto" style='display:block;'>
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <table id="mytable" class="table table-bordered table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" scope="col" style="text-align:center;">Región</th>
+                                <th rowspan="2" scope="col" style="text-align:center" width="14%"><span style="color:#FF0000">(*)&nbsp;</span>Presupuesto <br /><span class="text-justify">($)</span></th>
+                                <th colspan="2" scope="col" style="text-align:center;">Monto Comprometido</th>
+                                <th colspan="2" scope="col" style="text-align:center;">Monto Pagado</th>
+                                <th rowspan="2" scope="col" style="text-align:center;">Saldo por Pagar<br /><span class="text-justify">($)</span></th>
+                                @*<th rowspan="2" scope="col" style="text-align:center;">Acción</th>*@
+                            </tr>
+                            <tr>
+                                <th scope="col" style="text-align:center;" title="Servicio de asistencia técnica">S.A.T<br /><span class="text-justify">($)</span></th>
+                                <th scope="col" style="text-align:center;" title="Servicio de estudios técnicos">S.E.T<br /><span class="text-justify">($)</span></th>
+                                <th scope="col" style="text-align:center;" title="Servicio de asistencia técnica">S.A.T<br /><span class="text-justify">($)</span></th>
+                                <th scope="col" style="text-align:center;" title="Servicio de estudios técnicos">S.E.T<br /><span class="text-justify">($)</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model._regionEntities != null)
+                            {
+                                foreach (var items in Model._regionEntities)
+                                {
+                                    if (items.nombreRegion != "Total presupuesto")
+                                    {
+                                        <tr>
+                                            <td style="text-align:left;">@items.nombreRegion</td>
+                                            <td style="text-align:center;">@Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoPresupuestoRegional, new { @class = "form-control amt", maxlength = "13", placeholder = "0", id = @items.idRegion, name = "montoPresupuesto_" + @items.idRegion, onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })<span id="mensaje_@items.idRegion" class="text-danger amt" style="display:none">Debe ingresar monto</span></td>
+                                            <td style="text-align:center;">@Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoComprometidoSAT, new { @class = "form-control", maxlength = "13", @Value = "0", id = "montoComprometidoSAT_" + @items.idRegion, name = "montoComprometidoSAT_" + @items.idRegion, onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })</td>
+                                            <td style="text-align:center;">@Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoComprometidoSET, new { @class = "form-control", maxlength = "13", @Value = "0", id = "montoComprometidoSET_" + @items.idRegion, name = "montoComprometidoSET_" + @items.idRegion, onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })</td>
+                                            <td style="text-align:center;">@Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoPagadoSAT, new { @class = "form-control", maxlength = "13", @Value = "0", id = "montoPagadoSAT_" + @items.idRegion, name = "montoPagadoSAT_" + @items.idRegion, onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })</td>
+                                            <td style="text-align:center;">@Html.TextBoxFor(model => model._presupuestoRegionalEntities.montoPagadoSET, new { @class = "form-control", maxlength = "13", @Value = "0", id = "montoPagadoSET_" + @items.idRegion, name = "montoPagadoSET_" + @items.idRegion, onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })</td>
+                                            <td style="text-align:center;"><input type="text" id="@("saldo_" + @items.idRegion)" name="saldoR" class="form-control" readonly="readonly" disabled="disabled" value="0" /></td>
+                                        </tr>
+                                    }
+                                }
+                                <tr>
+                                    <td style="text-align:center;">Total Presupuesto</td>
+                                    <td style="text-align:center;"><input type="text" id="totalRegiones" class="form-control" readonly="readonly" disabled="disabled" /></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="text" name="dataHidden" id="dataHidden" value="" hidden>
+                </div>
+                <label class="control-label col-sm-1" for="observacion">Observación:</label>
+                <textarea id="observacion" placeholder="Ingrese Observación (Opcional)" name="observacion" class="form-control" maxlength="200" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" onkeydown="ActualizarCantidad(this, contadorCaracteresDescripcion, 200);" onkeyup="ActualizarCantidad(this, contadorCaracteresDescripcion, 200);"></textarea>
+                <div class="align-left help-block" id="contadorCaracteresDescripcion">200 caracteres restantes</div>
+                <br />
+                <div class="container">
+                    <div class="form-group">
+                        <div class="col-sm-offset-8 col-sm-10">
+                            <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                            <button id="btnSubmit" type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalOk">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divBusqueda" class="alert alert-success oculta" style="display:none">
+                        <button class="close" type="button" data-dismiss="alert"></button>
+                        <strong id="strongBusqueda">Error</strong>
+                    </div>
+                    <div id="divBusquedaError" class="alert alert-warning oculta" style="display:none">
+                        <button class="close" type="button" data-dismiss="alert"></button>
+                        <strong id="strongBusquedaError">Error</strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-btn-si">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spinner" style="display:none">
+        <div class="center-div">
+            <div class="inner-div">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        calcular_total();
+        saldoPagar();
+    });
+
+    function saldoPagar() {
+        var montoRegion = $('input[name="_presupuestoRegionalEntities.montoPresupuestoRegional"]');
+        var saldoRegion = $('input[name="saldoR"]');
+
+        $("form input[name='_presupuestoRegionalEntities.montoPresupuestoRegional']").keyup(function () {
+
+            $("form input[name='_presupuestoRegionalEntities.montoPresupuestoRegional']").each(function () {
+                var name = this.name;
+                var id = this.id;
+                var value = this.value;
+                var monto = eval($(this).val().split('.').join(''));
+                if (monto > 0) {
+                    $("#saldo_" + id).val(value)
+                }
+            });
+        });
+    }
+
+    function calcular_total() {
+        $('.amt').keyup(function () {
+            var importe_total = 0
+            $(".amt").each(
+                function (index, value) {
+                    if ($.isNumeric($(this).val().split('.').join(''))) {
+                        importe_total = importe_total + eval($(this).val().split('.').join(''));
+                    }
+                }
+            );
+
+            var signo = '';
+
+            if (importe_total < 0) {
+                signo = '-';
+            }
+
+            importe_total = importe_total.toString().replace(/\D/g, "")
+                .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+
+            importe_total = signo + importe_total;
+
+            $("#totalRegiones").val(importe_total)
+        });
+    }
+
+    $('#btnSubmit').click(function () {
+        var cadenaFinal = '';
+        var selectAnno = $('#ddlAnno').val();
+        var numResolucion = $('#numeroResolucion').val();
+        var fechaResolucion = $('#datepicker').val();
+        var observacion = $('#observacion').val();
+        var archivo = $('#importData').val();
+
+        //if (selectAnno == "" || fechaResolucion == "" || numResolucion == "" || archivo == "") {
+
+            if (selectAnno == "") {
+                document.getElementById('mensajeAnno').style.display = 'block';
+                $("#ddlAnno").css('border', '1px solid #b94a48');
+                $("#ddlAnno").focus();
+            }
+
+            if (numResolucion == "") {
+
+                document.getElementById('mensajeNumero').style.display = 'block';
+                $("#numeroResolucion").css('border', '1px solid #b94a48');
+                $("#numeroResolucion").focus();
+            }
+
+            if (fechaResolucion == "") {
+                document.getElementById('mensajeFecha').style.display = 'block';
+                $("#datepicker").css('border', '1px solid #b94a48');
+                $("#datepicker").focus();
+            }
+
+            if (archivo == "") {
+                document.getElementById('mensajeArchivo').style.display = 'block';
+                //$("#importData").css('border', '1px solid #b94a48');
+                $("#importData").focus();
+            }
+
+            //return false;
+        //}
+
+        if (numResolucion != '') {
+            if (numResolucion <= 0) {
+                document.getElementById('mensajeNumeroCero').style.display = 'block';
+                $("#numeroResolucion").css('border', '1px solid #b94a48');
+                $("#numeroResolucion").focus();
+               
+            }
+        }
+
+        var estado = true;
+
+        $("form input[name='_presupuestoRegionalEntities.montoPresupuestoRegional']").each(function () {
+            var name = this.name;
+            var id = this.id;
+            var value = this.value;
+            var monto = eval($(this).val().split('.').join(''));
+
+            if (monto > 0) {
+                //$("#saldo_" + id).val(value)
+                //$("#" + id).css('border', '1px solid #b94a48');
+                var data = selectAnno + '¬' + numResolucion + '¬' + fechaResolucion + '¬' + $(this).attr('id') + '¬' + eval($(this).val().split('.').join('')) + '¬' + observacion + '|';
+                cadenaFinal += data;
+            }
+            else {
+                estado = false;
+                $("#" + id).css('border', '1px solid #b94a48');
+                $("#mensaje_" + id).show();
+            }
+
+        });
+
+        if (archivo == "") {
+            document.getElementById('mensajeArchivo').style.display = 'block';
+            $("#importData").css('border', '1px solid #b94a48');
+            //$("#importData").focus();
+            return false;
+        }
+
+        if (estado) {
+            $('.spinner').css('display', 'block');
+            $("#dataHidden").val(cadenaFinal);
+        }
+        else {
+            return false;
+        }
+
+
+    });
+
+    function ActualizarCantidad(ingreso, salida, max) {
+        var ln = $(ingreso).val().length;
+        if (ln >= max) {
+            $(salida).text('Límite de caracteres alcanzado');
+        } else {
+            var ch = max - ln;
+            $(salida).text(ch + ' caracteres restantes');
+        }
+    }
+
+    function quitaMsjError() {
+        document.getElementById('mensajeAnno').style.display = 'none';
+    }
+    //function quitaMsjFecha() {
+    //    document.getElementById('mensajeFecha').style.display = 'none';
+    //}
+
+    $("#ddlAnno").change(function () {
+        $("#ddlAnno").css('border', '1px solid #ccc');
+        document.getElementById('mensajeAnno').style.display = 'none';
+    });
+    $("#datepicker").change(function () {
+        $("#datepicker").css('border', '1px solid #ccc');
+        document.getElementById('mensajeFecha').style.display = 'none';
+    });
+    $("#importData").change(function () {
+        $("#importData").css('border', '1px solid #ccc');
+        document.getElementById('mensajeArchivo').style.display = 'none';
+    });
+    $("#numeroResolucion").keyup(function () {
+        $("#numeroResolucion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeNumero').style.display = 'none';
+        document.getElementById('mensajeNumeroCero').style.display = 'none';
+        document.getElementById('mensajeNumeroExiste').style.display = 'none';
+    });
+    $(".amt").keypress(function () {
+        // $(".amt").css('border-color', '#66afe9');
+
+        $("form input[name='_presupuestoRegionalEntities.montoPresupuestoRegional']").each(function () {
+            var id = this.id;
+            var value = this.value;
+            $("#" + id).css('border', '1px solid #ccc');
+            $("#mensaje_" + id).hide();
+        });
+
+    });
+
+    function backPage() {
+        document.location = '@Url.Action("Index", "Home")';
+    }
+
+    function numeros(e) {
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    $(function () {
+
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1, d = date.getDate(), y = date.getFullYear();
+        var f2 = d + "/" + m + "/" + y;
+        var f1 = "01/01/" + y;
+        var dias = restaFechas(f1, f2);
+        var sumDias = 365 + dias;
+        var stardate = "-" + sumDias + "d";
+
+        $("#datepicker").datepicker(
+            {
+                format: 'dd/mm/yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true,
+                startDate: stardate,
+                endDate: new Date(),
+            }).attr('readonly', true);
+    });
+
+    //No permite ingreso tecla presionada.
+    $(document).ready(function () {
+        var flag = 0;
+        $('.amt').on('keydown', function (e) {
+            flag++;
+            if (flag > 1) {
+                e.preventDefault();
+            }
+        });
+        $('.amt').on('keyup', function (e) {
+            flag = 0;
+        });
+    });
+
+    //Asigna separador de miles.
+    $('.amt').keyup(function () {
+            $(event.target).val(function (index, value) {
+                return value.replace(/\D/g, "")
+                    .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+            });
+        }
+    );
+
+    $("numeroResolucion").on({
+        "focus": function (event) {
+            $(event.target).select();
+        },
+        "keyup": function (event) {
+            $(event.target).val(function (index, value) {
+                return value.split('.').join('');
+            });
+        }
+    });
+
+    function LimpiaFormulario() {
+        $(contadorCaracteresDescripcion).text('200 caracteres restantes');
+        $('#ddlAnno').val('');
+        $('#numeroResolucion').val('');
+        $('#datepicker').val('');
+        $('#observacion').val('');
+        $('#totalRegiones').val('');
+        $('#importData').val('');
+        LimpiarPresupuesto();
+        LimpiarSaldo();
+
+        $("#ddlAnno").css('border', '1px solid #ccc');
+        $("#datepicker").css('border', '1px solid #ccc');
+        document.getElementById('mensajeFecha').style.display = 'none';
+        $("#importData").css('border', '1px solid #ccc');
+        document.getElementById('mensajeArchivo').style.display = 'none';
+        $("#numeroResolucion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeNumero').style.display = 'none';
+        document.getElementById('mensajeNumeroCero').style.display = 'none';
+        document.getElementById('mensajeAnno').style.display = 'none';
+        document.getElementById('mensajeNumeroExiste').style.display = 'none';
+        document.getElementById('mensajeArchivo5MB').style.display = 'none';
+        document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+        document.getElementById('fileUp').style.display = 'none';
+    }
+
+    restaFechas = function (f1, f2) {
+        var aFecha1 = f1.split('/');
+        var aFecha2 = f2.split('/');
+        var fFecha1 = Date.UTC(aFecha1[2], aFecha1[1] - 1, aFecha1[0]);
+        var fFecha2 = Date.UTC(aFecha2[2], aFecha2[1] - 1, aFecha2[0]);
+        var dif = fFecha2 - fFecha1;
+        var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+        return dias;
+    }
+
+    function LimpiarPresupuesto() {
+        $('#numeroResolucion').val('');
+        $("form input[name='_presupuestoRegionalEntities.montoPresupuestoRegional']").each(function () {
+            var id = this.id;
+            var value = this.value;
+            $("#" + id).val('');
+            $("#" + id).css('border', '1px solid #ccc');
+            $("#mensaje_" + id).hide();
+        });
+
+        $("form input[name='_presupuestoRegionalEntities.montoComprometidoSAT']").each(function () {
+            var id = this.id;
+            var value = this.value;
+            //$("#" + id).val('');
+            $("#" + id).css('border', '1px solid #ccc');
+        });
+
+        $("form input[name='_presupuestoRegionalEntities.montoComprometidoSET']").each(function () {
+            var id = this.id;
+            var value = this.value;
+            //$("#" + id).val('');
+            $("#" + id).css('border', '1px solid #ccc');
+        });
+
+        $("form input[name='_presupuestoRegionalEntities.montoPagadoSAT']").each(function () {
+            var id = this.id;
+            var value = this.value;
+            //$("#" + id).val('');
+            $("#" + id).css('border', '1px solid #ccc');
+        });
+
+        $("form input[name='_presupuestoRegionalEntities.montoPagadoSET']").each(function () {
+            var id = this.id;
+            var value = this.value;
+            //$("#" + id).val('');
+            $("#" + id).css('border', '1px solid #ccc');
+        });
+
+    }
+
+    function LimpiarSaldo() {
+        $("form input[name='_presupuestoRegionalEntities.montoPresupuestoRegional']").each(function () {
+            var id = this.id;
+            var value = this.value;
+
+            $("#saldo_" + id).val('0');
+
+        });
+    }
+
+    $('#observacion').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-]+/ig, "");
+        }
+    });
+
+    $('input[type="file"]').on('change', function () {
+        document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+        document.getElementById('mensajeArchivo5MB').style.display = 'none';
+        document.getElementById('fileUp').style.display = 'none';
+        var ext = $(this).val().split('.').pop().toUpperCase();
+        if ($(this).val() != '') {
+            if (ext == "PDF") {
+                //alert("La extensión es: " + ext);
+                if ($(this)[0].files[0].size > 5242880) {
+                    //alert("El documento excede el tamaño máximo");
+                    document.getElementById('mensajeArchivo5MB').style.display = 'block';
+                    document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+                    $("#importData").css('border', '1px solid #b94a48');
+                   // $("#importData").focus();
+                    //$('#modal-title').text('¡Precaución!');
+                    //$('#modal-msg').html("Se solicita un archivo no mayor a 5MB. Por favor verifica.");
+                    //$("#modal-gral").modal();
+                    $(this).val('');
+                } else {
+                    //$("#modal-gral").hide();
+                    document.getElementById('fileUp').style.display = 'block';
+                }
+            }
+            else {
+                $(this).val('');
+                //alert("Extensión no permitida: " + ext);
+                document.getElementById('mensajeArchivoNoPDF').style.display = 'block';
+                $("#mensajeArchivoNoPDF").text("Extensión no permitida: " + ext);
+                document.getElementById('mensajeArchivo5MB').style.display = 'none';
+                $("#importData").css('border', '1px solid #b94a48');
+                //$("#importData").focus();
+            }
+        }
+    });
+
+    $("#numeroResolucion").blur(function () {
+        var numeroResolucion = $('#numeroResolucion').val();
+
+        if (numeroResolucion == "") {
+            document.getElementById('mensajeNumero').style.display = 'block';
+            document.getElementById('mensajeNumeroExiste').style.display = 'none';
+            $("#numeroResolucion").css('border', '1px solid #b94a48');
+            //$("#numeroResolucion").focus();
+            return false;
+        }
+
+        //$('.spinner').css('display', 'block');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ConsultaNumeroResolucion")', //Llamada al metodo Json
+
+                dataType: 'json',
+
+                data: { numeroResolucion: numeroResolucion },
+
+                success: function (auxConsultaNumeroResolucion) {
+
+                    if (auxConsultaNumeroResolucion._presupuestoRegionalEntities.idResolucionPresupuestaria > 0)
+                    {
+                        document.getElementById('mensajeNumeroExiste').style.display = 'block';
+                        $("#numeroResolucion").css('border', '1px solid #b94a48');
+                        //$("#numeroResolucion").focus();
+                    }
+
+                    $('.spinner').css('display', 'none');
+                },
+                error: function (ex) {
+                  //// document.getElementById('mensajeError').style.display = 'block';
+                    //$("#numeroResolucion").css('border', '1px solid #b94a48');
+                    //$("#numeroResolucion").focus();
+                    //$('.spinner').css('display', 'none');
+                }
+        });
+
+            return false;
+    });
+
+</script>
+

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="consulta_boletas_reconstruccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RUTT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DV" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_reconstruccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consulta_boletas_reconstruccionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RUTT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NUMERO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FOLIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USUARIO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consulta_boletasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_SOE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RUTT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NUMERO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FOLIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USUARIO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_SOEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consulta_boletas_SOEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inserta_Garantias">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="T_DOC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OBJ" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="C_COSTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="F_INI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="F_TER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DV_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOC_REF" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOM_TOM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OC_REF" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FEC_REF" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MONEDA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OR_MONTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="V_CAMBIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GLOSA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="F_PRESE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOM_FAVOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT_FAVOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USUARIO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inserta_GarantiasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inserta_GarantiasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Modifica_Fecha_Vencimiento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FECHA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FOLIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USUARIO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Modifica_Fecha_VencimientoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Modifica_Fecha_VencimientoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_proyecto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cf" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipocontratista" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipoprograma" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigopry" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_proyectoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consulta_boletas_proyectoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_SNAT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cf" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipocontratista" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipoprograma" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigopry" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_SNATResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consulta_boletas_SNATResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_mm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vfolio" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_boletas_mmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consulta_boletas_mmResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Consulta_Boletas_Proyecto_y_folio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cf" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nfolio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigopry" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Consulta_Boletas_Proyecto_y_folioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Consulta_Boletas_Proyecto_y_folioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registros_sps">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="empresa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_depto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="centro_costo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rut_proveedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rut_pagador" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_docto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nro_docto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cantidad_reg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="monto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_corr_preoblig" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registros_spsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="registros_spsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="consulta_boletas_reconstruccionSoapIn">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_reconstruccion" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_reconstruccionSoapOut">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_reconstruccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletasSoapIn">
+    <wsdl:part name="parameters" element="tns:consulta_boletas" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletasSoapOut">
+    <wsdl:part name="parameters" element="tns:consulta_boletasResponse" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_SOESoapIn">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_SOE" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_SOESoapOut">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_SOEResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inserta_GarantiasSoapIn">
+    <wsdl:part name="parameters" element="tns:Inserta_Garantias" />
+  </wsdl:message>
+  <wsdl:message name="Inserta_GarantiasSoapOut">
+    <wsdl:part name="parameters" element="tns:Inserta_GarantiasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Modifica_Fecha_VencimientoSoapIn">
+    <wsdl:part name="parameters" element="tns:Modifica_Fecha_Vencimiento" />
+  </wsdl:message>
+  <wsdl:message name="Modifica_Fecha_VencimientoSoapOut">
+    <wsdl:part name="parameters" element="tns:Modifica_Fecha_VencimientoResponse" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_proyectoSoapIn">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_proyecto" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_proyectoSoapOut">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_proyectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_SNATSoapIn">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_SNAT" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_SNATSoapOut">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_SNATResponse" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_mmSoapIn">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_mm" />
+  </wsdl:message>
+  <wsdl:message name="consulta_boletas_mmSoapOut">
+    <wsdl:part name="parameters" element="tns:consulta_boletas_mmResponse" />
+  </wsdl:message>
+  <wsdl:message name="Consulta_Boletas_Proyecto_y_folioSoapIn">
+    <wsdl:part name="parameters" element="tns:Consulta_Boletas_Proyecto_y_folio" />
+  </wsdl:message>
+  <wsdl:message name="Consulta_Boletas_Proyecto_y_folioSoapOut">
+    <wsdl:part name="parameters" element="tns:Consulta_Boletas_Proyecto_y_folioResponse" />
+  </wsdl:message>
+  <wsdl:message name="registros_spsSoapIn">
+    <wsdl:part name="parameters" element="tns:registros_sps" />
+  </wsdl:message>
+  <wsdl:message name="registros_spsSoapOut">
+    <wsdl:part name="parameters" element="tns:registros_spsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WsGarantiasSoap">
+    <wsdl:operation name="consulta_boletas_reconstruccion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve la garantía según un rut de beneficiario de vivienda tipo y construcción sitio propio</wsdl:documentation>
+      <wsdl:input message="tns:consulta_boletas_reconstruccionSoapIn" />
+      <wsdl:output message="tns:consulta_boletas_reconstruccionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve tabla con datos: RUT, DIGITO, NUMERO BOLETA, FECHA EMISION, FECHA VENCIMIENTO, CENTRO COSTO, BANCO, ESTADO, RESULTADO </wsdl:documentation>
+      <wsdl:input message="tns:consulta_boletasSoapIn" />
+      <wsdl:output message="tns:consulta_boletasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_SOE">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve todos los campos de la tabla para sistema SOE</wsdl:documentation>
+      <wsdl:input message="tns:consulta_boletas_SOESoapIn" />
+      <wsdl:output message="tns:consulta_boletas_SOESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inserta_Garantias">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserta una garantía y devuelve el número de Folio nuevo</wsdl:documentation>
+      <wsdl:input message="tns:Inserta_GarantiasSoapIn" />
+      <wsdl:output message="tns:Inserta_GarantiasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Modifica_Fecha_Vencimiento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Actualiza la fecha de vencimiento de garantías certificadas segun un folio</wsdl:documentation>
+      <wsdl:input message="tns:Modifica_Fecha_VencimientoSoapIn" />
+      <wsdl:output message="tns:Modifica_Fecha_VencimientoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_proyecto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve tabla con datos de proyecto: RUT, DIGITO, NUMERO BOLETA, FECHA EMISION, FECHA VENCIMIENTO, CENTRO COSTO, BANCO, ESTADO, RESULTADO </wsdl:documentation>
+      <wsdl:input message="tns:consulta_boletas_proyectoSoapIn" />
+      <wsdl:output message="tns:consulta_boletas_proyectoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_SNAT">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve tabla con datos de proyecto: RUT, DIGITO, NUMERO BOLETA, FECHA EMISION, FECHA VENCIMIENTO, CENTRO COSTO, BANCO, ESTADO, RESULTADO </wsdl:documentation>
+      <wsdl:input message="tns:consulta_boletas_SNATSoapIn" />
+      <wsdl:output message="tns:consulta_boletas_SNATSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_mm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve tabla con datos de garantias a buscar solo a traves del folio del documento </wsdl:documentation>
+      <wsdl:input message="tns:consulta_boletas_mmSoapIn" />
+      <wsdl:output message="tns:consulta_boletas_mmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Consulta_Boletas_Proyecto_y_folio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve garantias consultadas por centro financiero, folio y codigo de proyecto </wsdl:documentation>
+      <wsdl:input message="tns:Consulta_Boletas_Proyecto_y_folioSoapIn" />
+      <wsdl:output message="tns:Consulta_Boletas_Proyecto_y_folioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registros_sps">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">registros sps</wsdl:documentation>
+      <wsdl:input message="tns:registros_spsSoapIn" />
+      <wsdl:output message="tns:registros_spsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsGarantiasSoap" type="tns:WsGarantiasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="consulta_boletas_reconstruccion">
+      <soap:operation soapAction="http://tempuri.org/consulta_boletas_reconstruccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas">
+      <soap:operation soapAction="http://tempuri.org/consulta_boletas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_SOE">
+      <soap:operation soapAction="http://tempuri.org/consulta_boletas_SOE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inserta_Garantias">
+      <soap:operation soapAction="http://tempuri.org/Inserta_Garantias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Modifica_Fecha_Vencimiento">
+      <soap:operation soapAction="http://tempuri.org/Modifica_Fecha_Vencimiento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_proyecto">
+      <soap:operation soapAction="http://tempuri.org/consulta_boletas_proyecto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_SNAT">
+      <soap:operation soapAction="http://tempuri.org/consulta_boletas_SNAT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_mm">
+      <soap:operation soapAction="http://tempuri.org/consulta_boletas_mm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Consulta_Boletas_Proyecto_y_folio">
+      <soap:operation soapAction="http://tempuri.org/Consulta_Boletas_Proyecto_y_folio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registros_sps">
+      <soap:operation soapAction="http://tempuri.org/registros_sps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WsGarantiasSoap12" type="tns:WsGarantiasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="consulta_boletas_reconstruccion">
+      <soap12:operation soapAction="http://tempuri.org/consulta_boletas_reconstruccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas">
+      <soap12:operation soapAction="http://tempuri.org/consulta_boletas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_SOE">
+      <soap12:operation soapAction="http://tempuri.org/consulta_boletas_SOE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inserta_Garantias">
+      <soap12:operation soapAction="http://tempuri.org/Inserta_Garantias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Modifica_Fecha_Vencimiento">
+      <soap12:operation soapAction="http://tempuri.org/Modifica_Fecha_Vencimiento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_proyecto">
+      <soap12:operation soapAction="http://tempuri.org/consulta_boletas_proyecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_SNAT">
+      <soap12:operation soapAction="http://tempuri.org/consulta_boletas_SNAT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_boletas_mm">
+      <soap12:operation soapAction="http://tempuri.org/consulta_boletas_mm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Consulta_Boletas_Proyecto_y_folio">
+      <soap12:operation soapAction="http://tempuri.org/Consulta_Boletas_Proyecto_y_folio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registros_sps">
+      <soap12:operation soapAction="http://tempuri.org/registros_sps" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsGarantias">
+    <wsdl:port name="WsGarantiasSoap" binding="tns:WsGarantiasSoap">
+      <soap:address location="http://wsminvua.minvu.cl/wsGarantia/Wsgarantias.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WsGarantiasSoap12" binding="tns:WsGarantiasSoap12">
+      <soap12:address location="http://wsminvua.minvu.cl/wsGarantia/Wsgarantias.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

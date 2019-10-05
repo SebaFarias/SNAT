@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="cache-control" content="max-age=-1" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+    <title>@ViewBag.Title - SNAT</title>
+    <link rel="icon" type="image/png" href="~/favicon.ico">
+    @Styles.Render("~/NormaGrafica/bootstrap")
+    @Styles.Render("~/NormaGrafica/css/styles")
+    @Styles.Render("~/Content/datatables/styles")
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="~NormaGrafica/js/html5shiv.js"></script>
+    <script src="~NormaGrafica/js/respond.min.js"></script>
+    <script src="~NormaGrafica/js/css3-mediaqueries.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/NormaGrafica")
+    @Scripts.Render("~/Scripts/datatable")
+    @Scripts.Render("~/Scripts/datepicker")
+    @RenderSection("scripts", required: false)
+</head>
+<body class="inside cat-vivienda">
+    <!-- Menu Navegacion -->
+    <nav class="navbar nav-minvu navbar-default header-site" role="navigation">
+        <div class="container-fluid col-xs-15" style="padding:0px 90px 0px 90px;">
+
+            <div class="navbar-header col-md-3">
+                <h1 class="title">
+                    <a href="@Url.Action("Index", "Home", new { Area = ViewContext.RouteData.DataTokens["area"] })" class="navbar-brand" sl-processed="1">SNAT</a>
+                </h1>
+                <br />
+                <h2 class="cat-app-minvu cat-title default-title" style="padding-right:50px;">SIMPLIFICADO</h2>
+            </div>
+            <!-- nav links, formularios, y otros contenidos para el toggle ( palanca)  -->
+            <div class="collapse navbar-collapse col-md-4 pull-right" id="navbar-collapse-1">
+                <p class="navbar-text navbar-right">
+                    Bienvenido: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName) | Región: @SiteHelper.getRegion | Rol: @SiteHelper.UserRol | <a href="#" data-target="#modalCerrarSesion" data-toggle="modal">Cerrar Sesión</a>
+                </p>
+            </div><!-- /.navbar-collapse -->
+            <div class="col-md-16">
+                <nav class="navbar-default">
+                    <ul class="nav navbar-nav">
+                        @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Ver menú AT Previa"))
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">AT PREVIA<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoPresupuesto"))
+                                    {
+                                    <li><a>@Html.ActionLink("Ingreso Presupuesto Nacional", "IngresoPresupuestoRegional", "PresupuestoRegional")</a></li>
+                                    }
+
+                                    @if ((Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConPresupuesto")) || (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConPresupuestoReg")))
+                                    {
+                                    <li><a>@Html.ActionLink("Consulta Presupuesto", "ConsultaPresupuestoRegional", "PresupuestoRegional")</a></li>
+                                    }
+
+                                    @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConContrato") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConContratoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngContrato") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngContratoReg"))
+                                    {
+                                    <li><a>@Html.ActionLink("Contrato", "ListadoContratoPago", "Contrato")</a></li>
+                                    }
+
+                                    @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_ConSolicitudPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_IngresoSolicitudPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_Ratificador") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Atp_RatificadorReg"))
+                                    {
+                                    <li><a>@Html.ActionLink("Solicitud de pago", "ListadoSolicitudPago", "Contrato")</a></li>
+                                    }
+                                    
+                                </ul>
+                            </li>
+                        }
+                        @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Ver menú Simplificado"))
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">SIMPLIFICADO<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_ConsultarSolPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_ConsultarSolPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_GenerarSolPago") ||  Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_GenerarSolPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_EliminarSolPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_EliminarSolPagoReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_GenerarAutPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_GenerarAutPagoReg"))
+                                    {
+                                        <li><a>@Html.ActionLink("Solicitud de pago", "BusquedaSolicitud", "SolicitudPago")</a></li>
+                                    }
+                                    @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_Ratificar") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_RatificarReg") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_ConsultarAutPago") || Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Sim_ConsultarAutPagoReg"))
+                                    {
+                                        <li><a>@Html.ActionLink("Autorización de pago", "BusquedaAutorizacionDePago", "AutorizacionesDePago")</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (Minvu.Security.SingleSignOn.CurrentPrincipal.HasTarea("Ver menú Incidentes"))
+                        {
+                            <li>@Html.ActionLink("Incidentes", "MantenedorIncidentes", "Incidentes")</li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+    <nav role="navigation" class="nav">
+
+    </nav>
+    <!-- Menu Navegacion -->
+    <!-- Body -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="min-height: 500px; padding:20px 90px 50px 90px;">
+            @RenderBody()
+        </div>
+        <!-- Body -->
+        @*<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Presione para ir al inicio de la página" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>*@
+        <!-- footer -->
+        <footer class="footer-site" role="contentinfo">
+            <div class="container-fluid" style="padding-right:90px;padding-left:90px;">
+                <span class="separator-line"></span>
+                <div class="row">
+                    <div class="col-md-8">
+                        @*<a title="Créditos del sistema" href="/Cuenta/Creditos" class="btn btn-default" style="width:150px;" target="_blank"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Créditos</a>*@
+                        @*<a href="http://portalsiac.minvu.cl/" title="Contacto SIAC" class="btn btn-default" style="width:150px;" target="_blank"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contacto SIAC</a>*@
+                    </div>
+                    <div class="col-md-4 address-footer info-footer ">
+                        <ul>
+                            <li class="address-f">
+                                <h2 class="minvu-name">
+                                    Ministerio de Vivienda y Urbanismo
+                                </h2>
+                                <p>
+                                    Alameda 924, Santiago, Chile
+                                    <br>
+                                    Código postal: 6513482
+                                    <br>
+                                    Teléfono (56-2) 2901 1000
+                                    <br>
+                                    Fax: 29012800 <br>
+                                </p>
+                                <strong>@SiteHelper.GetVersion()</strong>
+                            </li>
+                            <li>
+                                <a href="http://www.minvu.cl" target="_blank" title="ir al MINVU"><img src="~/NormaGrafica/images/minvu-logo-footer.jpg" alt="Logo minvu"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer -->
+        <!--Modal Cargando...-->
+        <div class="modal fade" id="modalCargando" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" style="text-align:center">
+                        <div class="loader"></div><div><strong>Cargando datos, por favor espere...</strong></div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Modal Error -->
+        <div class="modal fade" id="ModalError" tabindex="-1" role="dialog" aria-labelledby="TituloModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="TituloModal">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Cerrar Sesión-->
+        <div class="modal fade" id="modalCerrarSesion" tabindex="-1" role="dialog" aria-labelledby="TituloModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="TituloModal">Confirmar cierre de sesión</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>¿Está seguro que desea salir de la aplicación?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        @Html.ActionLink("Salir", "Logout", "Account", new { Area = "" }, new { id = "btnSalir", @class = "btn btn-danger" })
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>  

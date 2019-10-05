@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Web_Trazabilidad_Test.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Programa" Type="int" Mode="In" />
+          <Parameter Name="CodigoProyecto" Type="varchar" Mode="In" />
+          <Parameter Name="Region" Type="int" Mode="In" />
+          <Parameter Name="Titulo" Type="int" Mode="In" />
+          <Parameter Name="Año" Type="int" Mode="In" />
+          <Parameter Name="Numerollamado" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Web_Trazabilidad_TestStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Web_Trazabilidad_Test" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Web_Trazabilidad_Test_Entities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO" ReturnType="Collection(Web_Trazabilidad_Test.WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO_Result)">
+            <Parameter Name="Programa" Mode="In" Type="Int32" />
+            <Parameter Name="CodigoProyecto" Mode="In" Type="String" />
+            <Parameter Name="Region" Mode="In" Type="Int32" />
+            <Parameter Name="Titulo" Mode="In" Type="Int32" />
+            <Parameter Name="Año" Mode="In" Type="Int32" />
+            <Parameter Name="Numerollamado" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO_Result">
+          <Property Type="String" Name="Programa" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CodigoPrograma" Nullable="true" />
+          <Property Type="String" Name="AlternativaPostulacion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodigoProyecto" Nullable="true" />
+          <Property Type="String" Name="RegiónProyecto" Nullable="true" />
+          <Property Type="String" Name="TituloProyecto" Nullable="true" />
+          <Property Type="String" Name="AnoLlamadoProyecto" Nullable="true" />
+          <Property Type="String" Name="NroLlamadoProyecto" Nullable="true" />
+          <Property Type="String" Name="TipologiaProyecto" Nullable="true" />
+          <Property Type="String" Name="AvanceRealActual" Nullable="true" />
+          <Property Type="String" Name="EstadoGeneralDescripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="EstadoGeneral" Nullable="true" />
+          <Property Type="String" Name="RutEC" Nullable="true" />
+          <Property Type="String" Name="DvEC" Nullable="true" />
+          <Property Type="String" Name="NombreEC" Nullable="true" />
+          <Property Type="String" Name="NombreEmpresaFiscalizadora" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="IdEC" Nullable="true" />
+          <Property Type="String" Name="EstadoFiniquitadaEC" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Web_Trazabilidad_TestStoreContainer" CdmEntityContainer="Web_Trazabilidad_Test_Entities" >
+          <FunctionImportMapping FunctionImportName="WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO" FunctionName="Web_Trazabilidad_Test.Store.WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Web_Trazabilidad_Test.WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO_Result">
+                <ScalarProperty Name="Programa" ColumnName="Programa" />
+                <ScalarProperty Name="CodigoPrograma" ColumnName="CodigoPrograma" />
+                <ScalarProperty Name="AlternativaPostulacion" ColumnName="AlternativaPostulacion" />
+                <ScalarProperty Name="CodigoProyecto" ColumnName="CodigoProyecto" />
+                <ScalarProperty Name="RegiónProyecto" ColumnName="RegiónProyecto" />
+                <ScalarProperty Name="TituloProyecto" ColumnName="TituloProyecto" />
+                <ScalarProperty Name="AnoLlamadoProyecto" ColumnName="AnoLlamadoProyecto" />
+                <ScalarProperty Name="NroLlamadoProyecto" ColumnName="NroLlamadoProyecto" />
+                <ScalarProperty Name="TipologiaProyecto" ColumnName="TipologiaProyecto" />
+                <ScalarProperty Name="AvanceRealActual" ColumnName="AvanceRealActual" />
+                <ScalarProperty Name="EstadoGeneralDescripcion" ColumnName="EstadoGeneralDescripcion" />
+                <ScalarProperty Name="EstadoGeneral" ColumnName="EstadoGeneral" />
+                <ScalarProperty Name="RutEC" ColumnName="RutEC" />
+                <ScalarProperty Name="DvEC" ColumnName="DvEC" />
+                <ScalarProperty Name="NombreEC" ColumnName="NombreEC" />
+                <ScalarProperty Name="NombreEmpresaFiscalizadora" ColumnName="NombreEmpresaFiscalizadora" />
+                <ScalarProperty Name="IdEC" ColumnName="IdEC" />
+                <ScalarProperty Name="EstadoFiniquitadaEC" ColumnName="EstadoFiniquitadaEC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

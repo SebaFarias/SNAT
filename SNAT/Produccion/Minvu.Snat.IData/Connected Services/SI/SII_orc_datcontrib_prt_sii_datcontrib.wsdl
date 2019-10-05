@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://minvu/ice/sii" xmlns:s1="http://SII.schemas.Schema_datcontrib_conice" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://datcontrib.Schema_datcontrib_rice" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://minvu/ice/sii" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">BizTalk assembly "Minvu.SII.Process, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2fefa50e9d37f6a1" published web service.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://minvu/ice/sii">
+      <s:import namespace="http://SII.schemas.Schema_datcontrib_conice" />
+      <s:import namespace="http://datcontrib.Schema_datcontrib_rice" />
+      <s:element name="ope_prt_sii_datcontrib">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:DatContrib" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ope_prt_sii_datcontribResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ICE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://SII.schemas.Schema_datcontrib_conice">
+      <s:element name="DatContrib">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="Rut" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="Dv" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="Periodo" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="Ussist" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://datcontrib.Schema_datcontrib_rice">
+      <s:element name="ICE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="RESULTADO">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="ESTADO" type="s:int" />
+                  <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="CODIGO" type="s:long" />
+                  <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="DESCRIPCION" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ID_RESPUESTA" type="s:string" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="RESPUESTA">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="RESP_BODY">
+                    <s:complexType>
+                      <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ESTADO" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="NOMBRE" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="AP_PATERNO" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="AP_MATERNO" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="RAZON_SOCIAL" type="s:string" />
+                      </s:sequence>
+                    </s:complexType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="RESP_HDR">
+                    <s:complexType>
+                      <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ESTADO" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="GLOSA" type="s:string" />
+                      </s:sequence>
+                    </s:complexType>
+                  </s:element>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ope_prt_sii_datcontribSoapIn">
+    <wsdl:part name="parameters" element="tns:ope_prt_sii_datcontrib" />
+  </wsdl:message>
+  <wsdl:message name="ope_prt_sii_datcontribSoapOut">
+    <wsdl:part name="parameters" element="tns:ope_prt_sii_datcontribResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SII_orc_datcontrib_prt_sii_datcontribSoap">
+    <wsdl:operation name="ope_prt_sii_datcontrib">
+      <wsdl:input message="tns:ope_prt_sii_datcontribSoapIn" />
+      <wsdl:output message="tns:ope_prt_sii_datcontribSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SII_orc_datcontrib_prt_sii_datcontribSoap" type="tns:SII_orc_datcontrib_prt_sii_datcontribSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ope_prt_sii_datcontrib">
+      <soap:operation soapAction="http://minvu/ice/sii/SII_orc_datcontrib_prt_sii_datcontrib/ope_prt_sii_datcontrib" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SII_orc_datcontrib_prt_sii_datcontribSoap12" type="tns:SII_orc_datcontrib_prt_sii_datcontribSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ope_prt_sii_datcontrib">
+      <soap12:operation soapAction="http://minvu/ice/sii/SII_orc_datcontrib_prt_sii_datcontrib/ope_prt_sii_datcontrib" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SII_orc_datcontrib_prt_sii_datcontrib">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">BizTalk assembly "Minvu.SII.Process, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2fefa50e9d37f6a1" published web service.</wsdl:documentation>
+    <wsdl:port name="SII_orc_datcontrib_prt_sii_datcontribSoap" binding="tns:SII_orc_datcontrib_prt_sii_datcontribSoap">
+      <soap:address location="http://wsminvune.minvu.cl/Minvu.Sii/SII_orc_datcontrib_prt_sii_datcontrib.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SII_orc_datcontrib_prt_sii_datcontribSoap12" binding="tns:SII_orc_datcontrib_prt_sii_datcontribSoap12">
+      <soap12:address location="http://wsminvune.minvu.cl/Minvu.Sii/SII_orc_datcontrib_prt_sii_datcontrib.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

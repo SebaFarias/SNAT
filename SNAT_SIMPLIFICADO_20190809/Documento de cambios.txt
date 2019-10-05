@@ -1,0 +1,20 @@
+1) Se modifica tabla, "SOLICITUD_PAGO_ATP", a la cual se le ha adicionan los siguientes campos:
+
+	1.-  FECHAINYECCIONAUTORIZACION   date  NULL 
+	2.-  VALORUFPESOAUTORIZACION      bigint NULL
+	3.-  MONTOPESOAUTORIZACION        bigint NULL
+	
+	Adicionalmente, se modifican las descripciones de los siguientes campos.
+	
+	1.- MONTOPAGADOSOLICITUDPAGOATP        : Monto pagado del contrato al momento de generar solicitud de pago atp
+	2.- MONTOCOMPROMETIDOSOLICITUDPAGOATP  : Monto comprometido del contrato al momento de generar la solicitud de pago atp
+	3.- MONTOPORPAGARSOLICITUDPAGOATP      : Monto por pagar de la solicitud de pago atp
+	
+
+=========================================================================================================
+Script:
+
+	alter table SOLICITUD_PAGO_ATP add FECHAINYECCIONAUTORIZACION date null 
+	alter table SOLICITUD_PAGO_ATP add VALORUFPESOAUTORIZACION  bigint null
+	alter table SOLICITUD_PAGO_ATP add MONTOPESOAUTORIZACION    bigint null
+

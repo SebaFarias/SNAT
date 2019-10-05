@@ -1,0 +1,38 @@
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\NLog.config
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.IData.dll.config
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.IData.dll
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.IData.pdb
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\EntityFramework.dll
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\EntityFramework.SqlServer.dll
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.Helper.dll
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\NLog.dll
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.Helper.pdb
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.Helper.dll.config
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\EntityFramework.xml
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\EntityFramework.SqlServer.xml
+C:\SNAT\Produccion\Minvu.Snat.IData\bin\Release\NLog.xml
+C:\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.csprojResolveAssemblyReference.cache
+C:\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.Resource1.resources
+C:\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.csproj.GenerateResource.Cache
+C:\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.csproj.CoreCompileInputs.cache
+C:\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.dll
+C:\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\NLog.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.IData.dll.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.IData.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.IData.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\EntityFramework.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.Helper.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\NLog.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.Helper.pdb
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\Minvu.Snat.Helper.dll.config
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\EntityFramework.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\bin\Release\NLog.xml
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.csprojAssemblyReference.cache
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.Resource1.resources
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.csproj.GenerateResource.cache
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.csproj.CopyComplete
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.dll
+C:\Users\user\Documents\SNAT\SNAT SIMPLIFICADO\SNAT\Produccion\Minvu.Snat.IData\obj\Release\Minvu.Snat.IData.pdb

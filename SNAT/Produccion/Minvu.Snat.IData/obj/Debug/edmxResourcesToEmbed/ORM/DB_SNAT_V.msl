@@ -1,0 +1,1141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_SNAT_VModelStoreContainer" CdmEntityContainer="DB_SNAT_VEntities">
+    <FunctionImportMapping FunctionImportName="BUSQUEDA_AUTORIZACION_DE_PAGO" FunctionName="DB_SNAT_VModel.Store.BUSQUEDA_AUTORIZACION_DE_PAGO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.BUSQUEDA_AUTORIZACION_DE_PAGO_Result">
+          <ScalarProperty Name="NROAUTORIZACION" ColumnName="NROAUTORIZACION" />
+          <ScalarProperty Name="IDAUTORIZACION" ColumnName="IDAUTORIZACION" />
+          <ScalarProperty Name="CODIGOREGIONDIRECCION" ColumnName="CODIGOREGIONDIRECCION" />
+          <ScalarProperty Name="NROPROYECTOS" ColumnName="NROPROYECTOS" />
+          <ScalarProperty Name="NOMBREMAESTROPROGRAMA" ColumnName="NOMBREMAESTROPROGRAMA" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOLOGIA" ColumnName="NOMBREMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="NOMBREMAESTROMODALIDAD" ColumnName="NOMBREMAESTROMODALIDAD" />
+          <ScalarProperty Name="CLASE" ColumnName="CLASE" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOPROVEEDOR" ColumnName="NOMBREMAESTROTIPOPROVEEDOR" />
+          <ScalarProperty Name="RUTPROVEEDOR" ColumnName="RUTPROVEEDOR" />
+          <ScalarProperty Name="NOMBREPROVEEDOR" ColumnName="NOMBREPROVEEDOR" />
+          <ScalarProperty Name="MONTOTOTALAUTORIZACION" ColumnName="MONTOTOTALAUTORIZACION" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOAUTORIZACION" ColumnName="NOMBREMAESTROESTADOAUTORIZACION" />
+          <ScalarProperty Name="STRINGSOLICITUD" ColumnName="STRINGSOLICITUD" />
+          <ScalarProperty Name="STRINGPROYECTO" ColumnName="STRINGPROYECTO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_GRILLA" FunctionName="DB_SNAT_VModel.Store.BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_GRILLA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_GRILLA_Result">
+          <ScalarProperty Name="IDCARACTERISTICASESPECIALES" ColumnName="IDCARACTERISTICASESPECIALES" />
+          <ScalarProperty Name="IDINFORMACIONPROYECTO" ColumnName="IDINFORMACIONPROYECTO" />
+          <ScalarProperty Name="CODIGOPROYECTOINFORMACIONPROYECTO" ColumnName="CODIGOPROYECTOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="NOMBREPROYECTOINFORMACIONPROYECTO" ColumnName="NOMBREPROYECTOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="CODIGOREGIONDIRECCION" ColumnName="CODIGOREGIONDIRECCION" />
+          <ScalarProperty Name="NOMBREMAESTROPROGRAMA" ColumnName="NOMBREMAESTROPROGRAMA" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOLOGIA" ColumnName="NOMBREMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="CLASE" ColumnName="CLASE" />
+          <ScalarProperty Name="S1" ColumnName="S1" />
+          <ScalarProperty Name="S2" ColumnName="S2" />
+          <ScalarProperty Name="S3" ColumnName="S3" />
+          <ScalarProperty Name="S4" ColumnName="S4" />
+          <ScalarProperty Name="S5" ColumnName="S5" />
+          <ScalarProperty Name="S6" ColumnName="S6" />
+          <ScalarProperty Name="S7" ColumnName="S7" />
+          <ScalarProperty Name="S8" ColumnName="S8" />
+          <ScalarProperty Name="S9" ColumnName="S9" />
+          <ScalarProperty Name="S10" ColumnName="S10" />
+          <ScalarProperty Name="MONTOFTO" ColumnName="MONTOFTO" />
+          <ScalarProperty Name="SALDOFTO" ColumnName="SALDOFTO" />
+          <ScalarProperty Name="MONTOTOTALPROYECTO" ColumnName="MONTOTOTALPROYECTO" />
+          <ScalarProperty Name="MontoaPagar" ColumnName="MontoaPagar" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CONSULTA_ACTIVIDADES_CONTRATO" FunctionName="DB_SNAT_VModel.Store.CONSULTA_ACTIVIDADES_CONTRATO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.CONSULTA_ACTIVIDADES_CONTRATO_Result">
+          <ScalarProperty Name="NOMBREABREVIADOMAESTROSERVICIO" ColumnName="NOMBREABREVIADOMAESTROSERVICIO" />
+          <ScalarProperty Name="NOMBREMAESTROSERVICIO" ColumnName="NOMBREMAESTROSERVICIO" />
+          <ScalarProperty Name="IDMAESTROSERVICIO" ColumnName="IDMAESTROSERVICIO" />
+          <ScalarProperty Name="IDCONTRATOATP" ColumnName="IDCONTRATOATP" />
+          <ScalarProperty Name="ESTADOMAESTROSERVICIO" ColumnName="ESTADOMAESTROSERVICIO" />
+          <ScalarProperty Name="MONTOPAGOTIPOACTIVIDADMONTO" ColumnName="MONTOPAGOTIPOACTIVIDADMONTO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ELIMINA_CONTRATO" FunctionName="DB_SNAT_VModel.Store.ELIMINA_CONTRATO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.ELIMINA_CONTRATO_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ELIMINA_SOLICITUD" FunctionName="DB_SNAT_VModel.Store.ELIMINA_SOLICITUD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.ELIMINA_SOLICITUD_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INSERTA_CONTRATO_SAT_SET" FunctionName="DB_SNAT_VModel.Store.INSERTA_CONTRATO_SAT_SET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.INSERTA_CONTRATO_SAT_SET_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INSERTA_GENERACION_AUTORIZACION_PAGO" FunctionName="DB_SNAT_VModel.Store.INSERTA_GENERACION_AUTORIZACION_PAGO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.INSERTA_GENERACION_AUTORIZACION_PAGO_Result">
+          <ScalarProperty Name="ERR" ColumnName="ERR" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INSERTA_MODIFICACION_ESTADO_SOLICITUD" FunctionName="DB_SNAT_VModel.Store.INSERTA_MODIFICACION_ESTADO_SOLICITUD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.INSERTA_MODIFICACION_ESTADO_SOLICITUD_Result">
+          <ScalarProperty Name="ERR" ColumnName="ERR" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INSERTA_PRESUPUESTO_REGIONAL_IGTD" FunctionName="DB_SNAT_VModel.Store.INSERTA_PRESUPUESTO_REGIONAL_IGTD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.INSERTA_PRESUPUESTO_REGIONAL_IGTD_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SNAT_SIMPLIFICADO_V_UPD_AUTORIZACION_ORDEN_PAGO_SIMP" FunctionName="DB_SNAT_VModel.Store.SNAT_SIMPLIFICADO_V_UPD_AUTORIZACION_ORDEN_PAGO_SIMP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.SNAT_SIMPLIFICADO_V_UPD_AUTORIZACION_ORDEN_PAGO_SIMP_Result">
+          <ScalarProperty Name="CodMensaje" ColumnName="CodMensaje" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="IdORden" ColumnName="IdORden" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SNAT_SIMPLIFICADO_V_UPD_REPARO_ORDEN_PAGO_SIMP" FunctionName="DB_SNAT_VModel.Store.SNAT_SIMPLIFICADO_V_UPD_REPARO_ORDEN_PAGO_SIMP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.SNAT_SIMPLIFICADO_V_UPD_REPARO_ORDEN_PAGO_SIMP_Result">
+          <ScalarProperty Name="CodMensaje" ColumnName="CodMensaje" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="IdORden" ColumnName="IdORden" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SNAT_SIMPLIFICADO_V_USP_CON_LISTADO_SOLICITUDES_PAGO" FunctionName="DB_SNAT_VModel.Store.SNAT_SIMPLIFICADO_V_USP_CON_LISTADO_SOLICITUDES_PAGO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.SNAT_SIMPLIFICADO_V_USP_CON_LISTADO_SOLICITUDES_PAGO_Result">
+          <ScalarProperty Name="IDCARACTERISTICASESPECIALES" ColumnName="IDCARACTERISTICASESPECIALES" />
+          <ScalarProperty Name="NOMBREPROGRAMA" ColumnName="NOMBREPROGRAMA" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+          <ScalarProperty Name="TIPOPROVEEDOR" ColumnName="TIPOPROVEEDOR" />
+          <ScalarProperty Name="CODIGOREGIONDIRECCION" ColumnName="CODIGOREGIONDIRECCION" />
+          <ScalarProperty Name="CODIGOPROYECTOINFORMACIONPROYECTO" ColumnName="CODIGOPROYECTOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOLOGIA" ColumnName="NOMBREMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="CANTIDADVIVIENDASINFORMACIONPROYECTO" ColumnName="CANTIDADVIVIENDASINFORMACIONPROYECTO" />
+          <ScalarProperty Name="SERVICIO" ColumnName="SERVICIO" />
+          <ScalarProperty Name="NOMBREPROVEEDOR" ColumnName="NOMBREPROVEEDOR" />
+          <ScalarProperty Name="RUTPROVEEDOR" ColumnName="RUTPROVEEDOR" />
+          <ScalarProperty Name="DV" ColumnName="DV" />
+          <ScalarProperty Name="ESTADOSOLICITUD" ColumnName="ESTADOSOLICITUD" />
+          <ScalarProperty Name="MONTOSOLICITUDSOLICITUDPAGO" ColumnName="MONTOSOLICITUDSOLICITUDPAGO" />
+          <ScalarProperty Name="NUMEROAUTORIZACION" ColumnName="NUMEROAUTORIZACION" />
+          <ScalarProperty Name="ESTADOAUTORIZACION" ColumnName="ESTADOAUTORIZACION" />
+          <ScalarProperty Name="PagoHistorico" ColumnName="PagoHistorico" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CONSULTA_CONTRATO" FunctionName="DB_SNAT_VModel.Store.CONSULTA_CONTRATO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.CONSULTA_CONTRATO_Result">
+          <ScalarProperty Name="IDCONTRATOATP" ColumnName="IDCONTRATOATP" />
+          <ScalarProperty Name="RUTPROVEEDOR" ColumnName="RUTPROVEEDOR" />
+          <ScalarProperty Name="DVPROVEDIGITOVERIFICADORPROVEEDOR" ColumnName="DVPROVEDIGITOVERIFICADORPROVEEDOR" />
+          <ScalarProperty Name="NOMBREPROVEEDOR" ColumnName="NOMBREPROVEEDOR" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOPROVEEDOR" ColumnName="NOMBREMAESTROTIPOPROVEEDOR" />
+          <ScalarProperty Name="AGNOPRESUPUESTOCONTRATOATP" ColumnName="AGNOPRESUPUESTOCONTRATOATP" />
+          <ScalarProperty Name="CODIGOREGIONTERRITORIOCONTRATO" ColumnName="CODIGOREGIONTERRITORIOCONTRATO" />
+          <ScalarProperty Name="CODIGOPROVINCIATERRITORIOCONTRATO" ColumnName="CODIGOPROVINCIATERRITORIOCONTRATO" />
+          <ScalarProperty Name="CODIGOCOMUNATERRITORIOCONTRATO" ColumnName="CODIGOCOMUNATERRITORIOCONTRATO" />
+          <ScalarProperty Name="NOMBREARCHIVOCONTRATOATP" ColumnName="NOMBREARCHIVOCONTRATOATP" />
+          <ScalarProperty Name="NOMBREPROPIEDADTERRENO" ColumnName="NOMBREPROPIEDADTERRENO" />
+          <ScalarProperty Name="NUMERORESOLUCIONCONTRATOATP" ColumnName="NUMERORESOLUCIONCONTRATOATP" />
+          <ScalarProperty Name="FECHARESOLUCIONCONTRATOATP" ColumnName="FECHARESOLUCIONCONTRATOATP" />
+          <ScalarProperty Name="FECHAINICIOCONTRATOATP" ColumnName="FECHAINICIOCONTRATOATP" />
+          <ScalarProperty Name="PLAZOEJECUCIONCONTRATOATP" ColumnName="PLAZOEJECUCIONCONTRATOATP" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOSERVICIOIGT" ColumnName="NOMBREMAESTROTIPOSERVICIOIGT" />
+          <ScalarProperty Name="PRODUCTOCONTRATOATP" ColumnName="PRODUCTOCONTRATOATP" />
+          <ScalarProperty Name="DESCRIPCIONPRODUCTOCONTRATOATP" ColumnName="DESCRIPCIONPRODUCTOCONTRATOATP" />
+          <ScalarProperty Name="MONTOCONTRATOCONTRATOATP" ColumnName="MONTOCONTRATOCONTRATOATP" />
+          <ScalarProperty Name="OBSERVACIONCONTRATOATP" ColumnName="OBSERVACIONCONTRATOATP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CONSULTA_LISTADO_CONTRATO" FunctionName="DB_SNAT_VModel.Store.CONSULTA_LISTADO_CONTRATO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.CONSULTA_LISTADO_CONTRATO_Result">
+          <ScalarProperty Name="IDCONTRATOATP" ColumnName="IDCONTRATOATP" />
+          <ScalarProperty Name="CODIGOREGIONTERRITORIOCONTRATO" ColumnName="CODIGOREGIONTERRITORIOCONTRATO" />
+          <ScalarProperty Name="RUTPROVEEDOR" ColumnName="RUTPROVEEDOR" />
+          <ScalarProperty Name="DVPROVEDIGITOVERIFICADORPROVEEDOR" ColumnName="DVPROVEDIGITOVERIFICADORPROVEEDOR" />
+          <ScalarProperty Name="NOMBREPROVEEDOR" ColumnName="NOMBREPROVEEDOR" />
+          <ScalarProperty Name="MONTOCONTRATOCONTRATOATP" ColumnName="MONTOCONTRATOCONTRATOATP" />
+          <ScalarProperty Name="TIPOSERVICIOMAESTROTIPOSERVICIOIGT" ColumnName="TIPOSERVICIOMAESTROTIPOSERVICIOIGT" />
+          <ScalarProperty Name="FECHACREACIONCONTRATOATP" ColumnName="FECHACREACIONCONTRATOATP" />
+          <ScalarProperty Name="CONTRATOS" ColumnName="CONTRATOS" />
+          <ScalarProperty Name="AGNOPRESUPUESTOCONTRATOATP" ColumnName="AGNOPRESUPUESTOCONTRATOATP" />
+          <ScalarProperty Name="NUMERORESOLUCIONCONTRATOATP" ColumnName="NUMERORESOLUCIONCONTRATOATP" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOCONTRATO" ColumnName="NOMBREMAESTROESTADOCONTRATO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SNAT_SIMPLIFICADO_V_CONSULTA_ANO_CONTRATO_ATP" FunctionName="DB_SNAT_VModel.Store.SNAT_SIMPLIFICADO_V_CONSULTA_ANO_CONTRATO_ATP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.SNAT_SIMPLIFICADO_V_CONSULTA_ANO_CONTRATO_ATP_Result">
+          <ScalarProperty Name="AGNOPRESUPUESTOCONTRATOATP" ColumnName="AGNOPRESUPUESTOCONTRATOATP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SNAT_SIMPLIFICADO_V_CONSULTA_SERVICIOS_SOLICITUD_ATP" FunctionName="DB_SNAT_VModel.Store.SNAT_SIMPLIFICADO_V_CONSULTA_SERVICIOS_SOLICITUD_ATP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.SNAT_SIMPLIFICADO_V_CONSULTA_SERVICIOS_SOLICITUD_ATP_Result">
+          <ScalarProperty Name="NOMBREMAESTROSERVICIO" ColumnName="NOMBREMAESTROSERVICIO" />
+          <ScalarProperty Name="MONTOPAGOTIPOACTIVIDADMONTO" ColumnName="MONTOPAGOTIPOACTIVIDADMONTO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CONSULTA_LISTADO_SOLICITUD" FunctionName="DB_SNAT_VModel.Store.CONSULTA_LISTADO_SOLICITUD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.CONSULTA_LISTADO_SOLICITUD_Result">
+          <ScalarProperty Name="IDSOLICITUDATP" ColumnName="IDSOLICITUDATP" />
+          <ScalarProperty Name="NUMERORESOLUCIONCONTRATOATP" ColumnName="NUMERORESOLUCIONCONTRATOATP" />
+          <ScalarProperty Name="CODIGOREGIONSOLICITUDPAGOATP" ColumnName="CODIGOREGIONSOLICITUDPAGOATP" />
+          <ScalarProperty Name="RUTPROVEEDOR" ColumnName="RUTPROVEEDOR" />
+          <ScalarProperty Name="DVPROVEDIGITOVERIFICADORPROVEEDOR" ColumnName="DVPROVEDIGITOVERIFICADORPROVEEDOR" />
+          <ScalarProperty Name="NOMBREPROVEEDOR" ColumnName="NOMBREPROVEEDOR" />
+          <ScalarProperty Name="MONTOTOTALAPAGARSOLICITUDPAGOATP" ColumnName="MONTOTOTALAPAGARSOLICITUDPAGOATP" />
+          <ScalarProperty Name="TIPOSERVICIOTIPOACTIVIDADMONTO" ColumnName="TIPOSERVICIOTIPOACTIVIDADMONTO" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOSOLICITUD" ColumnName="NOMBREMAESTROESTADOSOLICITUD" />
+          <ScalarProperty Name="FECHACREACIONSOLICITUDPAGOATP" ColumnName="FECHACREACIONSOLICITUDPAGOATP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CONSULTA_PRESUPUESTO_REGIONAL_IGTD" FunctionName="DB_SNAT_VModel.Store.CONSULTA_PRESUPUESTO_REGIONAL_IGTD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.CONSULTA_PRESUPUESTO_REGIONAL_IGTD_Result">
+          <ScalarProperty Name="NUMERORESOLUCIONPRESUPUESTARIA" ColumnName="NUMERORESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="ANORESOLUCIONPRESUPUESTARIA" ColumnName="ANORESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="FECHAPRESUPUESTOREGIONAL" ColumnName="FECHAPRESUPUESTOREGIONAL" />
+          <ScalarProperty Name="ESTADORESOLUCIONPRESUPUESTARIA" ColumnName="ESTADORESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="NOMBREARCHIVOPRESUPUESTO" ColumnName="NOMBREARCHIVOPRESUPUESTO" />
+          <ScalarProperty Name="CODIGOREGIONPRESUPUESTOREGIONAL" ColumnName="CODIGOREGIONPRESUPUESTOREGIONAL" />
+          <ScalarProperty Name="MONTOPRESUPUESTOREGIONAL" ColumnName="MONTOPRESUPUESTOREGIONAL" />
+          <ScalarProperty Name="MONTOCONTRATOSAT" ColumnName="MONTOCONTRATOSAT" />
+          <ScalarProperty Name="MONTOCONTRATOSET" ColumnName="MONTOCONTRATOSET" />
+          <ScalarProperty Name="PRESUPUESTODISPONIBLE" ColumnName="PRESUPUESTODISPONIBLE" />
+          <ScalarProperty Name="SATSOLICITUDESCOMPROMETIDAS" ColumnName="SATSOLICITUDESCOMPROMETIDAS" />
+          <ScalarProperty Name="SETSOLICITUDESCOMPROMETIDAS" ColumnName="SETSOLICITUDESCOMPROMETIDAS" />
+          <ScalarProperty Name="SETSOLICITUDESPAGADAS" ColumnName="SETSOLICITUDESPAGADAS" />
+          <ScalarProperty Name="SATSOLICITUDESPAGADAS" ColumnName="SATSOLICITUDESPAGADAS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CABECERA_AUTORIZACION_PAGO" FunctionName="DB_SNAT_VModel.Store.CABECERA_AUTORIZACION_PAGO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.CABECERA_AUTORIZACION_PAGO_Result">
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+          <ScalarProperty Name="CODIGOPROYECTOINFORMACIONPROYECTO" ColumnName="CODIGOPROYECTOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="NOMBREPROYECTOINFORMACIONPROYECTO" ColumnName="NOMBREPROYECTOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="CODIGOPROVINCIADIRECCION" ColumnName="CODIGOPROVINCIADIRECCION" />
+          <ScalarProperty Name="CODIGOCOMUNADIRECCION" ColumnName="CODIGOCOMUNADIRECCION" />
+          <ScalarProperty Name="NOMBRE_SERVICIO" ColumnName="NOMBRE_SERVICIO" />
+          <ScalarProperty Name="CANTIDAD_PARCIALIDAD_POR_SERVICIO" ColumnName="CANTIDAD_PARCIALIDAD_POR_SERVICIO" />
+          <ScalarProperty Name="PAGO_TOTAL_POR_SERVICIO" ColumnName="PAGO_TOTAL_POR_SERVICIO" />
+          <ScalarProperty Name="MONTO_FTO_TOTAL_UF" ColumnName="MONTO_FTO_TOTAL_UF" />
+          <ScalarProperty Name="MONTO_A_PAGO_FTO" ColumnName="MONTO_A_PAGO_FTO" />
+          <ScalarProperty Name="PAGO_ARANCELES_UF" ColumnName="PAGO_ARANCELES_UF" />
+          <ScalarProperty Name="MONTO_A_PAGO_ARANCELES_UF" ColumnName="MONTO_A_PAGO_ARANCELES_UF" />
+          <ScalarProperty Name="MONTO_AT_UF" ColumnName="MONTO_AT_UF" />
+          <ScalarProperty Name="MONTO_A_PAGO" ColumnName="MONTO_A_PAGO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_GRILLA_PDF" FunctionName="DB_SNAT_VModel.Store.BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_GRILLA_PDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_GRILLA_PDF_Result">
+          <ScalarProperty Name="NUMEROSOLICITUDSOLICITUDAUTORIZACION" ColumnName="NUMEROSOLICITUDSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="CODIGOPROYECTOSOLICITUDAUTORIZACION" ColumnName="CODIGOPROYECTOSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="NOMBREPROYECTOSOLICITUDAUTORIZACION" ColumnName="NOMBREPROYECTOSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="UBICACIONCOMUNASOLICITUDAUTORIZACION" ColumnName="UBICACIONCOMUNASOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S1SOLICITUDAUTORIZACION" ColumnName="S1SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S2SOLICITUDAUTORIZACION" ColumnName="S2SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S3SOLICITUDAUTORIZACION" ColumnName="S3SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S4SOLICITUDAUTORIZACION" ColumnName="S4SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S5SOLICITUDAUTORIZACION" ColumnName="S5SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S6SOLICITUDAUTORIZACION" ColumnName="S6SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S7SOLICITUDAUTORIZACION" ColumnName="S7SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S8SOLICITUDAUTORIZACION" ColumnName="S8SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S9SOLICITUDAUTORIZACION" ColumnName="S9SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S10SOLICITUDAUTORIZACION" ColumnName="S10SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="FTOSOLICITUDAUTORIZACION" ColumnName="FTOSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="MONTOFTOTOTALSOLICITUDAUTORIZACION" ColumnName="MONTOFTOTOTALSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="MONTOATSOLICITUDAUTORIZACION" ColumnName="MONTOATSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="MONTOAPAGOSOLICITUDAUTORIZACION" ColumnName="MONTOAPAGOSOLICITUDAUTORIZACION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO" FunctionName="DB_SNAT_VModel.Store.BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.BUSQUEDA_DETALLE_AUTORIZACION_DE_PAGO_Result">
+          <ScalarProperty Name="IDAUTORIZACION" ColumnName="IDAUTORIZACION" />
+          <ScalarProperty Name="CODIGOREGIONDIRECCION" ColumnName="CODIGOREGIONDIRECCION" />
+          <ScalarProperty Name="NROAUTORIZACION" ColumnName="NROAUTORIZACION" />
+          <ScalarProperty Name="FECHAINGRESOAUTORIZACION" ColumnName="FECHAINGRESOAUTORIZACION" />
+          <ScalarProperty Name="NROPROYECTOS" ColumnName="NROPROYECTOS" />
+          <ScalarProperty Name="NOMBREMAESTROLLAMADO" ColumnName="NOMBREMAESTROLLAMADO" />
+          <ScalarProperty Name="CANTIDADSOLICITUDES" ColumnName="CANTIDADSOLICITUDES" />
+          <ScalarProperty Name="NOMBREPROVEEDOR" ColumnName="NOMBREPROVEEDOR" />
+          <ScalarProperty Name="RutProveedor" ColumnName="RutProveedor" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOAUTORIZACION" ColumnName="NOMBREMAESTROESTADOAUTORIZACION" />
+          <ScalarProperty Name="MONTOTOTALAUTORIZACION" ColumnName="MONTOTOTALAUTORIZACION" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOPROVEEDOR" ColumnName="NOMBREMAESTROTIPOPROVEEDOR" />
+          <ScalarProperty Name="USUARIORESPONSABLESOLICITUDPAGO" ColumnName="USUARIORESPONSABLESOLICITUDPAGO" />
+          <ScalarProperty Name="NOMBREMAESTROPROGRAMA" ColumnName="NOMBREMAESTROPROGRAMA" />
+          <ScalarProperty Name="USUARIORESPONSABLEAUTORIZACION" ColumnName="USUARIORESPONSABLEAUTORIZACION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INSERTA_GENERACION_SOLICITUD_PAGO" FunctionName="DB_SNAT_VModel.Store.INSERTA_GENERACION_SOLICITUD_PAGO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.INSERTA_GENERACION_SOLICITUD_PAGO_Result">
+          <ScalarProperty Name="ERR" ColumnName="ERR" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INSERTA_SOLICITUD_ATP" FunctionName="DB_SNAT_VModel.Store.INSERTA_SOLICITUD_ATP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.INSERTA_SOLICITUD_ATP_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AUTORIZACION">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.AUTORIZACION">
+        <MappingFragment StoreEntitySet="AUTORIZACION">
+          <ScalarProperty Name="VALORUFPESOAUTORIZACION" ColumnName="VALORUFPESOAUTORIZACION" />
+          <ScalarProperty Name="FECHAINYECCIONAUTORIZACION" ColumnName="FECHAINYECCIONAUTORIZACION" />
+          <ScalarProperty Name="FECHAUFAUTORIZACION" ColumnName="FECHAUFAUTORIZACION" />
+          <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+          <ScalarProperty Name="IDMAESTROTITULO" ColumnName="IDMAESTROTITULO" />
+          <ScalarProperty Name="IDMAESTROTIPOLOGIA" ColumnName="IDMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="IDMAESTROMODALIDAD" ColumnName="IDMAESTROMODALIDAD" />
+          <ScalarProperty Name="NUMEROAUTORIZACION" ColumnName="NUMEROAUTORIZACION" />
+          <ScalarProperty Name="CODIGOREGIONAUTORIZACION" ColumnName="CODIGOREGIONAUTORIZACION" />
+          <ScalarProperty Name="FECHAINGRESOAUTORIZACION" ColumnName="FECHAINGRESOAUTORIZACION" />
+          <ScalarProperty Name="USUARIORESPONSABLEAUTORIZACION" ColumnName="USUARIORESPONSABLEAUTORIZACION" />
+          <ScalarProperty Name="MONTOTOTALAUTORIZACION" ColumnName="MONTOTOTALAUTORIZACION" />
+          <ScalarProperty Name="CANTIDADSOLICITUDPAGOAUTORIZACION" ColumnName="CANTIDADSOLICITUDPAGOAUTORIZACION" />
+          <ScalarProperty Name="CANTIDADPROYECTOSAUTORIZACION" ColumnName="CANTIDADPROYECTOSAUTORIZACION" />
+          <ScalarProperty Name="ESPECIALAUTORIZACION" ColumnName="ESPECIALAUTORIZACION" />
+          <ScalarProperty Name="IDMAESTROESTADOAUTORIZACION" ColumnName="IDMAESTROESTADOAUTORIZACION" />
+          <ScalarProperty Name="IDAUTORIZACION" ColumnName="IDAUTORIZACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BENEFICIARIO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.BENEFICIARIO">
+        <MappingFragment StoreEntitySet="BENEFICIARIO">
+          <ScalarProperty Name="IDMAESTROESTADOBENEFICIARIO" ColumnName="IDMAESTROESTADOBENEFICIARIO" />
+          <ScalarProperty Name="FECHAADSCRIPCIONPROYECTOBENEFICIARIO" ColumnName="FECHAADSCRIPCIONPROYECTOBENEFICIARIO" />
+          <ScalarProperty Name="FECHATERMINOVIGENCIASUBSIDIOBENEFICIARIO" ColumnName="FECHATERMINOVIGENCIASUBSIDIOBENEFICIARIO" />
+          <ScalarProperty Name="FECHAINICIOVIGENCIASUBSIDIOBENEFICIARIO" ColumnName="FECHAINICIOVIGENCIASUBSIDIOBENEFICIARIO" />
+          <ScalarProperty Name="IDMAESTROALTERNATIVAPOSTULACION" ColumnName="IDMAESTROALTERNATIVAPOSTULACION" />
+          <ScalarProperty Name="ESTADOBENEFICIARIO" ColumnName="ESTADOBENEFICIARIO" />
+          <ScalarProperty Name="APELLIDOMATERNOBENEFICIARIO" ColumnName="APELLIDOMATERNOBENEFICIARIO" />
+          <ScalarProperty Name="APELLIDOPATERNOBENEFICIARIO" ColumnName="APELLIDOPATERNOBENEFICIARIO" />
+          <ScalarProperty Name="NOMBREBENEFICIARIO" ColumnName="NOMBREBENEFICIARIO" />
+          <ScalarProperty Name="DIGITOVERIFICADORBENEFICIARIO" ColumnName="DIGITOVERIFICADORBENEFICIARIO" />
+          <ScalarProperty Name="RUTBENEFICIARIO" ColumnName="RUTBENEFICIARIO" />
+          <ScalarProperty Name="IDINFORMACIONPROYECTO" ColumnName="IDINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDDIRECCION" ColumnName="IDDIRECCION" />
+          <ScalarProperty Name="IDBENEFICIARIO" ColumnName="IDBENEFICIARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CARACTERISTICAS_ESPECIALES">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.CARACTERISTICAS_ESPECIALES">
+        <MappingFragment StoreEntitySet="CARACTERISTICAS_ESPECIALES">
+          <ScalarProperty Name="IDMAESTROSUBMODALIDAD" ColumnName="IDMAESTROSUBMODALIDAD" />
+          <ScalarProperty Name="IDMAESTROCLASE" ColumnName="IDMAESTROCLASE" />
+          <ScalarProperty Name="IDINFORMACIONPROYECTO" ColumnName="IDINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDMAESTROTIPOLOGIA" ColumnName="IDMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="IDMAESTROMODALIDAD" ColumnName="IDMAESTROMODALIDAD" />
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="IDCARACTERISTICASESPECIALES" ColumnName="IDCARACTERISTICASESPECIALES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTRATO_ATP">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.CONTRATO_ATP">
+        <MappingFragment StoreEntitySet="CONTRATO_ATP">
+          <ScalarProperty Name="IDMAESTROESTADOCONTRATO" ColumnName="IDMAESTROESTADOCONTRATO" />
+          <ScalarProperty Name="IDMAESTROTIPOPROVEEDOR" ColumnName="IDMAESTROTIPOPROVEEDOR" />
+          <ScalarProperty Name="MONTOCONTRATOCONTRATOATP" ColumnName="MONTOCONTRATOCONTRATOATP" />
+          <ScalarProperty Name="FECHARESOLUCIONCONTRATOATP" ColumnName="FECHARESOLUCIONCONTRATOATP" />
+          <ScalarProperty Name="NOMBREARCHIVOCONTRATOATP" ColumnName="NOMBREARCHIVOCONTRATOATP" />
+          <ScalarProperty Name="FECHAINICIOCONTRATOATP" ColumnName="FECHAINICIOCONTRATOATP" />
+          <ScalarProperty Name="PLAZOEJECUCIONCONTRATOATP" ColumnName="PLAZOEJECUCIONCONTRATOATP" />
+          <ScalarProperty Name="USUARIOCONTRATOATP" ColumnName="USUARIOCONTRATOATP" />
+          <ScalarProperty Name="DESCRIPCIONPRODUCTOCONTRATOATP" ColumnName="DESCRIPCIONPRODUCTOCONTRATOATP" />
+          <ScalarProperty Name="PRODUCTOCONTRATOATP" ColumnName="PRODUCTOCONTRATOATP" />
+          <ScalarProperty Name="FECHAACTUALIZACIONCONTRATOATP" ColumnName="FECHAACTUALIZACIONCONTRATOATP" />
+          <ScalarProperty Name="FECHACREACIONCONTRATOATP" ColumnName="FECHACREACIONCONTRATOATP" />
+          <ScalarProperty Name="OBSERVACIONCONTRATOATP" ColumnName="OBSERVACIONCONTRATOATP" />
+          <ScalarProperty Name="AGNOPRESUPUESTOCONTRATOATP" ColumnName="AGNOPRESUPUESTOCONTRATOATP" />
+          <ScalarProperty Name="ARCHIVOCONTRATOATP" ColumnName="ARCHIVOCONTRATOATP" />
+          <ScalarProperty Name="NUMERORESOLUCIONCONTRATOATP" ColumnName="NUMERORESOLUCIONCONTRATOATP" />
+          <ScalarProperty Name="IDMAESTROTIPOSERVICIOIGT" ColumnName="IDMAESTROTIPOSERVICIOIGT" />
+          <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+          <ScalarProperty Name="IDPROPIEDADTERRENO" ColumnName="IDPROPIEDADTERRENO" />
+          <ScalarProperty Name="IDTERRITORIOCONTRATO" ColumnName="IDTERRITORIOCONTRATO" />
+          <ScalarProperty Name="IDCONTRATOATP" ColumnName="IDCONTRATOATP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONVALIDACION_PROGRAMA_SISTEMA">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.CONVALIDACION_PROGRAMA_SISTEMA">
+        <MappingFragment StoreEntitySet="CONVALIDACION_PROGRAMA_SISTEMA">
+          <ScalarProperty Name="ESTADOMAESTROPROGRAMACONVALIDACIONPROGRAMASISTEMA" ColumnName="ESTADOMAESTROPROGRAMACONVALIDACIONPROGRAMASISTEMA" />
+          <ScalarProperty Name="CODIGOPROGRAMAEXTERNOCONVALIDACIONPROGRAMASISTEMA" ColumnName="CODIGOPROGRAMAEXTERNOCONVALIDACIONPROGRAMASISTEMA" />
+          <ScalarProperty Name="IDMAESTROSISTEMA" ColumnName="IDMAESTROSISTEMA" />
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="IDCONVALIDACIONPROGRAMASISTEMA" ColumnName="IDCONVALIDACIONPROGRAMASISTEMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DIRECCION">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.DIRECCION">
+        <MappingFragment StoreEntitySet="DIRECCION">
+          <ScalarProperty Name="DESCRIPCIONDIRECCION" ColumnName="DESCRIPCIONDIRECCION" />
+          <ScalarProperty Name="CODIGOREGIONDIRECCION" ColumnName="CODIGOREGIONDIRECCION" />
+          <ScalarProperty Name="CODIGOPROVINCIADIRECCION" ColumnName="CODIGOPROVINCIADIRECCION" />
+          <ScalarProperty Name="CODIGOCOMUNADIRECCION" ColumnName="CODIGOCOMUNADIRECCION" />
+          <ScalarProperty Name="NUMERODIRECCION" ColumnName="NUMERODIRECCION" />
+          <ScalarProperty Name="IDDIRECCION" ColumnName="IDDIRECCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOMOLOGACION_INFORMACION_SISTEMA">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.HOMOLOGACION_INFORMACION_SISTEMA">
+        <MappingFragment StoreEntitySet="HOMOLOGACION_INFORMACION_SISTEMA">
+          <ScalarProperty Name="COLUMNADETALLETABLAHOMOLOGACIONINFORMACIONSISTEMA" ColumnName="COLUMNADETALLETABLAHOMOLOGACIONINFORMACIONSISTEMA" />
+          <ScalarProperty Name="COLUMNACODIGOTABLAHOMOLOGACIONINFORMACIONSISTEMA" ColumnName="COLUMNACODIGOTABLAHOMOLOGACIONINFORMACIONSISTEMA" />
+          <ScalarProperty Name="NOMBRETABLAHOMOLOGACIONINFORMACIONSISTEMA" ColumnName="NOMBRETABLAHOMOLOGACIONINFORMACIONSISTEMA" />
+          <ScalarProperty Name="CODIGOSISTEMAINTERNOHOMOLOGACIONINFORMACIONSISTEMA" ColumnName="CODIGOSISTEMAINTERNOHOMOLOGACIONINFORMACIONSISTEMA" />
+          <ScalarProperty Name="IDMAESTROINFORMACIONSISTEMAEXTERNO" ColumnName="IDMAESTROINFORMACIONSISTEMAEXTERNO" />
+          <ScalarProperty Name="IDHOMOLOGACIONINFORMACIONSISTEMA" ColumnName="IDHOMOLOGACIONINFORMACIONSISTEMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INFORMACION_PROYECTO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.INFORMACION_PROYECTO">
+        <MappingFragment StoreEntitySet="INFORMACION_PROYECTO">
+          <ScalarProperty Name="NOMBREUSUARIOOTORGAPERMISOINFORMACIONPROYECTO" ColumnName="NOMBREUSUARIOOTORGAPERMISOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="PERMISOUSUARIOADMINISTRATIVOINFORMACIONPROYECTO" ColumnName="PERMISOUSUARIOADMINISTRATIVOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="ESTADOAVANCEOBRAINFORMACIONPROYECTO" ColumnName="ESTADOAVANCEOBRAINFORMACIONPROYECTO" />
+          <ScalarProperty Name="AVANCEOBRAINFORMACIONPROYECTO" ColumnName="AVANCEOBRAINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDMAESTROBANCO" ColumnName="IDMAESTROBANCO" />
+          <ScalarProperty Name="IDMAESTROESTADOBENEFICIO" ColumnName="IDMAESTROESTADOBENEFICIO" />
+          <ScalarProperty Name="IDMAESTROESTADOPROYECTO" ColumnName="IDMAESTROESTADOPROYECTO" />
+          <ScalarProperty Name="AGNOFACTIBILIDADINFORMACIONPROYECTO" ColumnName="AGNOFACTIBILIDADINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDMAESTRORESOLUCION" ColumnName="IDMAESTRORESOLUCION" />
+          <ScalarProperty Name="NUMEROFAMILIASADSCRITASINFORMACIONPROYECTO" ColumnName="NUMEROFAMILIASADSCRITASINFORMACIONPROYECTO" />
+          <ScalarProperty Name="FECHAFACTIBILIZACIONINFORMACIONPROYECTO" ColumnName="FECHAFACTIBILIZACIONINFORMACIONPROYECTO" />
+          <ScalarProperty Name="MARCAFACTIBILIZACIONINFORMACIONPROYECTO" ColumnName="MARCAFACTIBILIZACIONINFORMACIONPROYECTO" />
+          <ScalarProperty Name="MARCALOCALIZACIONINFORMACIONPROYECTO" ColumnName="MARCALOCALIZACIONINFORMACIONPROYECTO" />
+          <ScalarProperty Name="MONTOSUBSIDIOBASEFACTIBILIDADINFORMACIONPROYECTO" ColumnName="MONTOSUBSIDIOBASEFACTIBILIDADINFORMACIONPROYECTO" />
+          <ScalarProperty Name="MONTOSUBSIDIOBASEINFORMACIONPROYECTO" ColumnName="MONTOSUBSIDIOBASEINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="CANTIDADBENEFICIARIOSINFORMACIONPROYECTO" ColumnName="CANTIDADBENEFICIARIOSINFORMACIONPROYECTO" />
+          <ScalarProperty Name="CANTIDADVIVIENDASINFORMACIONPROYECTO" ColumnName="CANTIDADVIVIENDASINFORMACIONPROYECTO" />
+          <ScalarProperty Name="FECHARESOLUCIONATINFORMACIONPROYECTO" ColumnName="FECHARESOLUCIONATINFORMACIONPROYECTO" />
+          <ScalarProperty Name="RESOLUCIONATINFORMACIONPROYECTO" ColumnName="RESOLUCIONATINFORMACIONPROYECTO" />
+          <ScalarProperty Name="ESTADOPROYECTOINFORMACIONPROYECTO" ColumnName="ESTADOPROYECTOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="FECHACALIFICACIONDEFINITIVAINFORMACIONPROYECTO" ColumnName="FECHACALIFICACIONDEFINITIVAINFORMACIONPROYECTO" />
+          <ScalarProperty Name="NOMBREPROYECTOINFORMACIONPROYECTO" ColumnName="NOMBREPROYECTOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="CODIGOPROYECTOINFORMACIONPROYECTO" ColumnName="CODIGOPROYECTOINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDMAESTROALTERNATIVAPOSTULACION" ColumnName="IDMAESTROALTERNATIVAPOSTULACION" />
+          <ScalarProperty Name="IDMAESTROLLAMADO" ColumnName="IDMAESTROLLAMADO" />
+          <ScalarProperty Name="IDMAESTROMODALIDAD" ColumnName="IDMAESTROMODALIDAD" />
+          <ScalarProperty Name="IDMAESTROTITULO" ColumnName="IDMAESTROTITULO" />
+          <ScalarProperty Name="IDDIRECCION" ColumnName="IDDIRECCION" />
+          <ScalarProperty Name="IDINFORMACIONPROYECTO" ColumnName="IDINFORMACIONPROYECTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INFORMACION_PROYECTO_SOLICITUD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.INFORMACION_PROYECTO_SOLICITUD">
+        <MappingFragment StoreEntitySet="INFORMACION_PROYECTO_SOLICITUD">
+          <ScalarProperty Name="CodigoInternoSNATInformacionProyectoSolicitud" ColumnName="CodigoInternoSNATInformacionProyectoSolicitud" />
+          <ScalarProperty Name="NOMBREUSUARIOOTORGAPERMISOINFORMACIONPROYECTOSOLICITUD" ColumnName="NOMBREUSUARIOOTORGAPERMISOINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="PERMISOUSUARIOADMINISTRATIVOINFORMACIONPROYECTOSOLICITUD" ColumnName="PERMISOUSUARIOADMINISTRATIVOINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="ESTADOAVANCEOBRAINFORMACIONPROYECTOSOLICITUD" ColumnName="ESTADOAVANCEOBRAINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="AVANCEOBRAINFORMACIONPROYECTOSOLICITUD" ColumnName="AVANCEOBRAINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="IDMAESTROBANCO" ColumnName="IDMAESTROBANCO" />
+          <ScalarProperty Name="IDMAESTROESTADOBENEFICIO" ColumnName="IDMAESTROESTADOBENEFICIO" />
+          <ScalarProperty Name="FECHAINGRESOINFORMACIONPROYECTOSOLICITUD" ColumnName="FECHAINGRESOINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="IDMAESTROESTADOPROYECTO" ColumnName="IDMAESTROESTADOPROYECTO" />
+          <ScalarProperty Name="AGNOFACTIBILIDADINFORMACIONPROYECTOSOLICITUD" ColumnName="AGNOFACTIBILIDADINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="NUMEROFAMILIASADSCRITASINFORMACIONPROYECTOSOLICITUD" ColumnName="NUMEROFAMILIASADSCRITASINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="FECHAFACTIBILIZACIONINFORMACIONPROYECTOSOLICITUD" ColumnName="FECHAFACTIBILIZACIONINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="MARCAFACTIBILIZACIONINFORMACIONPROYECTOSOLICITUD" ColumnName="MARCAFACTIBILIZACIONINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="MARCALOCALIZACIONINFORMACIONPROYECTOSOLICITUD" ColumnName="MARCALOCALIZACIONINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="MONTOSUBSIDIOBASEFACTIBILIDADINFORMACIONPROYECTOSOLICITUD" ColumnName="MONTOSUBSIDIOBASEFACTIBILIDADINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="MONTOSUBSIDIOBASEINFORMACIONPROYECTOSOLICITUD" ColumnName="MONTOSUBSIDIOBASEINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="CANTIDADBENEFICIARIOSINFORMACIONPROYECTOSOLICITUD" ColumnName="CANTIDADBENEFICIARIOSINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="CANTIDADVIVIENDASINFORMACIONPROYECTOSOLICITUD" ColumnName="CANTIDADVIVIENDASINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="FECHARESOLUCIONATINFORMACIONPROYECTOSOLICITUD" ColumnName="FECHARESOLUCIONATINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="RESOLUCIONATINFORMACIONPROYECTOSOLICITUD" ColumnName="RESOLUCIONATINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="FECHACALIFICACIONDEFINITIVAINFORMACIONPROYECTOSOLICITUD" ColumnName="FECHACALIFICACIONDEFINITIVAINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="NOMBREPROYECTOINFORMACIONPROYECTOSOLICITUD" ColumnName="NOMBREPROYECTOINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="CODIGOPROYECTOINFORMACIONPROYECTOSOLICITUD" ColumnName="CODIGOPROYECTOINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="IDMAESTROALTERNATIVAPOSTULACION" ColumnName="IDMAESTROALTERNATIVAPOSTULACION" />
+          <ScalarProperty Name="IDMAESTROTIPOLOGIA" ColumnName="IDMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="IDDIRECCION" ColumnName="IDDIRECCION" />
+          <ScalarProperty Name="IDMAESTRORESOLUCION" ColumnName="IDMAESTRORESOLUCION" />
+          <ScalarProperty Name="IDMAESTROTITULO" ColumnName="IDMAESTROTITULO" />
+          <ScalarProperty Name="IDMAESTROMODALIDAD" ColumnName="IDMAESTROMODALIDAD" />
+          <ScalarProperty Name="IDMAESTROLLAMADO" ColumnName="IDMAESTROLLAMADO" />
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="IDINFORMACIONPROYECTO" ColumnName="IDINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDINFORMACIONPROYECTOSOLICITUD" ColumnName="IDINFORMACIONPROYECTOSOLICITUD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_ALTERNATIVA_POSTULACION">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_ALTERNATIVA_POSTULACION">
+        <MappingFragment StoreEntitySet="MAESTRO_ALTERNATIVA_POSTULACION">
+          <ScalarProperty Name="ESTADOMAESTROALTERNATIVAPOSTULACION" ColumnName="ESTADOMAESTROALTERNATIVAPOSTULACION" />
+          <ScalarProperty Name="NOMBREMAESTROALTERNATIVAPOSTULACION" ColumnName="NOMBREMAESTROALTERNATIVAPOSTULACION" />
+          <ScalarProperty Name="IDMAESTROALTERNATIVAPOSTULACION" ColumnName="IDMAESTROALTERNATIVAPOSTULACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_BANCO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_BANCO">
+        <MappingFragment StoreEntitySet="MAESTRO_BANCO">
+          <ScalarProperty Name="ESTADOMAESTROBANCO" ColumnName="ESTADOMAESTROBANCO" />
+          <ScalarProperty Name="NOMBREMAESTROBANCO" ColumnName="NOMBREMAESTROBANCO" />
+          <ScalarProperty Name="IDMAESTROBANCO" ColumnName="IDMAESTROBANCO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_CLASE">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_CLASE">
+        <MappingFragment StoreEntitySet="MAESTRO_CLASE">
+          <ScalarProperty Name="ESTADOMAESTROCLASE" ColumnName="ESTADOMAESTROCLASE" />
+          <ScalarProperty Name="NOMBREMAESTROCLASE" ColumnName="NOMBREMAESTROCLASE" />
+          <ScalarProperty Name="IDMAESTROCLASE" ColumnName="IDMAESTROCLASE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_ESTADO_AUTORIZACION">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_ESTADO_AUTORIZACION">
+        <MappingFragment StoreEntitySet="MAESTRO_ESTADO_AUTORIZACION">
+          <ScalarProperty Name="ESTADOMAESTROESTADOAUTORIZACION" ColumnName="ESTADOMAESTROESTADOAUTORIZACION" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOAUTORIZACION" ColumnName="NOMBREMAESTROESTADOAUTORIZACION" />
+          <ScalarProperty Name="IDMAESTROESTADOAUTORIZACION" ColumnName="IDMAESTROESTADOAUTORIZACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_ESTADO_BENEFICIARIO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_ESTADO_BENEFICIARIO">
+        <MappingFragment StoreEntitySet="MAESTRO_ESTADO_BENEFICIARIO">
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="ESTADOMAESTROESTADOBENEFICIARIO" ColumnName="ESTADOMAESTROESTADOBENEFICIARIO" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOBENEFICIARIO" ColumnName="NOMBREMAESTROESTADOBENEFICIARIO" />
+          <ScalarProperty Name="IDMAESTROESTADOBENEFICIARIO" ColumnName="IDMAESTROESTADOBENEFICIARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_ESTADO_BENEFICIO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_ESTADO_BENEFICIO">
+        <MappingFragment StoreEntitySet="MAESTRO_ESTADO_BENEFICIO">
+          <ScalarProperty Name="ESTADOMAESTROESTADOBENEFICIO" ColumnName="ESTADOMAESTROESTADOBENEFICIO" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOBENEFICIO" ColumnName="NOMBREMAESTROESTADOBENEFICIO" />
+          <ScalarProperty Name="IDMAESTROESTADOBENEFICIO" ColumnName="IDMAESTROESTADOBENEFICIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_ESTADO_CONTRATO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_ESTADO_CONTRATO">
+        <MappingFragment StoreEntitySet="MAESTRO_ESTADO_CONTRATO">
+          <ScalarProperty Name="ESTADOMAESTROESTADOCONTRATO" ColumnName="ESTADOMAESTROESTADOCONTRATO" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOCONTRATO" ColumnName="NOMBREMAESTROESTADOCONTRATO" />
+          <ScalarProperty Name="IDMAESTROESTADOCONTRATO" ColumnName="IDMAESTROESTADOCONTRATO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_ESTADO_PROYECTO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_ESTADO_PROYECTO">
+        <MappingFragment StoreEntitySet="MAESTRO_ESTADO_PROYECTO">
+          <ScalarProperty Name="ESTADOMAESTROESTADOPROYECTO" ColumnName="ESTADOMAESTROESTADOPROYECTO" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOPROYECTO" ColumnName="NOMBREMAESTROESTADOPROYECTO" />
+          <ScalarProperty Name="IDMAESTROESTADOPROYECTO" ColumnName="IDMAESTROESTADOPROYECTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_ESTADO_SOLICITUD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_ESTADO_SOLICITUD">
+        <MappingFragment StoreEntitySet="MAESTRO_ESTADO_SOLICITUD">
+          <ScalarProperty Name="ESTADOMAESTROESTADOSOLICITUD" ColumnName="ESTADOMAESTROESTADOSOLICITUD" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOSOLICITUD" ColumnName="NOMBREMAESTROESTADOSOLICITUD" />
+          <ScalarProperty Name="IDMAESTROESTADOSOLICITUD" ColumnName="IDMAESTROESTADOSOLICITUD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_INCREMENTO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_INCREMENTO">
+        <MappingFragment StoreEntitySet="MAESTRO_INCREMENTO">
+          <ScalarProperty Name="ESTADOMAESTROINCREMENTO" ColumnName="ESTADOMAESTROINCREMENTO" />
+          <ScalarProperty Name="NOMBREMAESTROINCREMENTO" ColumnName="NOMBREMAESTROINCREMENTO" />
+          <ScalarProperty Name="IDMAESTROINCREMENTO" ColumnName="IDMAESTROINCREMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_INFORMACION_SISTEMA_EXTERNO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_INFORMACION_SISTEMA_EXTERNO">
+        <MappingFragment StoreEntitySet="MAESTRO_INFORMACION_SISTEMA_EXTERNO">
+          <ScalarProperty Name="VALORIDMAESTROINFORMACIONSISTEMAEXTERNO" ColumnName="VALORIDMAESTROINFORMACIONSISTEMAEXTERNO" />
+          <ScalarProperty Name="DESCRIPCIONMAESTROINFORMACIONSISTEMAEXTERNO" ColumnName="DESCRIPCIONMAESTROINFORMACIONSISTEMAEXTERNO" />
+          <ScalarProperty Name="IDMAESTROINFORMACIONSISTEMAEXTERNO" ColumnName="IDMAESTROINFORMACIONSISTEMAEXTERNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_LLAMADO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_LLAMADO">
+        <MappingFragment StoreEntitySet="MAESTRO_LLAMADO">
+          <ScalarProperty Name="ESTADOMAESTROLLAMADO" ColumnName="ESTADOMAESTROLLAMADO" />
+          <ScalarProperty Name="NOMBREMAESTROLLAMADO" ColumnName="NOMBREMAESTROLLAMADO" />
+          <ScalarProperty Name="IDMAESTROLLAMADO" ColumnName="IDMAESTROLLAMADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_MODALIDAD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_MODALIDAD">
+        <MappingFragment StoreEntitySet="MAESTRO_MODALIDAD">
+          <ScalarProperty Name="ESTADOMAESTROMODALIDAD" ColumnName="ESTADOMAESTROMODALIDAD" />
+          <ScalarProperty Name="NOMBREMAESTROMODALIDAD" ColumnName="NOMBREMAESTROMODALIDAD" />
+          <ScalarProperty Name="IDMAESTROMODALIDAD" ColumnName="IDMAESTROMODALIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_PARCIALIDAD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_PARCIALIDAD">
+        <MappingFragment StoreEntitySet="MAESTRO_PARCIALIDAD">
+          <ScalarProperty Name="ESTADOMAESTROPARCIALIDAD" ColumnName="ESTADOMAESTROPARCIALIDAD" />
+          <ScalarProperty Name="NOMBREMAESTROPARCIALIDAD" ColumnName="NOMBREMAESTROPARCIALIDAD" />
+          <ScalarProperty Name="IDMAESTROPARCIALIDAD" ColumnName="IDMAESTROPARCIALIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_PROGRAMA">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_PROGRAMA">
+        <MappingFragment StoreEntitySet="MAESTRO_PROGRAMA">
+          <ScalarProperty Name="CODIGOENTRAZABILIDAD" ColumnName="CODIGOENTRAZABILIDAD" />
+          <ScalarProperty Name="ESTADOMAESTROPROGRAMA" ColumnName="ESTADOMAESTROPROGRAMA" />
+          <ScalarProperty Name="NOMBREMAESTROPROGRAMA" ColumnName="NOMBREMAESTROPROGRAMA" />
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_RESOLUCION">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_RESOLUCION">
+        <MappingFragment StoreEntitySet="MAESTRO_RESOLUCION">
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="FECHAMAESTRORESOLUCION" ColumnName="FECHAMAESTRORESOLUCION" />
+          <ScalarProperty Name="ESTADOMAESTRORESOLUCION" ColumnName="ESTADOMAESTRORESOLUCION" />
+          <ScalarProperty Name="NOMBREMAESTRORESOLUCION" ColumnName="NOMBREMAESTRORESOLUCION" />
+          <ScalarProperty Name="IDMAESTRORESOLUCION" ColumnName="IDMAESTRORESOLUCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_SERVICIO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_SERVICIO">
+        <MappingFragment StoreEntitySet="MAESTRO_SERVICIO">
+          <ScalarProperty Name="NOMBREABREVIADOMAESTROSERVICIO" ColumnName="NOMBREABREVIADOMAESTROSERVICIO" />
+          <ScalarProperty Name="ESTADOMAESTROSERVICIO" ColumnName="ESTADOMAESTROSERVICIO" />
+          <ScalarProperty Name="NOMBREMAESTROSERVICIO" ColumnName="NOMBREMAESTROSERVICIO" />
+          <ScalarProperty Name="IDMAESTROSERVICIO" ColumnName="IDMAESTROSERVICIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_SISTEMA">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_SISTEMA">
+        <MappingFragment StoreEntitySet="MAESTRO_SISTEMA">
+          <ScalarProperty Name="ESTADOMAESTROSISTEMA" ColumnName="ESTADOMAESTROSISTEMA" />
+          <ScalarProperty Name="NOMBREMAESTROSISTEMA" ColumnName="NOMBREMAESTROSISTEMA" />
+          <ScalarProperty Name="IDMAESTROSISTEMA" ColumnName="IDMAESTROSISTEMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_SUB_MODALIDAD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_SUB_MODALIDAD">
+        <MappingFragment StoreEntitySet="MAESTRO_SUB_MODALIDAD">
+          <ScalarProperty Name="ESTADOMAESTROSUBMODALIDAD" ColumnName="ESTADOMAESTROSUBMODALIDAD" />
+          <ScalarProperty Name="NOMBREMAESTROSUBMODALIDAD" ColumnName="NOMBREMAESTROSUBMODALIDAD" />
+          <ScalarProperty Name="IDMAESTROSUBMODALIDAD" ColumnName="IDMAESTROSUBMODALIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_TIPO_DESTINO_PAGO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_TIPO_DESTINO_PAGO">
+        <MappingFragment StoreEntitySet="MAESTRO_TIPO_DESTINO_PAGO">
+          <ScalarProperty Name="ESTADOMAESTROTIPODESTINOPAGO" ColumnName="ESTADOMAESTROTIPODESTINOPAGO" />
+          <ScalarProperty Name="NOMBREMAESTROTIPODESTINOPAGO" ColumnName="NOMBREMAESTROTIPODESTINOPAGO" />
+          <ScalarProperty Name="IDMAESTROTIPODESTINOPAGO" ColumnName="IDMAESTROTIPODESTINOPAGO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_TIPO_INGRESO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_TIPO_INGRESO">
+        <MappingFragment StoreEntitySet="MAESTRO_TIPO_INGRESO">
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="ESTADOMAESTROTIPOINGRESO" ColumnName="ESTADOMAESTROTIPOINGRESO" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOINGRESO" ColumnName="NOMBREMAESTROTIPOINGRESO" />
+          <ScalarProperty Name="IDMAESTROTIPOINGRESO" ColumnName="IDMAESTROTIPOINGRESO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_TIPO_PAGO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_TIPO_PAGO">
+        <MappingFragment StoreEntitySet="MAESTRO_TIPO_PAGO">
+          <ScalarProperty Name="ESTADOMAESTROTIPOPAGO" ColumnName="ESTADOMAESTROTIPOPAGO" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOPAGO" ColumnName="NOMBREMAESTROTIPOPAGO" />
+          <ScalarProperty Name="IDMAESTROTIPOPAGO" ColumnName="IDMAESTROTIPOPAGO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_TIPO_PROVEEDOR">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_TIPO_PROVEEDOR">
+        <MappingFragment StoreEntitySet="MAESTRO_TIPO_PROVEEDOR">
+          <ScalarProperty Name="IDMAESTROTIPOPROVEEDORSISTEMA" ColumnName="IDMAESTROTIPOPROVEEDORSISTEMA" />
+          <ScalarProperty Name="ESTADOMAESTROTIPOPROVEEDOR" ColumnName="ESTADOMAESTROTIPOPROVEEDOR" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOPROVEEDOR" ColumnName="NOMBREMAESTROTIPOPROVEEDOR" />
+          <ScalarProperty Name="IDMAESTROTIPOPROVEEDOR" ColumnName="IDMAESTROTIPOPROVEEDOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_TIPO_PROVEEDOR_SISTEMA">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_TIPO_PROVEEDOR_SISTEMA">
+        <MappingFragment StoreEntitySet="MAESTRO_TIPO_PROVEEDOR_SISTEMA">
+          <ScalarProperty Name="ESTADOMAESTROTIPOPROVEEDORSISTEMA" ColumnName="ESTADOMAESTROTIPOPROVEEDORSISTEMA" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOPROVEEDORSISTEMA" ColumnName="NOMBREMAESTROTIPOPROVEEDORSISTEMA" />
+          <ScalarProperty Name="IDMAESTROTIPOPROVEEDORSISTEMA" ColumnName="IDMAESTROTIPOPROVEEDORSISTEMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_TIPO_SERVICIO_IGT">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_TIPO_SERVICIO_IGT">
+        <MappingFragment StoreEntitySet="MAESTRO_TIPO_SERVICIO_IGT">
+          <ScalarProperty Name="TIPOSERVICIOMAESTROTIPOSERVICIOIGT" ColumnName="TIPOSERVICIOMAESTROTIPOSERVICIOIGT" />
+          <ScalarProperty Name="ESTADOMAESTROTIPOSERVICIOIGT" ColumnName="ESTADOMAESTROTIPOSERVICIOIGT" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOSERVICIOIGT" ColumnName="NOMBREMAESTROTIPOSERVICIOIGT" />
+          <ScalarProperty Name="IDMAESTROTIPOSERVICIOIGT" ColumnName="IDMAESTROTIPOSERVICIOIGT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_TIPOLOGIA">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_TIPOLOGIA">
+        <MappingFragment StoreEntitySet="MAESTRO_TIPOLOGIA">
+          <ScalarProperty Name="NOMBREABREVIADOMAESTROTIPOLOGIA" ColumnName="NOMBREABREVIADOMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="ESTADOMAESTROTIPOLOGIA" ColumnName="ESTADOMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="NOMBREMAESTROTIPOLOGIA" ColumnName="NOMBREMAESTROTIPOLOGIA" />
+          <ScalarProperty Name="IDMAESTROTIPOLOGIA" ColumnName="IDMAESTROTIPOLOGIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO_TITULO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MAESTRO_TITULO">
+        <MappingFragment StoreEntitySet="MAESTRO_TITULO">
+          <ScalarProperty Name="ESTADOMAESTROTITULO" ColumnName="ESTADOMAESTROTITULO" />
+          <ScalarProperty Name="NOMBREMAESTROTITULO" ColumnName="NOMBREMAESTROTITULO" />
+          <ScalarProperty Name="IDMAESTROTITULO" ColumnName="IDMAESTROTITULO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MODIFICACION_ESTADO_SOLICITUD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.MODIFICACION_ESTADO_SOLICITUD">
+        <MappingFragment StoreEntitySet="MODIFICACION_ESTADO_SOLICITUD">
+          <ScalarProperty Name="USUARIORESPONSABLEMODIFICACIONESTADOSOLICITUD" ColumnName="USUARIORESPONSABLEMODIFICACIONESTADOSOLICITUD" />
+          <ScalarProperty Name="FECHAMODIFICACIONESTADOSOLICITUD" ColumnName="FECHAMODIFICACIONESTADOSOLICITUD" />
+          <ScalarProperty Name="IDMAESTROESTADOSOLICITUD" ColumnName="IDMAESTROESTADOSOLICITUD" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+          <ScalarProperty Name="IDMODIFICACIONESTADOSOLICITUD" ColumnName="IDMODIFICACIONESTADOSOLICITUD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRESUPUESTO_REGIONAL">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.PRESUPUESTO_REGIONAL">
+        <MappingFragment StoreEntitySet="PRESUPUESTO_REGIONAL">
+          <ScalarProperty Name="FECHAPRESUPUESTOREGIONAL" ColumnName="FECHAPRESUPUESTOREGIONAL" />
+          <ScalarProperty Name="USUARIOPRESUPUESTOREGIONAL" ColumnName="USUARIOPRESUPUESTOREGIONAL" />
+          <ScalarProperty Name="MONTOPRESUPUESTOREGIONAL" ColumnName="MONTOPRESUPUESTOREGIONAL" />
+          <ScalarProperty Name="CODIGOREGIONPRESUPUESTOREGIONAL" ColumnName="CODIGOREGIONPRESUPUESTOREGIONAL" />
+          <ScalarProperty Name="IDRESOLUCIONPRESUPUESTARIA" ColumnName="IDRESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="IDPRESUPUESTOREGIONAL_" ColumnName="IDPRESUPUESTOREGIONAL_" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROPIEDAD_TERRENO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.PROPIEDAD_TERRENO">
+        <MappingFragment StoreEntitySet="PROPIEDAD_TERRENO">
+          <ScalarProperty Name="ESTADOPROPIEDADTERRENO" ColumnName="ESTADOPROPIEDADTERRENO" />
+          <ScalarProperty Name="NOMBREPROPIEDADTERRENO" ColumnName="NOMBREPROPIEDADTERRENO" />
+          <ScalarProperty Name="IDPROPIEDADTERRENO" ColumnName="IDPROPIEDADTERRENO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROVEEDOR">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.PROVEEDOR">
+        <MappingFragment StoreEntitySet="PROVEEDOR">
+          <ScalarProperty Name="NOMBREPROVEEDOR" ColumnName="NOMBREPROVEEDOR" />
+          <ScalarProperty Name="DVPROVEDIGITOVERIFICADORPROVEEDOR" ColumnName="DVPROVEDIGITOVERIFICADORPROVEEDOR" />
+          <ScalarProperty Name="RUTPROVEEDOR" ColumnName="RUTPROVEEDOR" />
+          <ScalarProperty Name="IDMAESTROTIPOPROVEEDOR" ColumnName="IDMAESTROTIPOPROVEEDOR" />
+          <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESOLUCION_PRESUPUESTARIA">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.RESOLUCION_PRESUPUESTARIA">
+        <MappingFragment StoreEntitySet="RESOLUCION_PRESUPUESTARIA">
+          <ScalarProperty Name="ESTADORESOLUCIONPRESUPUESTARIA" ColumnName="ESTADORESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="NOMBREARCHIVOPRESUPUESTO" ColumnName="NOMBREARCHIVOPRESUPUESTO" />
+          <ScalarProperty Name="USUARIORESOLUCIONPRESUPUESTARIA" ColumnName="USUARIORESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="FECHARESOLUCIONPRESUPUESTARIA" ColumnName="FECHARESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="NUMERORESOLUCIONPRESUPUESTARIA" ColumnName="NUMERORESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="ANORESOLUCIONPRESUPUESTARIA" ColumnName="ANORESOLUCIONPRESUPUESTARIA" />
+          <ScalarProperty Name="IDRESOLUCIONPRESUPUESTARIA" ColumnName="IDRESOLUCIONPRESUPUESTARIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICIO_PARCIALIDAD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.SERVICIO_PARCIALIDAD">
+        <MappingFragment StoreEntitySet="SERVICIO_PARCIALIDAD">
+          <ScalarProperty Name="ESTADOSERVICIOPARCIALIDAD" ColumnName="ESTADOSERVICIOPARCIALIDAD" />
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="OBSERVACIONSERVICIOPARCIALIDAD" ColumnName="OBSERVACIONSERVICIOPARCIALIDAD" />
+          <ScalarProperty Name="NUMEROPLANTILLASERVICIOPARCIALIDAD" ColumnName="NUMEROPLANTILLASERVICIOPARCIALIDAD" />
+          <ScalarProperty Name="IDSERVICIOPARCIALIDAD" ColumnName="IDSERVICIOPARCIALIDAD" />
+          <ScalarProperty Name="IDGRUPOTIPOLOGIASERVICIO" ColumnName="IDGRUPOTIPOLOGIASERVICIO" />
+          <ScalarProperty Name="IDTIPOLOGIASERVICIO" ColumnName="IDTIPOLOGIASERVICIO" />
+          <ScalarProperty Name="IDGRUPOSUBMODALIDADPARCIALIDAD" ColumnName="IDGRUPOSUBMODALIDADPARCIALIDAD" />
+          <ScalarProperty Name="IDSUBMODALIDADPARCIALIDAD" ColumnName="IDSUBMODALIDADPARCIALIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOLICITUD_AUTORIZACION">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.SOLICITUD_AUTORIZACION">
+        <MappingFragment StoreEntitySet="SOLICITUD_AUTORIZACION">
+          <ScalarProperty Name="MONTOAPAGOSOLICITUDAUTORIZACION" ColumnName="MONTOAPAGOSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="MONTOATSOLICITUDAUTORIZACION" ColumnName="MONTOATSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="MONTOFTOTOTALSOLICITUDAUTORIZACION" ColumnName="MONTOFTOTOTALSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="FTOSOLICITUDAUTORIZACION" ColumnName="FTOSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S10SOLICITUDAUTORIZACION" ColumnName="S10SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S9SOLICITUDAUTORIZACION" ColumnName="S9SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S8SOLICITUDAUTORIZACION" ColumnName="S8SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S7SOLICITUDAUTORIZACION" ColumnName="S7SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S6SOLICITUDAUTORIZACION" ColumnName="S6SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S5SOLICITUDAUTORIZACION" ColumnName="S5SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S4SOLICITUDAUTORIZACION" ColumnName="S4SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S3SOLICITUDAUTORIZACION" ColumnName="S3SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S2SOLICITUDAUTORIZACION" ColumnName="S2SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S1SOLICITUDAUTORIZACION" ColumnName="S1SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="UBICACIONCOMUNASOLICITUDAUTORIZACION" ColumnName="UBICACIONCOMUNASOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="NOMBREPROYECTOSOLICITUDAUTORIZACION" ColumnName="NOMBREPROYECTOSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="CODIGOPROYECTOSOLICITUDAUTORIZACION" ColumnName="CODIGOPROYECTOSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="NUMEROSOLICITUDSOLICITUDAUTORIZACION" ColumnName="NUMEROSOLICITUDSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="NUMEROAUTORIZACIONSOLICITUDAUTORIZACION" ColumnName="NUMEROAUTORIZACIONSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="IDSOLICITUDAUTORIZACION" ColumnName="IDSOLICITUDAUTORIZACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOLICITUD_PAGO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.SOLICITUD_PAGO">
+        <MappingFragment StoreEntitySet="SOLICITUD_PAGO">
+          <ScalarProperty Name="IDMANDANTOPROVEEDORSOLICITUDPAGO" ColumnName="IDMANDANTOPROVEEDORSOLICITUDPAGO" />
+          <ScalarProperty Name="PAGOMANDANTOSOLICITUDPAGO" ColumnName="PAGOMANDANTOSOLICITUDPAGO" />
+          <ScalarProperty Name="FECHABOLETAGARANTIASOLICITUDPAGO" ColumnName="FECHABOLETAGARANTIASOLICITUDPAGO" />
+          <ScalarProperty Name="IDMAESTROPROGRAMA" ColumnName="IDMAESTROPROGRAMA" />
+          <ScalarProperty Name="FECHARESOLUCIONSOLICITUDPAGO" ColumnName="FECHARESOLUCIONSOLICITUDPAGO" />
+          <ScalarProperty Name="OBSERVACIONESSOLICITUDPAGO" ColumnName="OBSERVACIONESSOLICITUDPAGO" />
+          <ScalarProperty Name="IDINFORMACIONPROYECTOSOLICITUD" ColumnName="IDINFORMACIONPROYECTOSOLICITUD" />
+          <ScalarProperty Name="NUMEROVIVIENDASSOLICITUDPAGO" ColumnName="NUMEROVIVIENDASSOLICITUDPAGO" />
+          <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+          <ScalarProperty Name="MONTOSOLICITUDSOLICITUDPAGO" ColumnName="MONTOSOLICITUDSOLICITUDPAGO" />
+          <ScalarProperty Name="NUMERORESOLUCIONCONTRATOSOLICITUDPAGO" ColumnName="NUMERORESOLUCIONCONTRATOSOLICITUDPAGO" />
+          <ScalarProperty Name="AVANCEOBRASOLICITUDPAGO" ColumnName="AVANCEOBRASOLICITUDPAGO" />
+          <ScalarProperty Name="SALDOPORPAGARSOLICITUDPAGO" ColumnName="SALDOPORPAGARSOLICITUDPAGO" />
+          <ScalarProperty Name="MONTOCOMPROMETIDOSOLICITUDPAGO" ColumnName="MONTOCOMPROMETIDOSOLICITUDPAGO" />
+          <ScalarProperty Name="MONTOPAGADOSOLICITUDPAGO" ColumnName="MONTOPAGADOSOLICITUDPAGO" />
+          <ScalarProperty Name="MONTOTOTALPROYECTOSOLICITUDPAGO" ColumnName="MONTOTOTALPROYECTOSOLICITUDPAGO" />
+          <ScalarProperty Name="IDMAESTROTIPODESTINOPAGO" ColumnName="IDMAESTROTIPODESTINOPAGO" />
+          <ScalarProperty Name="FECHACREACIONSOLICITUDPAGO" ColumnName="FECHACREACIONSOLICITUDPAGO" />
+          <ScalarProperty Name="FECHAREALCREACIONSOLICITUDPAGO" ColumnName="FECHAREALCREACIONSOLICITUDPAGO" />
+          <ScalarProperty Name="IDMAESTROTIPOPAGO" ColumnName="IDMAESTROTIPOPAGO" />
+          <ScalarProperty Name="IDCARACTERISTICASESPECIALES" ColumnName="IDCARACTERISTICASESPECIALES" />
+          <ScalarProperty Name="USUARIORESPONSABLESOLICITUDPAGO" ColumnName="USUARIORESPONSABLESOLICITUDPAGO" />
+          <ScalarProperty Name="NUMEROFAMILIASPAGARSOLICITUDPAGO" ColumnName="NUMEROFAMILIASPAGARSOLICITUDPAGO" />
+          <ScalarProperty Name="FOLIOBOLETAGARANTIASOLICITUDPAGO" ColumnName="FOLIOBOLETAGARANTIASOLICITUDPAGO" />
+          <ScalarProperty Name="IDMAESTROESTADOSOLICITUD" ColumnName="IDMAESTROESTADOSOLICITUD" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOLICITUD_PAGO_ATP">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.SOLICITUD_PAGO_ATP">
+        <MappingFragment StoreEntitySet="SOLICITUD_PAGO_ATP">
+          <ScalarProperty Name="MONTOPESOAUTORIZACION" ColumnName="MONTOPESOAUTORIZACION" />
+          <ScalarProperty Name="VALORUFPESOAUTORIZACION" ColumnName="VALORUFPESOAUTORIZACION" />
+          <ScalarProperty Name="FECHAINYECCIONAUTORIZACION" ColumnName="FECHAINYECCIONAUTORIZACION" />
+          <ScalarProperty Name="IDMAESTROTIPOPAGO" ColumnName="IDMAESTROTIPOPAGO" />
+          <ScalarProperty Name="USUARIOCREACIONSOLICITUDPAGOATP" ColumnName="USUARIOCREACIONSOLICITUDPAGOATP" />
+          <ScalarProperty Name="FECHACREACIONSOLICITUDPAGOATP" ColumnName="FECHACREACIONSOLICITUDPAGOATP" />
+          <ScalarProperty Name="IDMAESTROESTADOSOLICITUD" ColumnName="IDMAESTROESTADOSOLICITUD" />
+          <ScalarProperty Name="VBFECHASOLICITUDPAGOATP" ColumnName="VBFECHASOLICITUDPAGOATP" />
+          <ScalarProperty Name="VBRESPONSABLESOLICITUDPAGOATP" ColumnName="VBRESPONSABLESOLICITUDPAGOATP" />
+          <ScalarProperty Name="VBSERVICIOSOLICITUDPAGOATP" ColumnName="VBSERVICIOSOLICITUDPAGOATP" />
+          <ScalarProperty Name="MONTOTOTALAPAGARSOLICITUDPAGOATP" ColumnName="MONTOTOTALAPAGARSOLICITUDPAGOATP" />
+          <ScalarProperty Name="FECHABOLETAFACTURASOLICITUDPAGOATP" ColumnName="FECHABOLETAFACTURASOLICITUDPAGOATP" />
+          <ScalarProperty Name="NUMEROBOLETAFACTURASOLICITUDPAGOATP" ColumnName="NUMEROBOLETAFACTURASOLICITUDPAGOATP" />
+          <ScalarProperty Name="MONTOPORPAGARSOLICITUDPAGOATP" ColumnName="MONTOPORPAGARSOLICITUDPAGOATP" />
+          <ScalarProperty Name="MONTOCOMPROMETIDOSOLICITUDPAGOATP" ColumnName="MONTOCOMPROMETIDOSOLICITUDPAGOATP" />
+          <ScalarProperty Name="MONTOPAGADOSOLICITUDPAGOATP" ColumnName="MONTOPAGADOSOLICITUDPAGOATP" />
+          <ScalarProperty Name="CODIGOREGIONSOLICITUDPAGOATP" ColumnName="CODIGOREGIONSOLICITUDPAGOATP" />
+          <ScalarProperty Name="PRESUPUESTOREGIONALSOLICITUDPAGOATP" ColumnName="PRESUPUESTOREGIONALSOLICITUDPAGOATP" />
+          <ScalarProperty Name="AGNOPRESUPUESTOSOLICITUDPAGOATP" ColumnName="AGNOPRESUPUESTOSOLICITUDPAGOATP" />
+          <ScalarProperty Name="IDCONTRATOATP" ColumnName="IDCONTRATOATP" />
+          <ScalarProperty Name="IDSOLICITUDATP" ColumnName="IDSOLICITUDATP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUB_MODALIDAD_PARCIALIDAD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.SUB_MODALIDAD_PARCIALIDAD">
+        <MappingFragment StoreEntitySet="SUB_MODALIDAD_PARCIALIDAD">
+          <ScalarProperty Name="IDGRUPOSUBMODALIDADPARCIALIDAD" ColumnName="IDGRUPOSUBMODALIDADPARCIALIDAD" />
+          <ScalarProperty Name="IDMAESTROSUBMODALIDAD" ColumnName="IDMAESTROSUBMODALIDAD" />
+          <ScalarProperty Name="IDMAESTROPARCIALIDAD" ColumnName="IDMAESTROPARCIALIDAD" />
+          <ScalarProperty Name="IDSUBMODALIDADPARCIALIDAD" ColumnName="IDSUBMODALIDADPARCIALIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TERRITORIO_CONTRATO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TERRITORIO_CONTRATO">
+        <MappingFragment StoreEntitySet="TERRITORIO_CONTRATO">
+          <ScalarProperty Name="USUARIOTERRITORIOCONTRATO" ColumnName="USUARIOTERRITORIOCONTRATO" />
+          <ScalarProperty Name="FECHAACTUALIZACIONTERRITORIOCONTRATO" ColumnName="FECHAACTUALIZACIONTERRITORIOCONTRATO" />
+          <ScalarProperty Name="FECHACREACIONTERRITORIOCONTRATO" ColumnName="FECHACREACIONTERRITORIOCONTRATO" />
+          <ScalarProperty Name="ESTADOTERRITORIOCONTRATO" ColumnName="ESTADOTERRITORIOCONTRATO" />
+          <ScalarProperty Name="CODIGOCOMUNATERRITORIOCONTRATO" ColumnName="CODIGOCOMUNATERRITORIOCONTRATO" />
+          <ScalarProperty Name="CODIGOREGIONTERRITORIOCONTRATO" ColumnName="CODIGOREGIONTERRITORIOCONTRATO" />
+          <ScalarProperty Name="CODIGOPROVINCIATERRITORIOCONTRATO" ColumnName="CODIGOPROVINCIATERRITORIOCONTRATO" />
+          <ScalarProperty Name="IDTERRITORIOCONTRATO" ColumnName="IDTERRITORIOCONTRATO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_ACTIVIDAD_MONTO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPO_ACTIVIDAD_MONTO">
+        <MappingFragment StoreEntitySet="TIPO_ACTIVIDAD_MONTO">
+          <ScalarProperty Name="MONTOPAGOTIPOACTIVIDADMONTO" ColumnName="MONTOPAGOTIPOACTIVIDADMONTO" />
+          <ScalarProperty Name="IDMAESTROSERVICIO" ColumnName="IDMAESTROSERVICIO" />
+          <ScalarProperty Name="TIPOSERVICIOTIPOACTIVIDADMONTO" ColumnName="TIPOSERVICIOTIPOACTIVIDADMONTO" />
+          <ScalarProperty Name="IDSOLICITUDATP" ColumnName="IDSOLICITUDATP" />
+          <ScalarProperty Name="IDTIPOACTIVIDADMONTO" ColumnName="IDTIPOACTIVIDADMONTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_AUTORIZACION">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPO_AUTORIZACION">
+        <MappingFragment StoreEntitySet="TIPO_AUTORIZACION">
+          <ScalarProperty Name="ESTADOTIPOAUTORIZACION" ColumnName="ESTADOTIPOAUTORIZACION" />
+          <ScalarProperty Name="IDAUTORIZACION" ColumnName="IDAUTORIZACION" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+          <ScalarProperty Name="IDTIPOAUTORIZACION" ColumnName="IDTIPOAUTORIZACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_INCREMENTO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPO_INCREMENTO">
+        <MappingFragment StoreEntitySet="TIPO_INCREMENTO">
+          <ScalarProperty Name="ESTADOTIPOINCREMENTO" ColumnName="ESTADOTIPOINCREMENTO" />
+          <ScalarProperty Name="SELECCIONADOTIPOINCREMENTO" ColumnName="SELECCIONADOTIPOINCREMENTO" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+          <ScalarProperty Name="IDCARACTERISTICASESPECIALES" ColumnName="IDCARACTERISTICASESPECIALES" />
+          <ScalarProperty Name="IDMAESTROINCREMENTO" ColumnName="IDMAESTROINCREMENTO" />
+          <ScalarProperty Name="IDTIPOINCREMENTO" ColumnName="IDTIPOINCREMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_PARCIALIDAD">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPO_PARCIALIDAD">
+        <MappingFragment StoreEntitySet="TIPO_PARCIALIDAD">
+          <ScalarProperty Name="PORCENTAJETIPOPARCIALIDAD" ColumnName="PORCENTAJETIPOPARCIALIDAD" />
+          <ScalarProperty Name="ESTADOTIPOPARCIALIDAD" ColumnName="ESTADOTIPOPARCIALIDAD" />
+          <ScalarProperty Name="IDTIPOSERVICIO" ColumnName="IDTIPOSERVICIO" />
+          <ScalarProperty Name="IDTIPOPARCIALIDAD" ColumnName="IDTIPOPARCIALIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_PROVEEDOR_INFORMACION_PROYECTO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPO_PROVEEDOR_INFORMACION_PROYECTO">
+        <MappingFragment StoreEntitySet="TIPO_PROVEEDOR_INFORMACION_PROYECTO">
+          <ScalarProperty Name="ESTADOTIPOPROVEEDORINFORMACIONPROYECTO" ColumnName="ESTADOTIPOPROVEEDORINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDINFORMACIONPROYECTO" ColumnName="IDINFORMACIONPROYECTO" />
+          <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+          <ScalarProperty Name="IDTIPOPROVEEDORINFORMACIONPROYECTO" ColumnName="IDTIPOPROVEEDORINFORMACIONPROYECTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_SERVICIO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPO_SERVICIO">
+        <MappingFragment StoreEntitySet="TIPO_SERVICIO">
+          <ScalarProperty Name="MONTOINCREMENTOTIPOSERVICIO" ColumnName="MONTOINCREMENTOTIPOSERVICIO" />
+          <ScalarProperty Name="TOTALSERVICIOTIPOSERVICIO" ColumnName="TOTALSERVICIOTIPOSERVICIO" />
+          <ScalarProperty Name="MONTOASIGNACIONDIRECTATIPOSERVICIO" ColumnName="MONTOASIGNACIONDIRECTATIPOSERVICIO" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+          <ScalarProperty Name="IDTIPOSERVICIO" ColumnName="IDTIPOSERVICIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA">
+        <MappingFragment StoreEntitySet="TIPO_SERVICIO_PARCIALIDAD_CARACTERISTICA">
+          <ScalarProperty Name="MONTOASIGNACIONDIRECTATIPOSERVICIOPARCIALIDADCARACTERISTICA" ColumnName="MONTOASIGNACIONDIRECTATIPOSERVICIOPARCIALIDADCARACTERISTICA" />
+          <ScalarProperty Name="IDSOLICITUDPAGO" ColumnName="IDSOLICITUDPAGO" />
+          <ScalarProperty Name="PORCENTAJEPARCIALIDADTIPOSERVICIOPARCIALIDADCARACTERISTICA" ColumnName="PORCENTAJEPARCIALIDADTIPOSERVICIOPARCIALIDADCARACTERISTICA" />
+          <ScalarProperty Name="MONTOPARCIALIDADTIPOSERVICIOPARCIALIDADCARACTERISTICA" ColumnName="MONTOPARCIALIDADTIPOSERVICIOPARCIALIDADCARACTERISTICA" />
+          <ScalarProperty Name="MONTOSERVICIOTIPOSERVICIOPARCIALIDADCARACTERISTICA" ColumnName="MONTOSERVICIOTIPOSERVICIOPARCIALIDADCARACTERISTICA" />
+          <ScalarProperty Name="ESTADOTIPOSERVICIOPARCIALIDADCARACTERISTICA" ColumnName="ESTADOTIPOSERVICIOPARCIALIDADCARACTERISTICA" />
+          <ScalarProperty Name="IDCARACTERISTICASESPECIALES" ColumnName="IDCARACTERISTICASESPECIALES" />
+          <ScalarProperty Name="IDSERVICIOPARCIALIDAD" ColumnName="IDSERVICIOPARCIALIDAD" />
+          <ScalarProperty Name="IDTIPOSERVICIOPARCIALIDADCARACTERISTICA" ColumnName="IDTIPOSERVICIOPARCIALIDADCARACTERISTICA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_SERVICIOS_CONTRATO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPO_SERVICIOS_CONTRATO">
+        <MappingFragment StoreEntitySet="TIPO_SERVICIOS_CONTRATO">
+          <ScalarProperty Name="ESTADOTIPOSERVICIOSCONTRATO" ColumnName="ESTADOTIPOSERVICIOSCONTRATO" />
+          <ScalarProperty Name="IDCONTRATOATP" ColumnName="IDCONTRATOATP" />
+          <ScalarProperty Name="IDMAESTROSERVICIO" ColumnName="IDMAESTROSERVICIO" />
+          <ScalarProperty Name="IDTIPOSERVICIOSCONTRATO" ColumnName="IDTIPOSERVICIOSCONTRATO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOLOGIA_SERVICIO">
+      <EntityTypeMapping TypeName="DB_SNAT_VModel.TIPOLOGIA_SERVICIO">
+        <MappingFragment StoreEntitySet="TIPOLOGIA_SERVICIO">
+          <ScalarProperty Name="IDMAESTROSERVICIO" ColumnName="IDMAESTROSERVICIO" />
+          <ScalarProperty Name="IDGRUPOTIPOLOGIASERVICIO" ColumnName="IDGRUPOTIPOLOGIASERVICIO" />
+          <ScalarProperty Name="IDTIPOLOGIASERVICIO" ColumnName="IDTIPOLOGIASERVICIO" />
+          <ScalarProperty Name="IDMAESTROTIPOLOGIA" ColumnName="IDMAESTROTIPOLOGIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="BUSQUEDA_SUMA_SOLICITUD_AUTORIZACION_DE_PAGO_GRILLA_PDF" FunctionName="DB_SNAT_VModel.Store.BUSQUEDA_SUMA_SOLICITUD_AUTORIZACION_DE_PAGO_GRILLA_PDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.BUSQUEDA_SUMA_SOLICITUD_AUTORIZACION_DE_PAGO_GRILLA_PDF_Result">
+          <ScalarProperty Name="S1SOLICITUDAUTORIZACION" ColumnName="S1SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S2SOLICITUDAUTORIZACION" ColumnName="S2SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S3SOLICITUDAUTORIZACION" ColumnName="S3SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S4SOLICITUDAUTORIZACION" ColumnName="S4SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S5SOLICITUDAUTORIZACION" ColumnName="S5SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S6SOLICITUDAUTORIZACION" ColumnName="S6SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S7SOLICITUDAUTORIZACION" ColumnName="S7SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S8SOLICITUDAUTORIZACION" ColumnName="S8SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S9SOLICITUDAUTORIZACION" ColumnName="S9SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="S10SOLICITUDAUTORIZACION" ColumnName="S10SOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="FTOSOLICITUDAUTORIZACION" ColumnName="FTOSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="MONTOFTOTOTALSOLICITUDAUTORIZACION" ColumnName="MONTOFTOTOTALSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="MONTOATSOLICITUDAUTORIZACION" ColumnName="MONTOATSOLICITUDAUTORIZACION" />
+          <ScalarProperty Name="MONTOAPAGOSOLICITUDAUTORIZACION" ColumnName="MONTOAPAGOSOLICITUDAUTORIZACION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INSERTA_BENEFICIARIOS_SNATDS49" FunctionName="DB_SNAT_VModel.Store.INSERTA_BENEFICIARIOS_SNATDS49" />
+    <FunctionImportMapping FunctionImportName="INSERTA_PROYECTO_SNAT" FunctionName="DB_SNAT_VModel.Store.INSERTA_PROYECTO_SNAT" />
+    <FunctionImportMapping FunctionImportName="INSERTA_PROYECTO_SNATDS49" FunctionName="DB_SNAT_VModel.Store.INSERTA_PROYECTO_SNATDS49" />
+    <FunctionImportMapping FunctionImportName="INSERTA_PROYECTOS_SNATDS10" FunctionName="DB_SNAT_VModel.Store.INSERTA_PROYECTOS_SNATDS10" />
+    <FunctionImportMapping FunctionImportName="INSERTA_PROYECTOS_SNATDS19" FunctionName="DB_SNAT_VModel.Store.INSERTA_PROYECTOS_SNATDS19" />
+    <FunctionImportMapping FunctionImportName="INSERTA_PROYECTOS_SNATDS49" FunctionName="DB_SNAT_VModel.Store.INSERTA_PROYECTOS_SNATDS49" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DB_SNAT_VModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DB_SNAT_VModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DB_SNAT_VModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DB_SNAT_VModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DB_SNAT_VModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB_SNAT_VModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_SNAT_VModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="SNAT_SIMPLIFICADO_V_USP_CON_LISTADO_AUTORIZACION" FunctionName="DB_SNAT_VModel.Store.SNAT_SIMPLIFICADO_V_USP_CON_LISTADO_AUTORIZACION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_SNAT_VModel.SNAT_SIMPLIFICADO_V_USP_CON_LISTADO_AUTORIZACION_Result">
+          <ScalarProperty Name="NUMEROAUTORIZACION" ColumnName="NUMEROAUTORIZACION" />
+          <ScalarProperty Name="IDAUTORIZACION" ColumnName="IDAUTORIZACION" />
+          <ScalarProperty Name="CODIGOREGIONAUTORIZACION" ColumnName="CODIGOREGIONAUTORIZACION" />
+          <ScalarProperty Name="CANTIDADPROYECTOSAUTORIZACION" ColumnName="CANTIDADPROYECTOSAUTORIZACION" />
+          <ScalarProperty Name="PROGRAMA" ColumnName="PROGRAMA" />
+          <ScalarProperty Name="TIPOLOGIA" ColumnName="TIPOLOGIA" />
+          <ScalarProperty Name="TIPO_PROVEEDOR" ColumnName="TIPO_PROVEEDOR" />
+          <ScalarProperty Name="RUT" ColumnName="RUT" />
+          <ScalarProperty Name="DV" ColumnName="DV" />
+          <ScalarProperty Name="RUT_PROVEEDOR" ColumnName="RUT_PROVEEDOR" />
+          <ScalarProperty Name="NOMBREPROVEEDOR" ColumnName="NOMBREPROVEEDOR" />
+          <ScalarProperty Name="MONTOTOTALAUTORIZACION" ColumnName="MONTOTOTALAUTORIZACION" />
+          <ScalarProperty Name="NOMBREMAESTROESTADOAUTORIZACION" ColumnName="NOMBREMAESTROESTADOAUTORIZACION" />
+          <ScalarProperty Name="ESPECIALAUTORIZACION" ColumnName="ESPECIALAUTORIZACION" />
+          <ScalarProperty Name="FECHAINGRESOAUTORIZACION" ColumnName="FECHAINGRESOAUTORIZACION" />
+          <ScalarProperty Name="ID_TIPO_PROVEEDOR" ColumnName="ID_TIPO_PROVEEDOR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

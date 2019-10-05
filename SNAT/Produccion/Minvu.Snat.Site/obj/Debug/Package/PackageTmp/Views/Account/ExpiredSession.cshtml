@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Sesión Expirada";
+    Layout = "~/Views/Shared/_LayoutSesionExpirada.cshtml";
+}
+
+<h2>Sesión expirada</h2>
+<p>Por favor vuelva a ingresar a través del <a href="@Url.Content(System.Configuration.ConfigurationManager.AppSettings["PortalAutenticacion"].ToString())">Portal de autenticación </a> </p>

@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Marca";
+}
+
+<h2>@Model.tipoOrigen - @Model.nombreProyecto </h2>
+<br />
+<br />
+<div class="container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Código Proyecto:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="pry" placeholder="Ingrese Código Proyecto" name="pry">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#AsignarModal">Asignar Marca</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#QuitarModal">Quitar Marca</button>
+                <button type="button" class="btn btn-default" onclick="backPage()">Volver</button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="AsignarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">@Model.nombreProyecto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Confirma Asignar Marca?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary">Si</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="QuitarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">@Model.nombreProyecto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Confirma Quitar Marca?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary">Si</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script>
+function backPage() {
+document.location = '@Url.Action("MantenedorIncidentes", "Incidentes")';
+}
+
+function getDV() {
+    var numero = document.getElementById("rut");
+    var rutDV = document.getElementById("dv");
+
+    nuevo_numero = numero.value.toString().split("").reverse().join("");
+    for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+        suma += (parseInt(nuevo_numero.charAt(i)) * j);
+    }
+    n_dv = 11 - (suma % 11);
+    var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+    rutDV.value = dv;
+
+    return dv;
+}
+</script>

@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\SNAT",
+    "\\SNAT\\Produccion",
+    "\\SNAT\\Produccion\\Minvu.Snat.Domain\\Entities",
+    "\\SNAT\\Produccion\\Minvu.Snat.Domain\\Forms",
+    "\\SNAT\\Produccion\\Minvu.Snat.Site\\Views",
+    "\\SNAT\\Produccion\\Minvu.Snat.Site\\Views\\AutorizacionesDePago",
+    "\\SNAT\\Produccion\\Minvu.Snat.Site\\Views\\SolicitudPago"
+  ],
+  "SelectedNode": "\\SNAT\\Produccion\\Minvu.Snat.sln",
+  "PreviewInSolutionExplorer": false
+}

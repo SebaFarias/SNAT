@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Web_Asistec_SnatIII_ContingenciaModelStoreContainer" CdmEntityContainer="Web_Asistec_SnatIII_Contingencia_Entities">
+    <EntitySetMapping Name="WEB_ASISTEC_SNATIII_FAMILIA">
+      <EntityTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_FAMILIA">
+        <MappingFragment StoreEntitySet="WEB_ASISTEC_SNATIII_FAMILIA">
+          <ScalarProperty Name="FAM_TIP_SPS" ColumnName="FAM_TIP_SPS" />
+          <ScalarProperty Name="FAM_ANO_LLA" ColumnName="FAM_ANO_LLA" />
+          <ScalarProperty Name="FAM_MTO_VIV_TIP_RUKAN" ColumnName="FAM_MTO_VIV_TIP_RUKAN" />
+          <ScalarProperty Name="FAM_PRG" ColumnName="FAM_PRG" />
+          <ScalarProperty Name="FAM_PRY_PISA" ColumnName="FAM_PRY_PISA" />
+          <ScalarProperty Name="FAM_ASG_DRT" ColumnName="FAM_ASG_DRT" />
+          <ScalarProperty Name="FAM_OBS_USR" ColumnName="FAM_OBS_USR" />
+          <ScalarProperty Name="FAM_OBS_SUB" ColumnName="FAM_OBS_SUB" />
+          <ScalarProperty Name="FAM_OBS_VIV" ColumnName="FAM_OBS_VIV" />
+          <ScalarProperty Name="FAM_OBS_FAM" ColumnName="FAM_OBS_FAM" />
+          <ScalarProperty Name="FAM_OBS_FEC" ColumnName="FAM_OBS_FEC" />
+          <ScalarProperty Name="FAM_CYG_DGV" ColumnName="FAM_CYG_DGV" />
+          <ScalarProperty Name="FAM_CYG_RUT" ColumnName="FAM_CYG_RUT" />
+          <ScalarProperty Name="FAM_TIP_LLA_DESC" ColumnName="FAM_TIP_LLA_DESC" />
+          <ScalarProperty Name="FAM_TIP_LLA" ColumnName="FAM_TIP_LLA" />
+          <ScalarProperty Name="FAM_FEC_FIN_VIG_SUB" ColumnName="FAM_FEC_FIN_VIG_SUB" />
+          <ScalarProperty Name="FAM_FEC_INI_VIG_SUB" ColumnName="FAM_FEC_INI_VIG_SUB" />
+          <ScalarProperty Name="FAM_SEPR_HECH" ColumnName="FAM_SEPR_HECH" />
+          <ScalarProperty Name="FAM_RES_BNF" ColumnName="FAM_RES_BNF" />
+          <ScalarProperty Name="FAM_NUM_CER_SUB" ColumnName="FAM_NUM_CER_SUB" />
+          <ScalarProperty Name="FAM_SUB_PAG" ColumnName="FAM_SUB_PAG" />
+          <ScalarProperty Name="FAM_RUKAN" ColumnName="FAM_RUKAN" />
+          <ScalarProperty Name="FAM_DSCA" ColumnName="FAM_DSCA" />
+          <ScalarProperty Name="FAM_POB" ColumnName="FAM_POB" />
+          <ScalarProperty Name="FAM_MAIL" ColumnName="FAM_MAIL" />
+          <ScalarProperty Name="FAM_FON" ColumnName="FAM_FON" />
+          <ScalarProperty Name="PRV_COD_FAM" ColumnName="PRV_COD_FAM" />
+          <ScalarProperty Name="COM_COD_FAM" ColumnName="COM_COD_FAM" />
+          <ScalarProperty Name="REG_COD_FAM" ColumnName="REG_COD_FAM" />
+          <ScalarProperty Name="FAM_TIP_FND_DESC" ColumnName="FAM_TIP_FND_DESC" />
+          <ScalarProperty Name="FAM_TIP_FND" ColumnName="FAM_TIP_FND" />
+          <ScalarProperty Name="FAM_EST" ColumnName="FAM_EST" />
+          <ScalarProperty Name="FAM_FEC_ING" ColumnName="FAM_FEC_ING" />
+          <ScalarProperty Name="FAM_INDC_AGU" ColumnName="FAM_INDC_AGU" />
+          <ScalarProperty Name="FAM_INDC_HACN" ColumnName="FAM_INDC_HACN" />
+          <ScalarProperty Name="FAM_INDC_ELIM_AGU" ColumnName="FAM_INDC_ELIM_AGU" />
+          <ScalarProperty Name="FAM_INDC_TIP_VIV" ColumnName="FAM_INDC_TIP_VIV" />
+          <ScalarProperty Name="FAM_INDC_ALLG" ColumnName="FAM_INDC_ALLG" />
+          <ScalarProperty Name="FAM_FOL_FIC" ColumnName="FAM_FOL_FIC" />
+          <ScalarProperty Name="FAM_PJE_FIC" ColumnName="FAM_PJE_FIC" />
+          <ScalarProperty Name="FAM_COM_FIC" ColumnName="FAM_COM_FIC" />
+          <ScalarProperty Name="FAM_CYG_APP_MAT" ColumnName="FAM_CYG_APP_MAT" />
+          <ScalarProperty Name="FAM_CYG_APP_PAT" ColumnName="FAM_CYG_APP_PAT" />
+          <ScalarProperty Name="FAM_CYG_NOM" ColumnName="FAM_CYG_NOM" />
+          <ScalarProperty Name="FAM_ENT_NOM" ColumnName="FAM_ENT_NOM" />
+          <ScalarProperty Name="FAM_VIV_NOM_RSP" ColumnName="FAM_VIV_NOM_RSP" />
+          <ScalarProperty Name="FAM_VIV_FEC_CERT" ColumnName="FAM_VIV_FEC_CERT" />
+          <ScalarProperty Name="FAM_VIV_NUM_CERT" ColumnName="FAM_VIV_NUM_CERT" />
+          <ScalarProperty Name="FAM_VIV_ROL" ColumnName="FAM_VIV_ROL" />
+          <ScalarProperty Name="FAM_TIP_VIV" ColumnName="FAM_TIP_VIV" />
+          <ScalarProperty Name="FAM_SITI" ColumnName="FAM_SITI" />
+          <ScalarProperty Name="FAM_MZN" ColumnName="FAM_MZN" />
+          <ScalarProperty Name="FAM_DEP" ColumnName="FAM_DEP" />
+          <ScalarProperty Name="FAM_BLK" ColumnName="FAM_BLK" />
+          <ScalarProperty Name="FAM_CLL_NUM" ColumnName="FAM_CLL_NUM" />
+          <ScalarProperty Name="FAM_CLL" ColumnName="FAM_CLL" />
+          <ScalarProperty Name="FAM_SEX" ColumnName="FAM_SEX" />
+          <ScalarProperty Name="FAM_NAC" ColumnName="FAM_NAC" />
+          <ScalarProperty Name="FAM_FEC_NAC" ColumnName="FAM_FEC_NAC" />
+          <ScalarProperty Name="FAM_EST_CIV" ColumnName="FAM_EST_CIV" />
+          <ScalarProperty Name="PRV_COD" ColumnName="PRV_COD" />
+          <ScalarProperty Name="COM_COD" ColumnName="COM_COD" />
+          <ScalarProperty Name="REG_COD" ColumnName="REG_COD" />
+          <ScalarProperty Name="FAM_APP_MAT" ColumnName="FAM_APP_MAT" />
+          <ScalarProperty Name="FAM_APP_PAT" ColumnName="FAM_APP_PAT" />
+          <ScalarProperty Name="FAM_NOM" ColumnName="FAM_NOM" />
+          <ScalarProperty Name="FAM_TIP" ColumnName="FAM_TIP" />
+          <ScalarProperty Name="FAM_DGV" ColumnName="FAM_DGV" />
+          <ScalarProperty Name="FAM_RUT" ColumnName="FAM_RUT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WEB_ASISTEC_SNATIII_PPPF_PROYECTO">
+      <EntityTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_PPPF_PROYECTO">
+        <MappingFragment StoreEntitySet="WEB_ASISTEC_SNATIII_PPPF_PROYECTO">
+          <ScalarProperty Name="PPPF_NUM_LLAM" ColumnName="PPPF_NUM_LLAM" />
+          <ScalarProperty Name="COM_COD" ColumnName="COM_COD" />
+          <ScalarProperty Name="PRV_COD" ColumnName="PRV_COD" />
+          <ScalarProperty Name="REG_COD" ColumnName="REG_COD" />
+          <ScalarProperty Name="PPPF_PSAT_RUT" ColumnName="PPPF_PSAT_RUT" />
+          <ScalarProperty Name="PPPF_PRY_TIP" ColumnName="PPPF_PRY_TIP" />
+          <ScalarProperty Name="PPPF_PRY_QTY_FAM" ColumnName="PPPF_PRY_QTY_FAM" />
+          <ScalarProperty Name="PPPF_PRY_TIT" ColumnName="PPPF_PRY_TIT" />
+          <ScalarProperty Name="PPPF_PRY_ANO" ColumnName="PPPF_PRY_ANO" />
+          <ScalarProperty Name="PPPF_PRY_NOM" ColumnName="PPPF_PRY_NOM" />
+          <ScalarProperty Name="PPPF_PRY_CER" ColumnName="PPPF_PRY_CER" />
+          <ScalarProperty Name="PPPF_PRY_COD" ColumnName="PPPF_PRY_COD" />
+          <ScalarProperty Name="PPPF_PRY_ID" ColumnName="PPPF_PRY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WEB_ASISTEC_SNATIII_PROFESION">
+      <EntityTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_PROFESION">
+        <MappingFragment StoreEntitySet="WEB_ASISTEC_SNATIII_PROFESION">
+          <ScalarProperty Name="PROF_PROF_EST" ColumnName="PROF_PROF_EST" />
+          <ScalarProperty Name="PROF_PROF_NOM" ColumnName="PROF_PROF_NOM" />
+          <ScalarProperty Name="PROF_PROF_ID" ColumnName="PROF_PROF_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WEB_ASISTEC_SNATIII_PROFESIONALES">
+      <EntityTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_PROFESIONALES">
+        <MappingFragment StoreEntitySet="WEB_ASISTEC_SNATIII_PROFESIONALES">
+          <ScalarProperty Name="PROF_ITO" ColumnName="PROF_ITO" />
+          <ScalarProperty Name="PROF_APP_MAT" ColumnName="PROF_APP_MAT" />
+          <ScalarProperty Name="PROF_APP_PAT" ColumnName="PROF_APP_PAT" />
+          <ScalarProperty Name="PROF_NOM" ColumnName="PROF_NOM" />
+          <ScalarProperty Name="PROF_DGV" ColumnName="PROF_DGV" />
+          <ScalarProperty Name="PROF_EST" ColumnName="PROF_EST" />
+          <ScalarProperty Name="PROF_PROF_ID" ColumnName="PROF_PROF_ID" />
+          <ScalarProperty Name="PROF_RUT" ColumnName="PROF_RUT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_ACTUALIZA_CERTIFICADO" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_ACTUALIZA_CERTIFICADO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_ACTUALIZA_CERTIFICADO_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_ACTUALIZA_PROFESIONAL" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_ACTUALIZA_PROFESIONAL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_ACTUALIZA_PROFESIONAL_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_ACTUALIZA_VIGENCIA" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_ACTUALIZA_VIGENCIA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_ACTUALIZA_VIGENCIA_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_CAMBIO_TIPO_CONTRATO" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_CAMBIO_TIPO_CONTRATO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_CAMBIO_TIPO_CONTRATO_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_CONSULTA_CONTRATO_PPPF" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_CONSULTA_CONTRATO_PPPF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_CONSULTA_CONTRATO_PPPF_Result">
+          <ScalarProperty Name="PPPF_CTO_ID" ColumnName="PPPF_CTO_ID" />
+          <ScalarProperty Name="PPPF_CTO_NOM" ColumnName="PPPF_CTO_NOM" />
+          <ScalarProperty Name="PPPF_PSAT_NOM" ColumnName="PPPF_PSAT_NOM" />
+          <ScalarProperty Name="PPPF_CANT_PROYECTOS" ColumnName="PPPF_CANT_PROYECTOS" />
+          <ScalarProperty Name="PPPF_CTO_TIP" ColumnName="PPPF_CTO_TIP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_CONSULTA_PROFESIONAL_PPPF" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_CONSULTA_PROFESIONAL_PPPF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_CONSULTA_PROFESIONAL_PPPF_Result">
+          <ScalarProperty Name="PROF_RUT" ColumnName="PROF_RUT" />
+          <ScalarProperty Name="PROF_DGV" ColumnName="PROF_DGV" />
+          <ScalarProperty Name="PROF_NOM" ColumnName="PROF_NOM" />
+          <ScalarProperty Name="PROF_APP_PAT" ColumnName="PROF_APP_PAT" />
+          <ScalarProperty Name="PROF_APP_MAT" ColumnName="PROF_APP_MAT" />
+          <ScalarProperty Name="PROF_PROF_ID" ColumnName="PROF_PROF_ID" />
+          <ScalarProperty Name="PROF_PROF_NOM" ColumnName="PROF_PROF_NOM" />
+          <ScalarProperty Name="PROF_ITO" ColumnName="PROF_ITO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_CONSULTA_PROYECTO_PPPF" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_CONSULTA_PROYECTO_PPPF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_CONSULTA_PROYECTO_PPPF_Result">
+          <ScalarProperty Name="PPPF_PRY_ID" ColumnName="PPPF_PRY_ID" />
+          <ScalarProperty Name="PPPF_CTO_ID" ColumnName="PPPF_CTO_ID" />
+          <ScalarProperty Name="PPPF_PRY_COD" ColumnName="PPPF_PRY_COD" />
+          <ScalarProperty Name="PPPF_PRY_CER" ColumnName="PPPF_PRY_CER" />
+          <ScalarProperty Name="PPPF_PRY_NOM" ColumnName="PPPF_PRY_NOM" />
+          <ScalarProperty Name="PPPF_PRY_TIT" ColumnName="PPPF_PRY_TIT" />
+          <ScalarProperty Name="NOMBREITO" ColumnName="NOMBREITO" />
+          <ScalarProperty Name="RUTITO" ColumnName="RUTITO" />
+          <ScalarProperty Name="NOMBREITOR" ColumnName="NOMBREITOR" />
+          <ScalarProperty Name="RUTITOR" ColumnName="RUTITOR" />
+          <ScalarProperty Name="NOMBREITOSERVIU" ColumnName="NOMBREITOSERVIU" />
+          <ScalarProperty Name="RUTITOSERVIU" ColumnName="RUTITOSERVIU" />
+          <ScalarProperty Name="NOMBREITORSERVIU" ColumnName="NOMBREITORSERVIU" />
+          <ScalarProperty Name="RUTITORSERVIU" ColumnName="RUTITORSERVIU" />
+          <ScalarProperty Name="PPPF_PSAT_NOM" ColumnName="PPPF_PSAT_NOM" />
+          <ScalarProperty Name="NOMBRESPV" ColumnName="NOMBRESPV" />
+          <ScalarProperty Name="PPPF_CTO_TIP" ColumnName="PPPF_CTO_TIP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_ELIMINA_PROYECTO_PPPF" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_ELIMINA_PROYECTO_PPPF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_ELIMINA_PROYECTO_PPPF_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_INSERT_UPDATE_PROFESIONAL" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_INSERT_UPDATE_PROFESIONAL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_INSERT_UPDATE_PROFESIONAL_Result">
+          <ScalarProperty Name="err" ColumnName="err" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_CONSULTA_PROYECTO_SERVIU_PPPF" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_CONSULTA_PROYECTO_SERVIU_PPPF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_CONSULTA_PROYECTO_SERVIU_PPPF_Result">
+          <ScalarProperty Name="PPPF_PRY_ID" ColumnName="PPPF_PRY_ID" />
+          <ScalarProperty Name="PPPF_CTO_ID" ColumnName="PPPF_CTO_ID" />
+          <ScalarProperty Name="PPPF_PRY_COD" ColumnName="PPPF_PRY_COD" />
+          <ScalarProperty Name="PPPF_PRY_CER" ColumnName="PPPF_PRY_CER" />
+          <ScalarProperty Name="PPPF_PRY_NOM" ColumnName="PPPF_PRY_NOM" />
+          <ScalarProperty Name="PPPF_PRY_TIT" ColumnName="PPPF_PRY_TIT" />
+          <ScalarProperty Name="NOMBREITO" ColumnName="NOMBREITO" />
+          <ScalarProperty Name="RUTITO" ColumnName="RUTITO" />
+          <ScalarProperty Name="NOMBREITOR" ColumnName="NOMBREITOR" />
+          <ScalarProperty Name="RUTITOR" ColumnName="RUTITOR" />
+          <ScalarProperty Name="NOMBREITOSERVIU" ColumnName="NOMBREITOSERVIU" />
+          <ScalarProperty Name="RUTITOSERVIU" ColumnName="RUTITOSERVIU" />
+          <ScalarProperty Name="NOMBREITORSERVIU" ColumnName="NOMBREITORSERVIU" />
+          <ScalarProperty Name="RUTITORSERVIU" ColumnName="RUTITORSERVIU" />
+          <ScalarProperty Name="PPPF_PSAT_NOM" ColumnName="PPPF_PSAT_NOM" />
+          <ScalarProperty Name="NOMBRESPV" ColumnName="NOMBRESPV" />
+          <ScalarProperty Name="PPPF_CTO_TIP" ColumnName="PPPF_CTO_TIP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO">
+      <EntityTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO">
+        <MappingFragment StoreEntitySet="WEB_ASISTEC_SNATIII_PPPF_CONTRATO_PROYECTO">
+          <ScalarProperty Name="PPPF_CTO_RUT_SPV_RMPLZ" ColumnName="PPPF_CTO_RUT_SPV_RMPLZ" />
+          <ScalarProperty Name="PPPF_CTO_RUT_SPV" ColumnName="PPPF_CTO_RUT_SPV" />
+          <ScalarProperty Name="PPPF_CTO_RUT_SERVIU_RMPLZ" ColumnName="PPPF_CTO_RUT_SERVIU_RMPLZ" />
+          <ScalarProperty Name="PPPF_CTO_RUT_SERVIU" ColumnName="PPPF_CTO_RUT_SERVIU" />
+          <ScalarProperty Name="PPPF_CTO_RUT_PROF_RMPLZ" ColumnName="PPPF_CTO_RUT_PROF_RMPLZ" />
+          <ScalarProperty Name="PPPF_CTO_RUT_PROF" ColumnName="PPPF_CTO_RUT_PROF" />
+          <ScalarProperty Name="PPPF_PRY_ID" ColumnName="PPPF_PRY_ID" />
+          <ScalarProperty Name="PPPF_CTO_ID" ColumnName="PPPF_CTO_ID" />
+          <ScalarProperty Name="PPPF_CTO_PRY_ID" ColumnName="PPPF_CTO_PRY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="WEB_ASISTEC_SNATIII_VERIFICAR_PROYECTOS_SNAT" FunctionName="Web_Asistec_SnatIII_ContingenciaModel.Store.WEB_ASISTEC_SNATIII_VERIFICAR_PROYECTOS_SNAT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Asistec_SnatIII_ContingenciaModel.WEB_ASISTEC_SNATIII_VERIFICAR_PROYECTOS_SNAT_Result">
+          <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

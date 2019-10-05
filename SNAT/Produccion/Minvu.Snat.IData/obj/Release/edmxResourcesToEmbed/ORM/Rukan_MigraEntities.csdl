@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Rukan_MigraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Rukan_MigraEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="COMUNA" EntityType="Rukan_MigraModel.COMUNA" />
+    <EntitySet Name="PROVINCIA" EntityType="Rukan_MigraModel.PROVINCIA" />
+    <EntitySet Name="REGION" EntityType="Rukan_MigraModel.REGION" />
+    <EntitySet Name="USERS" EntityType="Rukan_MigraModel.USERS" />
+    <EntitySet Name="USERREGION" EntityType="Rukan_MigraModel.USERREGION" />
+    <AssociationSet Name="FK_COMUNA_COMUNAS_D_PROVINCI" Association="Rukan_MigraModel.FK_COMUNA_COMUNAS_D_PROVINCI">
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+      <End Role="COMUNA" EntitySet="COMUNA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROVINCI_PROVINCIA_REGION" Association="Rukan_MigraModel.FK_PROVINCI_PROVINCIA_REGION">
+      <End Role="REGION" EntitySet="REGION" />
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+    </AssociationSet>
+    <FunctionImport Name="PA_LISTAR_REGION" ReturnType="Collection(Rukan_MigraModel.PA_LISTAR_REGION_Result)" />
+    <FunctionImport Name="RUKAN_MIGRA_USP_CON_OBTIENE_FAMILIA_CAMBIO_VIGENCIA_AVC_RUT" ReturnType="Collection(Rukan_MigraModel.RUKAN_MIGRA_USP_CON_OBTIENE_FAMILIA_CAMBIO_VIGENCIA_AVC_RUT_Result)">
+      <Parameter Name="RUT_BENEFICIARIO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RUKAN_MIGRA_USP_CON_OBTIENE_NUMERO_CERTIFICADO_PPPF" ReturnType="Collection(Rukan_MigraModel.RUKAN_MIGRA_USP_CON_OBTIENE_NUMERO_CERTIFICADO_PPPF_Result)">
+      <Parameter Name="ACCION" Mode="In" Type="Int32" />
+      <Parameter Name="RUT" Mode="In" Type="String" />
+      <Parameter Name="NUM_CERTIFICADO" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="COMUNA">
+    <Key>
+      <PropertyRef Name="REG_ID" />
+      <PropertyRef Name="PRV_ID" />
+      <PropertyRef Name="COM_ID" />
+    </Key>
+    <Property Name="REG_ID" Type="Int32" Nullable="false" />
+    <Property Name="PRV_ID" Type="Int32" Nullable="false" />
+    <Property Name="COM_ID" Type="Int32" Nullable="false" />
+    <Property Name="COM_DES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="ZONA_SATURADA" Type="Boolean" />
+    <Property Name="ZONA_TERMICA" Type="Int32" />
+    <Property Name="COM_ID_SII" Type="Int32" />
+    <Property Name="COM_QTY_HAB" Type="Boolean" />
+    <Property Name="COM_QTY_HAB_EXCP" Type="Boolean" />
+    <Property Name="COM_TRA" Type="Int32" />
+    <Property Name="COM_MAX_CVS_ESP_TII" Type="Int32" />
+    <Property Name="COM_QTY_NUM_HAB" Type="Int32" />
+    <NavigationProperty Name="PROVINCIA" Relationship="Rukan_MigraModel.FK_COMUNA_COMUNAS_D_PROVINCI" FromRole="COMUNA" ToRole="PROVINCIA" />
+  </EntityType>
+  <EntityType Name="PROVINCIA">
+    <Key>
+      <PropertyRef Name="REG_ID" />
+      <PropertyRef Name="PRV_ID" />
+    </Key>
+    <Property Name="REG_ID" Type="Int32" Nullable="false" />
+    <Property Name="PRV_ID" Type="Int32" Nullable="false" />
+    <Property Name="PRV_DES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="COMUNA" Relationship="Rukan_MigraModel.FK_COMUNA_COMUNAS_D_PROVINCI" FromRole="PROVINCIA" ToRole="COMUNA" />
+    <NavigationProperty Name="REGION" Relationship="Rukan_MigraModel.FK_PROVINCI_PROVINCIA_REGION" FromRole="PROVINCIA" ToRole="REGION" />
+  </EntityType>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="REG_ID" />
+    </Key>
+    <Property Name="REG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REG_DES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="REG_ORD" Type="Decimal" Precision="3" Scale="0" />
+    <NavigationProperty Name="PROVINCIA" Relationship="Rukan_MigraModel.FK_PROVINCI_PROVINCIA_REGION" FromRole="REGION" ToRole="PROVINCIA" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Rut" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="DVRut" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoPaterno" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoMaterno" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CodigoUnidad" Type="Int32" />
+    <Property Name="CodigoOrganismo" Type="Int32" />
+    <Property Name="CodigoEntidad" Type="Int32" />
+    <Property Name="TipoUsuario" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Pregunta" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Respuesta" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaExpiracion" Type="DateTime" Precision="3" />
+    <Property Name="CambiarPassword" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="USERREGION">
+    <Key>
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="IDRegion" />
+    </Key>
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="IDRegion" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_COMUNA_COMUNAS_D_PROVINCI">
+    <End Type="Rukan_MigraModel.PROVINCIA" Role="PROVINCIA" Multiplicity="1" />
+    <End Type="Rukan_MigraModel.COMUNA" Role="COMUNA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVINCIA">
+        <PropertyRef Name="REG_ID" />
+        <PropertyRef Name="PRV_ID" />
+      </Principal>
+      <Dependent Role="COMUNA">
+        <PropertyRef Name="REG_ID" />
+        <PropertyRef Name="PRV_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROVINCI_PROVINCIA_REGION">
+    <End Type="Rukan_MigraModel.REGION" Role="REGION" Multiplicity="1" />
+    <End Type="Rukan_MigraModel.PROVINCIA" Role="PROVINCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="REG_ID" />
+      </Principal>
+      <Dependent Role="PROVINCIA">
+        <PropertyRef Name="REG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="PA_LISTAR_REGION_Result">
+    <Property Type="String" Name="REG_DES" Nullable="true" MaxLength="64" />
+    <Property Type="Int32" Name="REG_ID" Nullable="false" />
+    <Property Type="Decimal" Name="REG_ORD" Nullable="true" Precision="3" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="RUKAN_MIGRA_USP_CON_OBTIENE_FAMILIA_CAMBIO_VIGENCIA_AVC_RUT_Result">
+    <Property Type="String" Name="RUT_FAMILIA" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="DV_FAMILIA" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="NUEVA_VIGENCIA" Nullable="false" Precision="23" />
+    <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="APELLIDO_PATERNO" Nullable="false" MaxLength="32" />
+    <Property Type="String" Name="APELLIDO_MATERNO" Nullable="true" MaxLength="32" />
+  </ComplexType>
+  <ComplexType Name="RUKAN_MIGRA_USP_CON_OBTIENE_NUMERO_CERTIFICADO_PPPF_Result">
+    <Property Type="String" Name="PER_RUT" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="PER_DIG" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="BNF_CER_NUM" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="ID_PER_NOM" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="ID_PER_PAT" Nullable="false" MaxLength="32" />
+    <Property Type="String" Name="ID_PER_MAT" Nullable="true" MaxLength="32" />
+    <Property Type="Int32" Name="LLA_NUM" Nullable="false" />
+    <Property Type="Int32" Name="LLA_ANO" Nullable="false" />
+    <Property Type="Int32" Name="LIN_PRO_ID" Nullable="true" />
+  </ComplexType>
+</Schema>

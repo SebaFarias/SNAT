@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minvu.Snat.Site", "Minvu.Snat.Site\Minvu.Snat.Site.csproj", "{4D9F780C-8E07-4812-B20D-BDF69226B171}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4EAC8F48-BFB0-47C6-9AC4-EFEC440675E6} = {4EAC8F48-BFB0-47C6-9AC4-EFEC440675E6}
+		{8C618B93-7F05-4530-9902-6548FCB725B7} = {8C618B93-7F05-4530-9902-6548FCB725B7}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minvu.Snat.IData", "Minvu.Snat.IData\Minvu.Snat.IData.csproj", "{D8CF9CD7-2B1F-4142-8333-CEB1EDF1A1A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minvu.Snat.Domain", "Minvu.Snat.Domain\Minvu.Snat.Domain.csproj", "{8C618B93-7F05-4530-9902-6548FCB725B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minvu.Snat.Helper", "Minvu.Snat.Helper\Minvu.Snat.Helper.csproj", "{4EAC8F48-BFB0-47C6-9AC4-EFEC440675E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D9F780C-8E07-4812-B20D-BDF69226B171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D9F780C-8E07-4812-B20D-BDF69226B171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D9F780C-8E07-4812-B20D-BDF69226B171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D9F780C-8E07-4812-B20D-BDF69226B171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8CF9CD7-2B1F-4142-8333-CEB1EDF1A1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CF9CD7-2B1F-4142-8333-CEB1EDF1A1A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CF9CD7-2B1F-4142-8333-CEB1EDF1A1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CF9CD7-2B1F-4142-8333-CEB1EDF1A1A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C618B93-7F05-4530-9902-6548FCB725B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C618B93-7F05-4530-9902-6548FCB725B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C618B93-7F05-4530-9902-6548FCB725B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C618B93-7F05-4530-9902-6548FCB725B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EAC8F48-BFB0-47C6-9AC4-EFEC440675E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EAC8F48-BFB0-47C6-9AC4-EFEC440675E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EAC8F48-BFB0-47C6-9AC4-EFEC440675E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EAC8F48-BFB0-47C6-9AC4-EFEC440675E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2076329D-30C6-4328-ACC9-C063BBCD83DF}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://erostfs:8080/tfs/negocio
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Minvu.Snat.Domain\\Minvu.Snat.Domain.csproj
+		SccProjectName1 = Minvu.Snat.Domain
+		SccLocalPath1 = Minvu.Snat.Domain
+		SccProjectUniqueName2 = Minvu.Snat.Helper\\Minvu.Snat.Helper.csproj
+		SccProjectName2 = Minvu.Snat.Helper
+		SccLocalPath2 = Minvu.Snat.Helper
+		SccProjectUniqueName3 = Minvu.Snat.IData\\Minvu.Snat.IData.csproj
+		SccProjectName3 = Minvu.Snat.IData
+		SccLocalPath3 = Minvu.Snat.IData
+		SccProjectUniqueName4 = Minvu.Snat.Site\\Minvu.Snat.Site.csproj
+		SccProjectName4 = Minvu.Snat.Site
+		SccLocalPath4 = Minvu.Snat.Site
+	EndGlobalSection
+EndGlobal

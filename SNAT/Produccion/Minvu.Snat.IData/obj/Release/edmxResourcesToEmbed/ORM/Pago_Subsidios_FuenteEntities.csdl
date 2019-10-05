@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Pago_Subsidios_FuenteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Pago_Subsidios_FuenteEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA" ReturnType="Collection(Pago_Subsidios_FuenteModel.ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA_Result)">
+      <Parameter Name="CodigoOrdenAT" Mode="In" Type="Int64" />
+      <Parameter Name="LineaOrigen" Mode="In" Type="Int32" />
+      <Parameter Name="LineaAplicacion" Mode="In" Type="Int32" />
+      <Parameter Name="TipoLlamado" Mode="In" Type="Int32" />
+      <Parameter Name="MontoUF" Mode="In" Type="Decimal" />
+      <Parameter Name="MontoPesos" Mode="In" Type="Decimal" />
+      <Parameter Name="Nota" Mode="In" Type="String" />
+      <Parameter Name="ChequeRut" Mode="In" Type="Int32" />
+      <Parameter Name="ChequeDgv" Mode="In" Type="String" />
+      <Parameter Name="ChequeNombres" Mode="In" Type="String" />
+      <Parameter Name="MandatoRut" Mode="In" Type="Int32" />
+      <Parameter Name="MandatoDgv" Mode="In" Type="String" />
+      <Parameter Name="MandatoNombres" Mode="In" Type="String" />
+      <Parameter Name="FuncionarioCreaRut" Mode="In" Type="Int32" />
+      <Parameter Name="Organismo" Mode="In" Type="Int32" />
+      <Parameter Name="IndicaATPrevia" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA_Result">
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+    <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="26" />
+  </ComplexType>
+</Schema>

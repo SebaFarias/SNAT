@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Web_Trazabilidad_TestStoreContainer" CdmEntityContainer="Web_Trazabilidad_Test_Entities">
+    <FunctionImportMapping FunctionImportName="WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO" FunctionName="Web_Trazabilidad_Test.Store.WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web_Trazabilidad_Test.WEB_TRAZABILIDAD_ups_con_PROYECTO_AVANCE_OBRA_SNAT_SIMPLIFICADO_Result">
+          <ScalarProperty Name="Programa" ColumnName="Programa" />
+          <ScalarProperty Name="CodigoPrograma" ColumnName="CodigoPrograma" />
+          <ScalarProperty Name="AlternativaPostulacion" ColumnName="AlternativaPostulacion" />
+          <ScalarProperty Name="CodigoProyecto" ColumnName="CodigoProyecto" />
+          <ScalarProperty Name="RegiónProyecto" ColumnName="RegiónProyecto" />
+          <ScalarProperty Name="TituloProyecto" ColumnName="TituloProyecto" />
+          <ScalarProperty Name="AnoLlamadoProyecto" ColumnName="AnoLlamadoProyecto" />
+          <ScalarProperty Name="NroLlamadoProyecto" ColumnName="NroLlamadoProyecto" />
+          <ScalarProperty Name="TipologiaProyecto" ColumnName="TipologiaProyecto" />
+          <ScalarProperty Name="AvanceRealActual" ColumnName="AvanceRealActual" />
+          <ScalarProperty Name="EstadoGeneralDescripcion" ColumnName="EstadoGeneralDescripcion" />
+          <ScalarProperty Name="EstadoGeneral" ColumnName="EstadoGeneral" />
+          <ScalarProperty Name="RutEC" ColumnName="RutEC" />
+          <ScalarProperty Name="DvEC" ColumnName="DvEC" />
+          <ScalarProperty Name="NombreEC" ColumnName="NombreEC" />
+          <ScalarProperty Name="NombreEmpresaFiscalizadora" ColumnName="NombreEmpresaFiscalizadora" />
+          <ScalarProperty Name="IdEC" ColumnName="IdEC" />
+          <ScalarProperty Name="EstadoFiniquitadaEC" ColumnName="EstadoFiniquitadaEC" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

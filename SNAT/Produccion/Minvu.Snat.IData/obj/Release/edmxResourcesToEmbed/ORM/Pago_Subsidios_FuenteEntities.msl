@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Pago_Subsidios_FuenteModelStoreContainer" CdmEntityContainer="Pago_Subsidios_FuenteEntities">
+    <FunctionImportMapping FunctionImportName="ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA" FunctionName="Pago_Subsidios_FuenteModel.Store.ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Pago_Subsidios_FuenteModel.ups_ins_FINANZAS_ORDEN_AT_SIMPLICIFICADOYPREVIA_Result">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

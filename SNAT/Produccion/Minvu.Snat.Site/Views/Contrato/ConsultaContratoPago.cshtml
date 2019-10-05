@@ -1,0 +1,1644 @@
+﻿@model Minvu.Snat.Domain.Forms.ConsultaContrato
+
+@{
+    ViewBag.Title = "Consulta Ingreso Contrato";
+}
+
+
+<style>
+    .custom-file-input::-webkit-file-upload-button {
+        visibility: hidden;
+    }
+
+    .custom-file-input::before {
+        content: 'Select some files';
+        display: inline-block;
+        background: linear-gradient(top, #f9f9f9, #e3e3e3);
+        border: 1px solid #999;
+        border-radius: 3px;
+        padding: 5px 8px;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+        text-shadow: 1px 1px #fff;
+        font-weight: 700;
+        font-size: 10pt;
+    }
+
+    .custom-file-input:hover::before {
+        border-color: black;
+    }
+
+    .custom-file-input:active::before {
+        background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    }
+
+    .no-border {
+        border: 0;
+        box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+    }
+
+
+</style>
+
+<div class="container">
+    @using (Html.BeginForm("GuardarContrato", "Contrato", FormMethod.Post, new { id = "formIngresoContrato", @class = "form-horizontal", enctype = "multipart/form-data", autocomplete = "off" }))
+    {
+        var yearNow = @ViewBag.yearNow;
+
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Proveedor de Servicio</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="rut" style="text-align:left"> Rut:</label>
+                                <div class="col-sm-5">
+                                    @Html.TextBoxFor(model => model._contratoEntities.rutProfesional, new { @class = "form-control", placeholder = "Ingrese Rut sin puntos, guión ni Dv", maxlength = "8", onblur = "getDV();", id = "rut", name = "rut", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                    <span id="mensajeRut" class="text-danger" style="display:none">Debe ingresar rut</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.TextBoxFor(model => model._contratoEntities.dvProfesional, new { @class = "form-control", placeholder = "Dv", id = "dv", name = "dv", @readonly = "readonly", disabled = "disabled" })
+                                    @Html.HiddenFor(model => model._contratoEntities.dvProfesional, new { id = "hiddenDV" })
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="nombre" style="text-align:left">Nombre o Razón Social:</label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(model => model._contratoEntities.nombreRazonSocial, new { @class = "form-control", maxlength = "100", id = "nombreRazonSocial", name = "nombreRazonSocial", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly" })
+                                    <span id="mensajeNombre" class="text-danger" style="display:none">El nombre o razón social es obligatorio </span>
+                                    <span id="mensajeNombreFallecido" class="text-danger" style="display:none">¡El Rut del Proveedor ingresado, se encuentra fallecido! </span>
+                                    <span id="mensajeNombreMenor" class="text-danger" style="display:none">¡El Rut del Profesional ingresado, no puede ser menor de edad! </span>
+                                    <span id="mensajeError" class="text-danger" style="display:none">Error en Registro Civil, intente más tarde </span>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="tproveedor" style="text-align:left">Tipo de Proveedor:</label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(model => model._contratoEntities.nombreTipoProveedor, new { @class = "form-control", maxlength = "100", id = "nombreRazonSocial", name = "nombreRazonSocial", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Información de Contrato</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="anno" style="text-align:left">Año:</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model._contratoEntities.annoPresupuesto, new { @class = "form-control", maxlength = "8", id = "anno", name = "anno", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled", @Value = yearNow })
+                                    <span id="mensajeAnno" class="text-danger" style="display:none"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-7" for="año" style="text-align:left">Identificación Propiedad del Terreno:</label>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model._contratoEntities.nombrePropiedadTerreno, new { @class = "form-control", maxlength = "100", id = "nombreRazonSocial", name = "nombreRazonSocial", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="region" style="text-align:left">Región:</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(m => m._contratoEntities.idRegion,
+                                              new SelectList(Model._listRegionEntities, "idRegion", "nombreRegion", Model._contratoEntities.idRegion),
+                                             "-- Seleccione --",
+                                              new { @class = "form-control input-sm", id = "ddlRegion", name = "ddlRegion", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-7" for="numeroResolucion" style="text-align:left">N° Resolución Contrato:</label>
+                                <div class="col-sm-5">
+                                    @Html.TextBoxFor(model => model._contratoEntities.numeroResolucion, new { @class = "form-control", maxlength = "8", id = "numeroResolucion", name = "numeroResolucion", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                    <span id="mensajeNumero" class="text-danger" style="display:none">Debe seleccionar N° resolución contrato</span>
+                                    <span id="mensajeNumeroExiste" class="text-danger" style="display:none">N° Resolución contrato ya existe</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="provincia" style="text-align:left">Provincia:</label>
+                                <div class="col-md-9">
+                                    @Html.DropDownListFor(model => model._contratoEntities.idProvincia,
+                                            new SelectList(Model.lstProvincias, "idProvincia", "nombreProvincia"),
+                                            "-- Seleccione --",
+                                            new { @class = "form-control input-sm", id = "ddlProvincia", name = "ddlProvincia", @readonly = "readonly", disabled = "disabled" })
+                                    <span id="mensajeProvincia" class="text-danger" style="display:none">Debe seleccionar provincia</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-7" for="fecha" style="text-align:left">Fecha de Resolución Contrato:</label>
+                                <div class="col-sm-5">
+                                    @Html.TextBoxFor(model => model._contratoEntities.fechaResolucionContrato, "{0:dd-MM-yyyy}", new { @class = "form-control", id = "datepickerResolucion", name = "datepickerResolucion", @readonly = "readonly", disabled = "disabled" })
+                                    <span id="mensajeFechaResolucion" class="text-danger" style="display:none">Debe seleccionar fecha de resolución contrato </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="anno" style="text-align:left">Comuna:</label>
+                                <div class="col-md-9">
+                                    @Html.DropDownListFor(model => model._contratoEntities.idComuna, new SelectList(Model.lstComunas, "idComuna", "nombreComuna", Model._contratoEntities.idComuna),
+                                   "-- Seleccione --",
+                                   new { @class = "form-control input-sm", id = "ddlComuna", name = "ddlComuna", @readonly = "readonly", disabled = "disabled" })
+                                    <span id="mensajeComuna" class="text-danger" style="display:none">Debe seleccionar comuna</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-7" for="fecha" style="text-align:left">Fecha de Inicio Contrato:</label>
+                                <div class="col-sm-5">
+                                    @Html.TextBoxFor(model => model._contratoEntities.fechaInicioContrato, "{0:dd-MM-yyyy}", new { @class = "form-control", id = "datepickerInicio", name = "datepickerInicio", @readonly = "readonly", disabled = "disabled" })
+                                    <span id="mensajeFechaInicio" class="text-danger" style="display:none">Debe seleccionar fecha de inicio contrato</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="estado" style="text-align:left">Archivo:</label>
+                                <div id="fileDownload" class="col-md-7" style="display:block">
+                                    @Html.ActionLink("Descargar Documento Contrato", "Download", "Contrato", new { nombre = Model._contratoEntities.nombreArchivo }, new { @class = "form-control no-border" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-7" for="plazoEjecucion" style="text-align:left">Plazo Ejecución:</label>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model._contratoEntities.plazoEjecucion, new { @class = "form-control pre", placeholder = "En días corridos", maxlength = "3", id = "plazoEjecucion", name = "plazoEjecucion", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    @*<div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="tipoServicio" style="text-align:left; margin-top: -7px">Tipo de Servicio:</label>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model._contratoEntities.tipoServicio, new { @class = "form-control no-border", @readonly = "readonly", disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="row">
+                        <div class="panel-body" id="detalleActividades">
+                            <table id="mytable" class="table table-bordered table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center">Tipo</th>
+                                        <th style="text-align:center">Servicios</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null)
+                                    {
+                                        if (Model._contratoSolicitudPagoList != null)
+                                        {
+                                            foreach (var items in Model._contratoSolicitudPagoList)
+                                            {
+                                                <tr>
+                                                    <td style="text-align:center;">@items.nombreServicio</td>
+                                                    <td style="text-align:left;">@items.nombreMaestroServicio</td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                            <input type="text" name="dataHidden" id="dataHidden" value="" hidden>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="producto" style="text-align:left">Producto:</label>
+                        <div class="col-md-8">
+                            @Html.TextAreaFor(model => model._contratoEntities.producto, new { @class = "form-control", placeholder = "Ingrese Producto", id = "producto", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", maxlength = "200", @onkeydown = "ActualizarCantidad(this, contadorCaracteresDescripcionProducto, 200);", @onkeyup = "ActualizarCantidad(this, contadorCaracteresDescripcionProducto, 200);", @readonly = "readonly", disabled = "disabled" })
+                            <span id="mensajeProducto" class="text-danger" style="display:none">El producto es obligatorio.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="observacion" style="text-align:left">Descripción del Producto:</label>
+                        <div class="col-md-8">
+                            @Html.TextAreaFor(model => model._contratoEntities.descripcionProducto, new { @class = "form-control", placeholder = "Ingrese Descripción del Producto", id = "descripcionProducto", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", maxlength = "200", @onkeydown = "ActualizarCantidad(this, contadorCaracteresDescripcion1, 200);", @onkeyup = "ActualizarCantidad(this, contadorCaracteresDescripcion1, 200);", @readonly = "readonly", disabled = "disabled" })
+                            <span id="mensajeDescripcionProducto" class="text-danger" style="display:none">Descripción del producto es obligatorio.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="montoContrato" style="text-align:left">Monto Contrato<span class="text-justify"> ($)</span>:</label>
+                                <div class="col-md-6">
+                                    @Html.TextBox("montoContrato", Model._contratoEntities.montoContrato.ToString("N0"), new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Información Complementaria</h2>
+                </div>
+                <br />
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model._contratoEntities.observacion, new { @class = "form-control", placeholder = "Ingrese Observación (Opcional)", id = "observacion", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", maxlength = "200", @onkeydown = "ActualizarCantidad(this, contadorCaracteresDescripcion2, 200);", @onkeyup = "ActualizarCantidad(this, contadorCaracteresDescripcion2, 200);", @readonly = "readonly", disabled = "disabled" })
+
+                </div>
+
+                <br />
+                <br />
+                <br />
+                <div class="container">
+                    <div class="form-group">
+                        <div class="col-sm-offset-10 col-sm-12">
+                           <button type="button" class="btn btn-secondary " onclick="backPage()">Volver</button> 
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            }
+
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalOk">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="divBusqueda" class="alert alert-success oculta" style="display:none">
+                                <button class="close" type="button" data-dismiss="alert"></button>
+                                <strong id="strongBusqueda">Error</strong>
+                            </div>
+                            <div id="divBusquedaError" class="alert alert-warning oculta" style="display:none">
+                                <button class="close" type="button" data-dismiss="alert"></button>
+                                <strong id="strongBusquedaError">Error</strong>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-btn-si">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spinner" style="display:none">
+                <div class="center-div">
+                    <div class="inner-div">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        var flag = 0;
+        $('.amt').on('keydown', function (e) {
+            flag++;
+            if (flag > 1) {
+                e.preventDefault();
+            }
+        });
+        $('.amt').on('keyup', function (e) {
+            flag = 0;
+        });
+    });
+
+    $('.amt').keyup(function () {
+        $(event.target).val(function (index, value) {
+            return value.replace(/\D/g, "")
+                .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+        });
+    });
+
+        $(document).ready(function () {
+        $("#ddlRegion").change(function () {
+            $("#ddlProvincia").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetProvincias")', //Llamada al metodo Json
+
+                dataType: 'json',
+
+                data: { idRegion: $("#ddlRegion").val() },//Obtenemos el "value" seleccionado del ddlregion y lo pasamos como input al metodo json "GetProvincias".
+
+                success: function (provincia) {//provincia contiene el JSON formateado a list de provincia obtenido
+                    $("#ddlProvincia").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                    $.each(provincia, function (i, provincia) {
+                        //Se añaden las opciones obtenidas para el ddlProvincia
+                        $("#ddlProvincia").append('<option value="' + provincia.Value + '">' +
+                            provincia.Text + '</option>');
+                    });
+                    //Obtencion de todas las Comunas
+                    $(function () {
+                        $("#ddlComuna").empty();
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetComunasRegion")', //Llamada al metodo Json
+                            dataType: 'json',
+                            data: { idRegion: $("#ddlRegion").val() },//Paso vacio el idProvincia como input al metodo json "GetComunas".
+
+                            success: function (comuna) {//provincia contiene el JSON formateado a list de provincia obtenido
+                                $("#ddlComuna").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                                $.each(comuna, function (i, comuna) {
+                                    //Se añaden las opciones obtenidas para el ddlProvincia
+                                    $("#ddlComuna").append('<option value="' + comuna.Value + '">' +
+                                        comuna.Text + '</option>');
+                                });
+                            },
+                            error: function (ex) {
+                                alert('Error al obtener Comunas.' + ex);
+                            }
+                        });
+                        return false;
+                    });
+
+                    //Obtencion monto presupuesto
+                    $(function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetMontoPresupuestoRegion")', //Llamada al metodo Json
+                            dataType: 'json',
+                            data: { idRegion: $("#ddlRegion").val() },//Paso vacio el idProvincia como input al metodo json "GetComunas".
+
+                            success: function (auxConsultaInformacionMonto) {//auxConsultaInformacionMonto contiene el JSON
+                                if (auxConsultaInformacionMonto._contratoSolicitudPago.montoDisponibleContratoRegion >= 0) {
+
+                                    $('#montoPresupuesto').val(auxConsultaInformacionMonto._contratoSolicitudPago.montoDisponibleContratoRegion).val(function (index, value) {
+                                        return value.replace(/\D/g, "")
+                                            .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                                            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+                                    });
+                                }
+                                else
+                                {
+                                    $('#montoPresupuesto').val('0');
+                                }
+
+                            },
+                            error: function (ex) {
+                                //alert('Error al obtener Monto.' + ex);
+                                $('#montoPresupuesto').val('0');
+                            }
+                        });
+                        return false;
+                    });
+                },
+                error: function (ex) {
+                    alert('Error al obtener Monto.' + ex);
+                }
+            });
+            return false;
+        })
+
+        //ddlProvincia Selectedchange event
+        $("#ddlProvincia").change(function () {
+            $("#ddlComuna").empty();
+
+            if ($("#ddlProvincia").val() == '') {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetComunasRegion")', //Llamada al metodo Json
+                    dataType: 'json',
+                    data: { idRegion: $("#ddlRegion").val() },//Paso vacio el idProvincia como input al metodo json "GetComunasRegion".
+
+                    success: function (comuna) {//provincia contiene el JSON formateado a list de provincia obtenido
+                        $("#ddlComuna").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                        $.each(comuna, function (i, comuna) {
+                            //Se añaden las opciones obtenidas para el ddlProvincia
+                            $("#ddlComuna").append('<option value="' + comuna.Value + '">' +
+                                comuna.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Error al obtener Comunas.' + ex);
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetComunas")', //Llamada al metodo Json
+
+                    dataType: 'json',
+
+                    data: { idProvincia: $("#ddlProvincia").val() },//Obtenemos el "value" seleccionado del ddlProvincia y lo pasamos como input al metodo json "GetComunas".
+
+                    success: function (comuna) {//comuna contiene el JSON formateado a list de comunas obtenido
+                        $("#ddlComuna").append('<option value="">-- Seleccione --</option>');//Agrego opcion "Seleccione"
+
+                        $.each(comuna, function (i, comuna) {
+                            //Se añaden las opciones obtenidas para el ddlComuna
+                            $("#ddlComuna").append('<option value="' + comuna.Value + '">' +
+                                comuna.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Error al obtener Comunas.' + ex);
+                    }
+                });
+            }
+
+            return false;
+        })
+
+        //ddlComuna Selectedchange event
+        $("#ddlComuna").change(function () {
+            if ($("#ddlProvincia").value != '') {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("SetProvinciaComuna")', //Llamada al metodo Json
+
+                    dataType: 'json',
+
+                    data: { idComuna: $("#ddlComuna").val() },//Obtenemos el "value" seleccionado del ddlComuna y lo pasamos como input al metodo json "GetComunas".
+
+                    success: function (idProvincia) {//Obtengo el idProvincia segun la comuna enviada
+                        $("#ddlProvincia").val(idProvincia);
+                    },
+                    error: function (ex) {
+                        alert('Error al obtener idProvincia.' + ex);
+                    }
+                });
+                return false;
+            }
+        })
+    });
+
+    $('#rbSAT').click(function () {
+        document.getElementById('divSAT').style.display = 'block';
+        document.getElementById('divSET').style.display = 'none';
+    });
+    $('#rbSET').click(function () {
+        document.getElementById('divSET').style.display = 'block';
+        document.getElementById('divSAT').style.display = 'none';
+    });
+
+
+    $('#btnSubmit').click(function () {
+
+        document.getElementById('mensajeError').style.display = 'none';
+        document.getElementById('mensajeNombreFallecido').style.display = 'none';
+        document.getElementById('mensajeNombreMenor').style.display = 'none';
+
+        var montoContratoP = $("#montoContrato").val().split('.').join('');
+        var montoPresupuesto = $("#montoPresupuesto").val().split('.').join('');
+        var montoContratoR = parseInt(montoContratoP);
+        var montoPresupuestoR = parseInt(montoPresupuesto);
+
+        if (montoContratoR > montoPresupuestoR) {
+            document.getElementById('mensajeMontoMayor').style.display = 'block';
+            $("#montoContrato").css('border', '1px solid #b94a48');
+            $("#montoContrato").focus();
+            return false;
+        }
+
+        var rut = $('#rut').val();
+        var dv = $('#dv').val();
+        var nombreProveedor = $('#nombreRazonSocial').val();
+        var selectTipoProveedor = $('#ddlTipoProveedor').val();
+
+        var anno = $('#anno').val();
+        var selectRegion = $('#ddlRegion').val();
+        var selectProvincia = $('#ddlProvincia').val();
+        var selectComuna = $('#ddlComuna').val();
+        var plazo = $('#plazoEjecucion').val();
+        var idPropiedad = $('#ddlPropiedad').val();
+        var numResolucion = $('#numeroResolucion').val();
+        var fechaResolucion = $('#datepickerResolucion').val();
+        var fechaInicio = $('#datepickerInicio').val();
+        var archivo = $('#importData').val();
+
+        $("#idRegionHidden").val(selectRegion);
+
+        var producto = $('#producto').val();
+        var descripcionProducto = $('#descripcionProducto').val();
+        var monto = $('#montoContrato').val();
+
+        monto = monto.split('.').join('');
+
+        $("#montoHidden").val(monto);
+
+        var observacion = $('#observacion').val();
+        var estadoSAT = false;
+        var estadoSET = false;
+        var textoOtros = $('#txtOtro').val();
+
+        $('input[type=checkbox]').each(function () {
+            if ($('#rbSAT').prop('checked')) {
+                if (($('#regulaPropiedades').is(':checked')) || ($('#regulaEstudios').is(':checked')) || ($('#revisionProyectos').is(':checked'))
+                    || ($('#elaboraProyectos').is(':checked')) || ($('#identificacionDemanda').is(':checked')))
+                {
+                    estadoSAT = true;
+                    estadoSET = true;
+                }
+            }
+        });
+
+        $('input[type=checkbox]').each(function () {
+            if ($('#rbSET').prop('checked')) {
+                if (($('#estudiosTecnicos').is(':checked')) || ($('#elaboraProyectos').is(':checked')) || ($('#otros').is(':checked')))
+                {
+                    estadoSAT = true;
+                    estadoSET = true;
+                }
+            }
+        });
+
+        if (rut == "" || dv == "" || nombreProveedor == "" || selectTipoProveedor == "" || anno == "" || selectRegion == "" ||
+            selectProvincia == "" || selectComuna == "" || plazo == "" || idPropiedad == "" || numResolucion == "" || fechaResolucion == "" ||
+            fechaInicio == "" || archivo == "" || producto == "" || descripcionProducto == "" || monto == "") {
+
+            if (rut == "") {
+                document.getElementById('mensajeRut').style.display = 'block';
+                $("#rut").css('border', '1px solid #b94a48');
+                $("#rut").focus();
+            }
+
+            if (nombreProveedor == ""){
+                document.getElementById('mensajeNombre').style.display = 'block';
+                $("#nombreRazonSocial").css('border', '1px solid #b94a48');
+                $("#nombreRazonSocial").focus();
+            }
+
+            if (selectTipoProveedor == "") {
+                document.getElementById('mensajeTipoProveedor').style.display = 'block';
+                $("#ddlTipoProveedor").css('border', '1px solid #b94a48');
+                $("#ddlTipoProveedor").focus();
+            }
+
+            if (anno == "") {
+                document.getElementById('mensajeAnno').style.display = 'block';
+                $("#anno").css('border', '1px solid #b94a48');
+                $("#anno").focus();
+            }
+
+            if (selectRegion == "") {
+                document.getElementById('mensajeRegion').style.display = 'block';
+                $("#ddlRegion").css('border', '1px solid #b94a48');
+                $("#ddlRegion").focus();
+            }
+
+            if (selectProvincia == "") {
+                document.getElementById('mensajeProvincia').style.display = 'block';
+                $("#ddlProvincia").css('border', '1px solid #b94a48');
+                $("#ddlProvincia").focus();
+            }
+
+            if (selectComuna == "") {
+                document.getElementById('mensajeComuna').style.display = 'block';
+                $("#ddlComuna").css('border', '1px solid #b94a48');
+                $("#ddlComuna").focus();
+            }
+
+            if (plazo == "") {
+                document.getElementById('mensajePlazo').style.display = 'block';
+                $("#plazoEjecucion").css('border', '1px solid #b94a48');
+                $("#plazoEjecucion").focus();
+            }
+
+            if (idPropiedad == "") {
+                document.getElementById('mensajePropiedad').style.display = 'block';
+                $("#ddlPropiedad").css('border', '1px solid #b94a48');
+                $("#ddlPropiedad").focus();
+            }
+
+            if (numResolucion == "") {
+                document.getElementById('mensajeNumero').style.display = 'block';
+                $("#numeroResolucion").css('border', '1px solid #b94a48');
+                $("#numeroResolucion").focus();
+            }
+
+            if (fechaResolucion == "") {
+                document.getElementById('mensajeFechaResolucion').style.display = 'block';
+                $("#datepickerResolucion").css('border', '1px solid #b94a48');
+                $("#datepickerResolucion").focus();
+            }
+
+            if (fechaInicio == "") {
+                document.getElementById('mensajeFechaInicio').style.display = 'block';
+                $("#datepickerInicio").css('border', '1px solid #b94a48');
+                $("#datepickerInicio").focus();
+            }
+
+            if (archivo == "") {
+                document.getElementById('mensajeArchivo').style.display = 'block';
+                $("#importData").css('border', '1px solid #b94a48');
+                $("#importData").focus();
+            }
+
+            if (!estadoSAT) {
+                document.getElementById('mensajeServicioSAT').style.display = 'block';
+                $("#regulaPropiedades").focus();
+            }
+
+            if (!estadoSET) {
+                document.getElementById('mensajeServicioSET').style.display = 'block';
+                $("#estudiosTecnicos").focus();
+            }
+
+            if (producto == "") {
+                document.getElementById('mensajeProducto').style.display = 'block';
+                $("#producto").css('border', '1px solid #b94a48');
+                $("#producto").focus();
+            }
+
+            if (descripcionProducto == "") {
+                document.getElementById('mensajeDescripcionProducto').style.display = 'block';
+                $("#descripcionProducto").css('border', '1px solid #b94a48');
+                $("#descripcionProducto").focus();
+            }
+
+            if (monto == "") {
+                document.getElementById('mensajeMonto').style.display = 'block';
+                $("#montoContrato").css('border', '1px solid #b94a48');
+                $("#montoContrato").focus();
+            }
+
+            return false;
+        }
+
+        if (plazo != '') {
+            if (plazo <= 0) {
+                document.getElementById('mensajeNumeroCero').style.display = 'block';
+                $("#plazoEjecucion").css('border', '1px solid #b94a48');
+                $("#plazoEjecucion").focus();
+                return false;
+            }
+        }
+        if (($('#otros').is(':checked'))) {
+            if (textoOtros == "") {
+                document.getElementById('mensajeServicioOtro').style.display = 'block';
+                $("#txtOtro").css('border', '1px solid #b94a48');
+                $("#txtOtro").focus();
+                return false;
+            }
+            else
+            {
+
+            }
+        }
+
+        //$('.spinner').css('display', 'block');
+
+    });
+
+    $('#btnSubmitUserRegion').click(function () {
+
+        document.getElementById('mensajeError').style.display = 'none';
+        document.getElementById('mensajeNombreFallecido').style.display = 'none';
+        document.getElementById('mensajeNombreMenor').style.display = 'none';
+
+        var montoContratoP = $("#montoContrato").val().split('.').join('');
+        var montoPresupuesto = $("#montoPresupuesto").val().split('.').join('');
+        var montoContratoR = parseInt(montoContratoP);
+        var montoPresupuestoR = parseInt(montoPresupuesto);
+
+        if (montoContratoR > montoPresupuestoR) {
+            document.getElementById('mensajeMontoMayor').style.display = 'block';
+            $("#montoContrato").css('border', '1px solid #b94a48');
+            $("#montoContrato").focus();
+            return false;
+        }
+
+        var rut = $('#rut').val();
+        var dv = $('#dv').val();
+        var nombreProveedor = $('#nombreRazonSocial').val();
+        var selectTipoProveedor = $('#ddlTipoProveedor').val();
+
+        var anno = $('#anno').val();
+        var selectRegion = $('#ddlRegion').val();
+        var selectProvincia = $('#ddlProvincia').val();
+        var selectComuna = $('#ddlComuna').val();
+        var plazo = $('#plazoEjecucion').val();
+        var idPropiedad = $('#ddlPropiedad').val();
+        var numResolucion = $('#numeroResolucion').val();
+        var fechaResolucion = $('#datepickerResolucion').val();
+        var fechaInicio = $('#datepickerInicio').val();
+        var archivo = $('#importData').val();
+
+        $("#idRegionHidden").val(selectRegion);
+
+        var producto = $('#producto').val();
+        var descripcionProducto = $('#descripcionProducto').val();
+        var monto = $('#montoContrato').val();
+
+        monto = monto.split('.').join('');
+
+        $("#montoHidden").val(monto);
+
+        var observacion = $('#observacion').val();
+        var estadoSAT = false;
+        var estadoSET = false;
+        var textoOtros = $('#txtOtro').val();
+
+        $('input[type=checkbox]').each(function () {
+            if ($('#rbSAT').prop('checked')) {
+                if (($('#regulaPropiedades').is(':checked')) || ($('#regulaEstudios').is(':checked')) || ($('#revisionProyectos').is(':checked'))
+                    || ($('#elaboraProyectos').is(':checked')) || ($('#identificacionDemanda').is(':checked'))) {
+                    estadoSAT = true;
+                    estadoSET = true;
+                }
+            }
+        });
+
+        $('input[type=checkbox]').each(function () {
+            if ($('#rbSET').prop('checked')) {
+                if (($('#estudiosTecnicos').is(':checked')) || ($('#elaboraProyectos').is(':checked')) || ($('#otros').is(':checked'))) {
+                    estadoSAT = true;
+                    estadoSET = true;
+                }
+            }
+        });
+
+        if (rut == "" || dv == "" || nombreProveedor == "" || selectTipoProveedor == "" || anno == "" || selectRegion == "" ||
+            selectProvincia == "" || selectComuna == "" || plazo == "" || idPropiedad == "" || numResolucion == "" || fechaResolucion == "" ||
+            fechaInicio == "" || archivo == "" || producto == "" || descripcionProducto == "" || monto == "") {
+
+            if (rut == "") {
+                document.getElementById('mensajeRut').style.display = 'block';
+                $("#rut").css('border', '1px solid #b94a48');
+                $("#rut").focus();
+            }
+
+            if (nombreProveedor == "") {
+                document.getElementById('mensajeNombre').style.display = 'block';
+                $("#nombreRazonSocial").css('border', '1px solid #b94a48');
+                $("#nombreRazonSocial").focus();
+            }
+
+            if (selectTipoProveedor == "") {
+                document.getElementById('mensajeTipoProveedor').style.display = 'block';
+                $("#ddlTipoProveedor").css('border', '1px solid #b94a48');
+                $("#ddlTipoProveedor").focus();
+            }
+
+            if (anno == "") {
+                document.getElementById('mensajeAnno').style.display = 'block';
+                $("#anno").css('border', '1px solid #b94a48');
+                $("#anno").focus();
+            }
+
+            //if (selectRegion == "") {
+            //    document.getElementById('mensajeRegion').style.display = 'block';
+            //    $("#ddlRegion").css('border', '1px solid #b94a48');
+            //    $("#ddlRegion").focus();
+            //}
+
+            if (selectProvincia == "") {
+                document.getElementById('mensajeProvincia').style.display = 'block';
+                $("#ddlProvincia").css('border', '1px solid #b94a48');
+                $("#ddlProvincia").focus();
+            }
+
+            if (selectComuna == "") {
+                document.getElementById('mensajeComuna').style.display = 'block';
+                $("#ddlComuna").css('border', '1px solid #b94a48');
+                $("#ddlComuna").focus();
+            }
+
+            if (plazo == "") {
+                document.getElementById('mensajePlazo').style.display = 'block';
+                $("#plazoEjecucion").css('border', '1px solid #b94a48');
+                $("#plazoEjecucion").focus();
+            }
+
+            if (idPropiedad == "") {
+                document.getElementById('mensajePropiedad').style.display = 'block';
+                $("#ddlPropiedad").css('border', '1px solid #b94a48');
+                $("#ddlPropiedad").focus();
+            }
+
+            if (numResolucion == "") {
+                document.getElementById('mensajeNumero').style.display = 'block';
+                $("#numeroResolucion").css('border', '1px solid #b94a48');
+                $("#numeroResolucion").focus();
+            }
+
+            if (fechaResolucion == "") {
+                document.getElementById('mensajeFechaResolucion').style.display = 'block';
+                $("#datepickerResolucion").css('border', '1px solid #b94a48');
+                $("#datepickerResolucion").focus();
+            }
+
+            if (fechaInicio == "") {
+                document.getElementById('mensajeFechaInicio').style.display = 'block';
+                $("#datepickerInicio").css('border', '1px solid #b94a48');
+                $("#datepickerInicio").focus();
+            }
+
+            if (archivo == "") {
+                document.getElementById('mensajeArchivo').style.display = 'block';
+                $("#importData").css('border', '1px solid #b94a48');
+                $("#importData").focus();
+            }
+
+            if (!estadoSAT) {
+                document.getElementById('mensajeServicioSAT').style.display = 'block';
+                $("#regulaPropiedades").focus();
+            }
+
+            if (!estadoSET) {
+                document.getElementById('mensajeServicioSET').style.display = 'block';
+                $("#estudiosTecnicos").focus();
+            }
+
+            if (producto == "") {
+                document.getElementById('mensajeProducto').style.display = 'block';
+                $("#producto").css('border', '1px solid #b94a48');
+                $("#producto").focus();
+            }
+
+            if (descripcionProducto == "") {
+                document.getElementById('mensajeDescripcionProducto').style.display = 'block';
+                $("#descripcionProducto").css('border', '1px solid #b94a48');
+                $("#descripcionProducto").focus();
+            }
+
+            if (monto == "") {
+                document.getElementById('mensajeMonto').style.display = 'block';
+                $("#montoContrato").css('border', '1px solid #b94a48');
+                $("#montoContrato").focus();
+            }
+
+            return false;
+        }
+
+        if (plazo != '') {
+            if (plazo <= 0) {
+                document.getElementById('mensajeNumeroCero').style.display = 'block';
+                $("#plazoEjecucion").css('border', '1px solid #b94a48');
+                $("#plazoEjecucion").focus();
+                return false;
+            }
+        }
+        if (($('#otros').is(':checked'))) {
+            if (textoOtros == "") {
+                document.getElementById('mensajeServicioOtro').style.display = 'block';
+                $("#txtOtro").css('border', '1px solid #b94a48');
+                $("#txtOtro").focus();
+                return false;
+            }
+            else {
+
+            }
+        }
+
+        //$('.spinner').css('display', 'block');
+
+    });
+
+
+    function ActualizarCantidad(ingreso, salida, max) {
+        var ln = $(ingreso).val().length;
+        if (ln >= max) {
+            $(salida).text('Límite de caracteres alcanzado');
+        } else {
+            var ch = max - ln;
+            $(salida).text(ch + ' caracteres restantes');
+        }
+    }
+
+    $("#rut").keyup(function () {
+        $('#nombreRazonSocial').val('');
+        $('#dv').val('');
+        $("#rut").css('border', '1px solid #ccc');
+        $("#nombreRazonSocial").css('border', '1px solid #ccc');
+        document.getElementById('mensajeRut').style.display = 'none';
+        document.getElementById('mensajeNombreFallecido').style.display = 'none';
+        document.getElementById('mensajeNombreMenor').style.display = 'none';
+        document.getElementById('mensajeError').style.display = 'none';
+        document.getElementById('mensajeNombre').style.display = 'none';
+    });
+
+    $("#nombreRazonSocial").keypress(function () {
+        $("#nombreRazonSocial").css('border', '1px solid #ccc');
+        document.getElementById('mensajeNombre').style.display = 'none';
+        document.getElementById('mensajeError').style.display = 'none';
+    });
+
+    $("#ddlTipoProveedor").change(function () {
+        $("#ddlTipoProveedor").css('border', '1px solid #ccc');
+        document.getElementById('mensajeTipoProveedor').style.display = 'none';
+    });
+
+    $("#ddlRegion").change(function () {
+        $("#ddlRegion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeRegion').style.display = 'none';
+    });
+
+    $("#ddlProvincia").change(function () {
+        $("#ddlProvincia").css('border', '1px solid #ccc');
+        document.getElementById('mensajeProvincia').style.display = 'none';
+    });
+
+    $("#ddlComuna").change(function () {
+        $("#ddlComuna").css('border', '1px solid #ccc');
+        document.getElementById('mensajeComuna').style.display = 'none';
+    });
+
+    $("#plazoEjecucion").keypress(function () {
+        $("#plazoEjecucion").css('border', '1px solid #ccc');
+        document.getElementById('mensajePlazo').style.display = 'none';
+        document.getElementById('mensajeNumeroCero').style.display = 'none';
+    });
+
+    $("#ddlPropiedad").change(function () {
+        $("#ddlPropiedad").css('border', '1px solid #ccc');
+        document.getElementById('mensajePropiedad').style.display = 'none';
+    });
+
+    $("#numeroResolucion").keyup(function () {
+        $("#numeroResolucion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeNumero').style.display = 'none';
+        document.getElementById('mensajeNumeroExiste').style.display = 'none';
+    });
+
+    $("#datepickerResolucion").change(function () {
+        $("#datepickerResolucion").css('border', '1px solid #ccc');
+        document.getElementById('mensajeFechaResolucion').style.display = 'none';
+    });
+
+    $("#datepickerInicio").change(function () {
+        $("#datepickerInicio").css('border', '1px solid #ccc');
+        document.getElementById('mensajeFechaInicio').style.display = 'none';
+    });
+
+    $("#importData").change(function () {
+        $("#importData").css('border', '1px solid #ccc');
+        document.getElementById('mensajeArchivo').style.display = 'none';
+    });
+
+    $("#producto").keypress(function () {
+        $("#producto").css('border', '1px solid #ccc');
+        document.getElementById('mensajeProducto').style.display = 'none';
+    });
+
+    $("#descripcionProducto").keypress(function () {
+        $("#descripcionProducto").css('border', '1px solid #ccc');
+        document.getElementById('mensajeDescripcionProducto').style.display = 'none';
+    });
+
+    $("#montoContrato").keypress(function () {
+        $("#montoContrato").css('border', '1px solid #ccc');
+        document.getElementById('mensajeMonto').style.display = 'none';
+        document.getElementById('mensajeMontoMayor').style.display = 'none';
+    });
+
+    $("#regulaPropiedades").change(function () {
+        $("#regulaPropiedades").css('border', '1px solid #ccc');
+        document.getElementById('mensajeServicioSAT').style.display = 'none';
+    });
+
+    $("#regulaEstudios").change(function () {
+        $("#regulaEstudios").css('border', '1px solid #ccc');
+        document.getElementById('mensajeServicioSAT').style.display = 'none';
+    });
+
+    $("#revisionProyectos").change(function () {
+        $("#revisionProyectos").css('border', '1px solid #ccc');
+        document.getElementById('mensajeServicioSAT').style.display = 'none';
+    });
+
+    $("#elaboraProyectos").change(function () {
+        $("#elaboraProyectos").css('border', '1px solid #ccc');
+        document.getElementById('mensajeServicioSAT').style.display = 'none';
+    });
+
+    $("#identificacionDemanda").change(function () {
+        $("#identificacionDemanda").css('border', '1px solid #ccc');
+        document.getElementById('mensajeServicioSAT').style.display = 'none';
+    });
+
+    $("#elaborarDiagnosticos").change(function () {
+        $("#elaborarDiagnosticos").css('border', '1px solid #ccc');
+        document.getElementById('mensajeServicioSET').style.display = 'none';
+    });
+
+    $("#txtOtro").keypress(function () {
+        $("#txtOtro").css('border', '1px solid #ccc');
+        document.getElementById('mensajeServicioOtro').style.display = 'none';
+    });
+
+    $("#otros").change(function () {
+        $("#otros").css('border', '1px solid #ccc');
+        document.getElementById('mensajeServicioSET').style.display = 'none';
+        $('input[type=checkbox]').each(function () {
+            if ($('#rbSET').prop('checked')) {
+                if (($('#otros').is(':checked'))) {
+                    document.getElementById('txtOtro').style.display = 'block';
+                }
+                else
+                {
+                    document.getElementById('txtOtro').style.display = 'none';
+                }
+            }
+        });
+    });
+
+
+    function backPage() {
+    document.location = '@Url.Action("ListadoContratoPago", "Contrato")';
+    }
+
+    function numeros(e) {
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    $(function () {
+
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1, d = date.getDate(), y = date.getFullYear();
+        var f2 = d + "/" + m + "/" + y;
+        var f1 = "01/01/" + y;
+        var dias = restaFechas(f1, f2);
+        var sumDias = 365 + dias;
+        var stardate = "-" + sumDias + "d";
+
+        $("#datepickerResolucion").datepicker(
+            {
+                format: 'dd-mm-yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true,
+                startDate: stardate,
+                endDate: new Date(),
+            }).attr('readonly', 'readonly');
+
+        $("#datepickerInicio").datepicker(
+            {
+                format: 'dd-mm-yyyy',
+                language: "es",
+                autoclose: true,
+                startDate: stardate,
+                todayHighlight: true,
+            }).attr('readonly', 'readonly');
+    });
+
+    restaFechas = function (f1, f2) {
+        var aFecha1 = f1.split('/');
+        var aFecha2 = f2.split('/');
+        var fFecha1 = Date.UTC(aFecha1[2], aFecha1[1] - 1, aFecha1[0]);
+        var fFecha2 = Date.UTC(aFecha2[2], aFecha2[1] - 1, aFecha2[0]);
+        var dif = fFecha2 - fFecha1;
+        var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+        return dias;
+    }
+
+
+    function LimpiaFormulario() {
+        $(contadorCaracteresDescripcionProducto).text('200 caracteres restantes');
+        $(contadorCaracteresDescripcion1).text('200 caracteres restantes');
+        $(contadorCaracteresDescripcion2).text('200 caracteres restantes');
+        $('#rut').val('');
+        $('#dv').val('');
+        $('#nombreRazonSocial').val('');
+        $('#ddlTipoProveedor').val('');
+        $('#ddlRegion').val('');
+        $('#ddlProvincia').val('');
+        $('#ddlComuna').val('');
+        $('#plazoEjecucion').val('');
+        $('#ddlPropiedad').val('');
+        $('#numeroResolucion').val('');
+        $('#datepickerResolucion').val('');
+        $('#datepickerInicio').val('');
+        $('#importData').val('');
+        $('#producto').val('');
+        $('#descripcionProducto').val('');
+        $('#montoContrato').val('');
+        $('#observacion').val('');
+
+        $('input:checkbox').removeAttr('checked');
+
+        $("#rut").css('border', '1px solid #ccc');
+        $("#nombreRazonSocial").css('border', '1px solid #ccc');
+        $("#ddlTipoProveedor").css('border', '1px solid #ccc');
+        $('#ddlRegion').css('border', '1px solid #ccc');
+        $('#ddlProvincia').css('border', '1px solid #ccc');
+        $('#ddlComuna').css('border', '1px solid #ccc');
+        $('#plazoEjecucion').css('border', '1px solid #ccc');
+        $('#ddlPropiedad').css('border', '1px solid #ccc');
+        $('#numeroResolucion').css('border', '1px solid #ccc');
+        $('#datepickerResolucion').css('border', '1px solid #ccc');
+        $('#datepickerInicio').css('border', '1px solid #ccc');
+        $('#importData').css('border', '1px solid #ccc');
+        $('#producto').css('border', '1px solid #ccc');
+        $('#descripcionProducto').css('border', '1px solid #ccc');
+        $('#montoContrato').css('border', '1px solid #ccc');
+        $('#observacion').css('border', '1px solid #ccc');
+
+        document.getElementById('mensajeRut').style.display = 'none';
+        document.getElementById('mensajeNombre').style.display = 'none';
+        document.getElementById('mensajeTipoProveedor').style.display = 'none';
+        document.getElementById('mensajeRegion').style.display = 'none';
+        document.getElementById('mensajeProvincia').style.display = 'none';
+        document.getElementById('mensajeComuna').style.display = 'none';
+        document.getElementById('mensajePlazo').style.display = 'none';
+        document.getElementById('mensajePropiedad').style.display = 'none';
+        document.getElementById('mensajeNumero').style.display = 'none';
+        document.getElementById('mensajeNumeroExiste').style.display = 'none';
+        document.getElementById('mensajeFechaResolucion').style.display = 'none';
+        document.getElementById('mensajeFechaInicio').style.display = 'none';
+        document.getElementById('mensajeArchivo').style.display = 'none';
+        document.getElementById('mensajeProducto').style.display = 'none';
+        document.getElementById('mensajeDescripcionProducto').style.display = 'none';
+        document.getElementById('mensajeMonto').style.display = 'none';
+        document.getElementById('mensajeError').style.display = 'none';
+        document.getElementById('mensajeNombreFallecido').style.display = 'none';
+        document.getElementById('mensajeNombreMenor').style.display = 'none';
+        document.getElementById('mensajeServicioSET').style.display = 'none';
+        document.getElementById('mensajeServicioSAT').style.display = 'none';
+        document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+        document.getElementById('mensajeArchivo5MB').style.display = 'none';
+        document.getElementById('mensajeMontoMayor').style.display = 'none';
+        document.getElementById('fileUp').style.display = 'none';
+
+    }
+
+    function LimpiaFormularioUserRegion() {
+        $(contadorCaracteresDescripcionProducto).text('200 caracteres restantes');
+        $(contadorCaracteresDescripcion1).text('200 caracteres restantes');
+        $(contadorCaracteresDescripcion2).text('200 caracteres restantes');
+        $('#rut').val('');
+        $('#dv').val('');
+        $('#nombreRazonSocial').val('');
+        $('#ddlTipoProveedor').val('');
+        $('#ddlRegion').val('');
+        $('#ddlProvincia').val('');
+        $('#ddlComuna').val('');
+        $('#plazoEjecucion').val('');
+        $('#ddlPropiedad').val('');
+        $('#numeroResolucion').val('');
+        $('#datepickerResolucion').val('');
+        $('#datepickerInicio').val('');
+        $('#importData').val('');
+        $('#producto').val('');
+        $('#descripcionProducto').val('');
+        $('#montoContrato').val('');
+        $('#observacion').val('');
+
+        $('input:checkbox').removeAttr('checked');
+
+        $("#rut").css('border', '1px solid #ccc');
+        $("#nombreRazonSocial").css('border', '1px solid #ccc');
+        $("#ddlTipoProveedor").css('border', '1px solid #ccc');
+       // $('#ddlRegion').css('border', '1px solid #ccc');
+        $('#ddlProvincia').css('border', '1px solid #ccc');
+        $('#ddlComuna').css('border', '1px solid #ccc');
+        $('#plazoEjecucion').css('border', '1px solid #ccc');
+        $('#ddlPropiedad').css('border', '1px solid #ccc');
+        $('#numeroResolucion').css('border', '1px solid #ccc');
+        $('#datepickerResolucion').css('border', '1px solid #ccc');
+        $('#datepickerInicio').css('border', '1px solid #ccc');
+        $('#importData').css('border', '1px solid #ccc');
+        $('#producto').css('border', '1px solid #ccc');
+        $('#descripcionProducto').css('border', '1px solid #ccc');
+        $('#montoContrato').css('border', '1px solid #ccc');
+        $('#observacion').css('border', '1px solid #ccc');
+
+        document.getElementById('mensajeRut').style.display = 'none';
+        document.getElementById('mensajeNombre').style.display = 'none';
+        document.getElementById('mensajeTipoProveedor').style.display = 'none';
+        //document.getElementById('mensajeRegion').style.display = 'none';
+        document.getElementById('mensajeProvincia').style.display = 'none';
+        document.getElementById('mensajeComuna').style.display = 'none';
+        document.getElementById('mensajePlazo').style.display = 'none';
+        document.getElementById('mensajePropiedad').style.display = 'none';
+        document.getElementById('mensajeNumero').style.display = 'none';
+        document.getElementById('mensajeNumeroExiste').style.display = 'none';
+        document.getElementById('mensajeFechaResolucion').style.display = 'none';
+        document.getElementById('mensajeFechaInicio').style.display = 'none';
+        document.getElementById('mensajeArchivo').style.display = 'none';
+        document.getElementById('mensajeProducto').style.display = 'none';
+        document.getElementById('mensajeDescripcionProducto').style.display = 'none';
+        document.getElementById('mensajeMonto').style.display = 'none';
+        document.getElementById('mensajeError').style.display = 'none';
+        document.getElementById('mensajeNombreFallecido').style.display = 'none';
+        document.getElementById('mensajeNombreMenor').style.display = 'none';
+        document.getElementById('mensajeServicioSET').style.display = 'none';
+        document.getElementById('mensajeServicioSAT').style.display = 'none';
+        document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+        document.getElementById('mensajeArchivo5MB').style.display = 'none';
+        document.getElementById('fileUp').style.display = 'none';
+    }
+
+    function LimpiaFormularioRetorno() {
+        $(contadorCaracteresDescripcionProducto).text('200 caracteres restantes');
+        $(contadorCaracteresDescripcion1).text('200 caracteres restantes');
+        $(contadorCaracteresDescripcion2).text('200 caracteres restantes');
+        $('#rut').val('');
+        $('#dv').val('');
+        $('#nombreRazonSocial').val('');
+        $('#ddlTipoProveedor').val('');
+        $('#ddlProvincia').val('');
+        $('#ddlRegion').val('');
+        $('#ddlComuna').val('');
+        $('#plazoEjecucion').val('');
+        $('#ddlPropiedad').val('');
+        $('#numeroResolucion').val('');
+        $('#datepickerResolucion').val('');
+        $('#datepickerInicio').val('');
+        $('#importData').val('');
+        $('#producto').val('');
+        $('#descripcionProducto').val('');
+        $('#montoContrato').val('');
+        $('#observacion').val('');
+        $('#montoPresupuesto').val('');
+
+        $('input:checkbox').removeAttr('checked');
+
+        $("#rut").css('border', '1px solid #ccc');
+        $("#nombreRazonSocial").css('border', '1px solid #ccc');
+        $("#ddlTipoProveedor").css('border', '1px solid #ccc');
+        $('#ddlRegion').css('border', '1px solid #ccc');
+        $('#ddlProvincia').css('border', '1px solid #ccc');
+        $('#ddlComuna').css('border', '1px solid #ccc');
+        $('#plazoEjecucion').css('border', '1px solid #ccc');
+        $('#ddlPropiedad').css('border', '1px solid #ccc');
+        $('#numeroResolucion').css('border', '1px solid #ccc');
+        $('#datepickerResolucion').css('border', '1px solid #ccc');
+        $('#datepickerInicio').css('border', '1px solid #ccc');
+        $('#importData').css('border', '1px solid #ccc');
+        $('#producto').css('border', '1px solid #ccc');
+        $('#descripcionProducto').css('border', '1px solid #ccc');
+        $('#montoContrato').css('border', '1px solid #ccc');
+        $('#observacion').css('border', '1px solid #ccc');
+
+        document.getElementById('mensajeRut').style.display = 'none';
+        document.getElementById('mensajeNombre').style.display = 'none';
+        document.getElementById('mensajeTipoProveedor').style.display = 'none';
+        document.getElementById('mensajeRegion').style.display = 'none';
+        document.getElementById('mensajeProvincia').style.display = 'none';
+        document.getElementById('mensajeComuna').style.display = 'none';
+        document.getElementById('mensajePlazo').style.display = 'none';
+        document.getElementById('mensajePropiedad').style.display = 'none';
+        document.getElementById('mensajeNumero').style.display = 'none';
+        document.getElementById('mensajeNumeroExiste').style.display = 'none';
+        document.getElementById('mensajeFechaResolucion').style.display = 'none';
+        document.getElementById('mensajeFechaInicio').style.display = 'none';
+        document.getElementById('mensajeArchivo').style.display = 'none';
+        document.getElementById('mensajeProducto').style.display = 'none';
+        document.getElementById('mensajeDescripcionProducto').style.display = 'none';
+        document.getElementById('mensajeMonto').style.display = 'none';
+        document.getElementById('mensajeError').style.display = 'none';
+        document.getElementById('mensajeNombreFallecido').style.display = 'none';
+        document.getElementById('mensajeNombreMenor').style.display = 'none';
+        document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+        document.getElementById('mensajeArchivo5MB').style.display = 'none';
+        document.getElementById('fileUp').style.display = 'none';
+    }
+
+    function LimpiaFormularioRetornoRegion() {
+        $(contadorCaracteresDescripcionProducto).text('200 caracteres restantes');
+        $(contadorCaracteresDescripcion1).text('200 caracteres restantes');
+        $(contadorCaracteresDescripcion2).text('200 caracteres restantes');
+        $('#rut').val('');
+        $('#dv').val('');
+        $('#nombreRazonSocial').val('');
+        $('#ddlTipoProveedor').val('');
+        $('#ddlProvincia').val('');
+        //$('#ddlRegion').val('');
+        $('#ddlComuna').val('');
+        $('#plazoEjecucion').val('');
+        $('#ddlPropiedad').val('');
+        $('#numeroResolucion').val('');
+        $('#datepickerResolucion').val('');
+        $('#datepickerInicio').val('');
+        $('#importData').val('');
+        $('#producto').val('');
+        $('#descripcionProducto').val('');
+        $('#montoContrato').val('');
+        $('#observacion').val('');
+        //$('#montoPresupuesto').val('');
+
+        $('input:checkbox').removeAttr('checked');
+
+        $("#rut").css('border', '1px solid #ccc');
+        $("#nombreRazonSocial").css('border', '1px solid #ccc');
+        $("#ddlTipoProveedor").css('border', '1px solid #ccc');
+        $('#ddlRegion').css('border', '1px solid #ccc');
+        $('#ddlProvincia').css('border', '1px solid #ccc');
+        $('#ddlComuna').css('border', '1px solid #ccc');
+        $('#plazoEjecucion').css('border', '1px solid #ccc');
+        $('#ddlPropiedad').css('border', '1px solid #ccc');
+        $('#numeroResolucion').css('border', '1px solid #ccc');
+        $('#datepickerResolucion').css('border', '1px solid #ccc');
+        $('#datepickerInicio').css('border', '1px solid #ccc');
+        $('#importData').css('border', '1px solid #ccc');
+        $('#producto').css('border', '1px solid #ccc');
+        $('#descripcionProducto').css('border', '1px solid #ccc');
+        $('#montoContrato').css('border', '1px solid #ccc');
+        $('#observacion').css('border', '1px solid #ccc');
+
+        document.getElementById('mensajeRut').style.display = 'none';
+        document.getElementById('mensajeNombre').style.display = 'none';
+        document.getElementById('mensajeTipoProveedor').style.display = 'none';
+        document.getElementById('mensajeRegion').style.display = 'none';
+        document.getElementById('mensajeProvincia').style.display = 'none';
+        document.getElementById('mensajeComuna').style.display = 'none';
+        document.getElementById('mensajePlazo').style.display = 'none';
+        document.getElementById('mensajePropiedad').style.display = 'none';
+        document.getElementById('mensajeNumero').style.display = 'none';
+        document.getElementById('mensajeNumeroExiste').style.display = 'none';
+        document.getElementById('mensajeFechaResolucion').style.display = 'none';
+        document.getElementById('mensajeFechaInicio').style.display = 'none';
+        document.getElementById('mensajeArchivo').style.display = 'none';
+        document.getElementById('mensajeProducto').style.display = 'none';
+        document.getElementById('mensajeDescripcionProducto').style.display = 'none';
+        document.getElementById('mensajeMonto').style.display = 'none';
+        document.getElementById('mensajeError').style.display = 'none';
+        document.getElementById('mensajeNombreFallecido').style.display = 'none';
+        document.getElementById('mensajeNombreMenor').style.display = 'none';
+        document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+        document.getElementById('mensajeArchivo5MB').style.display = 'none';
+        document.getElementById('fileUp').style.display = 'none';
+    }
+
+    $('#txtOtro').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-]+/ig, "");
+        }
+    });
+
+    $('#producto').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-]+/ig, "");
+        }
+    });
+
+    $('#descripcionProducto').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-]+/ig, "");
+        }
+    });
+
+    $('#observacion').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-]+/ig, "");
+        }
+    });
+
+    $('#nombreRazonSocial').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-]+/ig, "");
+        }
+    });
+
+    //$('input[type="file"]').on('change', function () {
+    //    var ext = $(this).val().split('.').pop().toUpperCase();
+    //    if ($(this).val() != '') {
+    //        if (ext == "PDF") {
+    //            if ($(this)[0].files[0].size > 5242880) {
+    //                alert("El documento excede el tamaño máximo");
+    //                $('#modal-title').text('¡Precaución!');
+    //                $('#modal-msg').html("Se solicita un archivo no mayor a 5MB. Por favor verifica.");
+    //                $("#modal-gral").modal();
+    //                $(this).val('');
+    //            } else {
+    //                $("#modal-gral").hide();
+    //            }
+    //        }
+    //        else {
+    //            $(this).val('');
+    //            alert("Extensión no permitida: " + ext);
+    //        }
+    //    }
+    //});
+
+    $('input[type="file"]').on('change', function () {
+        document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+        document.getElementById('mensajeArchivo5MB').style.display = 'none';
+        document.getElementById('fileUp').style.display = 'none';
+        var ext = $(this).val().split('.').pop().toUpperCase();
+        if ($(this).val() != '') {
+            if (ext == "PDF") {
+                if ($(this)[0].files[0].size > 5242880) {
+                    $(this).val('');
+                    document.getElementById('mensajeArchivo5MB').style.display = 'block';
+                    document.getElementById('mensajeArchivoNoPDF').style.display = 'none';
+                    $("#importData").css('border', '1px solid #b94a48');
+
+                } else {                    
+                    document.getElementById('fileUp').style.display = 'block';
+                }
+            }
+            else {
+                $(this).val('');
+                document.getElementById('mensajeArchivoNoPDF').style.display = 'block';
+                $("#mensajeArchivoNoPDF").text("Extensión no permitida: " + ext);
+                document.getElementById('mensajeArchivo5MB').style.display = 'none';
+                $("#importData").css('border', '1px solid #b94a48');
+
+            }
+        }
+    });
+
+    function getDV() {
+        var numero = document.getElementById("rut");
+        var rutDV = document.getElementById("dv");
+
+        nuevo_numero = numero.value.toString().split('.').join('').split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+
+        document.getElementById("hiddenDV").value = dv;
+
+        if (numero.value == "") {
+
+            $('#dv').val('');
+        }
+        //getNombreRegistroCivil(numero.value, rutDV.value);
+
+        return dv;
+    }
+
+    //function getNombreRegistroCivil(numero, rutDV) {
+    $("#btnConsultaNombreRegCivil").click(function () {
+
+        var numero = $('#rut').val();
+        var rutDV = $('#dv').val();
+
+        if (numero == "") {
+            document.getElementById('mensajeRut').style.display = 'block';
+            $("#rut").css('border', '1px solid #b94a48');
+            $("#rut").focus();
+            return false;
+        }
+
+        $('.spinner').css('display', 'block');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ConsultaNombreRegistroCivil")', //Llamada al metodo Json
+
+                dataType: 'json',
+
+                data: { Rut: numero, RutDv: rutDV },
+
+                success: function (auxConsultaInformacionProfesional) {
+                    //console.log(auxConsultaInformacionProfesional);
+
+                    if (auxConsultaInformacionProfesional._informacionProfesionalEntities != null)
+                    {
+                        if (auxConsultaInformacionProfesional._informacionProfesionalEntities.codigoSalida == "") {
+                            if (auxConsultaInformacionProfesional._informacionProfesionalEntities.fallecido == false) {
+                                if (auxConsultaInformacionProfesional._informacionProfesionalEntities.menorEdad == false) {
+
+                                    var nombres = auxConsultaInformacionProfesional._informacionProfesionalEntities.nombreProfesional;
+                                    var apellidoP = auxConsultaInformacionProfesional._informacionProfesionalEntities.apellidoPaternoProfesional;
+                                    var apellidoM = auxConsultaInformacionProfesional._informacionProfesionalEntities.apellidoMaternoProfesional;
+                                    var nombreCompleto = nombres + " " + apellidoP + " " + apellidoM;
+
+                                    $('#nombreRazonSocial').val(nombreCompleto);
+                                    $('#nombreRazonSocial').css('cursor', 'none');
+                                }
+                                else {
+                                    document.getElementById('mensajeNombreMenor').style.display = 'block';
+                                    $("#nombreRazonSocial").css('border', '1px solid #b94a48');
+                                    $("#nombreRazonSocial").focus();
+                                }
+                            }
+                            else {
+                                document.getElementById('mensajeNombreFallecido').style.display = 'block';
+                                $("#nombreRazonSocial").css('border', '1px solid #b94a48');
+                                $("#nombreRazonSocial").focus();
+                            }
+                        }
+                        else
+                        {
+                            document.getElementById('mensajeError').style.display = 'block';
+                            $("#nombreRazonSocial").css('border', '1px solid #b94a48');
+                            $("#nombreRazonSocial").focus();
+                            $('.spinner').css('display', 'none');
+                            //$("#nombreRazonSocial").removeAttr("readonly");
+                            //$("#nombreRazonSocial").removeAttr("disabled");
+                        }
+
+                    }
+
+                    $('.spinner').css('display', 'none');
+                },
+                error: function (ex) {
+                    document.getElementById('mensajeError').style.display = 'block';
+                    $("#nombreRazonSocial").css('border', '1px solid #b94a48');
+                    $("#nombreRazonSocial").focus();
+                    $('.spinner').css('display', 'none');
+                }
+        });
+
+            return false;
+    });
+
+    $("#numeroResolucion").blur(function () {
+        var numeroResolucion = $('#numeroResolucion').val();        
+
+        if (numeroResolucion == "") {
+            document.getElementById('mensajeNumero').style.display = 'block';
+            document.getElementById('mensajeNumeroExiste').style.display = 'none';
+            $("#numeroResolucion").css('border', '1px solid #b94a48');
+            //$("#numeroResolucion").focus();
+            return false;
+        }
+
+        //$('.spinner').css('display', 'block');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetNumeroResolucion")', //Llamada al metodo Json
+
+                dataType: 'json',
+
+                data: { numeroResolucion: numeroResolucion },
+
+                success: function (auxConsultaResolucion) {
+
+                    if (auxConsultaResolucion._contratoSolicitudPago.numeroResolucionContrato > 0)
+                    {
+                        document.getElementById('mensajeNumeroExiste').style.display = 'block';
+                        $("#numeroResolucion").css('border', '1px solid #b94a48');
+                        $("#numeroResolucion").focus();                                            
+                    }
+
+                    $('.spinner').css('display', 'none');
+                },
+                error: function (ex) {
+                    document.getElementById('mensajeError').style.display = 'block';
+                    $("#numeroResolucion").css('border', '1px solid #b94a48');
+                    $("#numeroResolucion").focus();
+                    $('.spinner').css('display', 'none');
+                }
+        });
+
+            return false;
+    });
+
+</script>

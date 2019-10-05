@@ -1,0 +1,676 @@
+﻿@model Minvu.Snat.Domain.Forms.ConsultaContratoPPPF
+
+@{
+    ViewBag.Title = "CambiarTipoContrato";
+}
+
+<h4>@ViewBag.tipoOrigen - @ViewBag.nombreProyecto </h4>
+
+@if (Model != null)
+{
+    <script>
+        $(document).ready(function () {
+            //document.getElementById('detalleContratos').style.display = 'block';
+            document.getElementById('detalleContratos').style.display = 'none';
+            //hiddenCampos();
+        });
+    </script>
+
+    if (Model._auxinformacionContratoEntities == null || Model._auxinformacionContratoEntities.Count == 0)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleContratosVacio').style.display = 'block';
+                document.getElementById('detalleContratos').style.display = 'none';
+            });
+        </script>
+    }
+    if (Model._auxinformacionContratoEntities == null)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleContratos').style.display = 'none';
+                document.getElementById('detalleContratosVacio').style.display = 'none';
+
+                if (@Model._informacionContratoEntities.codigoSalida == "0") {
+
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").text("Se actualizó contrato correctamente.");
+                }
+                else {
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").text("@Model._informacionContratoEntities.mensajeSalida");
+                }
+            });
+        </script>
+
+    }
+
+    if (Model._informacionContratoEntities != null)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById('detalleContratosVacio').style.display = 'none';
+                $('#myModal').modal('hide');
+                $('#modalOk').modal('toggle');   
+
+                if (@Model._informacionContratoEntities.codigoSalida == "0") {
+                    document.getElementById('detalleContratosModifica').style.display = 'block';
+                    $('#divBusqueda').show();
+                    $("#strongBusqueda").text("Se actualizó contrato correctamente.");
+                }
+                else {
+                    $('#divBusquedaError').show();
+                    $("#strongBusquedaError").text("@Model._informacionContratoEntities.mensajeSalida");
+                }
+            });
+        </script>
+
+    }
+}
+
+
+<div class="container">
+    @using (Html.BeginForm("CambiarTipoContrato", "Incidentes", FormMethod.Post, new { id = "formConsultaContratos", @class = "form-horizontal", autocomplete = "off" }))
+    {
+        <div class="container">
+            <div class="page-header">
+                @*<div class="form-group">
+                        <label class="control-label col-sm-2" for="email" style="text-align:left"><span style="color:#FF0000">(*)&nbsp;</span> Rut:</label>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(model => model._informacionContratoEntities.rutContrato, new { @class = "form-control", placeholder = "Ingrese Rut sin puntos, guión ni Dv", maxlength = "8", onblur = "getDV();", id = "rut", name = "rut", onkeypress = "return numeros(event)", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false" })
+                            <span class="text-danger">@Html.ValidationMessageFor(model => model._informacionContratoEntities.rutContrato)</span>
+                        </div>
+                        <div class="col-sm-1">
+                            @Html.TextBoxFor(model => model._informacionContratoEntities.dvContrato, new { @class = "form-control", placeholder = "Dv", id = "dv", name = "dv", @readonly = "readonly", disabled = "disabled" })
+                        </div>
+                    </div>*@
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pry" style="text-align:left"><span style="color:#FF0000">(**)&nbsp;</span> Código Proyecto:</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model._informacionContratoEntities.idProyectoContratoConsulta, new { @class = "form-control", placeholder = "Ingrese Código Proyecto o Rut", id = "idCodigoProyecto", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", maxlength = "30", onblur = "changeFocus();" })
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model._informacionContratoEntities.idProyectoContratoConsulta)</span>
+                        <h6><span style="color:#FF0000">(!)&nbsp;</span>Si el código de proyecto es un RUT ingresar sin puntos, con dígito verificador y guión.</h6>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="idC" style="text-align:left"><span style="color:#FF0000">(**)&nbsp;</span> ID Contrato:</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model._informacionContratoEntities.idContratoConsulta, new { @class = "form-control", placeholder = "Ingrese ID Contrato", onkeypress = "return numeros(event)", maxlength = "9", id = "idContrato", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", onblur = "changeFocus();" })
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model._informacionContratoEntities.idContratoConsulta)</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="psat" style="text-align:left"><span style="color:#FF0000">(**)&nbsp;</span> Nombre PSAT:</label>
+                    <div class="col-sm-4">
+                        @Html.TextAreaFor(model => model._informacionContratoEntities.nombreContratoConsulta, new { @class = "form-control", placeholder = "Ingrese Nombre PSAT", id = "nombrePsat", onpaste = "return false;", onCopy = "return false", onCut = "return false", onDrag = "return false", onDrop = "return false", maxlength = "200", onblur = "changeFocus();", @onkeydown = "ActualizarCantidad(this, contadorCaracteresDescripcion, 200);", @onkeyup = "ActualizarCantidad(this, contadorCaracteresDescripcion, 200);" })
+                        @*<span class="text-danger">@Html.ValidationMessageFor(model => model._informacionContratoEntities.nombreContratoConsulta)</span>*@
+                        <span id="mensajeSpanNombre" class="text-danger" style="display:none">Debe contener al menos tres caracteres.</span>
+                        <div class="align-left help-block" id="contadorCaracteresDescripcion">200 caracteres restantes</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-secondary" onclick="backPage()">Volver</button>
+                        <button type="button" id="btnSubmit" class="btn btn-primary">Buscar</button>
+                        <button type="button" class="btn btn-default" onclick="LimpiaFormulario()">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-5" style="text-align:left">
+                    Seleccione al menos un campo con
+                    <span style="color:#FF0000">(**)&nbsp;</span>
+                    para realizar búsqueda.<br />
+                    @*<span style="color:#FF0000">(*)&nbsp;</span>Si el código de proyecto es un RUT ingresar sin puntos, con dígito verificador y guión.*@
+                </div>
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("ConfirmaModificaContrato", "Incidentes", FormMethod.Post, new { id = "formModificaContrato", autocomplete = "off" }))
+    {
+        //if (Model != null)
+        //{
+
+        <div class="container" id="detalleContratosVacio" style='display:none;'>
+            <h4>Contratos Disponibles</h4>
+            <table id="mytableNone" class="table table-bordered table-striped" style="width:80%">
+                <tbody>
+                    <tr>
+                        <td style="text-align:center;" class="">@ViewBag.Message</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive" id="detalleContratos" style='display:none;'>
+            <h4>Listado de Contratos PPPF</h4>
+            <table id="grillaProy" class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">ID Contrato</th>
+                        <th style="text-align:center;">Nombre Contrato</th>
+                        <th style="text-align:center;">Tipo Contrato</th>
+                        <th style="text-align:center;">Nombre PSAT</th>
+                        <th style="text-align:center;">Cantidad Proyectos</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="container" id="detalleContratosModifica" style='display:none;'>
+                <h4>Listado de Contratos PPPF</h4>
+                <table id="mytable" class="table table-bordered table-striped" >
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">ID Contrato</th>
+                            <th style="text-align:center;">Nombre Contrato</th>
+                            <th style="text-align:center;">Tipo Contrato</th>
+                            <th style="text-align:center;">Nombre PSAT</th>
+                            <th style="text-align:center;">Cantidad Proyectos</th>
+                            <th>Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var items in Model._auxinformacionContratoEntities)
+                        {
+                        <tr>
+                            <td style="text-align:center;" class="">@items.idContratoProyecto</td>
+                            <td style="text-align:center;" class="">@items.idNombreContrato</td>
+                            <td style="text-align:center;" class="">@items.tipoContrato</td>
+                            <td style="text-align:center;" class="">@items.idNombrePSAT</td>
+                            <td style="text-align:center;" class="">@items.cantidadProyectos</td>
+                            <td style="text-align:center;"><p data-placement="top" data-toggle="tooltip" title="Editar">
+                            <button type="button" name="btnEditModal" id="btnEditModal" onclick="setId(@items.idContratoProyecto);" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" contenteditable="false"><span class="glyphicon glyphicon-edit"></span></button>
+                            </p></td>
+                        </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        //}
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content"></div>
+            </div>
+            <div class="modal-dialog">
+                <div class="modal-content"></div>
+            </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true" class="">×   </span><span class="sr-only">Cerrar</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Editar Datos</h4>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" style="text-align:left; width:auto"><span style="color:#FF0000">(*)&nbsp;</span> Tipo Contrato</label>
+                            <select class="form-control" name="ddltipo" id="ddltipo" style="width:50%; margin-left:150px" onchange="quitaMsjError();">
+                                <option value="">-- Seleccione --</option>
+                                <option value="1">Externo</option>
+                                <option value="2">Municipalidad</option>
+                                <option value="0">SERVIU</option>
+                            </select>
+                            @Html.HiddenFor(m => m._informacionContratoEntities.idContratoProyecto)
+                            <input type="text" name="idContratoHidden" id="idContratoHidden" value="" hidden>
+                            <span id="mensajeSpan" class="text-danger" style="display:none; margin-left:150px">Debe seleccionar una opción. </span>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <div class="col-lg-5" style="text-align:left">
+                                El campo con
+                                <span style="color:#FF0000">(*)&nbsp;</span>
+                                es obligatorio.
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="modal-footer">
+                        <p class="navbar-text navbar-left" style="font-size:10px">
+                            Usuario Responsable: @SiteHelper.NombreCompletoUsuario (@SiteHelper.UserName)
+                        </p>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+            <div class="spinnerModal" style="display:none">
+                <div class="center-div">
+                    <div class="inner-div">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        // }
+    }
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalOk">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Exito</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divBusqueda" class="alert alert-success oculta">
+                        <button class="close" type="button" data-dismiss="alert"></button>
+                        <strong id="strongBusqueda">Error</strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-btn-si">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spinner" style="display:none">
+        <div class="center-div">
+            <div class="inner-div">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div id="divBusqueda" class="alert alert-success oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusqueda">Error</strong>
+    </div>
+
+    <div id="divBusquedaError" class="alert alert-danger oculta">
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <strong id="strongBusquedaError">Error</strong>
+    </div>
+</div>
+
+<div id="divBusquedaWarning" class="alert alert-warning oculta" style="text-align:center">
+    <button class="close" type="button" data-dismiss="alert"></button>
+    <strong id="strongBusquedaWarning">Error</strong>
+</div>
+
+<style type="text/css">
+    .oculta {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        $('#idCodigoProyecto').keypress(function (e) {
+            changeFocus();
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            var texto = $('#idCodigoProyecto').val();
+
+            if (keycode == '32') {
+                if (texto.length == 0) {
+                    return false;
+                } else if ((texto.substring(texto.length - 1, texto.length)) == ' ') {
+                    return false;
+                }
+            }
+        });
+
+        $('#nombrePsat').keypress(function (e) {
+            changeFocus();
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            var texto = $('#nombrePsat').val();
+
+            if (keycode == '32') {
+                if (texto.length == 0) {
+                    return false;
+                } else if ((texto.substring(texto.length - 1, texto.length)) == ' ') {
+                    return false;
+                }
+            }
+        });
+
+        $('#nombrePsat').keypress(function (e) {
+            var texto = $('#nombrePsat').val();
+
+            if (texto.trim().length >= 0) {
+                if (texto.trim().length < 2) {
+                    document.getElementById('mensajeSpanNombre').style.display = 'block';
+                    $("#nombrePsat").css('border-color', '#b94a48');
+                }
+                else {
+                    document.getElementById('mensajeSpanNombre').style.display = 'none';
+                }
+            }
+        });
+
+    });
+
+    $('#btnSubmit').click(function () {
+
+        $('#divBusqueda').hide();
+        $('#divBusquedaError').hide();
+        $('#divBusquedaWarning').hide();
+
+        var idCodigoProyecto = $('#idCodigoProyecto').val();
+        var idContrato = $('#idContrato').val();
+        var nombrePsat = $('#nombrePsat').val();
+
+        document.getElementById('detalleContratosModifica').style.display = 'none';
+
+        if (nombrePsat.trim().length > 0) {
+            if (nombrePsat.trim().length <= 2) {
+                document.getElementById('mensajeSpanNombre').style.display = 'block';
+                $("#nombrePsat").css('border-color', '#b94a48');
+                return false;
+            }
+        }
+
+
+        if (idCodigoProyecto.trim() != "" || idContrato != "" || nombrePsat.trim() != "") {
+
+            $('.spinner').css('display', 'block');
+
+            var jsonObject = {
+                "codigoProyectoPPPF": idCodigoProyecto,
+                "idContrato": idContrato,
+                "nombrePSATPPPF": nombrePsat,
+                "informacionDisponible": true
+            };
+
+            $.ajax({
+                url: '/Incidentes/CambiarTipoContrato',
+                type: "POST",
+                data: JSON.stringify(jsonObject),
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success: function (obj, textstatus) {
+
+                    var dataSet = new Array;
+                    if (!('error' in obj)) {
+                        $.each(obj, function (index, value) {
+                            var tempArray = new Array;
+                            for (var o in value) {
+                                tempArray.push(value[o]);
+                            }
+                            dataSet.push(tempArray);
+                        })
+                        $('#grillaProy').DataTable({
+                            destroy: true,
+                            data: dataSet,
+                            scrollX: false,
+                            columns: [
+                                { data: 0 },
+                                { data: 1 },
+                                { data: 2 },
+                                { data: 3 },
+                                { data: 4 },
+                                { data: null, defaultContent: '', sorting: false }
+
+                            ],
+                            "columnDefs": [{
+                                "targets": -1,
+                                "createdCell": function (td, cellData, rowData, row, col) {
+                                    $(td).prepend(
+                                        "<td style='text-align:center;'><p data-placement='top' data-toggle='tooltip' title='Editar'><button type='button' name='btnEditModal' id='btnEditModal' onclick='setId(" + cellData[0] +");' class='btn btn-success btn-xs' data-toggle='modal' data-target='#myModal' contenteditable='false'><span class='glyphicon glyphicon-edit'></span></button></p></td>"
+                                    );
+                                }
+                            }]
+                        });
+
+                    }
+                    else {
+                        alert(obj.error);
+                    }
+
+                    if (obj.length > 0) {
+                        $('.spinner').css('display', 'none');
+                        document.getElementById('detalleContratos').style.display = 'block';                        
+                    }
+                    else {
+                        $('.spinner').css('display', 'none');
+                        document.getElementById('detalleContratos').style.display = 'none';
+                        document.getElementById('detalleContratosVacio').style.display = 'block';
+
+                        //$('#divBusquedaWarning').show();
+                        //$("#strongBusquedaWarning").text("El beneficiario no se encuentra en las bases de datos de RUKAN.");
+                    }
+
+                    //document.getElementById('detalleContratos').style.display = 'block';
+                    //$('.spinner').css('display', 'none');
+                    //$('.spinner').css('display', 'none');
+                    //document.getElementById('detalleContratos').style.display = 'none';
+                    //$('#divBusquedaWarning').show();
+                    //$("#strongBusquedaWarning").text("El contrato no se encuentra en la base de datos de SNAT.");
+                },
+                error: function (obj, textstatus) {
+                    alert(obj.msg);
+                }
+            });
+
+        }
+        else {
+            document.getElementById('detalleContratos').style.display = 'none';
+            $('#divBusquedaError').show();
+            $("#strongBusquedaError").text("Debe seleccionar al menos un criterio de búsqueda. ");
+            $('#divBusqueda').hide();
+            $("#idCodigoProyecto").css('border-color', '#b94a48');
+            $("#idContrato").css('border-color', '#b94a48');
+            $("#nombrePsat").css('border-color', '#b94a48');
+            return false;
+        }
+    });
+
+    $(document).ready(function () {
+        $("form").keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+
+    $('#idCodigoProyecto').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ-]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+        }
+    });
+
+    $('#idContrato').on('input', function (e) {
+        if (!/^[ 0-9]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ 0-9]+/ig, "");
+        }
+    });
+
+    $('#nombrePsat').on('input', function (e) {
+        if (!/^[ a-z0-9áéíóúüñ.-[()]]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z0-9áéíóúüñ.-[()]]+/ig, "");
+        }
+    });
+
+    $('#btnEditModal').click(function () {
+
+        document.getElementById('mensajeSpan').style.display = 'none';      
+
+    });
+
+    $('#btnGuardar').click(function () {
+        var select = $('#ddltipo').val();
+
+        if (select != "") {
+            $('.spinnerModal').css('display', 'block');            
+        }
+        else {
+            document.getElementById('mensajeSpan').style.display = 'block';
+            $("#ddltipo").css('border-color', '#b94a48');
+            return false;
+        }
+    });
+
+    function ActualizarCantidad(ingreso, salida, max) {
+        var ln = $(ingreso).val().length;
+        if (ln >= max) {
+            $(salida).text('Límite de caracteres alcanzado');
+        } else {
+            var ch = max - ln;
+            $(salida).text(ch + ' caracteres restantes');
+        }
+    }
+
+    function setId(idContratoProyecto) {
+        var idPro = idContratoProyecto;
+        $("#idContratoHidden").val(idPro);
+    }
+
+    $(function () {
+        $("#datepicker").datepicker(
+            {
+                format: 'dd/mm/yyyy',
+                language: "es",
+                autoclose: true,
+                todayHighlight: true
+            });
+    });
+
+    function numeros(e) {
+
+        changeFocus();
+        var tecla = e.keyCode;
+
+        if (tecla == 8 || tecla == 9 || tecla == 13) {
+            return true;
+        }
+
+        var patron = /[0-9]/;
+        var tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function changeFocus() {
+        $("#idCodigoProyecto").css('border-color', '#66afe9');
+        $("#idContrato").css('border-color', '#66afe9');
+        $("#nombrePsat").css('border-color', '#66afe9');
+    }
+
+    function backPage() {
+        document.location = '@Url.Action("MantenedorIncidentes", "Incidentes")';
+    }
+
+    function getDV() {
+        var numero = document.getElementById("rut");
+        var rutDV = document.getElementById("dv");
+
+        nuevo_numero = numero.value.toString().split("").reverse().join("");
+        for (i = 0, j = 2, suma = 0; i < nuevo_numero.length; i++ , ((j == 7) ? j = 2 : j++)) {
+            suma += (parseInt(nuevo_numero.charAt(i)) * j);
+        }
+        n_dv = 11 - (suma % 11);
+        var dv = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+
+        rutDV.value = dv;
+
+        if (numero.value != "") {
+            document.getElementById("idCodigoProyecto").disabled = true;
+            document.getElementById("idContrato").disabled = true;
+            document.getElementById("nombrePsat").disabled = true;
+
+            $('#idCodigoProyecto').val('');
+            $('#idContrato').val('');
+            $('#nombrePsat').val('');
+        }
+        else {
+            document.getElementById("idCodigoProyecto").disabled = false;
+            document.getElementById("idContrato").disabled = false;
+            document.getElementById("nombrePsat").disabled = false;
+
+            $('#idCodigoProyecto').val('');
+            $('#idContrato').val('');
+            $('#nombrePsat').val('');
+            $('#dv').val('');
+        }
+
+        return dv;
+    }
+
+    function quitaMsjError() {
+        document.getElementById('mensajeSpan').style.display = 'none';
+        $("#ddltipo").css('border-color', '#66afe9');
+    }    
+
+    function hiddenCampos() {
+        var codigo = document.getElementById("idCodigoProyecto");
+        var contrato = document.getElementById("idContrato");
+        var nombre = document.getElementById("nombrePsat");
+        
+        if (codigo.value != "") {
+            document.getElementById("idContrato").disabled = true;
+            document.getElementById("nombrePsat").disabled = true;
+
+            $('#idContrato').val('');
+            $('#nombrePsat').val('');
+            return false;
+        }
+
+        if (contrato.value != "") {
+            document.getElementById("idCodigoProyecto").disabled = true;
+            document.getElementById("nombrePsat").disabled = true;
+                        
+            $('#idCodigoProyecto').val('');
+            $('#nombrePsat').val('');
+            return false;
+        }
+
+        if (nombre.value != "") {            
+            document.getElementById("idCodigoProyecto").disabled = true;
+            document.getElementById("idContrato").disabled = true;
+
+            $('#idCodigoProyecto').val('');
+            $('#idContrato').val('');
+            return false;
+        }
+    }
+
+    function LimpiaFormulario() {
+        changeFocus();
+
+        $(contadorCaracteresDescripcion).text('200 caracteres restantes');
+        $('#idCodigoProyecto').val('');
+        $('#idContrato').val('');
+        $('#nombrePsat').val('');
+
+        document.getElementById("idCodigoProyecto").disabled = false;
+        document.getElementById("idContrato").disabled = false;
+        document.getElementById("nombrePsat").disabled = false;
+        document.getElementById('mensajeSpanNombre').style.display = 'none';
+        document.getElementById('detalleContratosModifica').style.display = 'none';
+
+        if (document.getElementById('detalleContratos') != null) {
+            document.getElementById('detalleContratos').style.display = 'none';
+            document.getElementById('detalleContratosVacio').style.display = 'none';
+            $('#divBusqueda').hide();
+            $('#divBusquedaError').hide();
+        }
+    }
+
+    function LimpiaCabecera() {
+        $('#idCodigoProyecto').val('');
+        $('#idContrato').val('');
+        $('#nombrePsat').val('');
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
